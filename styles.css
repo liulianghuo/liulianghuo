@@ -95,8 +95,8 @@ button{font-family:inherit;cursor:pointer}
   font-weight:700;
 }
 
-.nav-right{display:flex;align-items:center;gap:36px}
-.nav-links{display:flex;gap:32px;list-style:none}
+.nav-right{display:flex;align-items:center;gap:36px;flex:1;justify-content:space-between;margin-left:48px}
+.nav-links{display:flex;gap:0;list-style:none;flex:1;justify-content:space-evenly;max-width:680px}
 .nav-links a{
   font-size:12px;font-weight:400;color:var(--c-text-secondary);
   position:relative;padding:4px 0;transition:color var(--duration-fast) ease;
@@ -618,7 +618,15 @@ button{font-family:inherit;cursor:pointer}
 .value-card h4{font-size:18px;font-weight:700;margin-bottom:10px;color:var(--c-text);letter-spacing:-0.01em}
 .value-card p{font-size:14px;color:var(--c-text-secondary);line-height:1.72}
 
-/* ===== MISSION & VISION (about) ===== */
+/* ===== TEAM SHOWCASE (about) ===== */
+.team-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; max-width:960px; margin-left:auto; margin-right:auto; }
+.team-card{ text-align:center; padding:32px 20px; border-radius:20px; background:var(--c-surface); border:0.5px solid var(--c-line-subtle); transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out); }
+.team-card:hover{ transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,0.06); }
+.team-avatar{ width:96px; height:96px; border-radius:50%; object-fit:cover; margin:0 auto 16px; border:3px solid rgba(255,255,255,0.9); box-shadow:0 4px 16px rgba(0,0,0,0.08); transition:transform .4s var(--ease-out); }
+.team-card:hover .team-avatar{ transform:scale(1.06); }
+.team-name{ font-size:18px; font-weight:700; color:var(--c-text); letter-spacing:-0.01em; margin-bottom:4px; }
+.team-role{ font-size:13px; font-weight:500; color:var(--fire-mid); letter-spacing:0.02em; }
+.team-title{ font-size:12px; color:var(--c-text-tertiary); margin-top:6px; }
 .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;max-width:var(--container-wide);margin-left:auto;margin-right:auto}
 .mission-card{
   padding:40px 32px;border-radius:22px;background:#FFFFFF;
@@ -729,6 +737,7 @@ button{font-family:inherit;cursor:pointer}
 }
 @media(max-width:768px){
   .nav-links,.nav-contact{display:none}
+  .nav-right{flex:0;justify-content:flex-end;margin-left:0}
   .mobile-btn{display:block}
   .nav{padding:0 24px;height:44px}
   .mobile-menu{top:44px}
@@ -748,6 +757,7 @@ button{font-family:inherit;cursor:pointer}
   .footer{padding:64px 24px 32px}
   .footer-bottom{flex-direction:column;gap:14px;text-align:center}
   .values-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
   .mission-grid{grid-template-columns:1fr}
   .wall-grid{grid-template-columns:1fr 1fr}
   .insight-row{grid-template-columns:1fr;gap:6px}
@@ -1071,6 +1081,8 @@ button{font-family:inherit;cursor:pointer}
   color: var(--c-text);
 }
 .v8-plan-price small{ font-size:14px; font-weight:400; color:var(--c-text-secondary); margin-left:4px; }
+.v8-plan-original{ font-size:18px; font-weight:500; color:var(--c-text-tertiary); text-decoration:line-through; text-decoration-color:var(--c-line); margin-left:8px; }
+.v8-plan-badge{ font-size:11px; font-weight:600; color:#fff; background:var(--fire-gradient); padding:4px 10px; border-radius:6px; margin-left:10px; letter-spacing:0.02em; }
 .v8-plan-cycle{ margin-left:auto; font-size:13px; color:var(--c-text-tertiary); }
 
 .v8-plan-for{
@@ -1243,7 +1255,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* 旗舰卡片品牌Logo图片 */
 .v8-fs-logo-img{
-  height:48px;width:auto;max-width:180px;object-fit:contain;
+  height:72px;width:auto;max-width:220px;object-fit:contain;
   border-radius:10px;border:0.5px solid var(--c-line-subtle);
   padding:6px 14px;background:#fff;
   transition:transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
@@ -1406,6 +1418,7 @@ button{font-family:inherit;cursor:pointer}
 }
 @media(max-width:560px){
   .values-grid{grid-template-columns:1fr}
+  .team-grid{ grid-template-columns:1fr; max-width:420px; }
   .v8-bm-num{ font-size:28px !important; min-width:auto; }
   .v8-big-metric{ flex-direction:column; gap:4px; padding:14px 0; }
   .v8-big-metric:last-child{ padding-bottom:0; }
