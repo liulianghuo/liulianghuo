@@ -3,577 +3,410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>陈工 — 新媒体增长实战专家</title>
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --ink:#0B0D11;--ink2:#13161E;--ink3:#1C202C;--paper:#FFFFFF;--paper2:#F7F6F3;
-  --gold:#C8A87A;--gold2:#E5D4BC;--gold-dim:#8A7A5A;
-  --gray:#888888;--gray2:#AAAAAA;--gray3:#CCCCCC;
-  --sans:"SF Pro Display","PingFang SC","Helvetica Neue",sans-serif;
-  --serif:"Noto Serif SC","STSongti-SC",serif
+<title>流量火传媒 — 让IP成为品牌的核心增量资产</title>
+<meta name="description" content="流量火传媒（深圳市流量火文化传媒有限公司）专注IP策划、内容生产与多平台分发，提供小红书代运营、视频IP打造、GEO优化、一对一教培四大核心服务。">
+<meta name="keywords" content="流量火传媒,小红书代运营,视频IP打造,GEO优化,一对一教培,内容营销,IP资产">
+<meta property="og:title" content="流量火传媒 — 让IP成为品牌的核心增量资产">
+<meta property="og:description" content="专注IP策划、内容生产与多平台分发，提供小红书代运营、视频IP打造、GEO优化、一对一教培四大核心服务。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://liulianghuo.com/">
+<link rel="canonical" href="https://liulianghuo.com/">
+<link rel="icon" href="logo.png" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+
+<!-- ===== GEO: 结构化数据 (JSON-LD) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "深圳市流量火文化传媒有限公司",
+  "alternateName": "流量火传媒",
+  "url": "https://liulianghuo.com",
+  "logo": "https://liulianghuo.com/logo.png",
+  "description": "流量火传媒专注IP策划、内容生产与多平台分发，为企业提供小红书一对一教培、小红书代运营、视频IP打造与定位、GEO优化四大核心服务，让IP成为品牌的核心增量资产。",
+  "slogan": "让IP成为品牌的核心增量资产",
+  "areaServed": "CN",
+  "sameAs": [
+    "https://www.xiaohongshu.com/user/profile/流量火传媒"
+  ]
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-weight:400;line-height:1.7}
-::selection{background:var(--gold);color:#fff}
-
-/* ===== TYPOGRAPHY ===== */
-h1,h2,h3,h4{font-weight:700;letter-spacing:-0.04em;line-height:1.08;color:var(--ink)}
-p{font-size:16px;color:var(--gray);line-height:1.9;letter-spacing:0.01em}
-
-/* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(0,0,0,0.04);padding:0 60px;height:72px;display:flex;justify-content:space-between;align-items:center}
-.nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.05em;text-decoration:none;color:var(--ink)}
-.nav-logo span{color:var(--gold);font-weight:300}
-.nav-links{display:flex;gap:40px;list-style:none}
-.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:0.3s;position:relative;font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;background:var(--gold);transition:0.4s cubic-bezier(0.23,1,0.32,1)}
-.nav-links a:hover::after{width:100%}
-.nav-cta{display:inline-flex;align-items:center;padding:10px 28px;background:var(--ink);color:#fff;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:0.3s;border:none;cursor:pointer;letter-spacing:0.04em}
-.nav-cta:hover{background:var(--ink3);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
-.nav-menu{display:none;background:none;border:none;cursor:pointer;padding:4px}
-.nav-menu span{display:block;width:22px;height:1.5px;background:var(--ink);margin:6px 0;border-radius:1px;transition:0.3s}
-
-/* ===== HERO ===== */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 60px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:var(--ink);clip-path:polygon(25% 0,100% 0,100% 100%,0 100%);z-index:1}
-.hero::after{content:'';position:absolute;bottom:-100px;right:100px;width:300px;height:300px;border:1px solid rgba(200,168,122,0.15);border-radius:50%;z-index:2;pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center;max-width:1400px;margin:0 auto;width:100%;position:relative;z-index:3}
-
-.hero-left{position:relative;padding-right:40px}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11px;color:var(--gold);font-weight:600;margin-bottom:36px;letter-spacing:0.15em;text-transform:uppercase}
-.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
-.hero h1{font-size:clamp(44px,6vw,80px);font-weight:800;margin-bottom:28px;letter-spacing:-0.05em}
-.hero h1 .line1{display:block}
-.hero h1 .line2{display:block;color:var(--gray3);font-weight:300}
-.hero h1 .line2 em{font-style:normal;color:var(--gold);font-weight:600}
-.hero-desc{font-size:17px;color:var(--gray);line-height:2;margin-bottom:44px;max-width:420px}
-.hero-actions{display:flex;gap:18px;flex-wrap:wrap}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--ink);color:#fff;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:0.4s cubic-bezier(0.23,1,0.32,1);border:none;cursor:pointer;letter-spacing:0.04em}
-.btn-primary:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px);box-shadow:0 16px 40px rgba(200,168,122,0.3)}
-.btn-text{display:inline-flex;align-items:center;gap:8px;padding:16px 0;color:var(--ink);font-size:14px;font-weight:600;text-decoration:none;transition:0.3s;letter-spacing:0.04em;position:relative}
-.btn-text::after{content:'';position:absolute;bottom:12px;left:0;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:0.4s cubic-bezier(0.23,1,0.32,1)}
-.btn-text:hover::after{transform:scaleX(1)}
-
-/* Hero right — floating stats on dark bg */
-.hero-right{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:48px;padding-left:60px}
-.hero-stat-item{text-align:right}
-.hero-stat-num{font-size:clamp(48px,7vw,88px);font-weight:800;color:#fff;letter-spacing:-0.06em;line-height:1;display:block}
-.hero-stat-num span{color:var(--gold)}
-.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.4);margin-top:8px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
-.hero-stat-line{width:60px;height:1px;background:rgba(200,168,122,0.3);margin:0 0 0 auto}
-
-/* ===== SECTIONS ===== */
-.section{padding:140px 60px;position:relative}
-.section-dark{background:var(--ink);color:#fff}
-.section-dark h2,.section-dark h3{color:#fff}
-.section-dark p{color:rgba(255,255,255,0.5)}
-.container{max-width:1200px;margin:0 auto}
-
-.section-header{margin-bottom:80px;display:flex;justify-content:space-between;align-items:flex-end}
-.section-header-left{max-width:600px}
-.section-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:16px}
-.section-eyebrow::after{content:'';flex:1;height:1px;background:var(--gold);opacity:0.2;max-width:60px}
-.section-title{font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-0.04em;line-height:1.1}
-.section-desc{font-size:16px;color:var(--gray);margin-top:16px;max-width:440px;line-height:1.9}
-
-.section-header-right{text-align:right}
-.section-num{font-size:72px;font-weight:800;color:var(--paper2);line-height:1;letter-spacing:-0.06em}
-.section-dark .section-num{color:rgba(255,255,255,0.04)}
-
-/* ===== SERVICES ===== */
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--paper2);border-radius:4px;overflow:hidden}
-.service-card{background:var(--paper);padding:48px 36px;transition:0.5s cubic-bezier(0.23,1,0.32,1);position:relative;overflow:hidden}
-.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:0.5s cubic-bezier(0.23,1,0.32,1)}
-.service-card:hover::before{transform:scaleX(1)}
-.service-card:hover{background:#fff;transform:translateY(-4px);box-shadow:0 30px 60px rgba(0,0,0,0.06)}
-.service-num{font-size:48px;font-weight:800;color:var(--paper2);line-height:1;margin-bottom:24px;letter-spacing:-0.04em;transition:0.3s}
-.service-card:hover .service-num{color:var(--gold)}
-.service-card h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
-.service-card .price{font-size:12px;color:var(--gold);font-weight:600;margin-bottom:20px;letter-spacing:0.08em;text-transform:uppercase}
-.service-card>p{font-size:14px;color:var(--gray);line-height:1.9}
-.service-features{margin-top:28px;display:flex;flex-direction:column;gap:10px}
-.service-features li{font-size:13px;color:var(--gray);display:flex;align-items:flex-start;gap:10px;list-style:none;line-height:1.6}
-.service-features li::before{content:'—';color:var(--gold);font-weight:600;flex-shrink:0}
-
-/* ===== RESULTS STRIP ===== */
-.results-strip{background:var(--ink);padding:80px 60px;position:relative;overflow:hidden}
-.results-strip::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border:1px solid rgba(200,168,122,0.06);border-radius:50%;pointer-events:none}
-.results-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:40px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
-.result-item{text-align:center;position:relative}
-.result-item::after{content:'';position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:1px;height:40px;background:rgba(255,255,255,0.06)}
-.result-item:last-child::after{display:none}
-.result-num{font-size:clamp(28px,3.5vw,44px);font-weight:800;color:#fff;letter-spacing:-0.06em;line-height:1}
-.result-num span{color:var(--gold)}
-.result-label{font-size:11px;color:rgba(255,255,255,0.35);margin-top:10px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500}
-
-/* ===== CASES — MAGAZINE GRID ===== */
-.cases-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
-.case-card{background:var(--paper2);border-radius:4px;padding:48px 40px;transition:0.4s cubic-bezier(0.23,1,0.32,1);display:flex;flex-direction:column;position:relative;overflow:hidden}
-.case-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:0.4s}
-.case-card:hover::before{opacity:0.5}
-.case-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(0,0,0,0.08)}
-.case-card.col-6{grid-column:span 6}
-.case-card.col-4{grid-column:span 4}
-.case-card.col-8{grid-column:span 8}
-
-.case-badge{display:inline-block;padding:4px 14px;background:rgba(200,168,122,0.08);color:var(--gold-dim);border-radius:2px;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;align-self:flex-start;transition:0.3s}
-.case-card:hover .case-badge{background:rgba(200,168,122,0.15);color:var(--gold)}
-.case-card h3{font-size:22px;font-weight:700;margin-bottom:14px;letter-spacing:-0.03em;line-height:1.3}
-.case-card>p{font-size:14px;color:var(--gray);line-height:1.9;flex:1}
-.case-metrics{display:flex;gap:36px;margin-top:32px;padding-top:28px;border-top:1px solid rgba(0,0,0,0.06)}
-.case-metric-val{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-0.04em}
-.case-metric-val span{color:var(--gold)}
-.case-metric-label{font-size:10px;color:var(--gray2);margin-top:6px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
-
-/* ===== INSIGHTS ===== */
-.insights-list{display:flex;flex-direction:column;border-top:1px solid rgba(0,0,0,0.06)}
-.insight-item{display:grid;grid-template-columns:80px 1fr 60px;gap:40px;align-items:center;padding:36px 0;border-bottom:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:0.4s;position:relative}
-.insight-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:0.4s cubic-bezier(0.23,1,0.32,1)}
-.insight-item:hover{padding-left:24px}
-.insight-item:hover::before{transform:scaleY(1)}
-.insight-num{font-size:14px;font-weight:700;color:var(--gray3);letter-spacing:0.1em}
-.insight-item:hover .insight-num{color:var(--gold)}
-.insight-content h4{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em;transition:0.3s}
-.insight-item:hover .insight-content h4{color:var(--gold-dim)}
-.insight-content p{font-size:14px;color:var(--gray);line-height:1.7}
-.insight-tags{display:flex;gap:10px;margin-top:12px}
-.insight-tags span{font-size:10px;padding:4px 12px;background:var(--paper2);border-radius:2px;color:var(--gray2);letter-spacing:0.08em;text-transform:uppercase;font-weight:500}
-.insight-arrow{font-size:20px;color:var(--gray3);transition:0.3s;font-weight:300}
-.insight-item:hover .insight-arrow{color:var(--gold);transform:translateX(8px)}
-
-/* ===== ABOUT ===== */
-.about-grid{display:grid;grid-template-columns:1fr 2fr;gap:100px;align-items:start}
-.about-quote{font-size:28px;font-weight:300;line-height:1.7;color:var(--ink);letter-spacing:-0.02em;font-family:var(--serif)}
-.about-quote strong{font-weight:700}
-.about-quote em{font-style:normal;color:var(--gold);font-weight:500}
-.about-body{font-size:16px;color:var(--gray);line-height:2.2;margin-top:32px}
-.about-body strong{color:var(--ink);font-weight:600}
-.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
-.about-tag{padding:8px 18px;border:1px solid rgba(0,0,0,0.08);border-radius:2px;font-size:12px;color:var(--gray);transition:0.3s;letter-spacing:0.04em}
-.about-tag:hover{border-color:var(--gold);color:var(--gold-dim)}
-
-/* ===== CONTACT ===== */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px}
-.contact-note{font-size:20px;font-weight:300;line-height:1.9;color:var(--ink);letter-spacing:-0.01em;margin-bottom:48px;font-family:var(--serif)}
-.contact-info{display:flex;flex-direction:column;gap:4px}
-.contact-item{display:flex;align-items:center;gap:20px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,0.06);transition:0.3s}
-.contact-item:hover{padding-left:12px}
-.contact-label{font-size:11px;color:var(--gray2);letter-spacing:0.15em;text-transform:uppercase;font-weight:600;width:80px;flex-shrink:0}
-.contact-value{font-size:16px;color:var(--ink);font-weight:500;transition:0.3s}
-.contact-item:hover .contact-value{color:var(--gold-dim)}
-
-.form-group{margin-bottom:28px}
-.form-group label{display:block;font-size:10px;color:var(--gray2);letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin-bottom:12px}
-.form-group input,.form-group textarea{width:100%;padding:18px 0;border:none;border-bottom:1px solid rgba(0,0,0,0.1);font-size:16px;font-family:var(--sans);background:transparent;color:var(--ink);transition:0.4s;outline:none;border-radius:0}
-.form-group input:focus,.form-group textarea:focus{border-bottom-color:var(--gold)}
-.form-group textarea{resize:vertical;min-height:120px}
-.form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray3);font-weight:300}
-
-/* ===== FOOTER ===== */
-.footer{padding:60px 60px;text-align:center;border-top:1px solid rgba(0,0,0,0.06)}
-.footer p{font-size:12px;color:var(--gray2);letter-spacing:0.1em}
-.footer span{color:var(--gold-dim)}
-
-/* ===== ANIMATIONS ===== */
-.fade-up{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.23,1,0.32,1),transform 0.8s cubic-bezier(0.23,1,0.32,1)}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:1024px){
-  .hero-grid{grid-template-columns:1fr;gap:60px}
-  .hero::before{width:100%;clip-path:none;opacity:0.03}
-  .hero-right{align-items:flex-start;padding-left:0}
-  .hero-stat-item{text-align:left}
-  .hero-stat-line{margin:0}
-  .services-grid{grid-template-columns:1fr 1fr}
-  .results-grid{grid-template-columns:repeat(3,1fr)}
-  .case-card.col-6,.case-card.col-4,.case-card.col-8{grid-column:span 6}
-  .about-grid{grid-template-columns:1fr;gap:48px}
-  .contact-grid{grid-template-columns:1fr;gap:60px}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"小红书一对一教培","provider":{"@type":"Organization","name":"深圳市流量火文化传媒有限公司"},"areaServed":"CN","serviceType":"定制化培训与陪跑"}},
+    {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"小红书代运营","provider":{"@type":"Organization","name":"深圳市流量火文化传媒有限公司"},"areaServed":"CN","serviceType":"全案托管运营"}},
+    {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"视频IP打造与定位","provider":{"@type":"Organization","name":"深圳市流量火文化传媒有限公司"},"areaServed":"CN","serviceType":"个人/品牌IP定位与短视频制作"}},
+    {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"GEO优化","provider":{"@type":"Organization","name":"深圳市流量火文化传媒有限公司"},"areaServed":"CN","serviceType":"AI搜索时代品牌内容优化"}}
+  ]
 }
-@media(max-width:768px){
-  .nav{padding:0 24px}
-  .nav-links,.nav-cta{display:none}
-  .nav-menu{display:block}
-  .nav-links.active{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(30px);padding:32px 24px;gap:24px;border-bottom:1px solid rgba(0,0,0,0.06)}
-  .hero,.section{padding:80px 24px}
-  .hero h1{font-size:36px}
-  .hero-right{display:none}
-  .services-grid{grid-template-columns:1fr}
-  .results-grid{grid-template-columns:1fr 1fr}
-  .result-item::after{display:none}
-  .cases-grid{grid-template-columns:1fr}
-  .case-card.col-6,.case-card.col-4,.case-card.col-8{grid-column:span 1}
-  .insight-item{grid-template-columns:40px 1fr 40px;gap:20px;padding:24px 0}
-  .section-header{flex-direction:column;align-items:flex-start;gap:20px}
-  .about-grid{grid-template-columns:1fr;gap:36px}
-  .about-quote{font-size:22px}
-  .contact-grid{grid-template-columns:1fr}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"流量火传媒是做什么的？","acceptedAnswer":{"@type":"Answer","text":"流量火传媒（深圳市流量火文化传媒有限公司）专注IP策划、内容生产与多平台分发，提供小红书一对一教培、小红书代运营、视频IP打造与定位、GEO优化四大核心服务，帮企业在小红书、抖音及AI搜索生态中建立可复制的IP影响力。"}},
+    {"@type":"Question","name":"什么是GEO优化？","acceptedAnswer":{"@type":"Answer","text":"GEO（Generative Engine Optimization，生成式引擎优化）是面向AI搜索时代的新一代SEO。通过在豆包、DeepSeek、Kimi、文心、ChatGPT等平台优化品牌内容呈现，让目标用户在AI问答中优先看到并引用你的品牌。"}},
+    {"@type":"Question","name":"小红书代运营怎么收费？","acceptedAnswer":{"@type":"Answer","text":"代运营采用全案托管模式，覆盖选题策划、内容生产、数据复盘与投放优化。具体费用根据账号数量、内容频次与行业定制，欢迎通过页面底部联系我们获取针对性方案。"}},
+    {"@type":"Question","name":"视频IP打造需要多久见效？","acceptedAnswer":{"@type":"Answer","text":"通常从IP定位诊断到首条成片约2-3周，之后进入稳定内容节奏。真人出镜类IP一般1-2个月可见明显涨粉与互动提升，具体取决于行业竞争与内容投入。"}},
+    {"@type":"Question","name":"小红书一对一教培适合谁？","acceptedAnswer":{"@type":"Answer","text":"适合企业主、创业者、新媒体负责人，以及希望系统掌握小红书增长方法论的团队。基于你所在行业和资源现状的定制化陪跑，而非泛泛而谈的录播课。"}}
+  ]
 }
-</style>
+</script>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="#" class="nav-logo">陈工<span>.</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#cases">Cases</a></li>
-    <li><a href="#insights">Insights</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">开始合作</a>
-  <button class="nav-menu" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+  <div class="nav-left">
+    <img class="nav-logo" src="logo.png" alt="流量火">
+    <div class="nav-brand">流量<span class="fire">火</span></div>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">首页</a></li>
+      <li><a href="services.html">服务</a></li>
+      <li><a href="cases.html">案例</a></li>
+      <li><a href="insights.html">观点</a></li>
+      <li><a href="about.html">关于</a></li>
+    </ul>
+    <a href="#contact" class="nav-contact">联系我们</a>
+    <button class="mobile-btn" aria-label="菜单" aria-expanded="false">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
 </nav>
+<div class="mobile-menu">
+  <a href="index.html">首页</a>
+  <a href="services.html">服务</a>
+  <a href="cases.html">案例</a>
+  <a href="insights.html">观点</a>
+  <a href="about.html">关于</a>
+  <a href="#contact">联系我们</a>
+</div>
 
-<!-- HERO -->
+<!-- ========== HERO ========== -->
 <section class="hero">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <div class="hero-eyebrow">15 years · 4000+ users served</div>
-      <h1>
-        <span class="line1">帮你在小红书</span>
-        <span class="line2">拿到<em>真实流量</em></span>
-      </h1>
-      <p class="hero-desc">操盘 110+ 爆款账号、6 亿+ 流量、单场直播 92 万场观。从策略到交付，不是给建议，是陪你拿到结果。</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">预约咨询 →</a>
-        <a href="#cases" class="btn-text">看实战案例</a>
-      </div>
+  <div class="hero-glow"></div>
+  <div class="hero-logo-wrap">
+    <img class="hero-logo" src="logo.png" alt="流量火 Logo">
+  </div>
+  <div class="hero-overline"><span class="dot"></span> 深圳市流量火文化传媒有限公司</div>
+  <h1 class="hero-title">让 IP 成为<br><em>品牌的核心增量资产</em></h1>
+
+  <div class="hero-business">
+    <span>小红书代运营</span>
+    <span>视频IP打造</span>
+    <span>GEO优化</span>
+    <span>一对一教培</span>
+  </div>
+
+  <p class="hero-desc">专注IP策划 · 内容生产 · 多平台分发<br>从策略到执行，帮你在小红书、抖音及AI搜索生态中建立可复制的IP影响力。</p>
+
+  <div class="hero-actions">
+    <a href="services.html" class="btn btn-primary">了解服务方案 &nbsp;&rarr;</a>
+    <a href="cases.html" class="btn btn-secondary">查看实战案例</a>
+  </div>
+  <div class="hero-scroll"><span>SCROLL</span><div class="chev"></div></div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <div class="section--center reveal">
+      <div class="section-eyebrow">Core Services</div>
+      <h2 class="section-kicker">四大核心服务</h2>
+      <p class="section-leader section-leader--center">围绕「内容即战略 · IP即资产」，为企业提供从0到1的全链路增长方案。</p>
     </div>
-    <div class="hero-right">
-      <div class="hero-stat-item">
-        <span class="hero-stat-num"><span>4000</span>+</span>
-        <span class="hero-stat-label">累计服务用户</span>
+    <div class="bento-grid">
+      <!-- 01 教培 -->
+      <div class="bento-card bento-card--train reveal reveal--d1">
+        <div class="bento-card-accent"></div>
+        <div class="bento-num">01</div>
+        <div class="bento-icon bento-icon--train">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <h3 class="bento-title">小红书一对一教培</h3>
+        <p class="bento-body">针对企业主、创业者、新媒体负责人的<strong>定制化培训体系</strong>。从账号搭建到爆款方法论，手把手带你跑通小红书增长闭环。</p>
+        <ul class="bento-list">
+          <li>账号诊断与增长卡点拆解</li>
+          <li>同赛道爆款逻辑拆解</li>
+          <li>可复用内容 SOP 输出</li>
+          <li>周期内陪跑指导落地</li>
+        </ul>
+        <div class="bento-meta">
+          <span><strong>适合</strong> 企业主 / 新媒体负责人</span>
+          <span><strong>周期</strong> 4–8 周陪跑</span>
+        </div>
       </div>
-      <div class="hero-stat-line"></div>
-      <div class="hero-stat-item">
-        <span class="hero-stat-num"><span>6</span>亿+</span>
-        <span class="hero-stat-label">流量操盘规模</span>
+
+      <!-- 02 代运营 -->
+      <div class="bento-card bento-card--ops reveal reveal--d2">
+        <div class="bento-card-accent"></div>
+        <div class="bento-num">02</div>
+        <div class="bento-icon bento-icon--ops">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        </div>
+        <h3 class="bento-title">小红书代运营</h3>
+        <p class="bento-body">全案托管运营服务。覆盖<strong>选题策划、内容生产、数据复盘、投放优化</strong>的完整链路，让品牌拿到真实流量和商业转化。</p>
+        <ul class="bento-list">
+          <li>矩阵策略与赛道布局</li>
+          <li>图文 / 视频一体化生产</li>
+          <li>周度数据看板驱动优化</li>
+          <li>信息流 + 搜索投放协同</li>
+        </ul>
+        <div class="bento-meta">
+          <span><strong>适合</strong> 品牌方 / 电商</span>
+          <span><strong>模式</strong> 月度全案托管</span>
+        </div>
       </div>
-      <div class="hero-stat-line"></div>
-      <div class="hero-stat-item">
-        <span class="hero-stat-num"><span>110</span>+</span>
-        <span class="hero-stat-label">爆款账号打造</span>
+
+      <!-- 03 IP打造 -->
+      <div class="bento-card bento-card--ip reveal reveal--d3">
+        <div class="bento-card-accent"></div>
+        <div class="bento-num">03</div>
+        <div class="bento-icon bento-icon--ip">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </div>
+        <h3 class="bento-title">视频 IP 打造与定位</h3>
+        <p class="bento-body">从个人特质出发提炼<strong>差异化 IP 定位</strong>。口播脚本、拍摄剪辑、人设包装一站式交付，打造有辨识度的人格化表达。</p>
+        <ul class="bento-list">
+          <li>IP 定位诊断与人设包装</li>
+          <li>口播脚本 + 短视频制作</li>
+          <li>视觉识别体系搭建</li>
+          <li>内容节奏规划与运营</li>
+        </ul>
+        <div class="bento-meta">
+          <span><strong>适合</strong> 创始人 / 专家 / 品牌</span>
+          <span><strong>交付</strong> 定位 + 成片 + 人设</span>
+        </div>
+      </div>
+
+      <!-- 04 GEO -->
+      <div class="bento-card bento-card--geo reveal reveal--d4">
+        <div class="bento-card-accent"></div>
+        <div class="bento-num">04</div>
+        <div class="bento-icon bento-icon--geo">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+        </div>
+        <h3 class="bento-title">GEO 优化</h3>
+        <p class="bento-body">面向 <strong>AI 搜索时代</strong>的新一代 SEO。在豆包、DeepSeek、Kimi、文心、ChatGPT 等多平台优化品牌呈现，建立 AI 时代的品牌护城河。</p>
+        <ul class="bento-list">
+          <li>GEO 词库定制与实体梳理</li>
+          <li>多平台内容偏好优化</li>
+          <li>覆盖主流 AI 问答生态</li>
+          <li>自动化排名监控体系</li>
+        </ul>
+        <div class="bento-meta">
+          <span><strong>适合</strong> 所有想被 AI 推荐的品牌</span>
+          <span><strong>覆盖</strong> 豆包 / DeepSeek / Kimi / 文心</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-header-left">
-        <div class="section-eyebrow">Services</div>
-        <h2 class="section-title">四项核心交付</h2>
-        <p class="section-desc">不是给个建议就走，而是陪你从定位到落地，拿到结果才叫交付</p>
-      </div>
-      <div class="section-header-right">
-        <div class="section-num">01</div>
-      </div>
-    </div>
-    <div class="services-grid fade-up">
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <h3>一对一教培</h3>
-        <div class="price">定制化 · 按需排课</div>
-        <p>针对你的账号现状，定制专属增长方案。手把手教你从选题、拍摄、剪辑到投放全流程。</p>
-        <ul class="service-features">
-          <li>账号诊断与赛道选择</li>
-          <li>内容选题与爆款拆解</li>
-          <li>拍摄剪辑实战教学</li>
-          <li>数据复盘与迭代策略</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <h3>小红书带运营</h3>
-        <div class="price">全托管 · 效果导向</div>
-        <p>从0起号到爆款矩阵，最快15天自然流6000粉。代运营不是发帖，是系统性增长。</p>
-        <ul class="service-features">
-          <li>从0到1起号全流程</li>
-          <li>爆款内容策划与制作</li>
-          <li>数据驱动内容迭代</li>
-          <li>多账号矩阵运营</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <h3>短视频拍摄 + IP定位</h3>
-        <div class="price">策划+拍摄+剪辑 · 一条龙</div>
-        <p>帮你找到独特的个人定位，策划脚本，拍摄剪辑成片。不只是视频，是可复制的个人品牌资产。</p>
-        <ul class="service-features">
-          <li>个人IP定位与差异化</li>
-          <li>脚本策划与分镜设计</li>
-          <li>专业拍摄与后期剪辑</li>
-          <li>内容风格体系搭建</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-num">04</div>
-        <h3>GEO / SEO 优化</h3>
-        <div class="price">AI搜索时代 · 品牌必做</div>
-        <p>让AI搜索推荐到你，让用户主动找到你。从传统SEO到GEO，全套策略落地。</p>
-        <ul class="service-features">
-          <li>品牌GEO信号诊断</li>
-          <li>AI搜索可见性优化</li>
-          <li>内容结构化与知识图谱</li>
-          <li>多平台品牌一致性建设</li>
-        </ul>
-      </div>
-    </div>
+<!-- ========== STATS ========== -->
+<section class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal reveal--d1"><div class="stat-value">15+</div><div class="stat-label">年互联网实战经验</div></div>
+    <div class="stat-item reveal reveal--d2"><div class="stat-value">6亿+</div><div class="stat-label">累计流量曝光</div></div>
+    <div class="stat-item reveal reveal--d3"><div class="stat-value">4000+</div><div class="stat-label">服务客户与用户</div></div>
+    <div class="stat-item reveal reveal--d4"><div class="stat-value">110+</div><div class="stat-label">爆款账号案例</div></div>
   </div>
 </section>
 
-<!-- RESULTS STRIP -->
-<section class="results-strip">
-  <div class="results-grid fade-up">
-    <div class="result-item">
-      <div class="result-num"><span>4000</span>+</div>
-      <div class="result-label">累计服务用户</div>
-    </div>
-    <div class="result-item">
-      <div class="result-num"><span>6</span>亿+</div>
-      <div class="result-label">流量操盘规模</div>
-    </div>
-    <div class="result-item">
-      <div class="result-num"><span>110</span>+</div>
-      <div class="result-label">爆款账号</div>
-    </div>
-    <div class="result-item">
-      <div class="result-num"><span>3200</span>万</div>
-      <div class="result-label">单项目年销售额</div>
-    </div>
-    <div class="result-item">
-      <div class="result-num"><span>15</span>年</div>
-      <div class="result-label">互联网实战经验</div>
-    </div>
-  </div>
-</section>
-
-<!-- CASES -->
+<!-- ========== CASES ========== -->
 <section class="section" id="cases">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-header-left">
-        <div class="section-eyebrow">Case Studies</div>
-        <h2 class="section-title">实战案例</h2>
-        <p class="section-desc">所有数据可验证，均有账号主页或后台截图佐证</p>
+  <div class="section--center reveal">
+    <div class="section-eyebrow">Case Studies</div>
+    <h2 class="section-kicker">实战案例</h2>
+    <p class="section-leader section-leader--center">每一个数字背后都有一套经过验证的方法论。不只是做号，更是在构建可复制的增长模型。</p>
+  </div>
+  <div class="cases-grid">
+    <div class="case-card reveal reveal--d1">
+      <div class="case-visual">
+        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#E65100" stroke-width="1.4" stroke-linecap="round"><path d="M3 12l9-9 9 9M3 8V18a2 2 0 002 2h14a2 2 0 002-2V8"/></svg>
+        <span class="case-visual-num">01</span>
       </div>
-      <div class="section-header-right">
-        <div class="section-num">02</div>
+      <div class="case-body">
+        <span class="case-cat">小红书代运营</span>
+        <h3 class="case-title">冠特家居 — 年销3200万+的小红书增长之路</h3>
+        <p class="case-summary">从零搭建小红书矩阵，精准内容策略+爆款打法，实现品牌声量与销售转化双增长。</p>
+        <div class="case-data">
+          <div class="case-datum"><div class="case-datum-val">3200万+</div><div class="case-datum-lbl">年销售额</div></div>
+          <div class="case-datum"><div class="case-datum-val">110+</div><div class="case-datum-lbl">爆款笔记</div></div>
+          <div class="case-datum"><div class="case-datum-val">400万+</div><div class="case-datum-lbl">毛利贡献</div></div>
+        </div>
       </div>
     </div>
-    <div class="cases-grid fade-up">
-      <div class="case-card col-6">
-        <div class="case-badge">千团大战</div>
-        <h3>拉手网一线城市经理</h3>
-        <p>参加千团大战，从一线地推做起。0到1开拓新城市，在地推铁军模式下跑通完整的获客-转化-留存闭环。</p>
-        <div class="case-metrics">
-          <div><div class="case-metric-val"><span>0→1</span></div><div class="case-metric-label">新城市开拓</div></div>
-          <div><div class="case-metric-val"><span>一线</span></div><div class="case-metric-label">地推铁军模式</div></div>
+    <div class="case-card reveal reveal--d2">
+      <div class="case-visual" style="background:linear-gradient(135deg,#E3F2FD 0%,#BBDEFB 100%)">
+        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#1565C0" stroke-width="1.4" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span class="case-visual-num">02</span>
+      </div>
+      <div class="case-body">
+        <span class="case-cat">GEO 优化</span>
+        <h3 class="case-title">金牌家居 — AI时代的企业级GEO全域优化</h3>
+        <p class="case-summary">覆盖豆包、DeepSeek、Kimi、文心等平台的GEO词库定制与内容优化，建立AI搜索时代的品牌护城河。</p>
+        <div class="case-data">
+          <div class="case-datum"><div class="case-datum-val">5城</div><div class="case-datum-lbl">核心城市覆盖</div></div>
+          <div class="case-datum"><div class="case-datum-val">&yen;80</div><div class="case-datum-lbl">单条获客成本</div></div>
+          <div class="case-datum"><div class="case-datum-val">TOP3</div><div class="case-datum-lbl">AI搜索排名</div></div>
         </div>
       </div>
-      <div class="case-card col-6">
-        <div class="case-badge">建材B2B</div>
-        <h3>好材时代全国销售总监</h3>
-        <p>从拉手网转战建材B2B，带队全国销售。搭建经销商体系，跑通传统行业+互联网的获客模式，团队年销1887万。</p>
-        <div class="case-metrics">
-          <div><div class="case-metric-val"><span>1887</span>万</div><div class="case-metric-label">团队年销售额</div></div>
-          <div><div class="case-metric-val"><span>全国</span></div><div class="case-metric-label">销售体系覆盖</div></div>
+    </div>
+    <div class="case-card reveal reveal--d3">
+      <div class="case-visual" style="background:linear-gradient(135deg,#F3E5F5 0%,#E1BEE7 100%)">
+        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#7B1FA2" stroke-width="1.4" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="case-visual-num">03</span>
+      </div>
+      <div class="case-body">
+        <span class="case-cat">个人IP打造</span>
+        <h3 class="case-title">「陈工用心讲GEO」— 从0到行业认知IP</h3>
+        <p class="case-summary">以GEO专业视角切入，持续输出观点类内容，快速建立小红书领域的专业认知和个人品牌影响力。</p>
+        <div class="case-data">
+          <div class="case-datum"><div class="case-datum-val">1000+</div><div class="case-datum-lbl">粉丝增长</div></div>
+          <div class="case-datum"><div class="case-datum-val">47K+</div><div class="case-datum-lbl">赞藏总量</div></div>
+          <div class="case-datum"><div class="case-datum-val">2篇</div><div class="case-datum-lbl">千赞爆款</div></div>
         </div>
       </div>
-      <div class="case-card col-4">
-        <div class="case-badge">土巴兔 · PK装</div>
-        <h3>超级PK装年销3200万+</h3>
-        <p>CEO亲自指导，公司级最高战略项目。家装行业首个直播+社群+转化完整闭环。</p>
-        <div class="case-metrics">
-          <div><div class="case-metric-val"><span>3200</span>万+</div><div class="case-metric-label">年销售额</div></div>
-        </div>
+    </div>
+    <div class="case-card reveal reveal--d4">
+      <div class="case-visual" style="background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%)">
+        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#2E7D32" stroke-width="1.4" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span class="case-visual-num">04</span>
       </div>
-      <div class="case-card col-4">
-        <div class="case-badge">土巴兔 · F2B2C</div>
-        <h3>集采佳年产7000万+</h3>
-        <p>供应链F2B2C模式，从工厂直达经销商再到C端，跑通家装行业最难的全链路。</p>
-        <div class="case-metrics">
-          <div><div class="case-metric-val"><span>7000</span>万+</div><div class="case-metric-label">年产出</div></div>
-        </div>
-      </div>
-      <div class="case-card col-4">
-        <div class="case-badge">直播体系</div>
-        <h3>800店直播 · 92万场观</h3>
-        <p>冠特家居新媒体总监，0到1搭建全国800门店直播体系，霸榜深圳第3。</p>
-        <div class="case-metrics">
-          <div><div class="case-metric-val"><span>92</span>万</div><div class="case-metric-label">单场场观</div></div>
-        </div>
-      </div>
-      <div class="case-card col-6">
-        <div class="case-badge">爆款矩阵</div>
-        <h3>110+ 爆款账号 × 6亿+ 流量</h3>
-        <p>覆盖餐饮、房产、教育、珠宝、IP博主等多行业。最快15天自然流6000粉，单条视频最高600万播放。客户遍布加拿大、日本、新加坡及国内多省。</p>
-        <div class="case-metrics">
-          <div><div class="case-metric-val"><span>6</span>亿+</div><div class="case-metric-label">累计流量</div></div>
-          <div><div class="case-metric-val"><span>15</span>天</div><div class="case-metric-label">最快6000粉</div></div>
-        </div>
-      </div>
-      <div class="case-card col-6">
-        <div class="case-badge">个人IP</div>
-        <h3>6个月自然流涨粉1万+</h3>
-        <p>个人号600+篇内容输出，18万+获赞。纯靠内容驱动，非付费投流。验证方法论在中小账号同样有效。</p>
-        <div class="case-metrics">
-          <div><div class="case-metric-val"><span>1</span>万+</div><div class="case-metric-label">6个月涨粉</div></div>
-          <div><div class="case-metric-val"><span>18</span>万+</div><div class="case-metric-label">获赞数</div></div>
+      <div class="case-body">
+        <span class="case-cat">战略规划</span>
+        <h3 class="case-title">土巴兔创新业务 — 装修后市场战略布局</h3>
+        <p class="case-summary">主导装修后市场数字化内容营销战略规划，从用户洞察到内容体系搭建，完成完整业务周期的验证与落地。</p>
+        <div class="case-data">
+          <div class="case-datum"><div class="case-datum-val">116万</div><div class="case-datum-lbl">粉丝规模操盘</div></div>
+          <div class="case-datum"><div class="case-datum-val">完整</div><div class="case-datum-lbl">业务周期闭环</div></div>
+          <div class="case-datum"><div class="case-datum-val">战略级</div><div class="case-datum-lbl">项目影响力</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- INSIGHTS -->
-<section class="section" id="insights" style="background:var(--paper2)">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-header-left">
-        <div class="section-eyebrow">Insights</div>
-        <h2 class="section-title">观点与思考</h2>
-        <p class="section-desc">只写踩过的坑和验证过的结论</p>
+<!-- ========== WHY US ========== -->
+<section class="trust-section">
+  <div class="trust-inner section--center reveal">
+    <div class="section-eyebrow">Why Us</div>
+    <h2 class="section-kicker">为什么选择流量火</h2>
+    <p class="section-leader section-leader--center">我们不只做内容，我们做的是品牌的长期增长资产。</p>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-item reveal reveal--d1">
+      <div class="trust-mark">
+        <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="var(--fire-mid)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       </div>
-      <div class="section-header-right">
-        <div class="section-num">03</div>
-      </div>
+      <h4>实战派方法论</h4>
+      <p>所有方法均来自一线实操验证。千团大战、共享汽车、家装平台……15年跨行业实战沉淀出真正能落地的增长体系。</p>
     </div>
-    <div class="insights-list fade-up">
-      <a href="https://www.xiaohongshu.com/user/profile/陈工用心讲GEO" target="_blank" class="insight-item">
-        <div class="insight-num">01</div>
-        <div class="insight-content">
-          <h4>为什么你写了100篇小红书没人看？问题不在内容</h4>
-          <p>操盘110+账号后发现，90%的人不是不会写，是没弄明白平台的推荐逻辑和赛道选择。</p>
-          <div class="insight-tags"><span>小红书运营</span><span>爆款方法论</span></div>
-        </div>
-        <div class="insight-arrow">→</div>
-      </a>
-      <a href="https://www.xiaohongshu.com/user/profile/陈工用心讲GEO" target="_blank" class="insight-item">
-        <div class="insight-num">02</div>
-        <div class="insight-content">
-          <h4>GEO时代，传统SEO思维正在失效</h4>
-          <p>生成式搜索正在改变用户获取信息的方式。品牌策略需要从"被百度收录"转向"被AI推荐"。</p>
-          <div class="insight-tags"><span>GEO策略</span><span>行业趋势</span></div>
-        </div>
-        <div class="insight-arrow">→</div>
-      </a>
-      <a href="https://www.xiaohongshu.com/user/profile/陈工用心讲GEO" target="_blank" class="insight-item">
-        <div class="insight-num">03</div>
-        <div class="insight-content">
-          <h4>从百人团队到一人公司：为什么选择一个人干</h4>
-          <p>带过50-100人团队，管理过全国800家门店。现在发现，一人公司+外部协作的效率远超大公司。</p>
-          <div class="insight-tags"><span>一人公司</span><span>个人IP</span></div>
-        </div>
-        <div class="insight-arrow">→</div>
-      </a>
-      <a href="https://www.xiaohongshu.com/user/profile/陈工用心讲GEO" target="_blank" class="insight-item">
-        <div class="insight-num">04</div>
-        <div class="insight-content">
-          <h4>单场直播92万场观复盘：冠特家居实战全记录</h4>
-          <p>从0搭建800店直播体系，霸榜深圳第3。拆解抖音本地生活的流量获取和转化路径。</p>
-          <div class="insight-tags"><span>直播运营</span><span>抖音本地生活</span></div>
-        </div>
-        <div class="insight-arrow">→</div>
-      </a>
+    <div class="trust-item reveal reveal--d2">
+      <div class="trust-mark">
+        <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="var(--fire-mid)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h4>结果导向交付</h4>
+      <p>不以"发了多少条"为指标，以"拿到了什么结果"为标尺。每一个项目都有清晰的数据目标和复盘机制。</p>
+    </div>
+    <div class="trust-item reveal reveal--d3">
+      <div class="trust-mark">
+        <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="var(--fire-mid)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+      </div>
+      <h4>全链路能力</h4>
+      <p>从IP定位→内容生产→分发运营→数据复盘→GEO优化，覆盖品牌增长所需的所有环节，减少沟通成本和协作摩擦。</p>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="section section-dark" id="about">
-  <div class="container">
-    <div class="about-grid fade-up">
-      <div>
-        <div class="section-eyebrow">About</div>
-        <h2 class="section-title" style="font-size:clamp(28px,3.5vw,44px)">关于陈工</h2>
+<!-- ========== FAQ (GEO) ========== -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="section--center reveal">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-kicker">常见问题</h2>
+      <p class="section-leader section-leader--center">关于服务、周期与GEO，这里先回答你最关心的几个问题。</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">流量火传媒是做什么的？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">流量火传媒（深圳市流量火文化传媒有限公司）专注IP策划、内容生产与多平台分发，提供小红书一对一教培、小红书代运营、视频IP打造与定位、GEO优化四大核心服务，帮企业在小红书、抖音及AI搜索生态中建立可复制的IP影响力。</div></div>
       </div>
-      <div>
-        <p class="about-quote">从拉手网参加<em>千团大战</em>一线城市经理做起，历经团购、共享汽车、建材B2B、家装平台完整互联网周期。</p>
-        <p class="about-body">在土巴兔6年，0到1操盘三个创新项目，最高年产出<strong>7000万+</strong>。获钻石级讲师最高荣誉，培训<strong>3000+</strong>家装企业老板。<br><br>现以<em>一人公司</em>方式独立运营，累计服务<strong>4000+</strong>用户。核心能力：新媒体增长策略、小红书代运营、短视频+IP定位、GEO/SEO优化。</p>
-        <div class="about-tags">
-          <span class="about-tag">GEO策略</span>
-          <span class="about-tag">小红书运营</span>
-          <span class="about-tag">抖音本地生活</span>
-          <span class="about-tag">个人IP</span>
-          <span class="about-tag">直播体系</span>
-          <span class="about-tag">账号代运营</span>
-          <span class="about-tag">增长策略</span>
-          <span class="about-tag">内容操盘</span>
-        </div>
+      <div class="faq-item">
+        <button class="faq-q">什么是GEO优化？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">GEO（Generative Engine Optimization，生成式引擎优化）是面向AI搜索时代的新一代SEO。通过在豆包、DeepSeek、Kimi、文心、ChatGPT等平台优化品牌内容呈现，让目标用户在AI问答中优先看到并引用你的品牌。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">小红书代运营怎么收费？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">代运营采用全案托管模式，覆盖选题策划、内容生产、数据复盘与投放优化。具体费用根据账号数量、内容频次与行业定制，欢迎通过页面底部联系我们获取针对性方案。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">视频IP打造需要多久见效？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">通常从IP定位诊断到首条成片约2-3周，之后进入稳定内容节奏。真人出镜类IP一般1-2个月可见明显涨粉与互动提升，具体取决于行业竞争与内容投入。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">小红书一对一教培适合谁？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">适合企业主、创业者、新媒体负责人，以及希望系统掌握小红书增长方法论的团队。基于你所在行业和资源现状的定制化陪跑，而非泛泛而谈的录播课。</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-header-left">
-        <div class="section-eyebrow">Contact</div>
-        <h2 class="section-title">聊聊合作</h2>
-        <p class="section-desc">服务精力有限，优先选择理念契合的合作方</p>
-      </div>
-      <div class="section-header-right">
-        <div class="section-num">04</div>
-      </div>
-    </div>
-    <div class="contact-grid fade-up">
-      <div>
-        <p class="contact-note">不管是想一对一学运营、需要代运营团队、想拍短视频做IP，还是想做GEO优化——先聊聊，看能不能帮到你。</p>
-        <div class="contact-info">
-          <div class="contact-item">
-            <span class="contact-label">小红书</span>
-            <span class="contact-value">@陈工用心讲GEO</span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-label">电话</span>
-            <span class="contact-value">18664563258</span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-label">邮箱</span>
-            <span class="contact-value">1282656876@qq.com</span>
-          </div>
-        </div>
-      </div>
-      <form onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label>你的称呼</label>
-          <input type="text" placeholder="怎么称呼你" required>
-        </div>
-        <div class="form-group">
-          <label>联系方式</label>
-          <input type="text" placeholder="微信 / 邮箱 / 手机号" required>
-        </div>
-        <div class="form-group">
-          <label>想聊什么</label>
-          <textarea placeholder="一对一教培 / 小红书带运营 / 短视频拍摄+IP定位 / GEO优化 / 其他..." required></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="margin-top:8px">发送 →</button>
-      </form>
-    </div>
-  </div>
+<!-- ========== CTA ========== -->
+<section class="cta-section" id="contact">
+  <h2 class="cta-title">准备好让品牌被看见了吗？</h2>
+  <p class="cta-desc">无论你想从小红书起步，还是想在AI搜索时代抢占先机，我们都可以聊聊。</p>
+  <a href="mailto:contact@liulianghuo.com" class="cta-btn">立即咨询 &nbsp;&rarr;</a>
 </section>
 
-<!-- FOOTER -->
+<!-- ========== FOOTER ========== -->
 <footer class="footer">
-  <p>© 2026 流量火文化传媒 · <span>陈工用心讲GEO</span></p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-row">
+        <img src="logo.png" alt="流量火">
+        <div class="footer-logo-name">流量<span class="f-fire">火</span></div>
+      </div>
+      <p class="footer-bio">专注IP策划、内容生产与多平台分发。<br>让IP成为品牌的核心增量资产。</p>
+    </div>
+    <div class="footer-col">
+      <h5>服务</h5>
+      <ul>
+        <li><a href="services.html">小红书一对一教培</a></li>
+        <li><a href="services.html">小红书代运营</a></li>
+        <li><a href="services.html">视频IP打造</a></li>
+        <li><a href="services.html">GEO优化</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>资源</h5>
+      <ul>
+        <li><a href="cases.html">实战案例</a></li>
+        <li><a href="insights.html">行业观点</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>联系</h5>
+      <ul>
+        <li>深圳市流量火文化传媒有限公司</li>
+        <li><a href="mailto:contact@liulianghuo.com">contact@liulianghuo.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 深圳市流量火文化传媒有限公司</span>
+    <span>用内容让品牌被看见</span>
+  </div>
 </footer>
 
-<script>
-document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('active')));
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.06});
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-function handleSubmit(e){e.preventDefault();const b=e.target.querySelector('.btn-primary'),t=b.textContent;b.textContent='✓ 已发送';b.style.background='var(--ink3)';setTimeout(()=>{b.textContent=t;b.style.background='';e.target.reset()},2500)}
-</script>
+<script src="script.js"></script>
 </body>
 </html>
