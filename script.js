@@ -124,3 +124,29 @@ document.querySelectorAll('.faq-q').forEach(q => {
     ans.style.maxHeight = isOpen ? ans.scrollHeight + 'px' : '0';
   });
 });
+
+// Cases 分类锚点高亮（sticky nav 滚动联动）
+const casesNav = document.getElementById('cases-nav');
+if (casesNav) {
+  const chips = Array.from(casesNav.querySelectorAll('.v8-nav-chip'));
+  const map = {};
+  chips.forEach(c => {
+    const id = (c.getAttribute('href') || '').replace('#', '');
+    if (id) map[id] = c;
+  });
+  const sections = Object.keys(map)
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  if (sections.length) {
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          chips.forEach(c => c.classList.remove('v8-nav-chip--active'));
+          const active = map[e.target.id];
+          if (active) active.classList.add('v8-nav-chip--active');
+        }
+      });
+    }, { rootMargin: '-55% 0px -40% 0px', threshold: 0 });
+    sections.forEach(s => spy.observe(s));
+  }
+}
