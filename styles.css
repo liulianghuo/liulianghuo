@@ -1142,6 +1142,14 @@ button{font-family:inherit;cursor:pointer}
 }
 .v8-flagship-badge--ip{ background:linear-gradient(135deg,#34D399,#059669); box-shadow:0 4px 14px rgba(5,150,105,0.2); }
 
+/* 个人IP截图凭证 */
+.v8-ip-proof{ padding:0 8px 8px; }
+.v8-ip-proof img{ transition:transform .5s var(--ease-out); }
+.v8-flagship:hover .v8-ip-proof img{ transform:scale(1.02); }
+@media(max-width:640px){
+  .v8-ip-proof img{ max-width:100%!important; border-radius:12px; }
+}
+
 .v8-flagship-body{
   display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,70px);
   align-items:center;
