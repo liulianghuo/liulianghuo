@@ -601,6 +601,15 @@ button{font-family:inherit;cursor:pointer}
 .value-card h4{font-size:17px;font-weight:650;margin-bottom:8px;color:var(--c-text)}
 .value-card p{font-size:14px;color:var(--c-text-secondary);line-height:1.75}
 
+/* ===== MISSION & VISION (about) ===== */
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px;max-width:var(--container-wide);margin-left:auto;margin-right:auto}
+.mission-card{padding:36px 30px;border-radius:18px;background:var(--c-surface);border:0.5px solid rgba(0,0,0,0.025)}
+.mission-card h4{font-size:17px;font-weight:650;margin-bottom:10px;color:var(--c-text)}
+.mission-card p{font-size:14px;color:var(--c-text-secondary);line-height:1.75}
+.vision-card{max-width:720px;margin:40px auto 0;padding:40px 36px;border-radius:20px;background:var(--c-surface-warm);border:0.5px solid rgba(0,0,0,0.025);text-align:center}
+.vision-card p{font-size:16px;color:var(--c-text-secondary);line-height:1.8;margin-bottom:16px}
+.vision-card p:last-child{margin-bottom:0}
+
 /* ===== SERVICE DETAIL ROWS (services page) ===== */
 .svc-row{
   display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
@@ -702,6 +711,7 @@ button{font-family:inherit;cursor:pointer}
   .footer{padding:64px 24px 32px}
   .footer-bottom{flex-direction:column;gap:14px;text-align:center}
   .values-grid{grid-template-columns:1fr}
+  .mission-grid{grid-template-columns:1fr}
   .wall-grid{grid-template-columns:1fr 1fr}
   .insight-row{grid-template-columns:1fr;gap:6px}
   .hero-business{font-size:13px}
