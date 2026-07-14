@@ -1194,13 +1194,42 @@ button{font-family:inherit;cursor:pointer}
 }
 .v8-flagship-badge--ip{ background:linear-gradient(135deg,#34D399,#059669); box-shadow:0 4px 14px rgba(5,150,105,0.2); }
 
-/* 个人IP截图凭证 */
-.v8-ip-proof{ padding:0 8px 8px; }
-.v8-ip-proof img{ transition:transform .5s var(--ease-out); }
-.v8-flagship:hover .v8-ip-proof img{ transform:scale(1.02); }
-@media(max-width:640px){
-  .v8-ip-proof img{ max-width:100%!important; border-radius:12px; }
+/* 旗舰卡片品牌Logo图片 */
+.v8-fs-logo-img{
+  height:48px;width:auto;max-width:180px;object-fit:contain;
+  border-radius:10px;border:0.5px solid var(--c-line-subtle);
+  padding:6px 14px;background:#fff;
+  transition:transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
 }
+.v8-flagship:hover .v8-fs-logo-img{
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+/* 头像变体（圆形） */
+.v8-fs-logo-img--avatar{
+  height:64px;width:64px;max-width:none;
+  border-radius:50%;padding:0;border:2.5px solid rgba(52,211,153,0.25);
+  object-fit:cover;object-position:center top;
+}
+.v8-flagship:hover .v8-fs-logo-img--avatar{
+  border-color:rgba(52,211,153,0.5);
+  transform:scale(1.06);
+}
+
+/* 小红书主页链接按钮 */
+.v8-xhs-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:600;color:#FE2C55;
+  background:linear-gradient(135deg,#FFF0F3 0%,#FFE8EC 100%);
+  border:1px solid rgba(254,44,85,0.15);border-radius:980px;
+  padding:12px 28px;text-decoration:none;transition:all .3s var(--ease-out);
+}
+.v8-xhs-btn:hover{
+  background:#FE2C55;color:#fff;border-color:#FE2C55;
+  box-shadow:0 8px 24px rgba(254,44,85,0.25);
+  transform:translateY(-2px);
+}
+.v8-xhs-btn-icon{font-size:18px; }
 
 .v8-flagship-body{
   display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,70px);
