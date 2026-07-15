@@ -1603,6 +1603,66 @@ button{font-family:inherit;cursor:pointer}
   .abil-strip{ grid-template-columns:1fr; }
 }
 
+/* ===== CASES GRID v2（首页案例区新版）===== */
+.cases-grid-v2{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:24px;
+  max-width:var(--container-wide); margin:0 auto;
+  padding:0 var(--section-pad-h);
+}
+.cc-v2{
+  display:flex; flex-direction:column; gap:18px;
+  background:#fff; border:0.5px solid var(--c-line-subtle);
+  border-radius:24px; padding:36px 36px 32px;
+  transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out);
+}
+.cc-v2:hover{
+  transform:translateY(-4px); box-shadow:0 20px 48px rgba(0,0,0,0.06);
+}
+.cc-v2-head{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.cc-v2-num{
+  font-size:13px; font-weight:800; letter-spacing:0.04em;
+  padding:6px 12px; border-radius:8px; color:#fff;
+}
+.cc-v2-num--orange{ background:linear-gradient(135deg,#FF8A65,#FF5722); }
+.cc-v2-num--blue{ background:linear-gradient(135deg,#7C5CFC,#5B3FD6); }
+.cc-v2-num--purple{ background:linear-gradient(135deg,#A78BFA,#7C3AED); }
+.cc-v2-num--green{ background:linear-gradient(135deg,#34D399,#059669); }
+.cc-v2-cat{
+  font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--c-text-tertiary);
+}
+.cc-v2-brand{
+  font-size:14px; font-weight:700; color:var(--c-text);
+  margin-left:auto;
+}
+.cc-v2-title{
+  font-size:clamp(20px,2vw,24px); font-weight:700; color:var(--c-text);
+  letter-spacing:-0.02em; line-height:1.3; margin:0;
+}
+.cc-v2-desc{
+  font-size:14.5px; color:var(--c-text-secondary); line-height:1.7; margin:0;
+}
+.cc-v2-stats{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
+  border-top:0.5px solid var(--c-line-subtle);
+  padding-top:18px; margin-top:4px;
+}
+.cc-v2-stat{ text-align:left; }
+.cc-v2-stat-num{
+  font-size:clamp(20px,2.2vw,26px); font-weight:800; letter-spacing:-0.02em;
+  color:var(--fire-mid); line-height:1.1; margin-bottom:4px;
+}
+.cc-v2-stat-lbl{
+  font-size:11.5px; color:var(--c-text-tertiary); line-height:1.3;
+}
+
+@media(max-width:768px){
+  .cases-grid-v2{ grid-template-columns:1fr; }
+  .cc-v2{ padding:28px 24px; }
+}
+
 /* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
