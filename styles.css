@@ -1426,6 +1426,62 @@ button{font-family:inherit;cursor:pointer}
   .v8-plan-cycle{ margin-left:0; width:100%; }
 }
 
+/* ===== ARTICLE / INSIGHT POST STYLES ===== */
+.article-page .page-hero{ padding-bottom:20px; }
+.article-back{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:500;color:var(--c-text-tertiary);
+  text-decoration:none;transition:color .3s;margin-bottom:24px;
+}
+.article-back:hover{ color:var(--fire-mid); }
+.article-meta{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:20px;font-size:13px;color:var(--c-text-tertiary);
+}
+.article-meta-cat{
+  font-weight:600;color:var(--fire-mid);
+  background:rgba(255,87,34,0.06);padding:4px 12px;border-radius:100px;
+}
+.article-body{
+  max-width:720px;margin:0 auto;padding:0 var(--section-pad-h) 80px;
+  font-size:17px;line-height:1.85;color:var(--c-text);
+}
+.article-body h2{
+  font-size:clamp(22px,2.6vw,30px);font-weight:700;
+  letter-spacing:-0.02em;margin:48px 0 16px;color:var(--c-text);
+}
+.article-body h3{
+  font-size:clamp(18px,2vw,22px);font-weight:600;
+  letter-spacing:-0.01em;margin:36px 0 12px;color:var(--c-text);
+}
+.article-body p{ margin:0 0 20px;color:var(--c-text-secondary); }
+.article-body p strong{ color:var(--c-text); }
+.article-body ul,.article-body ol{ margin:0 0 20px;padding-left:24px; }
+.article-body li{ margin-bottom:10px;color:var(--c-text-secondary); }
+.article-body blockquote{
+  margin:28px 0;padding:20px 24px;border-radius:14px;
+  background:var(--c-surface);border-left:3px solid var(--fire-mid);
+  font-style:normal;color:var(--c-text);font-size:16px;line-height:1.7;
+}
+.article-body blockquote strong{ color:var(--c-text); }
+.article-body blockquote p{margin:0;color:var(--c-text);}
+.article-body code{
+  font-family:'SF Mono','Menlo',monospace;font-size:0.88em;
+  background:var(--c-surface);padding:2px 8px;border-radius:6px;
+  color:var(--fire-mid);
+}
+.article-body hr{
+  margin:44px 0;border:none;border-top:0.5px solid var(--c-line-subtle);
+}
+.article-body img{
+  width:100%;border-radius:16px;margin:32px 0;
+  border:0.5px solid var(--c-line-subtle);
+}
+.article-body .article-footnote{
+  font-size:14px;color:var(--c-text-tertiary);
+  border-top:0.5px solid var(--c-line-subtle);padding-top:24px;margin-top:48px;
+}
+
 /* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
