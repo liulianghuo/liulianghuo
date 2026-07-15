@@ -1482,6 +1482,43 @@ button{font-family:inherit;cursor:pointer}
   border-top:0.5px solid var(--c-line-subtle);padding-top:24px;margin-top:48px;
 }
 
+/* ===== CAPABILITY CARDS（能力展示卡片）===== */
+.cap-card{
+  background:#fff; border:0.5px solid var(--c-line-subtle);
+  border-radius:20px; padding:32px 28px; text-align:left;
+  transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out);
+}
+.cap-card:hover{
+  transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.06);
+}
+.cap-icon{ font-size:32px; margin-bottom:12px; }
+.cap-title{ font-size:18px; font-weight:700; color:var(--c-text); letter-spacing:-0.01em; margin-bottom:4px; }
+.cap-sub{ font-size:13px; color:var(--c-text-tertiary); margin-bottom:16px; }
+.cap-list{ list-style:none; display:grid; gap:6px; }
+.cap-list li{
+  position:relative; padding-left:18px;
+  font-size:13.5px; color:var(--c-text-secondary); line-height:1.5;
+}
+.cap-list li::before{
+  content:'·'; position:absolute; left:4px; top:0;
+  color:var(--fire-mid); font-weight:700;
+}
+
+/* ===== 能力速览（首页）===== */
+.abil-strip{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  max-width:960px; margin:0 auto;
+  padding:36px var(--section-pad-h); text-align:center;
+}
+.abil-item{ padding:24px 16px; border-radius:16px; background:var(--c-surface); border:0.5px solid var(--c-line-subtle); }
+.abil-item .abil-icon{ font-size:28px; margin-bottom:8px; }
+.abil-item .abil-title{ font-size:15px; font-weight:700; color:var(--c-text); margin-bottom:4px; }
+.abil-item .abil-desc{ font-size:13px; color:var(--c-text-tertiary); line-height:1.5; }
+
+@media(max-width:768px){
+  .abil-strip{ grid-template-columns:1fr; }
+}
+
 /* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
