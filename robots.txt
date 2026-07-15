@@ -1,4 +1,26 @@
 User-agent: *
 Allow: /
 
+# 显式允许主流 AI 爬虫抓取，保障 GEO（生成式引擎优化）可见性
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://liulianghuo.com/sitemap.xml
