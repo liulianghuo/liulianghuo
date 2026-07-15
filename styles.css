@@ -315,7 +315,7 @@ button{font-family:inherit;cursor:pointer}
   background:radial-gradient(ellipse at 35% 50%,rgba(255,87,34,0.05) 0%,transparent 60%);
   pointer-events:none;
 }
-.stats-inner{max-width:var(--container-wide);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.stats-inner{max-width:var(--container-wide);margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:32px}
 .stat-item{text-align:center}
 .stat-value{
   font-size:clamp(40px,5.5vw,64px);font-weight:700;letter-spacing:-0.022em;
