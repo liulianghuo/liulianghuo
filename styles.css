@@ -1190,6 +1190,17 @@ button{font-family:inherit;cursor:pointer}
 }
 .v8-ai-chip:hover{ color:var(--fire-mid); border-color:var(--fire-mid); }
 
+/* 行业分组标题 */
+.v8-ai-group-label{
+  font-size:14px; font-weight:700; color:var(--c-text);
+  margin-bottom:12px; letter-spacing:0.02em;
+}
+.v8-ai-group{
+  background:var(--c-surface-warm, #faf8f5);
+  border-radius:18px; padding:20px 24px 16px;
+  border:0.5px solid var(--c-line-subtle);
+}
+
 /* 组合提示 */
 .v8-combo-hint{
   max-width:760px; margin:44px auto 0; text-align:center;
