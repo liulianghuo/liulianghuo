@@ -109,26 +109,27 @@ button{font-family:inherit;cursor:pointer}
 /* ── 右侧：导航菜单 + 操作按钮（三段式布局）── */
 .nav-right{
   display:flex;align-items:center;
-  flex:1;                        /* 占据剩余空间 */
-  /* 关键改进：用 justify-content 实现三段式 */
-  /* 左侧占位 + 中间导航居中 + 右侧按钮 */
-  padding-left:56px;            /* 与左侧Logo拉开距离 */
+  flex:1;                        /* 占据Logo右侧全部空间 */
 }
 
-/* 导航链接组 — 居中分布 */
+/* 导航链接组 — 每项等宽均匀分布（苹果式） */
 .nav-links{
   display:flex;
-  gap:32px;                     /* ← 苹果级间距：每项之间32px */
   list-style:none;
-  flex:1;
-  justify-content:center;       /* 整个链接组水平居中 */
-  max-width:600px;              /* 限制最大宽度防止过度拉伸 */
-  margin:0 auto;                /* 确保真正居中 */
+  flex:1;                        /* 填满Logo到CTA之间的所有可用宽度 */
+  justify-content:center;        /* 整组居中 */
+  gap:0;                         /* 不用gap，用flex均分控制间距 */
+  margin:0 auto;                 /* 居中定位 */
+}
+/* 每个 <li> 等宽 → 6项均匀铺开 */
+.nav-links > li{
+  flex:1;                        /* 关键：每项占 1/6 宽度 */
+  text-align:center;             /* 文字居中 */
 }
 .nav-links a{
   font-size:13px;font-weight:400;color:var(--c-text-secondary);
   position:relative;padding:6px 0;transition:color var(--duration-fast) ease;
-  white-space:nowrap;           /* 防止文字换行 */
+  white-space:nowrap;display:inline-block;
   letter-spacing:-0.01em;
 }
 .nav-links a:hover{color:var(--c-text)}
