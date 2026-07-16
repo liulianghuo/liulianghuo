@@ -1645,34 +1645,41 @@ button{font-family:inherit;cursor:pointer}
   font-size:14.5px; color:var(--c-text-secondary); line-height:1.78; margin:0;
 }
 
-/* ── 统计区：三列等宽 · 数字不换行 · 标签可换行 ── */
+/* ── 统计区：三列等高对齐 · 数字行固定高度 · 标签行固定高度 ── */
 .cc-v2-stats{
   display:grid; grid-template-columns:repeat(3,1fr);
   border-top:0.5px solid var(--c-line-subtle);
-  padding-top:26px; margin-top:4px;
+  padding-top:28px; margin-top:2px;
   gap:0;
 }
 .cc-v2-stat{
+  display:flex;
+  flex-direction:column;
   text-align:center;
-  padding:0 12px;
+  padding:0 16px;
   position:relative;
 }
+/* 竖分隔线 */
 .cc-v2-stat:not(:last-child)::after{
-  content:''; position:absolute; right:0; top:8%; height:84%;
+  content:''; position:absolute; right:0; top:10%; height:80%;
   width:0.5px; background:var(--c-line-subtle);
 }
+/* 数字：固定最小高度 → 所有数字底部对齐 */
 .cc-v2-stat-num{
-  font-size:clamp(19px,2vw,24px); font-weight:800; letter-spacing:-0.03em;
-  color:var(--fire-mid); line-height:1.25; margin-bottom:8px;
-  white-space:nowrap;               /* 数字强制不换行 */
+  font-size:clamp(20px,2.1vw,26px); font-weight:800; letter-spacing:-0.03em;
+  color:var(--fire-mid); line-height:1.28;
+  white-space:nowrap;
   overflow:hidden; text-overflow:ellipsis;
   display:block;
+  min-height:1.45em;            /* ← 关键：统一数字区高度 */
 }
+/* 标签：固定最小高度（容纳最多2行）→ 所有标签顶部对齐 */
 .cc-v2-stat-lbl{
-  font-size:11.5px; color:var(--c-text-tertiary); line-height:1.45;
-  /* 标签允许自然换行，最多两行截断 */
+  font-size:11.5px; color:var(--c-text-tertiary); line-height:1.42;
+  margin-top:8px;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
   overflow:hidden;
+  min-height:2.84em;            /* ← 关键：统一标签区高度 (2行 × 1.42line-height) */
 }
 
 @media(max-width:1024px){
