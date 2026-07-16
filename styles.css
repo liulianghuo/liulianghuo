@@ -1645,23 +1645,26 @@ button{font-family:inherit;cursor:pointer}
   font-size:14.5px; color:var(--c-text-secondary); line-height:1.78; margin:0;
 }
 
-/* ── 统计区：三列等高对齐 · 数字行固定高度 · 标签行固定高度 ── */
+/* ── 统计区：P0 推到底部底对齐 · P1 外缘贴齐文字 · P2 分隔线等高 ── */
 .cc-v2-stats{
   display:grid; grid-template-columns:repeat(3,1fr);
   border-top:0.5px solid var(--c-line-subtle);
-  padding-top:28px; margin-top:2px;
+  padding-top:28px; margin-top:auto;   /* P0：吸收剩余空间 → 同排两卡底对齐 */
   gap:0;
 }
 .cc-v2-stat{
   display:flex;
   flex-direction:column;
-  text-align:center;
-  padding:0 16px;
+  padding:0;                    /* P1：去掉内缩，外缘贴齐标题左右缘 */
   position:relative;
 }
-/* 竖分隔线 */
+/* P1：第1列左对齐 / 第2列居中 / 第3列右对齐 → 外缘精确贴齐文字块 */
+.cc-v2-stat:nth-child(1){ text-align:left;   align-items:flex-start; }
+.cc-v2-stat:nth-child(2){ text-align:center; align-items:center; }
+.cc-v2-stat:nth-child(3){ text-align:right;  align-items:flex-end; }
+/* P2：分隔线全高固定 → 跨卡等高统一 */
 .cc-v2-stat:not(:last-child)::after{
-  content:''; position:absolute; right:0; top:10%; height:80%;
+  content:''; position:absolute; right:0; top:0; bottom:0;
   width:0.5px; background:var(--c-line-subtle);
 }
 /* 数字：固定最小高度 → 所有数字底部对齐 */
