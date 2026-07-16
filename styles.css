@@ -84,7 +84,8 @@ button{font-family:inherit;cursor:pointer}
 
 .nav-left{display:flex;align-items:center;gap:8px}
 .nav-logo{height:28px;width:auto;flex-shrink:0;object-fit:contain}
-.nav-brand{display:none}
+.nav-brand{
+  display:none;
   font-size:14px;font-weight:600;color:var(--c-text);letter-spacing:-0.02em;
 }
 .nav-brand .fire{
@@ -96,7 +97,7 @@ button{font-family:inherit;cursor:pointer}
 }
 
 .nav-right{display:flex;align-items:center;gap:36px;flex:1;justify-content:space-between;margin-left:48px}
-.nav-links{display:flex;gap:0;list-style:none;flex:1;justify-content:space-evenly;max-width:680px}
+.nav-links{display:flex;gap:0;list-style:none;flex:1;justify-content:center;max-width:560px;margin:0 auto}
 .nav-links a{
   font-size:12px;font-weight:400;color:var(--c-text-secondary);
   position:relative;padding:4px 0;transition:color var(--duration-fast) ease;
@@ -313,6 +314,12 @@ button{font-family:inherit;cursor:pointer}
 .stats-strip::before{
   content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 35% 50%,rgba(255,87,34,0.05) 0%,transparent 60%);
+  pointer-events:none;
+}
+/* 顶部柔和渐变过渡，避免与白色区块生硬拼接 */
+.stats-strip::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:80px;
+  background:linear-gradient(to bottom, rgba(255,255,255,0.04), transparent);
   pointer-events:none;
 }
 .stats-inner{max-width:var(--container-wide);margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:32px}
@@ -741,10 +748,16 @@ button{font-family:inherit;cursor:pointer}
   .mobile-btn{display:block}
   .nav{padding:0 24px;height:44px}
   .mobile-menu{top:44px}
-  .section{padding:90px 24px}
-  .services-section{padding:90px 24px}
-  .stats-strip{padding:64px 24px}
-  .bento-grid{grid-template-columns:1fr}
+  /* ── 紧凑移动端留白（原90px→56px，减少50%空白）── */
+  .section{padding:64px 24px}
+  .services-section{padding:56px 24px}
+  .stats-strip{padding:56px 24px}
+  /* Hero：不再占满整屏，改为自适应高度 */
+  .hero{min-height:auto;padding:100px 24px 72px}
+  /* 子页面Hero：大幅缩减 */
+  .page-hero{padding:100px 24px 60px}
+  /* Bento网格：减少顶部边距 */
+  .bento-grid{grid-template-columns:1fr;margin-top:40px}
   .bento-card--wide{grid-column:span 1}
   .cases-grid{grid-template-columns:1fr}
   /* 案例展示卡片移动端 */
@@ -753,8 +766,8 @@ button{font-family:inherit;cursor:pointer}
   .cases-cat-header{flex-direction:column;gap:12px;margin-bottom:32px}
   .trust-grid{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr 1fr;gap:36px}
-  .cta-section{padding:90px 24px}
-  .footer{padding:64px 24px 32px}
+  .cta-section{padding:64px 24px}
+  .footer{padding:56px 24px 28px}
   .footer-bottom{flex-direction:column;gap:14px;text-align:center}
   .values-grid{grid-template-columns:1fr 1fr}
   .team-grid{grid-template-columns:repeat(2,1fr)}
@@ -767,10 +780,14 @@ button{font-family:inherit;cursor:pointer}
 @media(max-width:420px){
   .hero-title{font-size:34px;line-height:1.06}
   .hero-desc{font-size:16px}
+  .hero{padding:80px 20px 56px}
+  .page-hero{padding:80px 20px 48px}
+  .section{padding:52px 20px}
+  .services-section{padding:44px 20px}
   .stat-value{font-size:36px}
   .btn{padding:13px 24px;font-size:12px}
   .cta-btn{padding:15px 30px;font-size:13px}
-  .section-kicker{font-size:34px}
+  .section-kicker{font-size:30px}
 }
 
 /* =====================================================
