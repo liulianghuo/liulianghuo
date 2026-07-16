@@ -25,7 +25,9 @@
 
   /* Spacing rhythm — 苹果式大留白 */
   --section-pad-v:clamp(120px,12vh,200px);
-  --section-pad-h:clamp(40px,6vw,100px);
+  /* 水平内边距：统一拉宽，确保不同屏幕下留白充足、视觉平衡 */
+  --section-pad-h:clamp(48px,7vw,150px);   /* 内容区左右内边距 */
+  --nav-pad:clamp(40px,6.5vw,130px);        /* 导航区左右内边距（略小于内容，保持层次） */
   --container-max:1080px;
   --container-wide:1280px;
 
@@ -65,7 +67,7 @@ button{font-family:inherit;cursor:pointer}
   height:52px;
   display:flex;align-items:center;
   justify-content:space-between;
-  padding:0 clamp(28px,5vw,72px);
+  padding:0 var(--nav-pad);
   background:rgba(255,255,255,0.82);
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
@@ -162,7 +164,7 @@ button{font-family:inherit;cursor:pointer}
   -webkit-backdrop-filter:saturate(180%) blur(24px);
   border-bottom:0.5px solid var(--c-line);
   transform:translateY(-120%);transition:transform 0.45s var(--ease-out);
-  padding:20px clamp(28px,5vw,72px) 32px;
+  padding:20px var(--nav-pad) 32px;
 }
 .mobile-menu.open{transform:translateY(0)}
 .mobile-menu a{
@@ -784,7 +786,7 @@ button{font-family:inherit;cursor:pointer}
   .nav-right{flex:0;justify-content:flex-end;margin-left:0;padding-left:0}
   .mobile-btn{display:flex;align-items:center;justify-content:center}
   .nav{padding:0 24px;height:48px}     /* 移动端恢复48px */
-  .mobile-menu{top:48px}
+  .mobile-menu{top:48px;padding-left:24px;padding-right:24px}
   /* ── 紧凑移动端留白（原90px→56px，减少50%空白）── */
   .section{padding:64px 24px}
   .services-section{padding:56px 24px}
