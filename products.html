@@ -28,6 +28,41 @@
   ]
 }
 </script>
+<!-- 流量统计 + 转化事件追踪（百度统计：把 __TONGJI_ID__ 换成你的统计ID，取自 tongji.baidu.com） -->
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var id = '__TONGJI_ID__';
+    if (id.indexOf('__') === 0) return; // 未配置统计ID则跳过，不产生 404 请求
+    var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?' + id;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  document.addEventListener('DOMContentLoaded', function () {
+    function track(cat, action, label) {
+      try { if (window._hmt) _hmt.push(['_trackEvent', cat, action, label || '']); } catch (e) {}
+    }
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+      el.addEventListener('click', function () { track('CTA', 'tel', el.getAttribute('href')); });
+    });
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function (el) {
+      el.addEventListener('click', function () { track('CTA', 'mailto', el.getAttribute('href')); });
+    });
+    document.querySelectorAll('a[href*="liulianghuo.top"]').forEach(function (el) {
+      el.addEventListener('click', function () { track('CTA', 'product-top', (el.textContent || '').trim().slice(0, 30)); });
+    });
+    document.querySelectorAll('a[href^="weixin://"]').forEach(function (el) {
+      el.addEventListener('click', function () { track('CTA', 'wechat-add', 'AlwaysOnlineXHS'); });
+    });
+    document.querySelectorAll('.cta-btn, .wechat-card-btn, .product-cta, .product-top-cta-btn').forEach(function (el) {
+      el.addEventListener('click', function () { track('CTA', 'button', (el.textContent || '').trim().slice(0, 30)); });
+    });
+    var lf = document.querySelector('.lead-form');
+    if (lf) lf.addEventListener('submit', function () { track('Lead', 'submit', 'form'); });
+  });
+</script>
+
 </head>
 <body>
 
