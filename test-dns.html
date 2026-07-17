@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>DNS 测试页面 - liulianghuo.com</title>
+    <style>
+        body { font-family: sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { background: #f0f0f0; padding: 20px; border-radius: 8px; }
+    </style>
+<meta name="robots" content="noindex">
+</head>
+<body>
+    <h1>DNS 与连接测试</h1>
+    <p>域名: <strong>liulianghuo.com</strong></p>
+    <div id="results">
+        <p>正在测试...</p>
+    </div>
+    <div class="info">
+        <h3>如果看到错误代码 12803：</h3>
+        <p>这可能是由于 CloudStudio 平台的重定向配置错误导致的。建议的解决方案：</p>
+        <ol>
+            <li><strong>立即方案</strong>：在阿里云 DNS 设置中，暂时将域名的 CNAME 记录指向一个可以正常访问的地址（例如 GitHub Pages 提供的地址）。</li>
+            <li><strong>长期方案</strong>：将网站迁移到 GitHub Pages（免费、支持自定义域名、HTTPS 自动证书）。</li>
+        </ol>
+        <p>迁移步骤：</p>
+        <ul>
+            <li>1. 在 GitHub 上创建新仓库（例如 `chengong-website`）</li>
+            <li>2. 将本地的网站文件（index.html 等）上传到仓库</li>
+            <li>3. 在仓库设置中启用 GitHub Pages，选择分支（例如 main）</li>
+            <li>4. 在 GitHub Pages 设置中添加自定义域名 `liulianghuo.com`</li>
+            <li>5. 在阿里云 DNS 中，将域名的 CNAME 记录指向 `你的用户名.github.io`</li>
+            <li>6. 等待 DNS 生效（通常几分钟到几小时）</li>
+        </ul>
+    </div>
+    <script>
+        // 简单的连接测试
+        fetch(window.location.href, { method: 'HEAD', mode: 'no-cors' })
+            .then(() => document.getElementById('results').innerHTML = '<p class="success">✓ 网络连接正常</p>')
+            .catch(e => document.getElementById('results').innerHTML = `<p class="error">✗ 网络错误: ${e.message}</p>`);
+    </script>
+</body>
+</html>
