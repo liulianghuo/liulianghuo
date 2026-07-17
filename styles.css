@@ -1965,3 +1965,18 @@ button{font-family:inherit;cursor:pointer}
   .reveal{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
+
+/* ===== 留资表单（线索收集 · 与官网设计语言统一） ===== */
+.lead-form-wrap{max-width:680px;margin:44px auto 0;text-align:left}
+.lead-form{background:var(--c-surface);border:1px solid var(--c-line-subtle);border-radius:20px;padding:clamp(24px,4vw,40px)}
+.lead-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.lead-field{display:flex;flex-direction:column;gap:8px}
+.lead-field--full{grid-column:1 / -1;margin-top:18px}
+.lead-field label{font-size:13px;font-weight:600;color:var(--c-text-secondary);letter-spacing:0.02em}
+.lead-field input,.lead-field select,.lead-field textarea{font-family:inherit;font-size:15px;color:var(--c-text);background:#fff;border:1px solid var(--c-line);border-radius:12px;padding:12px 14px;width:100%;transition:border-color var(--duration-fast) ease,box-shadow var(--duration-fast) ease}
+.lead-field input:focus,.lead-field select:focus,.lead-field textarea:focus{outline:none;border-color:var(--fire-mid);box-shadow:0 0 0 3px var(--fire-glow)}
+.lead-field textarea{resize:vertical;min-height:96px}
+.lead-form-submit{margin-top:22px;width:100%;border:none;border-radius:12px;padding:15px 20px;font-size:16px;font-weight:700;color:#fff;background:var(--fire-gradient);transition:transform var(--duration-fast) ease,box-shadow var(--duration-fast) ease}
+.lead-form-submit:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(255,87,34,0.25)}
+.lead-form-note{margin-top:14px;font-size:12px;color:var(--c-text-tertiary);text-align:center;line-height:1.6}
+@media (max-width:560px){.lead-form-grid{grid-template-columns:1fr}}
