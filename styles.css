@@ -767,6 +767,12 @@ button{font-family:inherit;cursor:pointer}
   display:flex;justify-content:space-between;align-items:center;
   font-size:12px;color:rgba(255,255,255,0.16);
 }
+.footer-sites{
+  flex-basis:100%;text-align:center;margin-top:18px;
+  font-size:12px;color:rgba(255,255,255,0.30);letter-spacing:0.02em;
+}
+.footer-sites a{color:rgba(255,255,255,0.55);text-decoration:none;}
+.footer-sites a:hover{color:var(--fire-mid);}
 
 /* ===== SCROLL REVEAL — 更细腻 ===== */
 .reveal{
@@ -1723,6 +1729,31 @@ button{font-family:inherit;cursor:pointer}
 .article-body .article-footnote{
   font-size:14px;color:var(--c-text-tertiary);
   border-top:0.5px solid var(--c-line-subtle);padding-top:24px;margin-top:48px;
+}
+
+/* ===== 文章相关阅读（内链循环） ===== */
+.article-related{
+  margin-top:48px;padding:32px;background:var(--fire-glow);
+  border:1px solid var(--c-line-subtle);border-radius:18px;
+}
+.article-related-title{
+  font-size:13px;font-weight:700;letter-spacing:0.08em;color:var(--fire-mid);
+  margin:0 0 18px;text-transform:uppercase;
+}
+.article-related-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+.article-related-list li{position:relative;padding-left:22px;}
+.article-related-list li::before{
+  content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;
+  background:var(--fire-gradient);
+}
+.article-related-list a{
+  color:var(--c-text);font-size:15px;font-weight:500;text-decoration:none;
+  transition:color var(--duration-fast) var(--ease-out);
+}
+.article-related-list a:hover{color:var(--fire-mid);}
+@media (max-width:768px){
+  .article-related{padding:24px;margin-top:36px;}
+  .article-related-list a{font-size:14px;}
 }
 
 /* ===== CAPABILITY GRID（能力展示·去模板化）===== */
