@@ -2050,6 +2050,10 @@ button{font-family:inherit;cursor:pointer}
 }
 .v8-ip-account-screenshots--single img{aspect-ratio:9/19.5}
 .v8-ip-account-cta{text-align:center}
+.v8-ip-account-points{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:22px;text-align:left}
+.v8-ip-account-points li{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;line-height:1.65}
+.v8-ip-label{flex-shrink:0;width:74px;font-size:12px;font-weight:700;color:var(--fire-mid);background:var(--fire-glow);border-radius:8px;padding:4px 0;text-align:center;letter-spacing:0.04em;margin-top:2px}
+.v8-ip-value{color:var(--c-text)}
 
 @media(max-width:768px){
   .v8-ip-showcase-grid{grid-template-columns:1fr}
