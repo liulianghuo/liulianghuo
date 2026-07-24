@@ -1742,20 +1742,47 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ===== ARTICLE / INSIGHT POST STYLES ===== */
-.article-page .page-hero{ padding-bottom:20px; }
+.article-page .page-hero{
+  padding:100px var(--section-pad-h) 56px;
+  text-align:left;
+  background:linear-gradient(180deg, rgba(255,87,34,0.03) 0%, transparent 100%);
+}
+/* 文章页顶部导航条：分类标签 + 返回按钮同行 */
+.article-page .page-hero .section-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;color:var(--fire-mid);
+  letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0;
+  background:rgba(255,87,34,0.08);padding:5px 14px;border-radius:100px;
+}
+.article-page .page-hero .section-eyebrow::before{
+  content:none;
+}
 .article-back{
   display:inline-flex;align-items:center;gap:6px;
-  font-size:14px;font-weight:500;color:var(--c-text-tertiary);
-  text-decoration:none;transition:color .3s;margin-bottom:24px;
+  font-size:13px;font-weight:500;color:var(--c-text-secondary);
+  text-decoration:none;transition:color .25s ease,background .25s ease,border-color .25s ease;
+  padding:6px 16px;border:1px solid var(--c-line);border-radius:100px;
+  margin-bottom:0;
 }
-.article-back:hover{ color:var(--fire-mid); }
+@media (hover:hover) and (pointer:fine){
+  .article-back:hover{ color:var(--fire-mid);border-color:var(--fire-mid);background:rgba(255,87,34,0.04); }
+}
+/* eyebrow 与返回按钮的容器：flex 行 */
+.article-page .page-hero > .section-eyebrow + .article-back,
+.article-page .page-hero > .article-back + .section-eyebrow{
+  /* 相邻时由 JS/HTML 结构处理，这里用 margin-govern */
+}
+.article-header-top{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:28px;
+}
 .article-meta{
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-  margin-bottom:20px;font-size:13px;color:var(--c-text-tertiary);
+  margin-bottom:24px;font-size:13px;color:var(--c-text-tertiary);
 }
 .article-meta-cat{
   font-weight:600;color:var(--fire-mid);
-  background:rgba(255,87,34,0.06);padding:4px 12px;border-radius:100px;
+  background:rgba(255,87,34,0.07);padding:4px 12px;border-radius:100px;
 }
 .article-body{
   max-width:720px;margin:0 auto;padding:0 var(--section-pad-h) 80px;
