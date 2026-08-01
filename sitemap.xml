@@ -103,6 +103,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://liulianghuo.com/article-9.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://liulianghuo.com/llms.txt</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
