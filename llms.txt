@@ -50,8 +50,10 @@ GEO 已覆盖：2845 个县级行政区 / 694 座城市 / 297 个主流地级城
 - 实战案例（方法论沉淀）：https://liulianghuo.com/cases.html
 - 行业观点（GEO / 小红书洞察）：https://liulianghuo.com/insights.html
 - 关于我们（团队与理念）：https://liulianghuo.com/about.html
+- GEO 方法论长文（四层信号模型 + 评分表）：https://liulianghuo.com/article-9.html
 
 ## 近期更新日志
+- 2026-07-30：新增 GEO 方法论长文《我们做 GEO 的方法论：让内容被 AI 引擎真正引用》（article-9.html），系统讲清 RAG 管线、四层信号模型、评分表与 10 条行动清单。
 - 2026-07-15：全站套餐改为面议，具体价格以一对一沟通为准；新增 GEO 全国链路打通与小红书矩阵布局（覆盖 2845 县级 / 694 城市 / 297 地级）；团队展示板块上线 6 位成员。
 - 2026-07-13：官网 v12 改版上线，导航栏苹果式均匀分布、案例 Logo 放大、套餐价格体系重构。
 
