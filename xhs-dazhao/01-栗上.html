@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>栗上 LISSOME 小红书种草内容研究报告</title>
+<style>
+:root{
+  --bg:#0d0f13;
+  --bg2:#12151b;
+  --card:#161a22;
+  --card2:#1b2029;
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.14);
+  --tx:#e9ecf1;
+  --tx2:#a3acb9;
+  --tx3:#6f7885;
+  --red:#ff4d6a;
+  --amber:#ffb454;
+  --teal:#4dd4ac;
+  --blue:#6aa8ff;
+  --purple:#b78bff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--tx);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  font-size:15px;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* ── Header ── */
+header{
+  padding:72px 0 56px;
+  background:
+    radial-gradient(900px 420px at 12% -10%, rgba(255,77,106,.16), transparent 60%),
+    radial-gradient(700px 380px at 88% 0%, rgba(109,168,255,.12), transparent 62%),
+    var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.tagline{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:.18em;color:var(--red);
+  border:1px solid rgba(255,77,106,.32);border-radius:999px;
+  padding:5px 14px;margin-bottom:22px;
+}
+.tagline i{width:5px;height:5px;border-radius:50%;background:var(--red);font-style:normal}
+h1{font-size:40px;line-height:1.25;font-weight:800;letter-spacing:-.5px}
+h1 span{
+  background:linear-gradient(96deg,var(--red),var(--amber));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sub{color:var(--tx2);margin-top:16px;font-size:16px;max-width:760px}
+.meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  font-size:12.5px;color:var(--tx2);background:var(--card);
+  border:1px solid var(--line);border-radius:8px;padding:6px 12px;
+}
+.chip b{color:var(--tx);font-weight:600}
+
+/* ── Nav ── */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(13,15,19,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding:0 24px}
+nav a{
+  color:var(--tx2);text-decoration:none;font-size:13.5px;
+  padding:14px 12px;white-space:nowrap;border-bottom:2px solid transparent;
+  transition:.18s;
+}
+nav a:hover{color:var(--tx);border-bottom-color:var(--red)}
+
+/* ── Section ── */
+section{padding:60px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{
+  font-size:12px;font-weight:700;color:var(--bg);background:var(--red);
+  border-radius:6px;padding:3px 9px;letter-spacing:.06em;flex:none;
+}
+h2{font-size:26px;font-weight:750;letter-spacing:-.3px}
+.sec-desc{color:var(--tx2);margin:10px 0 30px;font-size:14.5px;max-width:820px}
+h3{font-size:17px;font-weight:700;margin:34px 0 14px;display:flex;align-items:center;gap:9px}
+h3::before{content:"";width:3px;height:15px;background:var(--red);border-radius:2px;flex:none}
+h4{font-size:15px;font-weight:650;margin:20px 0 10px;color:var(--tx)}
+p{color:var(--tx2);margin-bottom:12px}
+p strong,li strong{color:var(--tx);font-weight:650}
+ul{margin:0 0 14px 0;padding-left:0;list-style:none}
+ul li{color:var(--tx2);padding-left:18px;position:relative;margin-bottom:8px}
+ul li::before{
+  content:"";position:absolute;left:2px;top:11px;
+  width:5px;height:5px;border-radius:50%;background:var(--line2);
+}
+ol{margin:0 0 14px 18px;color:var(--tx2)}
+ol li{margin-bottom:8px;padding-left:4px}
+ol li::marker{color:var(--red);font-weight:700}
+
+/* ── Grid ── */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}}
+@media(max-width:520px){.g3,.g4{grid-template-columns:1fr}}
+
+/* ── Card ── */
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:22px;
+}
+.card.hi{border-color:rgba(255,77,106,.28);background:linear-gradient(180deg,rgba(255,77,106,.05),var(--card))}
+.card .lbl{font-size:12px;color:var(--tx3);letter-spacing:.06em;margin-bottom:8px}
+.card .val{font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1.15}
+.card .val small{font-size:14px;font-weight:600;color:var(--tx2);margin-left:3px}
+.card .note{font-size:12.5px;color:var(--tx3);margin-top:8px;line-height:1.6}
+.red{color:var(--red)}.amber{color:var(--amber)}.teal{color:var(--teal)}
+.blue{color:var(--blue)}.purple{color:var(--purple)}
+
+/* ── Table ── */
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:16px 0}
+.tbl th{
+  text-align:left;padding:11px 14px;color:var(--tx3);font-weight:600;font-size:12px;
+  letter-spacing:.05em;background:var(--bg2);border-bottom:1px solid var(--line2);
+}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);color:var(--tx2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td:first-child{color:var(--tx);font-weight:600}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+
+/* ── Quote ── */
+.quote{
+  background:linear-gradient(135deg,rgba(255,77,106,.07),rgba(255,180,84,.04));
+  border:1px solid rgba(255,77,106,.22);
+  border-left:3px solid var(--red);
+  border-radius:0 12px 12px 0;
+  padding:18px 22px;margin:14px 0;
+}
+.quote .q{font-size:16px;color:var(--tx);font-weight:600;line-height:1.7}
+.quote .who{font-size:12.5px;color:var(--tx3);margin-top:10px}
+.qgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:760px){.qgrid{grid-template-columns:1fr}}
+
+/* ── Bars ── */
+.bars{display:flex;flex-direction:column;gap:18px;margin:20px 0}
+.bar-row{display:grid;grid-template-columns:130px 1fr 92px;gap:14px;align-items:center;font-size:13.5px}
+.bar-row .k{color:var(--tx2);text-align:right}
+.bar-track{height:26px;background:var(--bg2);border-radius:7px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:7px;display:flex;align-items:center;padding-left:10px;font-size:12px;font-weight:700;color:#0d0f13}
+.bar-row .v{font-size:13px;font-weight:700}
+@media(max-width:640px){.bar-row{grid-template-columns:96px 1fr 76px;gap:8px;font-size:12px}}
+
+/* ── Timeline ── */
+.tl{position:relative;padding-left:26px;margin:22px 0}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line2)}
+.tl-item{position:relative;margin-bottom:24px}
+.tl-item::before{
+  content:"";position:absolute;left:-23px;top:6px;width:10px;height:10px;
+  border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(255,77,106,.15);
+}
+.tl-item .t{font-size:13px;color:var(--red);font-weight:700;letter-spacing:.04em;margin-bottom:4px}
+.tl-item .h{font-size:15.5px;font-weight:700;color:var(--tx);margin-bottom:6px}
+.tl-item .b{font-size:13.5px;color:var(--tx2)}
+
+/* ── Tags ── */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.tag{
+  font-size:12.5px;color:var(--tx2);background:var(--card2);
+  border:1px solid var(--line);border-radius:7px;padding:5px 11px;
+}
+.tag.r{border-color:rgba(255,77,106,.3);color:#ffb3c0;background:rgba(255,77,106,.08)}
+.tag.a{border-color:rgba(255,180,84,.3);color:#ffd9a8;background:rgba(255,180,84,.08)}
+.tag.t{border-color:rgba(77,212,172,.3);color:#a8ecd9;background:rgba(77,212,172,.08)}
+.tag.b{border-color:rgba(106,168,255,.3);color:#bcd7ff;background:rgba(106,168,255,.08)}
+
+/* ── Note box ── */
+.note-box{
+  background:var(--bg2);border:1px dashed var(--line2);border-radius:12px;
+  padding:16px 20px;font-size:13px;color:var(--tx3);margin:20px 0;line-height:1.7;
+}
+.note-box b{color:var(--tx2)}
+
+/* ── Persona ── */
+.persona{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px;position:relative;overflow:hidden;
+}
+.persona::after{
+  content:"";position:absolute;right:-30px;top:-30px;width:96px;height:96px;
+  border-radius:50%;background:radial-gradient(circle,rgba(255,77,106,.13),transparent 70%);
+}
+.persona .pname{font-size:16px;font-weight:750;color:var(--tx);margin-bottom:3px}
+.persona .psub{font-size:12px;color:var(--red);letter-spacing:.05em;margin-bottom:12px}
+.persona ul li{font-size:13px;margin-bottom:6px}
+.persona .pain{
+  margin-top:12px;padding-top:12px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--tx3);
+}
+.persona .pain b{color:var(--amber)}
+
+/* ── Funnel / flow ── */
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:22px 0}
+.flow-s{
+  flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);
+  padding:16px;text-align:center;position:relative;
+}
+.flow-s:first-child{border-radius:12px 0 0 12px}
+.flow-s:last-child{border-radius:0 12px 12px 0}
+.flow-s+.flow-s{border-left:none}
+.flow-s .n{font-size:11px;color:var(--tx3);letter-spacing:.1em;margin-bottom:6px}
+.flow-s .t{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:5px}
+.flow-s .d{font-size:12px;color:var(--tx3);line-height:1.6}
+@media(max-width:760px){.flow-s{border-radius:12px!important;border-left:1px solid var(--line)!important;margin-bottom:8px;flex:1 1 100%}}
+
+footer{padding:40px 0;color:var(--tx3);font-size:12.5px;text-align:center}
+footer b{color:var(--tx2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="tagline"><i></i>2026 小红书种草大赏 · 全场大奖案例（与华为、可隆并列）</div>
+    <h1>栗上 LISSOME<br><span>小红书种草内容研究报告</span></h1>
+    <p class="sub">一个 0 渠道遗产、0 品牌积累的初创团队，在渗透率仅 3.2% 的洗碗机品类里，靠小红书评论区长出爆品，上市 180 天破亿、首年销量破 10 万台。本报告拆解其品牌定位、人群、卖点、爆文结构与投放数据，并给出后续内容策略建议。</p>
+    <div class="meta">
+      <span class="chip">研究日期 <b>2026.09.04</b></span>
+      <span class="chip">品牌成立 <b>2021.12</b></span>
+      <span class="chip">首款产品 <b>R1 胶囊洗碗机</b></span>
+      <span class="chip">最新融资 <b>A 轮数千万 · 红杉中国领投</b></span>
+      <span class="chip">信息来源 <b>公开报道 / 平台案例 / 创始人专访</b></span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="index.html" style="color:var(--red);font-weight:700;margin-right:8px">← 案例索引</a>
+  <a href="#s1">数据盘</a>
+  <a href="#s2">品牌定位</a>
+  <a href="#s3">用户画像</a>
+  <a href="#s4">产品卖点</a>
+  <a href="#s5">爆文拆解</a>
+  <a href="#s6">可复制方法</a>
+  <a href="#s7">CEO 金句</a>
+  <a href="#s8">优化方向</a>
+  <a href="#s9">策略建议</a>
+  <a href="#s10">迁移清单</a>
+</div></nav>
+
+<!-- ══════ 1 数据盘 ══════ -->
+<section id="s1">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">01</span><h2>数据盘：从 200 台到 10 万台</h2></div>
+  <p class="sec-desc">先看清结果，再倒推方法。以下为公开可查证数据，含种草大赏案例披露的站内投放效率数据。</p>
+
+  <h3>核心经营数据</h3>
+  <div class="grid g4">
+    <div class="card hi"><div class="lbl">上市首年销量</div><div class="val red">10<small>万台+</small></div><div class="note">截至 2026 年，R1 上市约 12 个月</div></div>
+    <div class="card"><div class="lbl">销售额破亿用时</div><div class="val amber">180<small>天</small></div><div class="note">全渠道，2025.09 批量发售起算</div></div>
+    <div class="card"><div class="lbl">首发首日</div><div class="val teal">200<small>台售罄</small></div><div class="note">2025.06 小红书站内首发，共创种子用户包圆</div></div>
+    <div class="card"><div class="lbl">2026 年 618</div><div class="val blue">+515<small>%</small></div><div class="note">环比 2025 年双 11 销售额增长</div></div>
+  </div>
+
+  <div class="grid g4" style="margin-top:14px">
+    <div class="card"><div class="lbl">品类地位</div><div class="val" style="font-size:19px;line-height:1.45">小红书 / 天猫 / 抖音<br>台式洗碗机 <b class="red">TOP1</b></div><div class="note">2025 双 11 起长期霸榜</div></div>
+    <div class="card"><div class="lbl">日本 Makuake 众筹</div><div class="val">1.3<small>亿日元</small></div><div class="note">目标 100 万日元，达成 13345%，平台 AI 厨电人气第一</div></div>
+    <div class="card"><div class="lbl">Kickstarter 众筹</div><div class="val">35.2<small>万美元</small></div><div class="note">2024 年，30 国、800+ 支持者，用于早期需求验证</div></div>
+    <div class="card"><div class="lbl">累计融资</div><div class="val" style="font-size:19px;line-height:1.45">Pre-A <b>千万级</b><br>A 轮 <b class="red">数千万</b></div><div class="note">A 轮由红杉中国、Brizan Ventures 领投</div></div>
+  </div>
+
+  <h3>小红书站内投放效率数据（种草大赏案例披露）</h3>
+  <p>这是整个案例含金量最高的部分——它证明这套打法不是"故事讲得好"，而是真金白银把获客成本打下来了。</p>
+
+  <div class="bars">
+    <div class="bar-row">
+      <div class="k">核心词人群 cpuv</div>
+      <div class="bar-track"><div class="bar-fill" style="width:32%;background:linear-gradient(90deg,#ff4d6a,#ff7b52)">3.65</div></div>
+      <div class="v teal">↓ 68%</div>
+    </div>
+    <div class="bar-row">
+      <div class="k">小户型人群 cpuv</div>
+      <div class="bar-track"><div class="bar-fill" style="width:18%;background:linear-gradient(90deg,#ffb454,#ffd08a)">4.69</div></div>
+      <div class="v teal">↓ 84%</div>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl">人群资产</div>
+      <div class="val"><span class="tx3" style="font-size:18px">218 万</span> <span class="tx3" style="font-size:16px">→</span> <span class="teal">1100 万</span></div>
+      <div class="note">增幅 <b class="teal">400%+</b>，统计周期为投放前后对比</div>
+    </div>
+    <div class="card">
+      <div class="lbl">日消耗</div>
+      <div class="val"><span class="tx3" style="font-size:18px">2000</span> <span class="tx3" style="font-size:16px">→</span> <span class="amber">3 万</span></div>
+      <div class="note">增长 <b class="amber">15 倍</b>，说明模型跑通后敢加预算</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <b>关键结构：70 / 30。</b>栗上以<b>测评类笔记</b>为切口，精准锁定 <b>70% 产品意向人群 + 30% 场景意向人群</b>。这个配比是 cpuv 大幅下降的直接原因——产品意向人群负责转化效率，场景意向人群负责破圈拉新，两者比例失衡都会拖累成本。
+  </div>
+
+  <h3>时间线：一条被验证过的路径</h3>
+  <div class="tl">
+    <div class="tl-item"><div class="t">2021.07 — 2024</div><div class="h">需求洞察期：评论区就是研发部</div><div class="b">创始人以素人身份发笔记征集"理想中的洗碗机"→ 1 万+ 浏览、300+ 条评论 = 第一份产品需求文档 → 建 4 个 500 人粉丝群 → 挑 1200 户家庭带原型机上门量尺寸 → 80 次试用、17 版样机。</div></div>
+    <div class="tl-item"><div class="t">2024</div><div class="h">海外验证期：用众筹打消投资人质疑</div><div class="b">Kickstarter 众筹 35.2 万美元；国内近 100 人在产品未量产时就愿意付款，基本打消投资人疑虑。</div></div>
+    <div class="tl-item"><div class="t">2025.06</div><div class="h">冷启动：小红书站内闭环首发 200 台，当天售罄</div><div class="b">从下单、付款到发货全部在站内完成，第一批买家就是参与共创的种子用户。</div></div>
+    <div class="tl-item"><div class="t">2025.09</div><div class="h">批量发售 + 双 11 登顶</div><div class="b">9 月正式批量上市，双 11 拿下各大电商台式洗碗机 TOP1；上市 180 天全渠道破亿。</div></div>
+    <div class="tl-item"><div class="t">2026.06</div><div class="h">A 轮融资 + 日本 Makuake 1.3 亿日元</div><div class="b">红杉中国、Brizan Ventures 领投；日本众筹成为该平台人气第一的 AI 厨电。</div></div>
+    <div class="tl-item"><div class="t">2026.08</div><div class="h">小红书种草大赏：金奖 + 全场大奖</div><div class="b">490 份案例、399 个品牌、106 个行业，全场大奖仅 3 席，与华为、可隆并列。</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ══════ 2 品牌定位 ══════ -->
+<section id="s2">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">02</span><h2>品牌定位：不做更好的洗碗机，做中国厨房的另一种答案</h2></div>
+  <p class="sec-desc">栗上不是在一个成熟品类里做"参数更优"的跟随者，而是重新定义了品类的衡量基准。</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl">官方定位</div>
+      <h4 style="margin-top:6px">AI 厨房机器人 / 智能厨电品牌</h4>
+      <p>将工业机器人级技术（运动控制、智能传感、AI 交互）下放至家庭厨房场景，孵化于李泽湘教授的 XbotPark 宁波基地。</p>
+      <div class="tags"><span class="tag r">机器人基因</span><span class="tag r">30+ 项专利</span><span class="tag r">高新技术企业</span></div>
+    </div>
+    <div class="card hi">
+      <div class="lbl">实际卡位（用户心智层）</div>
+      <h4 style="margin-top:6px">服务"新家庭"的小厨房解决方案</h4>
+      <p>对外不强调"AI 厨房机器人"（太远、太抽象），对内不强调"更小的洗碗机"（太弱）。真正的定位是：<strong>让洗碗机适应厨房，而不是让用户改造生活。</strong></p>
+    </div>
+  </div>
+
+  <h3>定位拆解：三个"不做"</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:22%">维度</th><th style="width:39%">行业默认做法</th><th>栗上的选择</th></tr>
+    <tr><td>产品方向</td><td>比谁更大、套数更多、嵌入更深、高端化</td><td>反向做小 —— 28cm 超窄，先解决"放不放得下"</td></tr>
+    <tr><td>竞争维度</td><td>洗净指数、干燥指数、能耗等级、价格带</td><td>台面剩余厘米数、洗一次要等多久、能不能不改水电</td></tr>
+    <tr><td>用户角色</td><td>教育用户"洗碗机好，解放双手"（喊了 30 年，渗透率 3.2%）</td><td>不教育，让用户在自己的生活里发现场景（机洗万物）</td></tr>
+  </table></div>
+
+  <div class="quote">
+    <div class="q">"我们要做的，不是让用户设计洗碗机，而是找到值得被重新解决的问题。"</div>
+    <div class="who">—— 谢明佐，栗上创始人兼 CEO</div>
+  </div>
+
+  <h3>品牌叙事的三层结构</h3>
+  <div class="flow">
+    <div class="flow-s"><div class="n">LAYER 1</div><div class="t">产品层 · 基准</div><div class="d">28cm 是"中国厨房该有的尺寸"，是一个可被复述、可被测量的锚点</div></div>
+    <div class="flow-s"><div class="n">LAYER 2</div><div class="t">人群层 · 新家庭</div><div class="d">1-3 人微型家庭占比超 70%，把"少人家庭"从边缘客群变成主流叙事</div></div>
+    <div class="flow-s"><div class="n">LAYER 3</div><div class="t">价值层 · 从容</div><div class="d">不卖参数，卖"用了它，变成更从容的自己"的情绪结果</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ══════ 3 用户画像 ══════ -->
+<section id="s3">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">03</span><h2>目标用户画像：从"小家庭"一层层往外扩</h2></div>
+  <p class="sec-desc">栗上的人群不是一开始就画好的，而是产品上市后被用户使用场景反向撑开的。这恰恰是最值得学的一点。</p>
+
+  <h3>底层判断：新家庭 vs 旧家庭</h3>
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl" style="color:var(--tx3)">旧家庭</div>
+      <h4>买一个终极安居梦</h4>
+      <ul>
+        <li>大户型、重装修、买全套大家电</li>
+        <li>三代/四代同堂</li>
+        <li>决策周期长、一次性配齐</li>
+      </ul>
+    </div>
+    <div class="card hi">
+      <div class="lbl" style="color:var(--red)">新家庭（栗上的主战场）</div>
+      <h4>把当下的日子过好</h4>
+      <ul>
+        <li>购房不再是刚需，重心转向当下生活品质</li>
+        <li>单身、情侣同居、新手爸妈带娃</li>
+        <li>愿意为"此刻的便利"付费</li>
+      </ul>
+      <div class="note" style="margin-top:12px;color:var(--tx2);font-size:12.5px">支撑数据：第七次全国人口普查，中国 <b>1-3 人户微型家庭占比已超 70%</b></div>
+    </div>
+  </div>
+
+  <h3>五类细分人群</h3>
+  <div class="grid g3">
+    <div class="persona">
+      <div class="pname">小户型 / 老破小家庭</div><div class="psub">核心人群 · 转化主力</div>
+      <ul>
+        <li>厨房台面被电饭煲、烧水壶、砧板占满</li>
+        <li>橱柜没预留位，改造成本极高</li>
+      </ul>
+      <div class="pain">痛点：<b>台面上只剩几十厘米，大机器根本放不下</b></div>
+    </div>
+    <div class="persona">
+      <div class="pname">租房青年</div><div class="psub">核心人群 · 口碑扩散主力</div>
+      <ul>
+        <li>不能改水电、不能砸橱柜</li>
+        <li>搬家要能带走</li>
+        <li>价格敏感但不追求最低价</li>
+      </ul>
+      <div class="pain">痛点：<b>想提升生活品质，但不敢对房子做任何不可逆改造</b></div>
+    </div>
+    <div class="persona">
+      <div class="pname">新手爸妈 / 带娃家庭</div><div class="psub">高价值人群 · 客单承受力高</div>
+      <ul>
+        <li>奶瓶、辅食餐具需要高频消毒</li>
+        <li>对除菌率、存放时长极度敏感</li>
+      </ul>
+      <div class="pain">痛点：<b>手洗奶瓶洗不净也烫不彻底，消毒柜又占地方</b></div>
+    </div>
+    <div class="persona">
+      <div class="pname">银发父母 / 老两口</div><div class="psub">被忽视的增量人群</div>
+      <ul>
+        <li>弯腰困难，传统洗碗机放地上要蹲</li>
+        <li>看重省电，会盯夜间低谷电价</li>
+      </ul>
+      <div class="pain">痛点：<b>蹲下取碗伤腰；想在便宜电价时段自动启动</b></div>
+    </div>
+    <div class="persona">
+      <div class="pname">独居 / 情侣 / 烘焙爱好者</div><div class="psub">外延人群 · "一餐一洗"</div>
+      <ul>
+        <li>一顿饭没几个碗，攒着洗又嫌脏</li>
+        <li>烘焙工具、料理机配件难清洗</li>
+        <li>养宠家庭需要洗宠物餐具</li>
+      </ul>
+      <div class="pain">痛点：<b>少量餐具开一次洗碗机太浪费，手洗又烦</b></div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <b>一个容易忽略的关键判断：购买决策者以女性为主。</b>这直接决定了栗上的渠道选择——出海时没选 Kickstarter（偏欧美极客、男性），而是选了日本 Makuake（家庭主妇决策更集中的市场）。<b>"渠道不是铺得越广越好，是接得越准越好。"</b>
+  </div>
+</div>
+</section>
+
+<!-- ══════ 4 产品卖点 ══════ -->
+<section id="s4">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">04</span><h2>核心产品卖点：五层结构，每层对应一类内容</h2></div>
+  <p class="sec-desc">栗上的卖点不是平铺的参数表，而是按"用户决策链路"分层设计的。这个分层，直接决定了笔记该怎么写。</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:14%">卖点层级</th><th style="width:30%">具体内容</th><th>对应内容形态</th></tr>
+    <tr>
+      <td class="red">决策卖点<br><span style="font-weight:400;font-size:12px;color:var(--tx3)">进入考虑集</span></td>
+      <td><strong>28cm 超窄机身</strong>（比 A4 纸略宽，比最窄台式竞品少近一半）<br><strong>免安装免改水电</strong>：水箱版手动加水即用，上下水版 +200 元<br>纵深 50cm × 高 50cm，搬家拎起就走</td>
+      <td>尺子实测对比图、小厨房改造前后、租房好物清单、"不用砸橱柜"话题</td>
+    </tr>
+    <tr>
+      <td class="amber">体验卖点<br><span style="font-weight:400;font-size:12px;color:var(--tx3)">形成偏好</span></td>
+      <td><strong>15 分钟超快洗烘</strong>（行业普遍 1 小时+）<br><strong>2 分钟闪烘 + 自动开门</strong>（万元机才有的配置）<br>四臂风暴扫洗、10 万 Pa 高压无刷水泵</td>
+      <td>计时实测视频、重油污（火锅底料碟、干结米饭碗）清洗前后对比、噪音实测</td>
+    </tr>
+    <tr>
+      <td class="teal">信任卖点<br><span style="font-weight:400;font-size:12px;color:var(--tx3)">消除顾虑</span></td>
+      <td><strong>三面透明可视视窗</strong>：亲眼看见"循环水"全过程<br>三重消毒：70℃ 高温 + UVC 紫外 + 等离子，除菌率 99.99%<br>可替代消毒柜存放 96 小时</td>
+      <td>透明视窗第一视角视频、"洗碗机到底费不费水"答疑、除菌实测报告</td>
+    </tr>
+    <tr>
+      <td class="blue">算账卖点<br><span style="font-weight:400;font-size:12px;color:var(--tx3)">击穿价格抗性</span></td>
+      <td>单次耗水约 <strong>3.9L</strong>、耗电约 <strong>0.3 度</strong>，比手洗更省<br>洗碗液自动投放，加满一次用约两周<br>年省数百元水电耗材成本</td>
+      <td>水表电表实拍、年成本测算长图、"水比手洗少"实验</td>
+    </tr>
+    <tr>
+      <td class="purple">情绪卖点<br><span style="font-weight:400;font-size:12px;color:var(--tx3)">驱动自发传播</span></td>
+      <td>清洗过程像"下一场蓝色的雨"，被大量用户称为<strong>解压</strong><br>容量：一次 25 件餐具 / 可洗直径 28cm 以内的锅<br><strong>"机洗万物"</strong>：洗水果、小龙虾、麻将、奶瓶、宠物餐具、烘焙工具</td>
+      <td>ASMR 向视频、万物皆可洗挑战、用户 UGC 二创征集</td>
+    </tr>
+  </table></div>
+
+  <div class="grid g2" style="margin-top:18px">
+    <div class="card">
+      <div class="lbl">价格带</div>
+      <div class="val">2299 – 2519 <small>元</small></div>
+      <div class="note">水箱版约 2399 起，618 补贴价 2299；上下水版约 +200 元。定价逻辑不是"看竞品卖多少"，而是"用户愿意为什么样的体验买单"——逐项测试每个差异功能是否值得多花几百元。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">定价哲学</div>
+      <div class="quote" style="margin:8px 0 0">
+        <div class="q" style="font-size:15px">"我们不想做最便宜的洗碗机，因为靠卷低价很难支撑品牌的长期发展。我们更希望通过产品设计，降低用户获得好的清洁体验的体验成本。"</div>
+        <div class="who">—— 谢明佐</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════ 5 爆文拆解 ══════ -->
+<section id="s5">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">05</span><h2>典型笔记类型拆解：六类内容，六种职能</h2></div>
+  <p class="sec-desc">栗上不是靠一篇爆文打赢的，是靠六类内容各司其职搭起来的结构。以下归纳基于公开可查的笔记形态、测评内容与案例披露信息。</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:15%">笔记类型</th><th style="width:26%">代表形态 / 标题方向</th><th style="width:22%">承担职能</th><th>可复用要点</th></tr>
+    <tr>
+      <td>① 需求征集型<br><span class="tag r" style="font-size:11px">冷启动核弹</span></td>
+      <td>创始人以素人身份发问："你理想中的洗碗机长什么样？用起来有什么麻烦？"<br>→ 1 万+ 浏览、300+ 条评论</td>
+      <td>零成本获取真实需求 + 沉淀第一批种子用户</td>
+      <td><strong>不推销，只提问。</strong>把评论区当研发入口而非广告位。这一条笔记直接变成了栗上的第一份产品需求文档。</td>
+    </tr>
+    <tr>
+      <td>② 硬核测评型<br><span class="tag a" style="font-size:11px">转化主力</span></td>
+      <td>《值得买首发评测》《极窄台式除菌烘干一体实测》<br>尺子量三围、重油污清洗前后、噪音/耗水耗电实测、能不能洗锅</td>
+      <td>承接 <strong>70% 产品意向人群</strong>，是 cpuv 下降的主引擎</td>
+      <td>允许<b>说缺点</b>（容量偏小、大锅放不进去、面板贴纸不够精致）。带缺点的测评可信度更高，反而拉高转化。</td>
+    </tr>
+    <tr>
+      <td>③ 场景外延型<br><span class="tag t" style="font-size:11px">破圈引擎</span></td>
+      <td>"机洗万物"：洗水果、洗小龙虾、洗麻将、洗奶瓶、洗宠物餐具、洗烘焙工具</td>
+      <td>承接 <strong>30% 场景意向人群</strong>，拓展品类边界与人群</td>
+      <td>这类场景<b>全部由用户发明，不是官方设计</b>。官方做的是收编与放大，不是生造。</td>
+    </tr>
+    <tr>
+      <td>④ 租房 / 小户型改造型</td>
+      <td>《恭喜"不爱洗碗"的人》、台面边角极限利用、一个小支架解决闲置空间、不用弯腰取碗</td>
+      <td>打"小户型人群"搜索词，cpuv 降幅最大的一类</td>
+      <td>把产品放进<b>真实凌乱的厨房</b>里拍，不是放在样板间。越真实越有代入感。</td>
+    </tr>
+    <tr>
+      <td>⑤ 创始人 / 团队 IP 型</td>
+      <td>《生活应当更轻松》、带原型机上门量尺寸、家访 vlog、官方回应"听劝，立马设计"</td>
+      <td>建立信任、展示过程感、回应质疑</td>
+      <td>核心是<b>可被围观的过程</b>：从被质疑三年到产品上市，过程本身就是内容。</td>
+    </tr>
+    <tr>
+      <td>⑥ 对比 / 算账型</td>
+      <td>对比嵌入式（不用砸橱柜）、对比手洗（省水省时）、对比大牌（高单价接受人群拦截）</td>
+      <td>拦截竞品搜索词、击穿价格抗性</td>
+      <td>不贬低竞品，而是<b>换衡量标准</b>：不比谁洗得干净，比谁能放进你家厨房。</td>
+    </tr>
+  </table></div>
+
+  <h3>横向拓量的四个方向（案例披露）</h3>
+  <p>当垂直人群跑通后，栗上跳出洗碗机品类找增量，四个方向齐发：</p>
+  <div class="grid g4">
+    <div class="card"><div class="lbl">方向一</div><h4>大牌换热技术</h4><div class="note">蹭大牌技术话题的讨论热度，借势获取技术关注人群</div></div>
+    <div class="card"><div class="lbl">方向二</div><h4>对比西门子 / 方太</h4><div class="note">拦截"高单价接受人群"——买不起大牌但认可大牌品质的用户</div></div>
+    <div class="card"><div class="lbl">方向三</div><h4>上游词流转</h4><div class="note">从微波炉、空气炸锅、蒸烤箱等厨房小电词截流，吃更大流量池</div></div>
+    <div class="card"><div class="lbl">方向四</div><h4>种草联动</h4><div class="note">多场景、多人群、多触点协同，让新客持续进场</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ══════ 6 可复制方法 ══════ -->
+<section id="s6">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">06</span><h2>成功方法中，真正可复用的六条</h2></div>
+  <p class="sec-desc">"1200 户上门调研"和"17 版样机"是硬件行业的重资产动作，不可照搬。但下面这六条机制，任何品类都能用。</p>
+
+  <h3>一、把评论区当需求采集器，而不是广告位</h3>
+  <p>栗上翻遍小红书上关于洗碗机的笔记和评论，把散落的短句拼成一个方向。谢明佐自己发笔记征集，300+ 条评论直接成为第一份产品需求文档。</p>
+  <div class="note-box">
+    <b>可复用动作：</b>在目标品类下，用<b>素人号</b>（不是品牌号）发一条"求助/提问"笔记——"大家用 XX 最崩溃的瞬间是什么？"收集 100+ 条真实评论，按出现频次聚类。这一步零成本，且比问卷真实（不是被问出来的）、比座谈会完整（没被筛选过）、比交易数据靠前（发生在购买之前）。
+  </div>
+
+  <h3>二、需求翻译四维度，把生活语言变成产品/内容规格</h3>
+  <p>谢明佐披露的需求筛选框架，可直接用于选题优先级排序：</p>
+  <div class="flow">
+    <div class="flow-s"><div class="n">01</div><div class="t">频率</div><div class="d">这个问题是不是<b>天天</b>都出现，而不是偶发</div></div>
+    <div class="flow-s"><div class="n">02</div><div class="t">痛感</div><div class="d">痛点是否<b>足够强烈、足够真实</b></div></div>
+    <div class="flow-s"><div class="n">03</div><div class="t">匹配</div><div class="d">是否符合<b>已锚定的人群和场景</b></div></div>
+    <div class="flow-s"><div class="n">04</div><div class="t">代价</div><div class="d">解决它需要<b>付出多大代价</b>，决定难度与价值</div></div>
+  </div>
+
+  <h3>三、找一个"可被复述的测量锚点"</h3>
+  <p>28cm 是栗上最核心的内容资产。它之所以有效，是因为它同时满足三个条件：</p>
+  <ul>
+    <li><strong>可测量</strong>：一把卷尺就能验证，用户能自己核对</li>
+    <li><strong>可复述</strong>：比 A4 纸略宽、比微波炉还窄，一句话说清</li>
+    <li><strong>可对抗</strong>：巨头能抄参数，抄不走"1200 户家庭数据 + 17 版迭代"背后的验证过程</li>
+  </ul>
+
+  <h3>四、用"云股东"把用户变成编外产品经理 + 传播节点</h3>
+  <p>评论区里最活跃的人被一个接一个拉进群，这个机制叫"<strong>云股东</strong>"。他们从产品定义阶段就参与：下单、付款、提意见、把机器拍给朋友看。2000 个云股东 = 2000 个不要钱的编外产品经理 + 2000 个传播节点。</p>
+  <div class="quote">
+    <div class="q">"种草是产品做出来了，花钱请人夸；种根是产品还没有的时候，把人拉进来一起养——让用户觉得这产品有你一份。前者买的是曝光，后者攒的是关系。"</div>
+    <div class="who">—— 案例复盘总结</div>
+  </div>
+
+  <h3>五、让场景自己开口说话，而不是教育用户</h3>
+  <p>行业教育了 30 年"洗碗机好"，渗透率仍是 3.2%。栗上几乎没做品类教育，结果用户自己发明了洗小龙虾、洗麻将、洗奶瓶，还拍成笔记四处传播。</p>
+  <div class="note-box">
+    <b>关键差异：</b>"教育"这个动作把用户放在被动位置。<b>真正有效的需求唤醒，是让用户在自己的生活里发现场景，再让场景自己开口说话。</b>品牌要做的不是告诉用户"应该洗什么"，而是留白，然后把用户发现的答案收编、放大。
+  </div>
+
+  <h3>六、用素人友好的算法，做低成本冷启动</h3>
+  <p>谢明佐选择小红书作为核心阵地的三个理由，本质是三条判断标准：</p>
+  <ol>
+    <li><strong>人群高度匹配</strong>——年轻用户集中，对新事物接受度高，爱分享、敢说真话</li>
+    <li><strong>天然的沟通生态</strong>——图文、视频、评论区、群聊，天然适合品牌与用户双向沟通，不只是传播平台</li>
+    <li><strong>算法去中心化</strong>——对素人笔记友好，好话题容易进大流量池（第一条征集笔记第二天就过万浏览，且人群精准）</li>
+  </ol>
+</div>
+</section>
+
+<!-- ══════ 7 金句 ══════ -->
+<section id="s7">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">07</span><h2>创始人采访金句</h2></div>
+  <p class="sec-desc">谢明佐（创始人兼 CEO）与许灵杰（联合创始人）的公开采访原话，按主题归类。这些话本身就是很好的内容选题。</p>
+
+  <h3>关于需求洞察</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"我们要做的，不是让用户设计洗碗机，而是找到值得被重新解决的问题。"</div><div class="who">—— 谢明佐</div></div>
+    <div class="quote"><div class="q">"当时小红书上的用户质量很高，每条评论都有价值，她们本身就代表了一种全新的消费理念和消费趋势，这对做产品来说至关重要。"</div><div class="who">—— 谢明佐</div></div>
+    <div class="quote"><div class="q">"我会有个疑问：这到底是我的个人需求，还是普遍的需求？这就需要后续的验证。"</div><div class="who">—— 谢明佐，谈如何避免自嗨</div></div>
+    <div class="quote"><div class="q">"大家亲眼看到，用过之后，感受可能就会不一样，就不会拿着传统洗碗机的标准去衡量我们的产品。"</div><div class="who">—— 谢明佐，谈如何应对团队内部质疑</div></div>
+  </div>
+
+  <h3>关于方法论</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"恰恰是因为我们没有洗碗机的行业经验，所以我们反而愿意一上来就用第一性原理，把这个问题重新拆解。我们会打散原有的要素，再重新组合起来，拿去和用户互动，看看哪些方案真正能解决问题。"</div><div class="who">—— 谢明佐，谈团队基因</div></div>
+    <div class="quote"><div class="q">"用户有需求，我们就立刻调整，改完之后立刻给用户做测试。"</div><div class="who">—— 谢明佐，谈团队最大特点</div></div>
+    <div class="quote"><div class="q">"只要'用户洞察 → 研发 → 验证 → 迭代 → 回到用户'这个创新闭环跑起来，即使有人跟进我们，他们能做的也永远只是我们上一代产品，跟不上我们的迭代速度与社群生态。"</div><div class="who">—— 谢明佐，谈什么是抄不走的壁垒</div></div>
+    <div class="quote"><div class="q">"模具一响，黄金万两。模具是硬件企业最大的资产决策，一旦开错，万劫不复。"</div><div class="who">—— 许灵杰，谈为什么必须先验证再量产</div></div>
+  </div>
+
+  <h3>关于品牌与竞争</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"好产品不是让用户觉得产品多牛，而是让用户觉得用了它，变成了更从容的自己。"</div><div class="who">—— 许灵杰，种草大赏路演收尾</div></div>
+    <div class="quote"><div class="q">"欢迎竞争，竞争会让行业更好。"</div><div class="who">—— 许灵杰，回应评委"巨头进入怎么办"</div></div>
+    <div class="quote"><div class="q">"抄袭没有未来，抄产品的'形'容易，抄不到'神'。产品的'神'，是团队整体创新能力的外化，来自人才、组织和制度，具有唯一性。"</div><div class="who">—— 谢明佐，谈被抄袭</div></div>
+    <div class="quote"><div class="q">"我们希望大家有一天走进厨房，在厨房体验上有摩擦的时候，能第一时间想到栗上。"</div><div class="who">—— 谢明佐，谈品牌终局</div></div>
+  </div>
+
+  <h3>关于产品哲学</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"我们的目标不是做一台单一功能的小家电，而是通过运动控制、智能传感和 AI 交互，让机器去承担那些机械、重复、繁琐的底层劳动。把标准化的工作交到机器手里，把创造美味、享受生活的乐趣留给用户自己。"</div><div class="who">—— 谢明佐</div></div>
+    <div class="quote"><div class="q">"我们不想做最便宜的洗碗机，因为靠卷低价很难支撑品牌的长期发展。我们更希望通过产品设计，降低用户获得好的清洁体验的体验成本。"</div><div class="who">—— 谢明佐，谈定价</div></div>
+    <div class="quote"><div class="q">"能不能用更消费品的思维，重新去做智能硬件。"</div><div class="who">—— 谢明佐，谈下一步</div></div>
+    <div class="quote"><div class="q">"（我欣赏的品牌）都有一个共同特点：它们不是把参数做得更好，而是重新去思考问题，给出更好的答案。"</div><div class="who">—— 谢明佐，谈戴森、泡泡玛特、大疆、云鲸</div></div>
+  </div>
+
+  <h3>平台与评委的评价</h3>
+  <div class="quote" style="border-left-color:var(--amber);border-color:rgba(255,180,84,.24);background:linear-gradient(135deg,rgba(255,180,84,.07),rgba(255,77,106,.03))">
+    <div class="q">"在家电行业用标准尺寸定义产品时，栗上选择从真实生活入手，重新解答'中国洗碗机'这道题。走进 1200 个中国家庭，历经 80 次试用、17 版样机，让洗碗机适应厨房，而不是让用户改造生活。28 厘米胶囊洗碗机的诞生证明：家电可以有标准，但生活不该被标准定义。"</div>
+    <div class="who">—— 2026 小红书种草大赏 · 全场大奖评审团评语</div>
+  </div>
+  <div class="quote" style="border-left-color:var(--teal);border-color:rgba(77,212,172,.24);background:linear-gradient(135deg,rgba(77,212,172,.07),rgba(255,77,106,.03))">
+    <div class="q">"1200 个家庭共创小胶囊，回应中国厨房 30 年等待。"</div>
+    <div class="who">—— 金奖颁奖词</div>
+  </div>
+</div>
+</section>
+
+<!-- ══════ 8 优化方向 ══════ -->
+<section id="s8">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">08</span><h2>可优化的内容方向：跑通之后的七个缺口</h2></div>
+  <p class="sec-desc">以下为基于公开信息的判断。栗上当前的打法高度"效果化"——转化效率极强，但品牌资产的厚度与抗风险能力仍有提升空间。</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:5%">#</th><th style="width:22%">缺口</th><th style="width:35%">现象 / 判断依据</th><th>优化方向</th></tr>
+    <tr><td>1</td><td>内容结构偏效果化</td><td>测评、转化类笔记占比高，cpuv 数据亮眼，但品牌叙事、生活方式类内容储备相对薄</td><td>补一层"品牌态度"内容：新家庭的生活主张、厨房里的生活哲学，把卖点升维成价值观</td></tr>
+    <tr><td>2</td><td>"机洗万物"未被收编</td><td>这一最强的破圈资产完全由 UGC 自发生长，官方尚未系统化运营成固定栏目</td><td>做成长期话题 / 挑战赛，设月度"最离谱洗法"征集，把 UGC 变成可复用的内容栏目</td></tr>
+    <tr><td>3</td><td>银发、母婴、养宠三线偏浅</td><td>这三类人群痛点真实且客单承受力高，但内容深度与规模都不足</td><td>三条线各做一套专属内容包，配独立关键词与博主类型</td></tr>
+    <tr><td>4</td><td>上游词只做到厨电层</td><td>目前从微波炉、空气炸锅、蒸烤箱截流，仍在"厨房电器"这个池子里</td><td>向上游再跳一层：装修、收纳、搬家、出租房改造、新家好物——流量池大一个数量级</td></tr>
+    <tr><td>5</td><td>创始人 IP 使用不充分</td><td>谢明佐个人号内容量极少（首发《生活应当更轻松》等），未形成连载</td><td>做"被质疑了三年"的连载式内容，把从 0 到 1 的过程变成可追更的系列</td></tr>
+    <tr><td>6</td><td>长周期使用内容缺失</td><td>测评笔记多为开箱与短期体验，缺少"用了半年/一年后"的真实状态</td><td>这对 2000+ 元的高客单决策是<b>关键信任短板</b>，应主动做长测内容，包括故障与售后处理</td></tr>
+    <tr><td>7</td><td>云股东入口未显性化</td><td>共创机制是核心壁垒，但内容中几乎看不到明确的"加入共创"引导</td><td>在每篇笔记末尾加统一钩子，把公域读者持续导入私域共创池，形成资产而非一次性流量</td></tr>
+  </table></div>
+
+  <div class="note-box">
+    <b>补充判断：</b>出海内容（日本 Makuake 1.3 亿日元、平台人气第一）与国内内容尚未打通。<b>"全球口碑反哺国内"</b>是一个现成的、成本极低的信任叙事，目前基本没被使用。
+  </div>
+</div>
+</section>
+
+<!-- ══════ 9 策略建议 ══════ -->
+<section id="s9">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">09</span><h2>后续小红书种草内容策略建议</h2></div>
+  <p class="sec-desc">按"选题方向 → 笔记形式 → 关键词布局 → 投放节奏"四段给出可落地方案。</p>
+
+  <h3>一、选题方向：人群 × 场景 × 决策阶段矩阵</h3>
+  <p>选题不要按产品功能排，要按<strong>用户在哪个决策阶段、属于哪类人、处在什么场景</strong>来排。建议维持 <strong>70% 转化向 + 30% 破圈向</strong> 的内容配比（沿用已验证的结构）。</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:16%">人群线</th><th style="width:28%">转化向选题（70%）</th><th>破圈向选题（30%）</th></tr>
+    <tr>
+      <td>小户型 / 老破小</td>
+      <td>《我量了 20 个家庭的厨房台面，最窄只剩 XX cm》<br>《台面边角怎么塞下一台洗碗机》</td>
+      <td>《老破小改造：不砸橱柜也能现代化的 5 件小家电》</td>
+    </tr>
+    <tr>
+      <td>租房党</td>
+      <td>《租的房子不能改水电，我怎么实现洗碗机自由》<br>《搬家能带走的家电清单》</td>
+      <td>《退租时房东都惊了：这些改造全是免钉免钻的》</td>
+    </tr>
+    <tr>
+      <td>新手爸妈</td>
+      <td>《奶瓶消毒测评：洗碗机 vs 消毒柜 vs 煮沸》<br>《辅食餐具一天洗 6 次，我靠它活下来》</td>
+      <td>《新生儿之后，家里哪 3 件电器后悔没早买》</td>
+    </tr>
+    <tr>
+      <td>银发父母</td>
+      <td>《给我妈买的第 3 台电器，这次没被骂浪费钱》<br>《不用弯腰的厨房，长什么样》</td>
+      <td>《爸妈的厨房改造：花小钱解决大问题》</td>
+    </tr>
+    <tr>
+      <td>独居 / 情侣 / 烘焙</td>
+      <td>《一个人吃饭，值得开洗碗机吗？我算了一笔账》<br>《烘焙工具清洗实录》</td>
+      <td>《机洗万物挑战：这个月我洗了 12 样不该洗的东西》</td>
+    </tr>
+    <tr>
+      <td>长周期信任</td>
+      <td>《用了 8 个月，说点不好听的》<br>《坏了之后，售后处理的 72 小时》</td>
+      <td>《第一批 200 台用户，现在都怎么样了》</td>
+    </tr>
+  </table></div>
+
+  <h3>二、笔记形式：四种形式，配比建议</h3>
+  <div class="grid g4">
+    <div class="card hi">
+      <div class="lbl">占比 40%</div><h4>测评实测图文</h4>
+      <div class="note">转化主力。必须有尺子实测、前后对比、缺点清单。允许说缺点，可信度 &gt; 完美感。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">占比 30%</div><h4>场景短视频</h4>
+      <div class="note">破圈与情绪价值。透明视窗第一视角 ASMR、15 分钟计时、机洗万物。完播率优先于信息密度。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">占比 20%</div><h4>清单 / 攻略长图文</h4>
+      <div class="note">吃搜索流量。租房好物、小厨房改造、年成本测算。收藏率优先，用于沉淀搜索资产。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">占比 10%</div><h4>创始人 / 幕后</h4>
+      <div class="note">信任与品牌资产。上门量尺寸、家访、被质疑的三年、听劝改设计。低频但高杠杆。</div>
+    </div>
+  </div>
+  <div class="note-box">
+    <b>形式上的一个硬指标：</b>所有图片必须在<b>真实凌乱的厨房</b>里拍，不要样板间。栗上的内容里最有效的画面，是台面本来就堆满东西、机器挤进角落的那一瞬间——用户看到的是自己家。
+  </div>
+
+  <h3>三、关键词布局：六层拦截结构</h3>
+  <p>小红书日搜索量约 8 亿次，每天约 3900 万用户有明确求购行为。关键词布局的核心是<strong>从决策链末端往前一路拦截</strong>，而不是只守品类词。</p>
+
+  <div class="tags" style="margin-bottom:6px">
+    <span class="tag r">① 品类词（防守）</span>
+  </div>
+  <p style="font-size:13.5px;margin-bottom:16px">台式洗碗机、小型洗碗机、迷你洗碗机、免安装洗碗机、胶囊洗碗机、桌面洗碗机、台上式洗碗机<br><span class="tx3" style="font-size:12.5px">→ 目标：守住品类 TOP1 心智，笔记密度要压过竞品</span></p>
+
+  <div class="tags" style="margin-bottom:6px">
+    <span class="tag a">② 场景词（主攻）</span>
+  </div>
+  <p style="font-size:13.5px;margin-bottom:16px">小厨房洗碗机、出租房洗碗机、租房好物、厨房台面收纳、一餐一洗、免改水电、老破小改造、小户型家电<br><span class="tx3" style="font-size:12.5px">→ 目标：这是 cpuv 降幅最大的人群词，应作为预算主投方向</span></p>
+
+  <div class="tags" style="margin-bottom:6px">
+    <span class="tag t">③ 人群词（精准）</span>
+  </div>
+  <p style="font-size:13.5px;margin-bottom:16px">租房党、独居生活、情侣同居、新手爸妈、奶瓶消毒、养宠家庭、烘焙新手、银发生活<br><span class="tx3" style="font-size:12.5px">→ 目标：低竞争高转化，配合人群包投放</span></p>
+
+  <div class="tags" style="margin-bottom:6px">
+    <span class="tag b">④ 上游词（拉新 · 重点补强）</span>
+  </div>
+  <p style="font-size:13.5px;margin-bottom:16px">微波炉、空气炸锅、蒸烤箱、厨房小家电、厨房好物、新家好物、厨房改造、收纳神器、搬家清单<br><span class="tx3" style="font-size:12.5px">→ 目标：跳出厨电池子，向装修/收纳/搬家流量池再跳一层，这是当前最大的增量机会</span></p>
+
+  <div class="tags" style="margin-bottom:6px">
+    <span class="tag r">⑤ 竞品 / 对比词（拦截）</span>
+  </div>
+  <p style="font-size:13.5px;margin-bottom:16px">洗碗机推荐、洗碗机怎么选、洗碗机有必要买吗、嵌入式 vs 台式、西门子洗碗机、方太洗碗机、水槽洗碗机、洗碗机平替<br><span class="tx3" style="font-size:12.5px">→ 目标：拦截高单价接受人群与摇摆人群</span></p>
+
+  <div class="tags" style="margin-bottom:6px">
+    <span class="tag a">⑥ 长尾疑问词（转化）</span>
+  </div>
+  <p style="font-size:13.5px;margin-bottom:16px">洗碗机费水吗、洗碗机洗得干净吗、洗碗机哪个牌子好、台式洗碗机测评、洗碗机值得买吗、洗碗机能洗锅吗<br><span class="tx3" style="font-size:12.5px">→ 目标：决策最后一公里，用答疑型笔记逐条击穿</span></p>
+
+  <h3>四、投放节奏：三阶段 × 四周期</h3>
+
+  <div class="tl">
+    <div class="tl-item">
+      <div class="t">阶段一 · 蓄水期（大促前 6–8 周）</div>
+      <div class="h">铺搜索资产，跑内容赛马</div>
+      <div class="b">
+        <strong>目标：</strong>把六层关键词的笔记覆盖补满，尤其是上游词和长尾疑问词。<br>
+        <strong>内容配比：</strong>测评 30% / 场景视频 30% / 清单攻略 30% / 幕后 10%<br>
+        <strong>预算配比：</strong>自然流量为主，付费占 20%–30%，用于内容赛马测试<br>
+        <strong>核心指标：</strong>笔记收录率、搜索词覆盖数、单篇阅读成本；<b>不看 GMV</b><br>
+        <strong>动作：</strong>同时启动"机洗万物"UGC 征集，为爆发期储备素材
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="t">阶段二 · 爆发期（大促前 2 周 – 大促当天）</div>
+      <div class="h">搜索拦截 + 种草联动，把蓄水变现</div>
+      <div class="b">
+        <strong>目标：</strong>集中转化蓄水期积累的兴趣人群<br>
+        <strong>内容配比：</strong>测评对比 50% / 场景视频 30% / 清单攻略 20%<br>
+        <strong>预算配比：</strong>付费拉满，重点投<b>核心词人群 + 小户型人群</b>（已验证 cpuv 可降至 3.65 / 4.69 的两个包）<br>
+        <strong>核心指标：</strong>cpuv、加购率、人群资产增量<br>
+        <strong>动作：</strong>站内闭环承接，把种草人群直接导向成交，缩短链路
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="t">阶段三 · 长尾期（大促后 4–6 周）</div>
+      <div class="h">口碑沉淀 + 长测内容，反哺下一轮</div>
+      <div class="b">
+        <strong>目标：</strong>把新品用户转化为内容生产者，沉淀品牌资产<br>
+        <strong>内容配比：</strong>UGC 转发 40% / 长测真实反馈 30% / 幕后 30%<br>
+        <strong>预算配比：</strong>降至 20% 以下，以自然流量和私域运营为主<br>
+        <strong>核心指标：</strong>UGC 数量与正向口碑占比、搜索指数、复购与推荐率<br>
+        <strong>动作：</strong>把这一轮的使用反馈导入下一轮产品/内容迭代，形成闭环
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <b>节奏上的一个原则：</b>栗上的经验是"<b>纵向深耕降本 + 横向拓量拉新</b>"两步走，顺序不能反。先在一个窄人群把 cpuv 打下来（纵向），再拿打下来的成本结构去横向吃更大流量池（横向）。反过来做，会因为效率模型没跑通而烧钱。<br><br>
+    <b>另一个提醒：</b>栗上从日耗 2000 拉到 3 万（15 倍），前提是模型已验证。放量前先确认 cpuv 是否稳定在目标区间，不要提前加预算。
+  </div>
+</div>
+</section>
+
+<!-- ══════ 10 迁移清单 ══════ -->
+<section id="s10">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">10</span><h2>迁移清单：家居 / 高客单低频品类怎么用</h2></div>
+  <p class="sec-desc">栗上的方法论对"决策周期长、客单高、低频消费"的家居品类尤其适用。以下为可直接落地的七条。</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl">01 · 需求采集</div>
+      <h4>素人号发问，评论区即需求文档</h4>
+      <div class="note">家居方向可问："装修完最后悔的柜子是哪个？""厨房/衣柜最鸡肋的设计是什么？"收集 100+ 条真实评论按频次聚类，这就是选题库和产品改进清单。零成本。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">02 · 测量锚点</div>
+      <h4>找一个能被卷尺验证的数字</h4>
+      <div class="note">28cm 之所以有效，是因为用户能自己核对。家居可以找：柜体进深、台面高度、过道净宽、一门到顶的极限高度、交付周期天数。<b>可测量 + 可复述 + 可对抗</b>，三条缺一不可。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">03 · 真实场景</div>
+      <h4>在凌乱的家里拍，不在样板间拍</h4>
+      <div class="note">家居行业最大的内容通病是样板间审美。用户要看到的是"我家本来就这么乱，装完之后能变什么样"。真实凌乱 = 高代入感 = 高收藏率。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">04 · 场景外延</div>
+      <h4>留白，让用户发明用法</h4>
+      <div class="note">"机洗万物"是用户发明的，不是官方设计的。家居同理：柜子的非常规用法、阳台柜改宠物区、餐边柜当水吧。<b>官方负责收编放大，不负责生造。</b></div>
+    </div>
+    <div class="card">
+      <div class="lbl">05 · 共创机制</div>
+      <h4>把活跃评论者拉进群，叫"云股东"</h4>
+      <div class="note">2000 个云股东 = 2000 个编外产品经理 + 2000 个传播节点。家居可复用为"业主共创官"：参与方案评审、验收、晒家，让产品还没交付时用户就觉得"有我一份"。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">06 · 上游截流</div>
+      <h4>从装修、收纳、搬家流量池截流</h4>
+      <div class="note">不要只守"全屋定制""橱柜"这些品类词，它们流量小、竞争大。要往上游跳：装修避坑、收纳神器、搬家清单、出租房改造、新家好物——流量池大一个数量级。</div>
+    </div>
+  </div>
+
+  <div class="card hi" style="margin-top:14px">
+    <div class="lbl">07 · 效率纪律</div>
+    <h4>先纵向降本，后横向拓量</h4>
+    <div class="note">先在一个窄人群（比如"小户型"）把 cpuv 打下来、把内容模型跑通，再拿这个成本结构去吃更大的流量池。顺序反了就会变成纯烧钱。放量前先确认效率指标稳定，再加大预算。</div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    资料来源：小红书 2026 种草大赏公开案例、中国日报 / 中国经济新闻网 / 中国企业家 / 36氪硬氪 / 刀法研究所报道、品牌公开融资与众筹信息<br>
+    <b>说明：本报告中标注为"判断 / 优化方向"的内容为基于公开信息的分析推断，非品牌官方披露。</b>
+  </div>
+</footer>
+
+</body>
+</html>
