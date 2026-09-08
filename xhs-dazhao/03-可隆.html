@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可隆 KOLON SPORT 全域种草研究报告</title>
+<style>
+:root{
+  --bg:#0d0f13;--bg2:#12151b;--card:#161a22;--card2:#1b2029;
+  --line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);
+  --tx:#e9ecf1;--tx2:#a3acb9;--tx3:#6f7885;
+  --red:#ff4d6a;--amber:#ffb454;--teal:#4dd4ac;--blue:#6aa8ff;--purple:#b78bff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{padding:72px 0 56px;border-bottom:1px solid var(--line);
+  background:radial-gradient(900px 420px at 12% -10%,rgba(77,212,172,.16),transparent 60%),
+             radial-gradient(700px 380px at 88% 0%,rgba(255,180,84,.12),transparent 62%),var(--bg)}
+.tagline{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;color:var(--teal);
+  border:1px solid rgba(77,212,172,.32);border-radius:999px;padding:5px 14px;margin-bottom:22px}
+.tagline i{width:5px;height:5px;border-radius:50%;background:var(--teal);font-style:normal}
+h1{font-size:40px;line-height:1.25;font-weight:800;letter-spacing:-.5px}
+h1 span{background:linear-gradient(96deg,var(--teal),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--tx2);margin-top:16px;font-size:16px;max-width:800px}
+.meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-size:12.5px;color:var(--tx2);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px}
+.chip b{color:var(--tx);font-weight:600}
+nav{position:sticky;top:0;z-index:50;background:rgba(13,15,19,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding:0 24px}
+nav a{color:var(--tx2);text-decoration:none;font-size:13.5px;padding:14px 12px;white-space:nowrap;border-bottom:2px solid transparent;transition:.18s}
+nav a:hover{color:var(--tx);border-bottom-color:var(--teal)}
+section{padding:60px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-size:12px;font-weight:700;color:var(--bg);background:var(--teal);border-radius:6px;padding:3px 9px;letter-spacing:.06em;flex:none}
+h2{font-size:26px;font-weight:750;letter-spacing:-.3px}
+.sec-desc{color:var(--tx2);margin:10px 0 30px;font-size:14.5px;max-width:840px}
+h3{font-size:17px;font-weight:700;margin:34px 0 14px;display:flex;align-items:center;gap:9px}
+h3::before{content:"";width:3px;height:15px;background:var(--teal);border-radius:2px;flex:none}
+h4{font-size:15px;font-weight:650;margin:20px 0 10px;color:var(--tx)}
+p{color:var(--tx2);margin-bottom:12px}
+p strong,li strong{color:var(--tx);font-weight:650}
+ul{margin:0 0 14px 0;padding-left:0;list-style:none}
+ul li{color:var(--tx2);padding-left:18px;position:relative;margin-bottom:8px}
+ul li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--line2)}
+ol{margin:0 0 14px 18px;color:var(--tx2)}
+ol li{margin-bottom:8px;padding-left:4px}
+ol li::marker{color:var(--teal);font-weight:700}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}}
+@media(max-width:520px){.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card.hi{border-color:rgba(77,212,172,.28);background:linear-gradient(180deg,rgba(77,212,172,.05),var(--card))}
+.card .lbl{font-size:12px;color:var(--tx3);letter-spacing:.06em;margin-bottom:8px}
+.card .val{font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1.15}
+.card .val small{font-size:14px;font-weight:600;color:var(--tx2);margin-left:3px}
+.card .note{font-size:12.5px;color:var(--tx3);margin-top:8px;line-height:1.6}
+.red{color:var(--red)}.amber{color:var(--amber)}.teal{color:var(--teal)}.blue{color:var(--blue)}.purple{color:var(--purple)}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:16px 0}
+.tbl th{text-align:left;padding:11px 14px;color:var(--tx3);font-weight:600;font-size:12px;letter-spacing:.05em;background:var(--bg2);border-bottom:1px solid var(--line2)}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);color:var(--tx2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td:first-child{color:var(--tx);font-weight:600}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.quote{background:linear-gradient(135deg,rgba(77,212,172,.07),rgba(255,180,84,.04));border:1px solid rgba(77,212,172,.22);
+  border-left:3px solid var(--teal);border-radius:0 12px 12px 0;padding:18px 22px;margin:14px 0}
+.quote .q{font-size:16px;color:var(--tx);font-weight:600;line-height:1.7}
+.quote .who{font-size:12.5px;color:var(--tx3);margin-top:10px}
+.qgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:760px){.qgrid{grid-template-columns:1fr}}
+.tl{position:relative;padding-left:26px;margin:22px 0}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line2)}
+.tl-item{position:relative;margin-bottom:24px}
+.tl-item::before{content:"";position:absolute;left:-23px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(77,212,172,.15)}
+.tl-item .t{font-size:13px;color:var(--teal);font-weight:700;letter-spacing:.04em;margin-bottom:4px}
+.tl-item .h{font-size:15.5px;font-weight:700;color:var(--tx);margin-bottom:6px}
+.tl-item .b{font-size:13.5px;color:var(--tx2)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.tag{font-size:12.5px;color:var(--tx2);background:var(--card2);border:1px solid var(--line);border-radius:7px;padding:5px 11px}
+.tag.r{border-color:rgba(255,77,106,.3);color:#ffb3c0;background:rgba(255,77,106,.08)}
+.tag.a{border-color:rgba(255,180,84,.3);color:#ffd9a8;background:rgba(255,180,84,.08)}
+.tag.t{border-color:rgba(77,212,172,.3);color:#a8ecd9;background:rgba(77,212,172,.08)}
+.tag.b{border-color:rgba(106,168,255,.3);color:#bcd7ff;background:rgba(106,168,255,.08)}
+.note-box{background:var(--bg2);border:1px dashed var(--line2);border-radius:12px;padding:16px 20px;font-size:13px;color:var(--tx3);margin:20px 0;line-height:1.7}
+.note-box b{color:var(--tx2)}
+.warn{background:rgba(255,180,84,.06);border:1px solid rgba(255,180,84,.28);border-left:3px solid var(--amber);border-radius:0 12px 12px 0;padding:16px 20px;margin:16px 0}
+.warn .wt{font-size:13px;font-weight:700;color:var(--amber);letter-spacing:.04em;margin-bottom:7px}
+.warn .wb{font-size:13.5px;color:var(--tx2);line-height:1.7}
+.warn .wb b{color:var(--tx)}
+.src{font-size:11.5px;color:var(--tx3);margin-top:8px;font-style:normal}
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:22px 0}
+.flow-s{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);padding:16px;text-align:center}
+.flow-s:first-child{border-radius:12px 0 0 12px}
+.flow-s:last-child{border-radius:0 12px 12px 0}
+.flow-s+.flow-s{border-left:none}
+.flow-s .n{font-size:11px;color:var(--tx3);letter-spacing:.1em;margin-bottom:6px}
+.flow-s .t{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:5px}
+.flow-s .d{font-size:12px;color:var(--tx3);line-height:1.6}
+@media(max-width:760px){.flow-s{border-radius:12px!important;border-left:1px solid var(--line)!important;margin-bottom:8px;flex:1 1 100%}}
+.persona{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.persona::after{content:"";position:absolute;right:-30px;top:-30px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle,rgba(77,212,172,.13),transparent 70%)}
+.persona .pname{font-size:16px;font-weight:750;color:var(--tx);margin-bottom:3px}
+.persona .psub{font-size:12px;color:var(--teal);letter-spacing:.05em;margin-bottom:12px}
+.persona ul li{font-size:13px;margin-bottom:6px}
+.persona .pain{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--tx3)}
+.persona .pain b{color:var(--amber)}
+.bars{display:flex;flex-direction:column;gap:18px;margin:20px 0}
+.bar-row{display:grid;grid-template-columns:150px 1fr 92px;gap:14px;align-items:center;font-size:13.5px}
+.bar-row .k{color:var(--tx2);text-align:right}
+.bar-track{height:26px;background:var(--bg2);border-radius:7px;overflow:hidden}
+.bar-fill{height:100%;border-radius:7px;display:flex;align-items:center;padding-left:10px;font-size:12px;font-weight:700;color:#0d0f13}
+.bar-row .v{font-size:13px;font-weight:700}
+@media(max-width:640px){.bar-row{grid-template-columns:96px 1fr 76px;gap:8px;font-size:12px}}
+footer{padding:40px 0;color:var(--tx3);font-size:12.5px;text-align:center}
+footer b{color:var(--tx2)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11.5px;color:var(--tx3);margin:0 0 18px}
+.legend span b{color:var(--tx2)}
+.vs{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:stretch;margin:20px 0}
+.vs-side{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.vs-mid{display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--tx3)}
+@media(max-width:760px){.vs{grid-template-columns:1fr}.vs-mid{padding:10px 0}}
+.vs-side h4{margin-top:0;font-size:16px}
+.vs-side.north h4{color:var(--blue)}
+.vs-side.south h4{color:var(--teal)}
+.vs-side ul li{font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="tagline"><i></i>2026 小红书种草大赏 · 全场大奖 + 种草全域转化赛道金奖</div>
+    <h1>可隆 KOLON SPORT<br><span>全域种草研究报告</span></h1>
+    <p class="sub">一个"不缺认知、缺增量"的品牌，如何把"地域"从一个投放定向条件，升级成选品项、内容项、渠道项和预算项。这是三个全场大奖里，对高客单、重线下、多门店的品类参考价值最大的一个。</p>
+    <div class="meta">
+      <span class="chip">研究日期 <b>2026.09.05</b></span>
+      <span class="chip">案例主体 <b>MOVE ALPHA 徒步鞋系列</b></span>
+      <span class="chip">案例周期 <b>2025.11 – 2026.07</b></span>
+      <span class="chip">代理公司 <b>宝尊英赛</b></span>
+      <span class="chip">核心成果 <b>全域长效 ROI 15</b></span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="index.html" style="color:var(--red);font-weight:700;margin-right:8px">← 案例索引</a>
+  <a href="#s1">数据盘</a>
+  <a href="#s2">品牌背景</a>
+  <a href="#s3">案例主角</a>
+  <a href="#s4">三个 80%</a>
+  <a href="#s5">南北方洞察</a>
+  <a href="#s6">三渠道差异</a>
+  <a href="#s7">内容策略</a>
+  <a href="#s8">KOS 机制</a>
+  <a href="#s9">战略反哺</a>
+  <a href="#s10">金句</a>
+  <a href="#s11">赛道背景</a>
+  <a href="#s12">优化方向</a>
+  <a href="#s13">策略建议</a>
+  <a href="#s14">迁移清单</a>
+</div></nav>
+
+<!-- 1 数据盘 -->
+<section id="s1">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">01</span><h2>数据盘</h2></div>
+  <p class="sec-desc">可隆是三个全场大奖里数据披露最完整的一个——因为它的「MOVE ALPHA 徒步鞋」同时拿了「种草全域转化」赛道金奖，金奖案例卡带标准数据模块。</p>
+
+  <div class="legend">
+    <span><b>🟢 官方</b> 平台/品牌/财报</span>
+    <span><b>🔵 一手媒体</b> 现场报道</span>
+    <span><b>🟡 二手转述</b></span>
+    <span><b>⚪ 分析推断</b></span>
+  </div>
+
+  <h3>案例核心数据（🟢 小红书数据中台 + 品牌一方数据，周期 2025.11–2026.07）</h3>
+  <div class="grid g2">
+    <div class="card hi"><div class="lbl">全域长效 ROI</div><div class="val teal">15</div><div class="note">大赏物料另有"15+""超过 15""突破 15"三种表述</div></div>
+    <div class="card hi"><div class="lbl">南方用户成交增速</div><div class="val amber">4<small>倍+</small></div><div class="note">⚠ 另有"南方增长超 80%"的表述，周期不同，见下方警告</div></div>
+  </div>
+
+  <h3>过程与效果数据（🔵 多源交叉）</h3>
+  <div class="grid g4">
+    <div class="card"><div class="lbl">地域定制化笔记 CTR</div><div class="val teal">&gt;13<small>%</small></div><div class="note">「远高于行业基准」</div></div>
+    <div class="card"><div class="lbl">品牌搜索同比</div><div class="val blue">+113<small>%</small></div><div class="note">小红书站内品牌词搜索</div></div>
+    <div class="card"><div class="lbl">线下成交用户决策路径</div><div class="val" style="font-size:22px">8.2<small style="font-size:14px">次内容</small> / 1.9<small style="font-size:14px">次搜索</small></div><div class="note">平均看 8.2 次内容、搜 1.9 次才进店</div></div>
+    <div class="card"><div class="lbl">南方地区生意人群增长</div><div class="val amber">+80<small>%</small></div><div class="note">2025.12 WILL 前后口径，与"4 倍"周期不同</div></div>
+  </div>
+
+  <div class="warn">
+    <div class="wt">⚠ 口径冲突：两个"南方增长"不是一回事</div>
+    <div class="wb">• <b>「南方用户成交增速超 4 倍」</b>——2025.11–2026.07 案例周期，官方案例卡数据<br>
+    • <b>「南方地区销量/生意人群增长超 80%」</b>——2025 年 12 月 WILL 大会前后报道<br>
+    <b>建议：</b>两个分开表述，注明各自周期，<b>不要混用、不要相加</b>。</div>
+  </div>
+
+  <h3>站内资产数据（🟢 小红书官方 CASE 精选，周期未明确，疑似更早一期项目）</h3>
+  <div class="bars">
+    <div class="bar-row">
+      <div class="k">冲锋衣搜索热度增长</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#4dd4ac,#8ae6c9)">137 倍</div></div>
+      <div class="v teal">137×</div>
+    </div>
+    <div class="bar-row">
+      <div class="k">徒步鞋站内搜索</div>
+      <div class="bar-track"><div class="bar-fill" style="width:88%;background:linear-gradient(90deg,#ffb454,#ffd08a)">项目期 +47 倍</div></div>
+      <div class="v amber">+860% 同比</div>
+    </div>
+    <div class="bar-row">
+      <div class="k">品牌人群资产规模</div>
+      <div class="bar-track"><div class="bar-fill" style="width:62%;background:linear-gradient(90deg,#6aa8ff,#a5caff)">8 倍</div></div>
+      <div class="v blue">8×</div>
+    </div>
+  </div>
+  <p class="src">🟢 小红书商业动态官方公众号【CASE 精选】。三大核心人群：<b>城市出行、轻量化周边游、硬核登山</b>。打法三步曲：<b>细分人 → 精瞄准 → 再放大</b>；「多品线 + 大单品」种草解决方案；人群反漏斗模型。</p>
+
+  <h3>❌ 明确未查到的数据</h3>
+  <ul>
+    <li>MOVE ALPHA 具体 GMV、销量件数</li>
+    <li>cpuv / CPE / 回搜率等投放过程指标</li>
+    <li>笔记篇数、投放预算、博主数量与头腰尾配比</li>
+    <li>新客占比、站内/站外/线下三渠道的 GMV 占比或结构占比</li>
+    <li>门店 KOS 成交金额、KOS 账号数量、到店转化率</li>
+    <li>人群资产（AIPS）各层绝对数（除"增长 8 倍"这一相对数外）</li>
+    <li><b>可隆中国区负责人在种草大赏现场的逐字发言</b>——报道只写了"可隆与宝尊英赛团队共同登台领奖"</li>
+  </ul>
+</div>
+</section>
+
+<!-- 2 品牌背景 -->
+<section id="s2">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">02</span><h2>品牌背景：韩国血统，安踏中国</h2></div>
+  <p class="sec-desc">不理解可隆的股权结构和 2020 年那次战略转向，就看不懂它为什么要打南方市场。</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:20%">项</th><th>内容</th></tr>
+    <tr><td>创立</td><td>1973 年，韩国，以露营和登山服饰起家</td></tr>
+    <tr><td>进入中国</td><td>2006 年，首店北京燕莎友谊商城</td></tr>
+    <tr><td>股权结构</td><td><b>2017.2.22 安踏全资附属公司 ANKO 与 KOLON 成立合资集团，各占 50% 股权</b>，安踏获中国内地及港澳台独家经营与销售权</td></tr>
+    <tr><td>掌舵人</td><td><b>丁思榕</b>（1992 年生，安踏创始人丁世家之子），可隆体育（中国）董事长兼 CEO；2015 年从厦门旗舰店导购做起，2017 年接手中国业务</td></tr>
+  </table></div>
+
+  <h3>三个决定命运的战略动作</h3>
+  <div class="flow">
+    <div class="flow-s"><div class="n">2017</div><div class="t">两年内全部门店收回直营</div><div class="d">「不与经销商博弈，直接准确接收消费者反馈」——这是后来所有数据闭环的地基</div></div>
+    <div class="flow-s"><div class="n">2020</div><div class="t">砍休闲线，重回专业户外</div><div class="d">早期尝试时尚化、上时装周，事后判断「偏离了户外，偏离了品牌」。砍掉休闲旅游产品线，聚焦<b>徒步 + 露营</b></div></div>
+    <div class="flow-s"><div class="n">2020</div><div class="t">刚盈利就做社群</div><div class="d">安踏集团内最早一批做社群的品牌，「总得带消费者去体验一下，可隆讲求的这种生活方式」</div></div>
+  </div>
+
+  <h3>财务与门店（🟢 安踏财报）</h3>
+  <div class="grid g4">
+    <div class="card hi"><div class="lbl">2025 其他品牌分部收入</div><div class="val">169.96<small>亿</small></div><div class="note">迪桑特+可隆+MAIA+狼爪，同比 <b class="teal">+59.2%</b>，可隆为集团内增速最快</div></div>
+    <div class="card"><div class="lbl">2026 H1 其他品牌分部</div><div class="val">106.91<small>亿</small></div><div class="note">同比 +44.2%；占集团收入 19.2%→24.6%；<b>经营溢利率 33.1%</b></div></div>
+    <div class="card"><div class="lbl">2026.06 门店数</div><div class="val">212<small>家</small></div><div class="note">2023.06 的 160 家 → 3 年净增 52 家。<b>增长主要来自同店店效提升</b></div></div>
+    <div class="card"><div class="lbl">2026 Q2 流水</div><div class="val amber">+40~45<small>%</small></div><div class="note">华兴证券；丁世忠点名「壳类、徒步鞋等优势品类保持 50% 以上高增长」</div></div>
+  </div>
+
+  <div class="note-box">
+    <b>关键背景：</b>户外鞋服 Top5 市占率从 2020 年 11.6% 升至 2024 年 <b>20.7%</b>，前五为<b>骆驼 / 北面 / 始祖鸟 / 迪桑特 / 可隆</b>。冲锋衣电商均价：始祖鸟 &gt;5000，<b>可隆近 3000（第一梯队）</b>，北面/凯乐石/哥伦比亚/狼爪 1000–2000。线上渠道 CAGR5 19.9% vs 线下 10.8%。<br><br>
+    ⚠ <b>口径存疑，建议不引用：</b>韩媒 asiae 报道的"Kolon Sport 中国区销售额"绝对数（称 2026 预计接近 1.2 万亿韩元）与安踏财报体量严重不匹配，且文中自相矛盾，推测为合资法人/品牌授权口径而非中国区零售流水口径。
+  </div>
+</div>
+</section>
+
+<!-- 3 案例主角 -->
+<section id="s3">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">03</span><h2>案例主角：MOVE ALPHA 徒步鞋系列</h2></div>
+  <p class="sec-desc">案例卡写的是「可隆 MOVE ALPHA 徒步鞋」。结合时间窗口与价格带，它实际上是一个<b>由多代产品构成的「大单品矩阵」，不是单一 SKU</b>。</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:18%">型号</th><th style="width:16%">时间/价格</th><th>核心技术</th></tr>
+    <tr><td>MOVE ALPHA 初代</td><td>2024 / —</td><td>GORE-TEX 防水鞋面、超高分子高强度鞋带（户外应急）、双层结构中底、常青树 LOGO 高强度 TPU 支撑片、<b>中足碳纤维板</b>、Vibram MEGAGRIP 湿地止滑大底 + 鲨齿技术</td></tr>
+    <tr><td>MOVE ALPHA 2.0</td><td>2025.05 / 约 1250 元</td><td><b>GORE-TEX INVISIBLE FIT</b>（减重提透气）、<b>Vibram MEGAGRIP ELITE 精英竞赛级止滑</b>、Vibram LITEBASE 轻量鞋底、TRACTION LUG 鲨齿科技（4mm 深度）、常青树形态 TPU 稳定片、双密度 EVA 中底、<b>巴斯夫强效排汗鞋垫</b>。主张「山野险径，步步咬定」</td></tr>
+    <tr><td>MOVE ALPHA LTR</td><td>— / 约 1590 元</td><td>GTX 版 + V 底；京东常卖价与历史最低价均为 1590</td></tr>
+    <tr><td>MOVE ALPHA 3.0 VENTI</td><td>女款 / 约 1300–1390 元</td><td>Vibram MEGAGRIP ELITE + 双密度中底 + 后跟碗型结构</td></tr>
+  </table></div>
+
+  <h3>为什么选徒步鞋做案例主角</h3>
+  <ol>
+    <li><strong>它是第二增长品类。</strong>小红书官方 CASE 明确写：「可隆继打造核心代表品类【冲锋衣】后，在【徒步鞋】新品类突围」</li>
+    <li><strong>非季节性、可通勤可户外。</strong>不像羽绒服只有北方刚需——<b>这正好是打南北方场景差异的最佳载体</b></li>
+    <li><strong>集团层面押注。</strong>丁世忠点名「壳类、徒步鞋等优势品类保持 50% 以上的高增长」</li>
+    <li><strong>价格带需要被说服。</strong>1250–1790 元属高客单，种草能显著影响决策——呼应"线下成交用户平均看 8.2 次内容才进店"</li>
+  </ol>
+</div>
+</section>
+
+<!-- 4 三个80% -->
+<section id="s4">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">04</span><h2>战略诊断：三个 80%</h2></div>
+  <p class="sec-desc">这是理解整个案例的钥匙。可隆的问题不是"没人知道我"，而是"知道我的人太集中了"。</p>
+
+  <div class="quote">
+    <div class="q">"可隆并不缺品牌认知，它的问题是<b>既有认知太强</b>。案例现场把它概括成『三个 80%』：大部分生意集中在北方、集中在少数核心品类、集中在线下。<b>过去的成功成了品牌下一步增长的边界。</b>"</div>
+    <div class="who">—— 曾巧 Ivy，Morketing 创始人兼 CEO，2026 种草大赏终审评委</div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card hi">
+      <div class="lbl">80% #1</div><div class="val" style="font-size:20px">生意集中在<b class="blue">北方</b></div>
+      <div class="note">北方冬天长、风大，防风保暖是硬需求。有社区观察称「零下二十度的街上，它替代的是父辈的貂皮」</div>
+    </div>
+    <div class="card hi">
+      <div class="lbl">80% #2</div><div class="val" style="font-size:20px">集中在<b class="amber">少数核心品类</b></div>
+      <div class="note">冲锋衣是绝对主力（线上羽绒服占比 34.1%），徒步鞋等第二品类待突围</div>
+    </div>
+    <div class="card hi">
+      <div class="lbl">80% #3</div><div class="val" style="font-size:20px">集中在<b class="teal">线下</b></div>
+      <div class="note">212 家门店，增长主要来自同店店效提升，未大规模下沉</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <b>⚪ 为什么"机制内穿搭"这个意外助攻，反而加剧了问题：</b>「体制内穿搭」话题建立于 2020.12，总浏览 <b>4.58 亿</b>，「体制内穿搭男生」<b>43 万篇笔记</b>；六个向上箭头的 Logo 被解读为"节节高升"。<b>但品牌方明确表示「从来没有主动传播过『体制内穿搭』」</b>。<br><br>
+    这套心智在北方极强，<b>在南方几乎无法复制</b>——南方没有"零下二十度需要貂"的刚需。这意味着可隆在南方必须<b>重新定义一个完全不同的购买理由</b>，而不是把北方的打法复制过去。
+  </div>
+</div>
+</section>
+
+<!-- 5 南北方洞察 -->
+<section id="s5">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">05</span><h2>核心洞察：同一双鞋，两种人生</h2></div>
+  <p class="sec-desc">这是全场大奖评语的第一句，也是整个案例的方法论原点。</p>
+
+  <div class="quote">
+    <div class="q">"同一双徒步鞋，北方用户奔赴旷野高山，南方用户探索绿野山林。"</div>
+    <div class="who">—— 2026 小红书种草大赏 · 全场大奖评审团评语</div>
+  </div>
+
+  <h3>洞察是怎么发现的：先研究已经买的人，而不是先圈人群</h3>
+  <div class="flow">
+    <div class="flow-s"><div class="n">STEP 1</div><div class="t">回传一方数据</div><div class="d">把全域已购人群数据上传到小红书（灵犀洞察平台）</div></div>
+    <div class="flow-s"><div class="n">STEP 2</div><div class="t">研究已购人群</div><div class="d">不先圈"南方用户"做泛投，而是先看清楚已经购买的是谁</div></div>
+    <div class="flow-s"><div class="n">STEP 3</div><div class="t">百万级层层拆解</div><div class="d">以地域为核心线索，<b>从省份 → 品类 → 具体使用场景</b></div></div>
+    <div class="flow-s"><div class="n">STEP 4</div><div class="t">识别差异</div><div class="d">发现产品没变，<b>进入生活的方式变了</b></div></div>
+  </div>
+
+  <div class="note-box">
+    <b>⚪ 这个顺序是关键。</b>绝大多数品牌的做法是：想拓南方 → 圈一包南方人群 → 泛投 → 看转化。可隆反过来：<b>先把全域成交人群接回平台，反推这批人到底是谁、怎么用产品，再决定往哪扩。</b><br>
+    前者是"我想卖给你"，后者是"我看看谁已经在买、为什么买"。
+  </div>
+
+  <h3>南北方差异全景对比</h3>
+  <div class="vs">
+    <div class="vs-side north">
+      <h4>🏔 北方 / 川西</h4>
+      <ul>
+        <li><b>地形：</b>高山、碎石、长线</li>
+        <li><b>气候：</b>干冷，需保暖</li>
+        <li><b>场景：</b>攀登四姑娘山、川西自驾、重装徒步</li>
+        <li><b>购买动机：</b>专业性能——稳定支撑、保暖、防滑</li>
+        <li><b>内容语言：</b>「带全家人和毛孩子一起爬山的松弛感」「山系穿搭」</li>
+        <li><b>情绪：</b>硬核、成就感、旷野</li>
+      </ul>
+      <div class="note" style="font-size:12.5px;color:var(--amber);margin-top:12px">关键功能词：<b>稳定支撑</b></div>
+    </div>
+    <div class="vs-mid">VS</div>
+    <div class="vs-side south">
+      <h4>🌿 南方 / 广东、江浙沪</h4>
+      <ul>
+        <li><b>地形：</b>郊野、溪谷、城市步道、湿滑</li>
+        <li><b>气候：</b>湿热，需透气防水</li>
+        <li><b>场景：</b>香港 citywalk、郊野溯溪、周末近郊</li>
+        <li><b>购买动机：</b>穿搭适配 + 功能（防水、透气）+ 松弛感</li>
+        <li><b>内容语言：</b>「一双鞋走遍山海和城市」「透气不闷」</li>
+        <li><b>情绪：</b>松弛、日常、通勤可穿</li>
+      </ul>
+      <div class="note" style="font-size:12.5px;color:var(--teal);margin-top:12px">关键功能词：<b>透气不闷</b></div>
+    </div>
+  </div>
+
+  <h3>原始素材：多版本表述对照</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:16%">信源</th><th>原文表述</th></tr>
+    <tr><td>新京报 / 腾讯新闻</td><td>「同样是徒步鞋，<b>四川用户</b>的使用场景是川西自驾、雪山徒步，更看重简约舒适、能融入山系穿搭的设计感；而<b>广东用户</b>的场景是去香港 citywalk、去郊野溯溪，最关心的是防水、透气的功能性。」</td></tr>
+    <tr><td>小红书官方 / 电商媒体</td><td>「在<b>四川</b>，徒步意味着攀登四姑娘山，用户最在意『稳定支撑』；而在<b>广东</b>，徒步更像是『Citywalk』，用户追求的是『透气不闷』。」</td></tr>
+    <tr><td>艾瑞专栏</td><td>「<b>北方用户</b>买徒步鞋，是为了爬山徒步，看重『保暖 + 防滑』；而<b>南方用户</b>是去郊野溯溪，看中防水透气和穿搭属性。」</td></tr>
+    <tr><td>曾巧 Ivy（案例现场）</td><td>「品牌再根据<b>江浙沪、川西、华南</b>不同的生活半径和内容偏好，调整场景、货品与投放。」</td></tr>
+  </table></div>
+
+  <h3>平台侧能力佐证（同套能力的孪生案例）</h3>
+  <div class="quote">
+    <div class="q">"视觉偏好试图将过去依赖文字总结的用户审美进一步结构化。例如，<b>同样是 20 至 35 岁的羽绒服兴趣人群，北京用户更偏好长款、厚款和黑白灰色系，成都用户则更偏好短款和彩色款</b>。小红书目前已经可以按照区域呈现这类视觉差异。"</div>
+    <div class="who">—— 之恒，小红书 CMO，2026 种草大赏（亿邦动力现场记录）</div>
+  </div>
+  <p class="src">⚪ 注意：这段话没点名可隆，但明显是同一套能力（视觉偏好按区域呈现）在羽绒服品类上的应用，可作为「平台能力 → 品牌应用」的链路佐证。</p>
+
+  <h3>配套的平台工具</h3>
+  <div class="grid g3">
+    <div class="card"><div class="lbl">灵犀系统</div><h4>营销洞察平台</h4><div class="note">2025 年起面向全量商家<b>免费开放</b></div></div>
+    <div class="card"><div class="lbl">一方数据打通</div><h4>还原决策路径</h4><div class="note">回溯用户从"种草"到"下单"的完整路径，看清哪些触点有效，<b>反向指导找人、选品、内容</b></div></div>
+    <div class="card"><div class="lbl">TrueUsers</div><h4>反向找真实用户</h4><div class="note">跳出垂类博主逻辑，在<b>所有创作者</b>中筛选品牌的真实用户；蒲公英众测让博主参与产品前期测试</div></div>
+  </div>
+</div>
+</section>
+
+<!-- 6 三渠道差异 -->
+<section id="s6">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">06</span><h2>最硬的一层：三渠道的决策差异</h2></div>
+  <p class="sec-desc">如果对家居行业只能抄可隆一条，就抄这一条。它直接推翻了"线下生意靠线下获客"的常识。</p>
+
+  <h3>第一层真相：线下成交 ≠ 线下决策</h3>
+  <div class="quote">
+    <div class="q">"户外品牌可隆把全域已购人群的数据上传到小红书后就发现，<b>线下成交不等于线下决策</b>。数据显示，<b>线下成交用户，平均要看 8.2 次内容、搜 1.9 次才会进店</b>，决策主要过程在线上，门店只是交易的发生地。这意味着，种草不止服务电商转化，它的价值边界已然拓展到线下。看清了这条隐形的决策路径，<b>线上线下的经营决策墙被彻底拆除</b>。"</div>
+    <div class="who">—— 数英《种草大赏三年，也是一份行业共识的进化图谱》，2026.08</div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl">传统认知</div>
+      <p style="color:var(--tx2);font-size:14px">线下生意 = 靠选址、靠进店客流、靠导购转化。线上投放的 ROI 算不到门店头上。</p>
+    </div>
+    <div class="card hi">
+      <div class="lbl">数据揭示的真相</div>
+      <p style="color:var(--tx);font-size:14px"><b>用户在线上完成 8.2 次内容触达 + 1.9 次搜索，然后才走进门店。门店是终点，不是起点。</b></p>
+    </div>
+  </div>
+
+  <h3>第二层真相：三个渠道吸引的不是同一群人</h3>
+  <div class="quote">
+    <div class="q">"可隆在数据中找到了第二层真相：<b>门店、小红书、淘宝三个渠道成交的人群画像、决策习惯完全不同。</b>这给行业带来的启发是：全域经营的第一步，绝不是急着多铺一个渠道，而是<b>先看清每个渠道的人，看清人的决策路径，找到增长突破口</b>。"</div>
+    <div class="who">—— 数英，2026.08</div>
+  </div>
+
+  <h3>据此重做的渠道货盘分工</h3>
+  <div class="flow">
+    <div class="flow-s"><div class="n">线下门店</div><div class="t">经典单品 + 体验</div><div class="d">承接已决策用户，做体验与成交</div></div>
+    <div class="flow-s"><div class="n">小红书</div><div class="t">新品 + 尖货</div><div class="d">承担种草与心智建立，推新不推爆</div></div>
+    <div class="flow-s"><div class="n">淘宝</div><div class="t">成熟爆品</div><div class="d">承接确定性搜索需求，做转化效率</div></div>
+  </div>
+
+  <div class="note-box">
+    <b>⚪ 这一条对家居行业的价值极高：</b>大部分家居品牌是"线上内容 → 留资 → 到店 → 成交"，但从来没算清楚<b>用户到店前到底看了几次内容、搜了什么词</b>。一旦把这条路径量化，"线上内容该投多少、门店该备什么货"就有了依据，而不是靠经验分预算。
+  </div>
+
+  <h3>❌ 未查到</h3>
+  <ul>
+    <li>三渠道的预算分配比例、GMV 占比</li>
+    <li>三渠道人群画像的具体差异（数英只说"完全不同"，未展开年龄/客单/品类偏好）</li>
+  </ul>
+</div>
+</section>
+
+<!-- 7 内容策略 -->
+<section id="s7">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">07</span><h2>内容策略：五维协同，由北向南</h2></div>
+  <p class="sec-desc">代理公司宝尊英赛给出了目前最完整的官方表述。</p>
+
+  <div class="quote">
+    <div class="q">"宝尊英赛携手 KOLON SPORT 可隆，围绕不同区域的气候特征、户外生活方式与消费偏好，创新落地<b>『货品 × 地域 × 场景 × 内容 × 投放』五维协同</b>的小红书营销策略。双方采取<b>由北向南、逐圈渗透、梯度突破</b>的拓新路径……项目持续联动品牌一方数据，通过<b>人群画像、地域转化、场景效率与内容表现的动态复盘</b>，不断校准内容及投放模型，放大优质流量的经营价值。"</div>
+    <div class="who">—— 宝尊英赛官方表述</div>
+  </div>
+
+  <h3>五维协同拆解</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:12%">维度</th><th style="width:34%">具体做法</th><th>关键点</th></tr>
+    <tr><td>货品</td><td>按区域匹配差异化货品组合；核心单品带动整套穿搭种草</td><td><b>爆款商品击穿心智，联动更多品类动销</b></td></tr>
+    <tr><td>地域</td><td>由北向南、逐圈渗透、梯度突破</td><td>不是一次性全国铺开，是<b>一圈一圈往外推</b></td></tr>
+    <tr><td>场景</td><td>川西自驾/雪山徒步 vs 香港 citywalk/郊野溯溪</td><td>场景是内容的骨架，不是背景板</td></tr>
+    <tr><td>内容</td><td>地域定制化内容，差异化表达</td><td>CTR &gt;13%，远高于行业基准</td></tr>
+    <tr><td>投放</td><td>「人 × 需求 × 场景」精细化投放，动态复盘校准</td><td>用数据反哺下一轮模型</td></tr>
+  </table></div>
+
+  <h3>人群策略：反漏斗</h3>
+  <div class="flow">
+    <div class="flow-s"><div class="n">STEP 1 · 细分人</div><div class="t">锚定三大核心人群</div><div class="d">城市出行 / 轻量化周边游 / 硬核登山</div></div>
+    <div class="flow-s"><div class="n">STEP 2 · 精瞄准</div><div class="t">对核心人群强渗透</div><div class="d">「人 × 需求 × 场景」精细化投放</div></div>
+    <div class="flow-s"><div class="n">STEP 3 · 再放大</div><div class="t">找相似 → 精测试 → 再放大</div><div class="d">人群反漏斗模型逐层破圈</div></div>
+  </div>
+
+  <h3>内容语言对照表</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:16%">区域</th><th style="width:42%">内容语言</th><th>传递的心智</th></tr>
+    <tr><td>四川 / 川西</td><td>「带毛孩子去四姑娘山看草甸」<br>「带全家人一起爬山的松弛感」<br>「山系穿搭」</td><td>不再讲性能参数，种下<b>生活方式的心智向往</b></td></tr>
+    <tr><td>广东 / 华南</td><td>「一双鞋走遍山海与街巷」<br>「香港 Citywalk 走遍山海」<br>「透气不闷」</td><td>传递<b>功能 + 通勤松弛</b>的双重价值</td></tr>
+  </table></div>
+
+  <h3>品牌自有内容资产（与小红书种草互补）</h3>
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl">线下社群 IP</div>
+      <h4 style="margin-top:6px">可隆「路」营实验室 / KOLON ROAD LAB</h4>
+      <div class="note">覆盖全国 <b>44–46 个城市</b>（⚠ 数字有冲突：2026.02 口径 44 城，2026.03 口径 46 城），通过户外课堂、徒步活动邀请社群成员走进山野，<b>2020 年至今参与人次 26,974</b>。2024 年「一个瓶盖的重塑」及多地 Plogging 净山行动。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">线下旗舰</div>
+      <h4 style="margin-top:6px">KOLON ATLAS 可隆自然典集</h4>
+      <div class="note">北京华贸，2026.2.6 开业，近 1000㎡。三大场景 <b>HIKE / CAMP / E.D.O</b>；K: 高端支线独立空间；KOLON ROAD LAB 社群空间（电影放映、颂钵冥想、手作沙龙）；RE-CRAFT 纤循再造区；KOLON COFFEE 全国第三家。</div>
+    </div>
+  </div>
+  <p style="margin-top:14px">代言人矩阵：陈坤 → 胡歌 → <strong>刘诗诗（全球品牌代言人）</strong>。品牌明确「没找相对更流量的明星，也不用送粉丝福利的方式宣传」。内容资产：《循杉之道·出发》《不在场证明》（胡歌，无痕户外）、重装徒步纪录片。</p>
+
+  <h3>❌ 未查到</h3>
+  <ul>
+    <li>具体关键词词包</li>
+    <li>达人名单与头腰尾配比</li>
+    <li>投放节奏（⚪ 可从周期 2025.11–2026.07 跨双 11/年货节/春夏上新/618 推测为分阶段区域推进，但<b>无直接证据</b>）</li>
+    <li>具体爆文笔记标题、链接、互动量</li>
+  </ul>
+</div>
+</section>
+
+<!-- 8 KOS -->
+<section id="s8">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">08</span><h2>KOS 机制：承接的最后一公里</h2></div>
+  <p class="sec-desc">这一节含一个重要的<b>反向证据</b>——请务必连同风险一起看，不要只抄动作。</p>
+
+  <h3>可隆的做法</h3>
+  <div class="quote">
+    <div class="q">"可隆让<b>店员成为小红书 KOS，自己做内容</b>，用真实的分享配合门店的社群活动，让线上种草精准引流到线下门店。"</div>
+    <div class="who">—— 数英，2026.08</div>
+  </div>
+  <p>案例卡关键动作②：「针对地域、人群及产品，定制差异化种草内容，<b>联动门店 KOS</b>，把线上兴趣转化为线下到店和全域成交。」</p>
+  <p>宝尊英赛表述：「打通线上内容种草与线下门店体验，<b>覆盖从认知、种草、消费决策到到店转化与复购的完整经营链路</b>。」</p>
+
+  <div class="warn">
+    <div class="wt">⚠ 反向证据：KOS 矩阵的同质化风险</div>
+    <div class="wb">社区观察者指出：「可隆的鞋在小红书上内容量很大，但<b>你点开看，绝大多数是奥莱、专柜柜姐的带货帖，点赞个位数，文案几乎一模一样</b>。」另有：各地门店账号「都在刷 #胡歌同款#，但仔细看，挂这个标签的有 OBLI-K 各配色、有普通硬壳、有一脚蹬，<b>什么都敢叫同款</b>」。<br><br>
+    <b>⚪ 判断（这条对家居行业极关键）：</b>KOS 矩阵天然存在「内容同质化 → 账号权重低 → 只留量不留心智」的风险。<b>可隆能在拿全场大奖的同时存在这个问题，说明 KOS 的价值更多在「承接/到店」而非「种草/心智」</b>——它正是那 8.2 次内容触达里的<b>最后一公里</b>，不是第一次。<br><br>
+    <b>结论：KOS 不能替代种草内容，只能承接种草内容。</b></div>
+  </div>
+
+  <h3>行业通用 KOS 机制参考（非可隆，仅作对照）</h3>
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl">产品能力</div>
+      <ul>
+        <li>企业专业号下绑定的员工账号，昵称旁带<b>黄色「企业认证员工」小盾牌</b></li>
+        <li>支持商品卡、直播、私信组件、拨号按钮、留资表单</li>
+        <li><b>默认一个企业号可绑 30 个 KOS 账号</b>，消耗达标可增加</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="lbl">安踏体系做法（同集团，🟡 第三方转述）</div>
+      <ul>
+        <li>为<b>每一位 KOS 开设专属小红书店铺</b>，并将其在小红书的销售<b>计入各自绩效</b></li>
+        <li>总部<b>基于站内词云锁定内容方向</b>，为 KOS 提供选题参考</li>
+        <li>对优质潜力内容，内部做<b>赛马之后的投流放量</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>❌ 未查到</h3>
+  <ul>
+    <li>可隆 KOS 的账号数量、覆盖门店数、单店 KOS 数量</li>
+    <li>KOS 的内容形式、发布频次、激励方式</li>
+    <li>KOS 的成交金额、到店核销率</li>
+    <li>KOS 与品牌号、达人号的分工与预算切分</li>
+  </ul>
+</div>
+</section>
+
+<!-- 9 战略反哺 -->
+<section id="s9">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">09</span><h2>战略反哺：种草如何影响经营决策</h2></div>
+  <p class="sec-desc">这是"全场大奖"区别于"金奖"的地方——金奖看效果，全场大奖看的是种草有没有进入企业的经营系统。</p>
+
+  <div class="quote">
+    <div class="q">"结合小红书用户反馈与一方成交数据，可隆发现，<b>同一产品在不同人群中有不同的购买理由</b>，更重要的是，<b>可隆线下门店、小红书站内和站外电商平台，吸引的用户并不是一群人</b>。这些种草反馈进一步影响了可隆的<b>目标人群选择、渠道分工和资源配置：哪些人群值得拓展、哪些产品适合哪个渠道、预算应该投向哪里</b>。种草由此不再只是一次内容投放，而是开始参与到可隆的渠道规划和增长战略中。"</div>
+    <div class="who">—— 腾讯新闻《流量的红利没了，判断的红利来了》</div>
+  </div>
+
+  <h3>动态校准闭环</h3>
+  <div class="flow">
+    <div class="flow-s"><div class="n">01</div><div class="t">用户反馈</div><div class="d">修正<b>产品定义</b></div></div>
+    <div class="flow-s"><div class="n">02</div><div class="t">内容结果</div><div class="d">校准<b>目标人群</b></div></div>
+    <div class="flow-s"><div class="n">03</div><div class="t">渠道表现</div><div class="d">调整<b>预算分配</b></div></div>
+    <div class="flow-s"><div class="n">04</div><div class="t">转化效果</div><div class="d">验证<b>判断准确性</b></div></div>
+  </div>
+
+  <h3>为什么"判断被看见"还不够</h3>
+  <div class="grid g2">
+    <div class="card">
+      <div class="lbl">三个常见的组织断点</div>
+      <ul>
+        <li>用户反馈<b>只停在市场部</b>，产品团队看不到真实需求</li>
+        <li>内容找到了高潜人群，<b>销售端接不住</b>，兴趣用户依然流失</li>
+        <li>区域机会已被验证，<b>预算却还按年初计划固定分配</b>，判断再准也变不成增长</li>
+      </ul>
+    </div>
+    <div class="card hi">
+      <div class="lbl">必须做到的</div>
+      <p style="color:var(--tx);font-size:14px">产品、市场、电商、用户增长、销售、门店和管理层，<b>不能再各看各的数据、各做各的动作，而要围绕同一组生意信号协同</b>。</p>
+    </div>
+  </div>
+
+  <h3>品类外溢结果</h3>
+  <div class="note-box">
+    这套地域化策略「同样也顺势延展到了可隆的<b>冲锋衣、越野跑鞋、羽绒服等其他品类</b>，可隆打开了一套自己的<b>地域化品类矩阵</b>」。<br><br>
+    <b>⚪ 曾巧 Ivy 的点评最值得记：</b>「比单个数字更有意义的是，<b>品牌找到了一张可以继续扩品类、扩区域的地图</b>。」——<b>方法论的可复用性，比一次战役的 ROI 更值钱。</b>
+  </div>
+
+  <h3>与栗上、华为的命题对照</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:16%">品牌</th><th style="width:22%">行业命题</th><th>解法</th></tr>
+    <tr><td>栗上</td><td>品类增长</td><td>看清用户具体需求和障碍——从 0 到 1 造一个新品类</td></tr>
+    <tr><td>华为</td><td>品牌认知重构</td><td>用"审美"换赛道，并让洞察穿透部门墙进入研发</td></tr>
+    <tr><td class="teal">可隆</td><td class="teal">渠道与人群重构</td><td>从统一市场叙事，转向<b>定制不同人群的购买理由</b>，并据此重排选品、渠道、预算</td></tr>
+  </table></div>
+  <p class="src">三者共同点：<b>将小红书作为判断来源，从分散的用户信号归类后，看懂用户需求，再把判断转化为产品、种草和生意相互配合的整体战略。</b></p>
+</div>
+</section>
+
+<!-- 10 金句 -->
+<section id="s10">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">10</span><h2>金句汇编</h2></div>
+
+  <h3>评审团评语（官方）</h3>
+  <div class="quote">
+    <div class="q">"同一双徒步鞋，北方用户奔赴旷野高山，南方用户探索绿野山林。可隆从小红书的真实反馈中，读懂不同用户的消费动机，<b>破除统一市场叙事</b>，拆解用户在小红书站内、站外与线下渠道的决策差异，把洞察转为内容、选品和渠道策略，让种草成为服务于品牌全域经营的增长引擎。"</div>
+    <div class="who">—— 2026 小红书种草大赏 · 全场大奖评审团评语</div>
+  </div>
+
+  <h3>平台方</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"种草正在从第三种营销范式，成为企业的战略杠杆。"</div><div class="who">—— 之恒，小红书 CMO</div></div>
+    <div class="quote"><div class="q">"可隆结合种草结果数据，识别不同地域、不同渠道用户差异化需求，拆解用户消费动机，并据此调整种草内容、选品和渠道策略，提升全域转化。"</div><div class="who">—— 之恒（官方通稿，目前关于可隆最直接的一句）</div></div>
+    <div class="quote"><div class="q">"理解人的刻度决定生意的厚度。"<br>"爱具体的人，不是爱抽象的人，让我们爱生活本身，胜于爱生活的意义。"（引陀思妥耶夫斯基）</div><div class="who">—— 之恒，2026 WILL 商业大会</div></div>
+    <div class="quote"><div class="q">"AI 工具逐步渗透用户生活，但真实经验越发难以替代。小红书结合 AI 更新产品能力，让洞察更细、度量更准。"</div><div class="who">—— 风笛，小红书技术副总裁</div></div>
+  </div>
+
+  <h3>代理商 / 品牌方</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"种草的价值不只是获得奖项，更重要的是借助平台更好地理解消费者——<b>看清人在哪里，也就看清了品牌下一步要去哪里</b>。"<br>"和消费者走得更近，把生意做得更远。"</div><div class="who">—— 宝尊英赛 × 可隆，颁奖现场</div></div>
+    <div class="quote"><div class="q">"对于宝尊英赛而言，种草的价值不止于获得曝光，更重要的是<b>持续理解消费者，并让这些洞察真正进入内容、营销与品牌经营</b>。"</div><div class="who">—— 宝尊英赛</div></div>
+    <div class="quote"><div class="q">"他们的增长不是数字的叠加，而是专业能力积淀带来的长效生意复利。"</div><div class="who">—— 宝尊英赛获评小红书「年度增长力合作伙伴」颁奖词</div></div>
+    <div class="quote"><div class="q">"可隆是安踏多品牌矩阵里的户外专家，主打攀登、越野跑、重装徒步。可隆聚焦核心功能、精准场景，构建高辨识度、差异化的产品矩阵。<b>其壳类、徒步鞋等优势品类保持 50% 以上的高增长</b>，再次成为集团内增速最快的品牌。"<br>"<b>品牌，是安踏集团最重要的资产。</b>"</div><div class="who">—— 丁世忠，安踏集团董事局主席</div></div>
+  </div>
+
+  <h3>丁思榕（可隆董事长兼 CEO，一手专访）</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"<b>没有必要嘛。就和橡皮筋一样，如果拉得太高，稍微松一下是不是就崩断了？</b>我们希望品牌有一定活力和弹性。"</div><div class="who">—— 谈为什么不做到极致户外</div></div>
+    <div class="quote"><div class="q">"我们希望消费者是<b>因为可隆才买我们的产品</b>，这也是我们做货品的逻辑。"</div><div class="who">—— 谈商品自主权</div></div>
+    <div class="quote"><div class="q">"很多品牌全球一盘货，但欧美版型的袖子、衣长对中国消费者来说特别长。可隆是按照国内消费者习惯，<b>完全自主企划、设计、开发</b>，版型对亚洲人友好，颜色有变化。"</div><div class="who">—— 谈本土化企划</div></div>
+    <div class="quote"><div class="q">"集团是土壤，品牌是树木，土壤提供养分，但每棵树必须以自己的方式向上生长。"<br>"<b>可隆不会是一个规模无限大的品牌。做一个特别、持续创造的品牌，得克制。</b>"</div><div class="who">—— 谈品牌与集团关系</div></div>
+  </div>
+
+  <h3>评委曾巧 Ivy（本节最有复用价值）</h3>
+  <div class="qgrid">
+    <div class="quote"><div class="q">"有些品牌把小红书当成一个内容投放平台：找达人、发笔记、追爆文、看互动，活动结束后交一份结案报告。有些品牌已经把它放进经营系统里：用真实表达发现需求，用搜索还原决策，用内容验证买点，用交易和线索承接生意，再把用户反馈送回产品、渠道和下一轮增长。<b>前一种做法可能做出一次热闹，后一种做法才可能把平台打透。</b>"<br>"问题往往不在于品牌不会『做内容』，而在于<b>它只做了内容</b>。"</div><div class="who">—— 曾巧 Ivy</div></div>
+    <div class="quote"><div class="q">"<b>先别急着问『小红书上最近流行什么』。先把自己的生意拆开，找出那一处最值得被解决的卡点。</b>"<br>"<b>一次先打透一个『SPU × 买点 × 人群』</b>，别急着把整个品牌讲完。"<br>"我们搜索『户外鞋推荐』，<b>用户实际搜的是『广东周末去香港徒步穿什么』</b>。"</div><div class="who">—— 曾巧 Ivy</div></div>
+  </div>
+</div>
+</section>
+
+<!-- 11 赛道背景 -->
+<section id="s11">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">11</span><h2>赛道背景：小红书户外大盘</h2></div>
+  <p class="sec-desc">理解可隆在打什么仗，需要看清这个池子有多大、水怎么流。</p>
+
+  <h3>小红书运动户外大盘（🟢 官方行业报告）</h3>
+  <div class="grid g4">
+    <div class="card"><div class="lbl">兴趣用户</div><div class="val teal">2.3<small>亿</small></div><div class="note">运动户外兴趣用户规模</div></div>
+    <div class="card"><div class="lbl">搜索量同比</div><div class="val amber">+72<small>%</small></div><div class="note">运动户外相关搜索</div></div>
+    <div class="card hi"><div class="lbl">场景词占比</div><div class="val red">55<small>%</small></div><div class="note"><b>品类词仅 5%</b>；颜色/款式设计 12%；人群标签 9%</div></div>
+    <div class="card"><div class="lbl">轻量化兴趣人群</div><div class="val blue">7600<small>万</small></div><div class="note">轻量化相关兴趣人群规模</div></div>
+  </div>
+
+  <div class="note-box">
+    <b>⚠ 引用提醒：</b>这份报告在多家转载中出现多组数字冲突（城市轻户外 +538%/+53%、轻运动风穿搭 +420%/+120%、轻户外穿搭 +119%/+149%、赛事 +151%/+154%）。<b>建议只引用各版本一致的核心数</b>：「55% 场景词占比」「7600 万轻量化人群」「2.3 亿兴趣用户」。<br><br>
+    <b>⚪ 但 55% vs 5% 这组对比本身就极其重要：用户搜的是场景，不是品类。</b>这直接解释了为什么可隆要按"川西自驾""香港 citywalk"来做内容，而不是按"徒步鞋"。
+  </div>
+
+  <h3>细分趋势（2026 上半年）</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:40%">指标</th><th>数据</th></tr>
+    <tr><td>运动户外商业笔记数量</td><td>增长 <b>40%+</b>，月均收藏量提升 <b>60%</b></td></tr>
+    <tr><td>内容结构</td><td>健身训练 34.85% / 运动户外装备 30.49% / 运动户外服饰 20.64%</td></tr>
+    <tr><td>细分增长</td><td>溯溪鞋 +52%、运动上装 +42%、运动下装 +27%、<b>登山徒步鞋 +21%</b>、网球用品 +16%</td></tr>
+    <tr><td>sportcation（运动度假）</td><td>浏览量 <b>1.3 亿+</b></td></tr>
+    <tr><td>溯溪必备物品搜索</td><td><b>+1087%</b>；赤足鞋 +456%</td></tr>
+    <tr><td>越野跑鞋多场景外溢</td><td>通勤 +114%、出行 ×24 倍、旅游 +226%、踏青 +606%、出街 +245%</td></tr>
+    <tr><td>社群相关</td><td>搜索 +63%、笔记 35 万+、阅读 7 亿+；攀岩社群 +237%、越野跑 +150%</td></tr>
+  </table></div>
+
+  <h3>行业大盘</h3>
+  <div class="grid g4">
+    <div class="card"><div class="lbl">户外用品市场规模</div><div class="val">1423<small>亿</small></div><div class="note">2025 年户外/登山/野营/旅行用品销售额，同比 <b class="teal">+22.22%</b></div></div>
+    <div class="card"><div class="lbl">户外服饰 CAGR5</div><div class="val amber">14.7<small>%</small></div><div class="note">近五年服装增速最快细分赛道；户外鞋 CAGR5 10.5%</div></div>
+    <div class="card"><div class="lbl">Top5 市占率</div><div class="val">20.7<small>%</small></div><div class="note">2020 年 11.6% → 2024 年 20.7%，集中度快速提升</div></div>
+    <div class="card"><div class="lbl">竞争加剧信号</div><div class="val red" style="font-size:17px">耐克 / 阿迪</div><div class="note">2026.2 耐克重塑 ACG 聚焦越野跑/徒步；2026.7 阿迪发布户外线「山川里」</div></div>
+  </div>
+</div>
+</section>
+
+<!-- 12 优化方向 -->
+<section id="s12">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">12</span><h2>可优化的内容方向：七个缺口</h2></div>
+  <p class="sec-desc">以下为基于公开信息的分析推断，非品牌官方披露。</p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:5%">#</th><th style="width:20%">缺口</th><th style="width:34%">判断依据</th><th>优化方向</th></tr>
+    <tr><td>1</td><td class="red">KOS 内容同质化</td><td>社区观察：绝大多数是奥莱/专柜柜姐带货帖，点赞个位数，文案几乎一模一样；门店账号"什么都敢叫同款"</td><td>KOS 只做<b>承接层</b>，不做心智层。提供差异化选题库而非统一文案模板；建立内容赛马机制，只对优质内容投流</td></tr>
+    <tr><td>2</td><td>南方心智仍薄弱</td><td>「北方多，南方没啥人穿」——北方的成功（体制内 + 玄学 + 保暖刚需）在南方几乎无法复制</td><td>南方需要<b>重新定义购买理由</b>，不是复制北方打法。重点打"防水透气 + 通勤可穿 + 周末近郊"三重组合</td></tr>
+    <tr><td>3</td><td>渠道价差稀释种草</td><td>「同一双鞋不同渠道差价能到四成」（专柜 1590 / 奥莱 954 / 三亚免税另一套价）</td><td>价差会让用户"种完草去别处比价"。需<b>建立渠道价格纪律</b>，或在内容中明确各渠道的定位差异</td></tr>
+    <tr><td>4</td><td>专业口碑存疑</td><td>「硬核户外人真的不穿它」「你看哪个专业玩户外的穿可隆」</td><td>补<b>专业背书型内容</b>：真实长线徒步实测、专业向导测评，而不是只做穿搭向内容</td></tr>
+    <tr><td>5</td><td>品控与涨价争议</td><td>「涨价是真的……同款最低从一千五涨到四千」「冲锋衣掉色」「黑色软壳发白」「软壳偏小一码」</td><td>负面 UGC 会持续稀释种草成果。需<b>主动做品控回应与长测内容</b>，而不是只发新品尝鲜</td></tr>
+    <tr><td>6</td><td>场景词布局未见系统化</td><td>小红书场景词占比 55% vs 品类词 5%，但未查到可隆的具体词包</td><td>按「目的地 + 难度 + 人群 + 季节」四维搭建场景词矩阵，系统性拦截</td></tr>
+    <tr><td>7</td><td>线下社群资产未线上化</td><td>「路」营实验室覆盖 44–46 城、参与人次 2.7 万，但小红书侧未见对应内容栏目</td><td>把线下社群活动做成<b>线上可围观、可报名的内容栏目</b>，让 2.7 万人次变成内容资产</td></tr>
+  </table></div>
+</div>
+</section>
+
+<!-- 13 策略建议 -->
+<section id="s13">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">13</span><h2>后续小红书种草内容策略建议</h2></div>
+  <p class="sec-desc">按选题方向 → 笔记形式 → 关键词布局 → 投放节奏四段给出。核心原则：把"地域"从定向条件升级为供给侧变量。</p>
+
+  <h3>一、选题方向：地域 × 场景 × 人群矩阵</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th style="width:16%">地域切片</th><th style="width:32%">转化向选题（70%）</th><th>破圈向选题（30%）</th></tr>
+    <tr>
+      <td class="blue">北方 / 川西</td>
+      <td>《四姑娘山实测：这双鞋的支撑够不够》<br>《川西自驾 7 天，只带了这一双鞋》<br>《带狗爬雪山，装备怎么选》</td>
+      <td>《北方的秋天，山系穿搭的 5 种打开方式》</td>
+    </tr>
+    <tr>
+      <td class="teal">华南 / 广东</td>
+      <td>《香港 citywalk 走一天，脚会不会闷》<br>《广东的回南天，鞋子怎么扛》<br>《周末溯溪装备清单》</td>
+      <td>《一双鞋走遍山海与街巷：我的通勤户外两穿方案》</td>
+    </tr>
+    <tr>
+      <td class="amber">江浙沪</td>
+      <td>《莫干山 / 徽杭古道徒步装备实测》<br>《江浙沪周末 2 小时可达的 10 条线》</td>
+      <td>《上海周边露营，装备怎么减负》</td>
+    </tr>
+    <tr>
+      <td class="purple">跨区域通用</td>
+      <td>《用了 8 个月，说点不好听的》<br>《专柜 vs 奥莱 vs 免税，价差四成怎么买》</td>
+      <td>《路营实验室：跟 27000 人一起走进山野》</td>
+    </tr>
+  </table></div>
+
+  <h3>二、笔记形式配比</h3>
+  <div class="grid g4">
+    <div class="card hi"><div class="lbl">35%</div><h4>场景实测</h4><div class="note">主力形态。必须在真实地形拍，含难度、天气、路线信息。CTR 最高的形态（&gt;13%）。</div></div>
+    <div class="card"><div class="lbl">25%</div><h4>穿搭 / 通勤</h4><div class="note">打南方的关键。解决"户外鞋只能户外穿"的心智障碍，讲"一鞋多场景"。</div></div>
+    <div class="card"><div class="lbl">20%</div><h4>KOS 承接</h4><div class="note">只做最后一公里：到店预约、试穿体验、现货信息。<b>不做心智种草</b>，避免同质化。</div></div>
+    <div class="card"><div class="lbl">20%</div><h4>社群 / 长测</h4><div class="note">路营实验室活动、用了半年的真实状态、品控回应。撑信任与复购。</div></div>
+  </div>
+
+  <h3>三、关键词布局：场景词优先（55% vs 5% 的启示）</h3>
+  <div class="tags" style="margin-bottom:6px"><span class="tag t">① 场景词（主攻 · 占预算大头）</span></div>
+  <p style="font-size:13.5px;margin-bottom:16px">广东周末去香港徒步穿什么、川西自驾装备、四姑娘山徒步、莫干山徒步、徽杭古道、郊野溯溪、城市轻户外、周末近郊、sportcation<br><span style="font-size:12.5px;color:var(--tx3)">→ <b>用户搜的是场景，不是品类。</b>曾巧那句"我们搜『户外鞋推荐』，用户实际搜的是『广东周末去香港徒步穿什么』"是最好的注脚</span></p>
+
+  <div class="tags" style="margin-bottom:6px"><span class="tag b">② 目的地词（地域切片专用）</span></div>
+  <p style="font-size:13.5px;margin-bottom:16px">川西、四姑娘山、香港麦理浩、莫干山、徽杭古道、雨崩、虎跳峡、西双版纳<br><span style="font-size:12.5px;color:var(--tx3)">→ 每个目的地词背后是一群明确的、可定向的人</span></p>
+
+  <div class="tags" style="margin-bottom:6px"><span class="tag a">③ 品类词（防守）</span></div>
+  <p style="font-size:13.5px;margin-bottom:16px">徒步鞋、登山鞋、越野跑鞋、溯溪鞋、登山徒步鞋推荐<br><span style="font-size:12.5px;color:var(--tx3)">→ 品类词只占 5% 搜索量，但需要守住 TOP 心智</span></p>
+
+  <div class="tags" style="margin-bottom:6px"><span class="tag r">④ 功能疑问词（转化）</span></div>
+  <p style="font-size:13.5px;margin-bottom:16px">徒步鞋怎么选、防水透气、GORE-TEX 值不值、Vibram 大底、徒步鞋磨脚吗<br><span style="font-size:12.5px;color:var(--tx3)">→ 决策最后一公里，按区域差异化回答（北方答支撑，南方答透气）</span></p>
+
+  <div class="tags" style="margin-bottom:6px"><span class="tag t">⑤ 竞品 / 对比词（拦截）</span></div>
+  <p style="font-size:13.5px;margin-bottom:16px">始祖鸟平替、萨洛蒙对比、凯乐石对比、迪桑特对比、户外品牌推荐<br><span style="font-size:12.5px;color:var(--tx3)">→ 拦截比价人群，讲清 3000 元价格带的价值构成</span></p>
+
+  <h3>四、投放节奏：由北向南，逐圈渗透</h3>
+  <div class="tl">
+    <div class="tl-item"><div class="t">第一阶段 · 数据回传与人群拆解（4–6 周）</div><div class="h">先研究已购人群，不急着投</div><div class="b"><b>动作：</b>把全域成交数据回传小红书灵犀，按"省份 → 品类 → 场景"拆解百万级已购人群<br><b>产出：</b>区域人群画像差异报告 + 各区域的关键功能词<br><b>预算：</b>几乎为零，主要是数据与人力成本<br><b>指标：</b>洞察质量，<b>不看任何投放指标</b></div></div>
+    <div class="tl-item"><div class="t">第二阶段 · 北方验证（4–8 周）</div><div class="h">在优势区域把模型跑通</div><div class="b"><b>动作：</b>先在北方/川西跑通"地域定制化内容"模型，确认 CTR 与转化基线<br><b>内容：</b>场景实测为主，穿搭为辅<br><b>指标：</b>CTR（目标 &gt;13%）、品牌搜索增速、cpuv</div></div>
+    <div class="tl-item"><div class="t">第三阶段 · 逐圈向南（12–20 周）</div><div class="h">一圈一圈往外推，每圈独立复盘</div><div class="b"><b>动作：</b>江浙沪 → 华南，每进入一个区域重新做场景洞察与货品匹配<br><b>关键：</b><b>不是复制北方内容，是重新定义该区域的购买理由</b><br><b>指标：</b>南方成交增速、新客占比、全域长效 ROI</div></div>
+    <div class="tl-item"><div class="t">第四阶段 · 品类外溢（持续）</div><div class="h">把方法论复制到下一个品类</div><div class="b"><b>动作：</b>把地域化策略延展到冲锋衣、越野跑鞋、羽绒服<br><b>目标：</b>形成<b>地域化品类矩阵</b>，而不是单次战役<br><b>指标：</b>非主力品类的搜索增速与成交占比</div></div>
+  </div>
+
+  <div class="note-box">
+    <b>节奏纪律（最重要的一条）：</b><b>第一阶段的数据回传与人群拆解，不能省，不能压缩。</b><br><br>
+    绝大多数品牌的问题不是不会做内容，是<b>还没搞清楚"已经买我的人到底是谁"就开始投</b>。曾巧 Ivy 的话最准：「先别急着问『小红书上最近流行什么』。先把自己的生意拆开，找出那一处最值得被解决的卡点。」<br><br>
+    <b>另一个纪律：一次只打透一个「SPU × 买点 × 人群」</b>，别急着把整个品牌讲完。
+  </div>
+</div>
+</section>
+
+<!-- 14 迁移清单 -->
+<section id="s14">
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">14</span><h2>迁移清单：对家居 / 多门店品类的七条</h2></div>
+  <p class="sec-desc">可隆是三个案例里对家居行业最对口的一个——高客单、重线下、多门店、区域差异大。</p>
+
+  <div class="grid g2">
+    <div class="card hi">
+      <div class="lbl">01 · 最高价值</div>
+      <h4>量化你的"到店前 8.2 次"</h4>
+      <div class="note">家居的典型链路是"线上内容 → 留资 → 到店 → 成交"，但<b>几乎没人算清楚用户到店前看了几次内容、搜了什么词</b>。<br><br><b>可落地的第一步：</b>把已成交客户的一方数据回传平台，回溯其决策路径。这会直接改变两件事——线上内容该投多少、门店该备什么货。</div>
+    </div>
+    <div class="card hi">
+      <div class="lbl">02 · 最高价值</div>
+      <h4>地域不是定向条件，是供给侧变量</h4>
+      <div class="note">这是可隆案例最稀缺的一层：<b>它把"地域"从投放设置项，升级成了选品项、渠道项和预算项。</b><br><br>家居方向：南方回南天/防潮、北方地暖/干燥，需求差异极大。不应只是"在南方多投点"，而应是<b>南方主推防潮板材、北方主推地暖适配，且门店备货与内容同步调整</b>。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">03</div>
+      <h4>三个渠道，三种货盘</h4>
+      <div class="note">可隆：线下做经典单品 + 体验，小红书做新品 + 尖货，淘宝做成熟爆品。<br>家居同理：<b>小红书推设计款/新品，门店做体验与经典款成交，电商平台承接确定性搜索</b>。不要三个渠道卖同样的货。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">04</div>
+      <h4>先研究已买的人，再想扩谁</h4>
+      <div class="note">不要先圈"我要的南方人群"泛投。<b>先把已成交客户数据接回平台，看清楚他们是谁、为什么买</b>，再决定往哪扩。这个动作几乎零成本，但极少有品牌做。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">05</div>
+      <h4>KOS 只做承接，不做种草</h4>
+      <div class="note"><b>这是可隆踩过的坑。</b>门店账号天然容易同质化、权重低、留量不留心智。正确定位：KOS 负责<b>到店预约、试穿/量房体验、现货信息</b>——是最后一公里，不是第一次触达。<br>配套：给差异化选题库，不给统一文案模板；内容赛马后再投流。</div>
+    </div>
+    <div class="card">
+      <div class="lbl">06</div>
+      <h4>用户搜的是场景，不是品类</h4>
+      <div class="note">小红书运动户外场景词占 55%，品类词仅 5%。家居同理——用户搜的不是"全屋定制"，是<b>"老破小 60 平怎么装""南方回南天衣柜防潮""有娃家庭客厅收纳"</b>。关键词布局应该以场景词为主战场。</div>
+    </div>
+  </div>
+
+  <div class="card hi" style="margin-top:14px">
+    <div class="lbl">07 · 战略层</div>
+    <h4>种草结果必须能改预算分配，否则只是结案报告</h4>
+    <div class="note">可隆的关键不是 ROI 15，是<b>种草反馈能改变"哪些人群值得拓展、哪些产品适合哪个渠道、预算投向哪里"</b>。<br><br>
+    组织断点有三个典型症状：反馈只停在市场部 / 销售端接不住 / 区域机会已验证但预算按年初计划锁死。<br><br>
+    <b>最低成本的落地版本：</b>把小红书高频反馈整理成周报，固定进产品、设计、交付、投放的例会，形成"用户表达 → 组织响应 → 市场验证 → 新一轮反馈"的闭环。</div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    资料来源：2026 小红书种草大赏官方案例物料（全场大奖 + 种草全域转化金奖）、宝尊英赛官方表述、安踏体育财报、数英 / Morketing（曾巧 Ivy）/ 新京报 / 艾瑞专栏 / 亿邦动力 / 经济观察报 / 晚点 LatePost 报道、小红书《运动户外行业场景趋势与用户决策报告》、GfK / 华兴证券 / 三个皮匠行业报告<br>
+    <b>说明：标注「⚪ 判断」「可优化方向」「策略建议」的内容为基于公开信息的分析推断，非官方披露。所有数据冲突已在正文列明。韩媒可隆中国区销售额绝对数因口径存疑未予采用。</b>
+  </div>
+</footer>
+
+</body>
+</html>
