@@ -2208,3 +2208,45 @@ button{font-family:inherit;cursor:pointer}
   .v8-ip-showcase-grid{grid-template-columns:1fr}
   .v8-ip-account-screenshots{grid-template-columns:repeat(2,1fr)}
 }
+
+/* =====================================================
+   服务品牌 Logo 墙 — 单色化 + 大留白 + 发丝线网格 + 悬停泛彩
+   ===================================================== */
+.brandwall-section{padding:var(--section-pad-v) var(--section-pad-h);background:var(--c-surface)}
+.brandwall-inner{max-width:var(--container-wide);margin:0 auto}
+.brandwall-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+  background:var(--c-line-subtle);
+  margin-top:64px;border:0.5px solid var(--c-line-subtle);
+  border-radius:20px;overflow:hidden;
+}
+.bw-cell{
+  background:var(--c-surface);height:144px;
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  transition:background .35s ease;
+}
+.bw-cell img{
+  max-height:56px;max-width:140px;object-fit:contain;
+  filter:grayscale(1);opacity:.62;
+  transition:filter .35s ease,opacity .35s ease,transform .35s ease;
+}
+.bw-cell--xl img{max-height:108px;max-width:108px}
+.bw-cell--lg img{max-height:88px;max-width:88px}
+.bw-cell--wide img{max-width:158px;max-height:66px}
+.bw-cell--tall img{max-height:96px;max-width:124px}
+.bw-word{
+  font-size:15px;font-weight:600;letter-spacing:.06em;
+  color:var(--c-text-tertiary);text-align:center;line-height:1.25;
+  transition:color .35s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .bw-cell:hover{background:var(--c-bg)}
+  .bw-cell:hover img{filter:grayscale(0);opacity:1;transform:scale(1.05)}
+  .bw-cell:hover .bw-word{color:var(--c-text)}
+}
+@media(max-width:860px){.brandwall-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){
+  .brandwall-grid{grid-template-columns:repeat(2,1fr)}
+  .brandwall-section{padding:clamp(64px,8vw,100px) var(--section-pad-h)}
+  .brandwall-grid{margin-top:44px}
+}
