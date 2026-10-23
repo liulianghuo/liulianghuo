@@ -2215,7 +2215,7 @@ button{font-family:inherit;cursor:pointer}
 .brandwall-section{padding:var(--section-pad-v) var(--section-pad-h);background:var(--c-surface)}
 .brandwall-inner{max-width:var(--container-wide);margin:0 auto}
 .brandwall-grid{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+  display:grid;grid-template-columns:repeat(6,1fr);gap:1px;
   background:var(--c-line-subtle);
   margin-top:64px;border:0.5px solid var(--c-line-subtle);
   border-radius:20px;overflow:hidden;
