@@ -2226,13 +2226,13 @@ button{font-family:inherit;cursor:pointer}
   transition:background .35s ease;
 }
 .bw-cell img{
-  max-height:56px;max-width:140px;object-fit:contain;
+  max-height:58px;max-width:132px;object-fit:contain;
   filter:grayscale(1);opacity:.62;
   transition:filter .35s ease,opacity .35s ease,transform .35s ease;
 }
 .bw-cell--xl img{max-height:108px;max-width:108px}
 .bw-cell--lg img{max-height:88px;max-width:88px}
-.bw-cell--wide img{max-width:158px;max-height:66px}
+.bw-cell--wide img{max-width:152px;max-height:64px}
 .bw-cell--tall img{max-height:96px;max-width:124px}
 .bw-word{
   font-size:15px;font-weight:600;letter-spacing:.06em;
