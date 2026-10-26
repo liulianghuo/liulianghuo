@@ -2260,9 +2260,17 @@ button{font-family:inherit;cursor:pointer}
 
 /* ① 行宽：中文舒适区 28~35 字/行 */
 .hero-desc{max-width:820px;font-size:clamp(16px,1.6vw,19px);line-height:1.7}  /* 后半句压成一行 */
-.cta-desc{max-width:540px}
-.section-leader{max-width:580px}
-.product-desc{max-width:560px}
+
+/* 引导语统一加宽：一行可容 45~50 字，排不完则两行居中，不再碎成三行 */
+.section-leader{max-width:900px}
+.section-leader--center{max-width:900px;margin-left:auto;margin-right:auto}
+.trend-copy .section-leader{max-width:640px}     /* 左栏文案，跟随栏宽 */
+.page-hero .section-leader{max-width:860px}
+.cta-desc{max-width:760px}
+.product-desc{max-width:700px}
+.v8-ip-showcase-lead{max-width:800px}
+.lead-form-wrap{max-width:680px}
+
 .faq-a-inner{max-width:720px}          /* FAQ 答案收在 50 字/行，右留白保持呼吸 */
 .article-body{max-width:660px}         /* 文章从 42 字/行收到 38 字 */
 
