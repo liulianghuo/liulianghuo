@@ -816,7 +816,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ===== FAQ ===== */
 .faq-section{padding:var(--section-pad-v) var(--section-pad-h);background:var(--c-surface)}
-.faq-inner{max-width:820px;margin:0 auto}
+.faq-inner{max-width:880px;margin:0 auto}
 .faq-list{margin-top:52px;display:flex;flex-direction:column;gap:12px}
 .faq-item{
   border:0.5px solid var(--c-line);border-radius:16px;
@@ -2230,7 +2230,9 @@ button{font-family:inherit;cursor:pointer}
   filter:grayscale(1);opacity:.62;
   transition:filter .35s ease,opacity .35s ease,transform .35s ease;
 }
-.bw-cell--xl img{max-height:108px;max-width:108px}
+.bw-cell--xl img{max-height:120px;max-width:158px}
+.bw-cell--md img{max-height:96px;max-width:158px}
+.bw-cell--xl,.bw-cell--md{padding:12px}
 .bw-cell--lg img{max-height:88px;max-width:88px}
 .bw-cell--wide img{max-width:152px;max-height:64px}
 .bw-cell--tall img{max-height:96px;max-width:124px}
@@ -2250,3 +2252,36 @@ button{font-family:inherit;cursor:pointer}
   .brandwall-section{padding:clamp(64px,8vw,100px) var(--section-pad-h)}
   .brandwall-grid{margin-top:44px}
 }
+
+/* =====================================================
+   排版基线 v1 — ① 行宽归位 + ③ 中文排版细节
+   （只做覆盖，不改原有规则，可整段回退）
+   ===================================================== */
+
+/* ① 行宽：中文舒适区 28~35 字/行 */
+.hero-desc{max-width:820px;font-size:clamp(16px,1.6vw,19px);line-height:1.7}  /* 后半句压成一行 */
+.cta-desc{max-width:540px}
+.section-leader{max-width:580px}
+.product-desc{max-width:560px}
+.faq-a-inner{max-width:720px}          /* FAQ 答案收在 50 字/行，右留白保持呼吸 */
+.article-body{max-width:660px}         /* 文章从 42 字/行收到 38 字 */
+
+/* ② 行高：正文类统一 1.7，长文 1.8（标题类不动） */
+.bento-body,.case-brief,.cc-v2-desc,.faq-a-inner,.product-desc,
+.footer-bio,.v8-fs-desc,.v8-mini-brief,.case-detail-sub,
+.contact-info p,.dgn-quote,.cap-quote,.principle-list li{line-height:1.7}
+.article-body{line-height:1.8}
+
+/* ③ 中文排版细节 */
+body{
+  text-wrap:pretty;                    /* 防末行孤字 */
+  overflow-wrap:break-word;
+  line-break:strict;                   /* 标点避头尾 */
+  font-variant-numeric:tabular-nums;   /* 数字等宽对齐 */
+}
+h1,h2,h3,h4,h5,
+.section-kicker,.cc-v2-title,.product-title,
+.v8-flagship-title,.faq-q,.principle-col h3{
+  text-wrap:balance;                   /* 标题断行均衡 */
+}
+a{text-underline-offset:3px}
