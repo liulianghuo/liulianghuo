@@ -2293,3 +2293,38 @@ h1,h2,h3,h4,h5,
   text-wrap:balance;                   /* 标题断行均衡 */
 }
 a{text-underline-offset:3px}
+
+/* =====================================================
+   布局基线 v1 — 内容边界统一 + 居中修正
+   （只做覆盖，不改原有规则，可整段回退）
+   ===================================================== */
+
+/* ① 全站内容边界统一 1200：此前 800 / 880 / 960 / 1360 各自为政，
+      导致同一页面上下两个区块左右边界对不齐 */
+.vision-card{max-width:var(--container-wide)}
+.vision-card p{max-width:880px;margin-left:auto;margin-right:auto}
+.team-grid{max-width:var(--container-wide)}
+.v8-pricing-inner{max-width:var(--container-wide)}
+.faq-inner{max-width:var(--container-wide)}
+.cases-grid-v2{max-width:var(--container-wide)}
+
+/* 套餐卡拉宽后清单改两列，避免单行过长显得空 */
+.v8-plan-list{grid-template-columns:1fr 1fr;column-gap:36px}
+@media(max-width:760px){.v8-plan-list{grid-template-columns:1fr}}
+
+/* ② 统计条按实际项目数均分：about 只有 4 项，固定 5 列会整体偏左 */
+.stats-inner{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}
+
+/* ③ 修正"max-width 含内边距"的容器：border-box 下内容区会窄掉 2×pad
+      （内页头部比正文窄 220px 就是这里造成的） */
+.page-hero,
+.svc-row,
+.contact-grid,
+.case-detail,
+.cases-category-section,
+.v8-cases-nav-inner{
+  max-width:calc(var(--container-max) + 2 * var(--section-pad-h));
+}
+
+/* ④ 正文行宽修正：.article-body 自带左右 padding，max-width 需含进去，否则行宽被吃掉 2×pad */
+.article-body{max-width:calc(660px + 2 * var(--section-pad-h))}
