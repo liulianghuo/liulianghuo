@@ -2241,14 +2241,24 @@ button{font-family:inherit;cursor:pointer}
   color:var(--c-text-tertiary);text-align:center;line-height:1.25;
   transition:color .35s ease;
 }
+/* 「虚位以待」占位格：补满最后一行，落在右下角 */
+.bw-cell--empty{grid-column:span 2}
+.bw-cell--empty .bw-word{
+  font-size:14px;font-weight:500;letter-spacing:.16em;
+  color:var(--c-text-tertiary);
+}
 @media (hover:hover) and (pointer:fine){
   .bw-cell:hover{background:var(--c-bg)}
   .bw-cell:hover img{filter:grayscale(0);opacity:1;transform:scale(1.05)}
   .bw-cell:hover .bw-word{color:var(--c-text)}
 }
-@media(max-width:860px){.brandwall-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px){
+  .brandwall-grid{grid-template-columns:repeat(3,1fr)}
+  .bw-cell--empty{grid-column:span 2}
+}
 @media(max-width:560px){
   .brandwall-grid{grid-template-columns:repeat(2,1fr)}
+  .bw-cell--empty{grid-column:span 2}
   .brandwall-section{padding:clamp(64px,8vw,100px) var(--section-pad-h)}
   .brandwall-grid{margin-top:44px}
 }
