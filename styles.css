@@ -2328,3 +2328,41 @@ a{text-underline-offset:3px}
 
 /* ④ 正文行宽修正：.article-body 自带左右 padding，max-width 需含进去，否则行宽被吃掉 2×pad */
 .article-body{max-width:calc(660px + 2 * var(--section-pad-h))}
+
+/* =====================================================
+   文字宽度自适应 v1 — 一行放得下就绝不折行
+   问题：引导语写死 max-width 上限（900/860/800…），
+        文字恰好超出几像素就折行，末行只剩 2 个字，很难看。
+   做法：容器按内容实际宽度收缩（max-content），
+        上限取「父容器宽度」与「可读行宽上限」中的较小值。
+   ===================================================== */
+.section-leader--center,
+.cta-desc,
+.v8-ip-showcase-lead,
+.vision-card p{
+  width:max-content;
+  max-width:min(100%, 1040px);
+  margin-left:auto;
+  margin-right:auto;
+}
+/* 内页顶部标题区：上限略窄，但不低于原 860，避免比正文显窄 */
+.page-hero .section-leader{
+  width:max-content;
+  max-width:min(100%, 980px);
+  margin-left:auto;
+  margin-right:auto;
+}
+/* 愿景卡在中等屏收窄内边距，给文字多留出 40px，否则仍会差几像素折行 */
+.vision-card{padding:clamp(40px,5vw,56px) clamp(20px,2.4vw,48px)}
+/* 左栏文案跟随栅格，保持原样不动 */
+.trend-copy .section-leader{width:auto;max-width:100%}
+
+/* 必须折行的长文案：让两行长度接近，避免末行只剩一两个字 */
+.section-leader,
+.section-leader--center,
+.cta-desc,
+.product-desc,
+.v8-ip-showcase-lead,
+.vision-card p{
+  text-wrap:balance;
+}
