@@ -2248,6 +2248,8 @@ button{font-family:inherit;cursor:pointer}
 }
 /* 视觉偏小的 logo 放大一档 */
 .bw-cell--up img{max-width:178px;max-height:76px;opacity:.68}
+/* 保留品牌原始配色（不做单色化），仍无底色 */
+.bw-cell--color img{filter:none;opacity:1}
 @media (hover:hover) and (pointer:fine){
   .bw-cell:hover{background:var(--c-bg)}
   .bw-cell:hover img{filter:grayscale(0);opacity:1;transform:scale(1.05)}
