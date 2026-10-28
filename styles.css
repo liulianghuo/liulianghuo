@@ -2345,19 +2345,22 @@ a{text-underline-offset:3px}
    做法：容器按内容实际宽度收缩（max-content），
         上限取「父容器宽度」与「可读行宽上限」中的较小值。
    ===================================================== */
+.section-leader,
 .section-leader--center,
 .cta-desc,
 .v8-ip-showcase-lead,
 .vision-card p{
   width:max-content;
-  max-width:min(100%, 1040px);
+  max-width:min(100%, 1200px);
   margin-left:auto;
   margin-right:auto;
 }
-/* 内页顶部标题区：上限略窄，但不低于原 860，避免比正文显窄 */
+/* 产品卡说明：跟着卡片宽度走、保持左对齐（不能居中收缩，否则和标题错位） */
+.product-desc{max-width:none;margin-left:0;margin-right:0}
+/* 内页顶部标题区：整段跟随板块宽度，能一行就一行 */
 .page-hero .section-leader{
   width:max-content;
-  max-width:min(100%, 980px);
+  max-width:min(100%, 1200px);
   margin-left:auto;
   margin-right:auto;
 }
@@ -2366,12 +2369,24 @@ a{text-underline-offset:3px}
 /* 左栏文案跟随栅格，保持原样不动 */
 .trend-copy .section-leader{width:auto;max-width:100%}
 
-/* 必须折行的长文案：让两行长度接近，避免末行只剩一两个字 */
+/* 长文案：优先铺满板块宽度（正文类走 body 的 text-wrap:pretty） */
+
+/* 短引导语（通常 1~2 行）：balance 让它「要么一行，要么两行等长居中」，
+   彻底消灭「末行只剩两三个字」的情况。长文体（文章正文 / FAQ）仍用 pretty。 */
 .section-leader,
 .section-leader--center,
+.page-hero .section-leader,
 .cta-desc,
 .product-desc,
 .v8-ip-showcase-lead,
-.vision-card p{
+.vision-card p,
+.bento-body,
+.dgn-quote{
   text-wrap:balance;
 }
+
+/* 引言卡：原本靠 <br><br> 硬换行，balance 对强制换行不生效，
+   改为块级 q-hook / q-detail，两段各自按容器宽度自适应 */
+.cap-quote .q-detail{display:block}
+.cap-quote .q-hook,
+.cap-quote .q-detail{text-wrap:balance}
