@@ -2390,3 +2390,129 @@ a{text-underline-offset:3px}
 .cap-quote .q-detail{display:block}
 .cap-quote .q-hook,
 .cap-quote .q-detail{text-wrap:balance}
+
+/* =====================================================
+   关于页视觉升级 v1 — 作用域 .page-about（可整段回退）
+   问题：一页 5 个 76px 大标题并列 → 没有主次；
+        3 张白卡厚重 + 副标题与卡标题重复；
+        纵向留白 120px 造成「一屏一个空洞」。
+   做法：一个页面只留一个 64px 主标题，其余降到 40px；
+        使命区改发丝线三栏，价值观卡去掉阴影只留发丝边框。
+   ===================================================== */
+
+/* ① 首屏：标题收一档，下面加一条渐变短线收住视线 */
+.page-about .page-hero{padding:148px var(--section-pad-h) 68px}
+.page-about .page-hero .section-kicker{
+  font-size:clamp(44px,5vw,64px);letter-spacing:-0.035em;margin-bottom:0;
+}
+.page-about .page-hero .section-kicker::after{
+  content:'';display:block;width:40px;height:2px;border-radius:2px;
+  background:var(--fire-gradient);margin:26px auto 22px;
+}
+.page-about .page-hero .section-leader{
+  font-size:17px;line-height:1.8;color:var(--c-text-tertiary);
+}
+
+/* ② 定位陈述：降级成副标题，不再和首屏抢注意力 */
+.page-about .section--statement{padding:0 var(--section-pad-h) clamp(60px,7vh,92px)}
+.page-about .section--statement .section-kicker{
+  font-size:clamp(21px,2.3vw,28px);font-weight:600;letter-spacing:-0.012em;
+  line-height:1.55;margin-bottom:12px;
+}
+.page-about .section--statement .section-leader{font-size:16.5px;color:var(--c-text-tertiary)}
+
+/* ③ 其余区块标题统一 40px */
+.page-about .section-kicker{font-size:clamp(28px,3.2vw,40px);letter-spacing:-0.025em;margin-bottom:16px}
+.page-about .section-leader{font-size:16.5px;line-height:1.8}
+
+/* ④ 纵向留白收敛，去掉「一屏一个空洞」 */
+.page-about .section{padding:clamp(72px,8vh,100px) var(--section-pad-h)}
+.page-about .brandwall-section{padding:clamp(72px,8vh,100px) var(--section-pad-h)}
+
+/* ⑤ 企业使命：三张厚白卡 → 发丝线三栏（更轻、更像编辑排版） */
+.page-about .mission-grid{gap:0;margin-top:52px;border-top:1px solid var(--c-line)}
+.page-about .mission-card{
+  background:transparent;border:0;border-radius:0;box-shadow:none;
+  padding:34px 44px 0 0;
+}
+.page-about .mission-card + .mission-card{padding-left:44px;border-left:1px solid var(--c-line-subtle)}
+.page-about .mission-card::before{display:none}
+.page-about .mission-card:hover{transform:none;box-shadow:none}
+.page-about .mission-card h4{font-size:19px;font-weight:700;line-height:1.45;margin-bottom:14px;letter-spacing:-0.01em}
+.page-about .mission-card p{font-size:14.5px;line-height:1.78;color:var(--c-text-secondary)}
+
+/* ⑥ 企业价值观：只留发丝边框，去掉阴影与厚边 */
+.page-about .values-grid{gap:18px;margin-top:48px}
+.page-about .value-card{
+  background:var(--c-bg);border:1px solid var(--c-line-subtle);border-radius:18px;
+  padding:28px 26px;box-shadow:none;
+}
+.page-about .value-card:hover{transform:translateY(-4px);border-color:var(--c-line);box-shadow:none}
+.page-about .value-card h4{font-size:16.5px;margin-bottom:10px}
+.page-about .value-card p{font-size:14px;line-height:1.75}
+
+/* ⑦ 企业愿景：行距收紧，左右转成两栏读起来更稳 */
+.page-about .vision-card{margin-top:44px;padding:40px 48px}
+.page-about .vision-card p{font-size:16.5px;line-height:1.8;margin-bottom:14px}
+.page-about .vision-card p:last-child{margin-bottom:0}
+
+/* ⑧ Slogan 段：略降一档，作为收尾而不是又一个主标题 */
+.page-about .section--slogan .section-kicker{font-size:clamp(34px,4vw,50px);letter-spacing:-0.035em}
+
+/* ⑨ 团队段：标题与正文同宽居中，避免「标题居中、正文左对齐」的歪感 */
+.page-about .team-grid{max-width:var(--container-wide)}
+.page-about .team-card{padding:34px 20px 30px}
+
+/* ⑩ 统计条：数字用等宽数字对齐，标签收细 */
+.page-about .stats-strip{padding:clamp(60px,7vh,84px) var(--section-pad-h)}
+.page-about .stat-value{font-size:clamp(38px,4vw,52px);letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+.page-about .stat-label{font-size:12.5px;letter-spacing:0.08em;color:rgba(255,255,255,0.42)}
+
+/* ⑪ 联系区：卡片内边距与标题比例微调 */
+.page-about .cta-section{padding:clamp(88px,10vh,130px) var(--section-pad-h)}
+
+/* =====================================================
+   品牌墙 Logo 光学尺寸统一（全站生效，首页同样受益）
+   问题：max-height 从 58 到 120 六档并存，字号大的 logo 撑满格子，
+        小号 logo 缩成一点，整墙看着「脏」。
+   做法：统一压到 42~48 高、格子加到 118，四周留足呼吸。
+   ===================================================== */
+.bw-cell{height:118px;padding:24px}
+.bw-cell img{max-height:42px;max-width:112px}
+.bw-cell--xl img,
+.bw-cell--md img{max-height:44px;max-width:118px}
+.bw-cell--wide img{max-height:42px;max-width:118px}
+.bw-cell--tall img{max-height:48px;max-width:96px}
+.bw-cell--lg img{max-height:44px;max-width:44px}
+.bw-cell--up img{max-height:46px;max-width:124px;opacity:.64}
+.bw-cell--xl,.bw-cell--md{padding:24px}
+.bw-cell--empty .bw-word{font-size:16px;letter-spacing:.1em}
+@media(max-width:560px){.bw-cell{height:96px;padding:16px}}
+
+/* —— 关于页视觉升级 v1.1 — 三处再收口 —— */
+
+/* 首屏副标颜色加深一档：17px + 三级灰在白底上太虚 */
+.page-about .page-hero .section-leader{color:var(--c-text-secondary)}
+
+/* 愿景卡：两段并排成「左右对开」，把 1200 宽用满，不再中间一团 */
+.page-about .vision-card{
+  max-width:var(--container-wide);margin-top:44px;padding:44px 52px;
+  border-radius:22px;text-align:left;
+  display:grid;grid-template-columns:1fr 1fr;column-gap:56px;row-gap:0;
+  align-items:start;
+}
+.page-about .vision-card p{
+  width:auto;max-width:100%;          /* 覆盖 v16 的 max-content，否则栅格被撑爆 */
+  font-size:16.5px;line-height:1.8;color:var(--c-text-secondary);
+  text-align:left;margin:0;
+}
+@media(max-width:860px){
+  .page-about .vision-card{grid-template-columns:1fr;row-gap:16px;padding:36px 28px}
+}
+
+/* 价值观：4 列 200px 太挤 → 2×2 宽卡，正文能一行读完 */
+.page-about .values-grid{grid-template-columns:repeat(2,1fr);gap:16px;margin-top:44px}
+.page-about .value-card{padding:24px 28px;border-radius:16px}
+.page-about .value-card h4{font-size:17px;margin-bottom:8px}
+.page-about .value-card p{font-size:14.5px;line-height:1.75;max-width:none}
+@media(max-width:860px){.page-about .values-grid{grid-template-columns:1fr}}
