@@ -2516,3 +2516,14 @@ a{text-underline-offset:3px}
 .page-about .value-card h4{font-size:17px;margin-bottom:8px}
 .page-about .value-card p{font-size:14.5px;line-height:1.75;max-width:none}
 @media(max-width:860px){.page-about .values-grid{grid-template-columns:1fr}}
+
+/* =====================================================
+   移动端标题字号 v18
+   问题：≤420px 时 .section-kicker 是 30px，「AI 搜索时代，已经到来」
+        刚好超出容器 30 多像素，被断成「AI 搜索时 / 代，已经到来」，
+        把「时代」劈成两半。
+   做法：≤768px 统一收一档，宽度够就一行，不够时也不会差一两个字。
+   ===================================================== */
+@media(max-width:768px){
+  .section-kicker{font-size:clamp(26px,6.2vw,32px)}
+}
