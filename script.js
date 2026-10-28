@@ -22,17 +22,43 @@ const updateProgress = () => {
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-// Mobile menu toggle (真正可用)
+// Mobile menu toggle
 const mobileBtn = document.querySelector('.mobile-btn');
 const mobileMenu = document.querySelector('.mobile-menu');
 if (mobileBtn && mobileMenu) {
-  const toggle = (e) => {
-    e && e.preventDefault();
-    const open = mobileMenu.classList.toggle('open');
+  const setOpen = (open) => {
+    mobileMenu.classList.toggle('open', open);
     mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
   };
-  mobileBtn.addEventListener('click', toggle);
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', toggle));
+
+  mobileBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    setOpen(!mobileMenu.classList.contains('open'));
+  });
+
+  /* 点菜单里的链接：只关面板，绝对不要 preventDefault ——
+     之前把 toggle 直接绑在 a 上，里面调了 preventDefault，导致点「套餐/服务」
+     菜单收起了但页面不跳转，手机上看起来就是「点了没反应」。 */
+  mobileMenu.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+
+  // 点面板外收起
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.classList.contains('open')) return;
+    if (mobileMenu.contains(e.target) || mobileBtn.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  // 转横屏 / 放大窗口时收起
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) setOpen(false);
+  });
+
+  // Esc 收起
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
 }
 
 // Scroll reveal with stagger
