@@ -2749,3 +2749,24 @@ a{text-underline-offset:3px}
   .faq-a-inner{font-size:13.5px;line-height:1.7;padding:0 18px 16px}
   .faq-list{gap:10px;margin-top:24px}
 }
+
+/* ============================================================
+   v20 修正：手机端两处硬伤（桌面端不受影响，仍在 @media 内）
+   ============================================================ */
+@media(max-width:768px){
+  /* ① 统计条：v13 那条「固定列数修正」用的 repeat(auto-fit,minmax(0,1fr))
+        位置在文件更后面，把移动端的 2 列覆盖回了 5 列 ——
+        390px 下每格只有 60 多像素，「11200+」被挤成三行。这里改回 2 列并禁止数字换行。 */
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:26px 16px}
+  .stat-value,
+  .page-about .stat-value{font-size:30px;letter-spacing:-0.02em;line-height:1.15;white-space:nowrap}
+  .stat-label,
+  .page-about .stat-label{font-size:11.5px;letter-spacing:.03em;line-height:1.45;margin-top:5px}
+  /* 首页 5 项时，最后一项独占一行居中，避免右下角空一格 */
+  .stats-inner > .stat-item:last-child:nth-child(odd){grid-column:1 / -1}
+
+  /* ② 服务页配图：桌面是 4:3 的大色块 + 居中一枚图标，手机上一块就是 262px 纯空，
+        4 块白吃 1000 多像素。这些图标不承载信息（上方 01-04 编号已经给了节奏），
+        手机上直接隐藏最干净。 */
+  .svc-visual{display:none}
+}
