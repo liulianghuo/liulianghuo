@@ -162,20 +162,64 @@
   font-size:clamp(18px,2.1vw,23px);font-weight:650;letter-spacing:-0.022em;
   line-height:1.55;color:var(--c-text);text-wrap:balance;
 }
+.geo-quote .hl{color:var(--fire-mid)}
 
 /* ── 产品矩阵：三档 ── */
-.geo-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.geo-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
 .geo-tier{
+  position:relative;display:flex;flex-direction:column;
   border:0.5px solid var(--c-line);border-radius:18px;background:var(--c-bg);
   padding:clamp(20px,2.4vw,26px);
 }
-.geo-tier--hi{border-color:rgba(201,80,43,.3);box-shadow:0 22px 54px -42px rgba(201,80,43,.6)}
-.geo-tier-k{display:inline-block;font-size:11.5px;font-weight:600;color:var(--fire-mid);background:var(--fire-glow);border-radius:980px;padding:3px 10px;line-height:1.6}
-.geo-tier h3{font-size:19px;font-weight:700;letter-spacing:-0.02em;color:var(--c-text);margin:12px 0 6px;line-height:1.35}
-.geo-tier .sub{font-size:13.5px;color:var(--c-text-secondary);line-height:1.6;margin:0 0 14px}
-.geo-tier ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
-.geo-tier li{position:relative;padding-left:13px;font-size:13px;line-height:1.6;color:var(--c-text)}
-.geo-tier li::before{content:"";position:absolute;left:1px;top:9px;width:4px;height:4px;border-radius:50%;background:var(--fire-mid);opacity:.45}
+.geo-tier--hi{border-color:rgba(201,80,43,.4);box-shadow:0 22px 54px -42px rgba(201,80,43,.6)}
+.tier-flag{
+  position:absolute;top:-12px;right:18px;
+  background:var(--fire-gradient);color:#fff;
+  font-size:11px;font-weight:600;border-radius:980px;padding:4px 12px;line-height:1.5;
+}
+.geo-tier-k{display:inline-block;align-self:flex-start;font-size:11.5px;font-weight:600;color:var(--fire-mid);background:var(--fire-glow);border-radius:980px;padding:3px 10px;line-height:1.6}
+.geo-tier h3{font-size:21px;font-weight:700;letter-spacing:-0.02em;color:var(--c-text);margin:12px 0 5px;line-height:1.3}
+.geo-tier .sub{font-size:13.5px;color:var(--fire-mid);font-weight:550;line-height:1.6;margin:0 0 10px}
+.tier-desc{font-size:12.5px;line-height:1.72;color:var(--c-text-secondary);margin:0 0 16px}
+.tier-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0.5px;
+  background:var(--c-line-subtle);border:0.5px solid var(--c-line-subtle);
+  border-radius:12px;overflow:hidden;margin-bottom:16px;
+}
+.tier-grid > div{background:var(--c-bg);padding:11px 13px}
+.tier-grid b{display:block;font-size:19px;font-weight:700;letter-spacing:-0.025em;color:var(--c-text);line-height:1.2}
+.tier-grid b i{font-style:normal;font-size:10.5px;font-weight:500;color:var(--c-text-tertiary);margin-left:2px;letter-spacing:0}
+.tier-grid span{display:block;font-size:11px;color:var(--c-text-tertiary);margin-top:3px}
+.tier-check{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:8px}
+.tier-check li{position:relative;padding-left:20px;font-size:12.5px;line-height:1.62;color:var(--c-text-secondary)}
+.tier-check li::before{
+  content:"";position:absolute;left:2px;top:6px;width:9px;height:5px;
+  border-left:1.5px solid var(--fire-mid);border-bottom:1.5px solid var(--fire-mid);
+  transform:rotate(-45deg);
+}
+.tier-btn{
+  margin-top:auto;display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;border-radius:980px;border:1px solid var(--c-line);
+  font-family:var(--font);font-size:13.5px;font-weight:600;color:var(--c-text);
+  transition:border-color var(--duration-fast) ease,background-color var(--duration-fast) ease;
+}
+.tier-btn:hover{border-color:var(--c-text-secondary);background:var(--c-surface)}
+.geo-tier--hi .tier-btn{background:var(--fire-gradient);color:#fff;border-color:transparent}
+.geo-tier--hi .tier-btn:hover{box-shadow:0 12px 28px rgba(201,80,43,0.24);background:var(--fire-gradient)}
+/* 铂金版：深色卡 */
+.geo-tier--dark{background:#0A0A0C;border-color:#0A0A0C}
+.geo-tier--dark h3{color:#fff}
+.geo-tier--dark .sub{color:var(--fire-from)}
+.geo-tier--dark .tier-desc{color:rgba(255,255,255,.62)}
+.geo-tier--dark .geo-tier-k{color:var(--fire-from);background:rgba(232,131,90,.14)}
+.geo-tier--dark .tier-grid{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.08)}
+.geo-tier--dark .tier-grid > div{background:#151517}
+.geo-tier--dark .tier-grid b{color:#fff}
+.geo-tier--dark .tier-grid b i{color:rgba(255,255,255,.4)}
+.geo-tier--dark .tier-grid span{color:rgba(255,255,255,.4)}
+.geo-tier--dark .tier-check li{color:rgba(255,255,255,.74)}
+.geo-tier--dark .tier-check li::before{border-color:var(--fire-from)}
+.geo-tier--dark .tier-btn{background:var(--fire-gradient);color:#fff;border-color:transparent}
 
 /* ── 能力对照表 ── */
 .geo-tbl-wrap{margin-top:clamp(28px,4vh,40px)}
@@ -482,6 +526,9 @@
   .geo-quote{font-size:16px;line-height:1.6}
   .geo-steps,.geo-fit,.geo-ind,.geo-metrics{grid-template-columns:1fr}
   .geo-step,.geo-fit-card,.geo-ind-card,.geo-cmp-col,.geo-tier,.geo-case{padding:18px 16px}
+  .geo-tiers{margin-top:16px}
+  .tier-flag{right:14px}
+  .tier-grid b{font-size:17px}
   .geo-tbl{font-size:12.5px}
   .geo-tbl th:not(:first-child){width:56px}
   .geo-tbl th,.geo-tbl td{padding:10px 3px}
@@ -519,14 +566,14 @@
     "url": "https://liulianghuo.com"
   },
   "areaServed": "CN",
-  "description": "面向豆包、DeepSeek、腾讯元宝、通义千问、文心、Kimi、ChatGPT、Gemini 等 15 个 AI 平台的生成式引擎优化服务。已完成全国线上链路打通，覆盖 2845 个县级行政区、694 座城市、297 个主流地级城市。按合作深度分为验证版、增长版、全国版三档。",
+  "description": "面向豆包、DeepSeek、腾讯元宝、通义千问、文心、Kimi、ChatGPT、Gemini 等 15 个 AI 平台的生成式引擎优化服务。已完成全国线上链路打通，覆盖 2845 个县级行政区、694 座城市、297 个主流地级城市。按合作深度分为验证版、增长版、铂金版三档。",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "GEO 合作深度",
     "itemListElement": [
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"GEO 验证版：单城单品牌跑通闭环"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"GEO 增长版：多城并行推进"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"GEO 全国版：全国链路覆盖与竞品压制"}}
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"GEO 铂金版：全国链路覆盖与竞品压制"}}
     ]
   }
 }
@@ -540,7 +587,7 @@
     {"@type":"Question","name":"GEO 和 SEO 有什么不一样？","acceptedAnswer":{"@type":"Answer","text":"SEO 优化的是搜索结果页里的链接排名，用户还要自己点开比较；GEO 优化的是 AI 直接给出的那段答案。用户不再逐条翻链接，AI 提到谁，谁就进入选择范围。两者不冲突，好的网站内容对两者都有帮助。"}},
     {"@type":"Question","name":"为什么现在就要做 GEO？","acceptedAnswer":{"@type":"Answer","text":"越来越多的人习惯直接向 AI 提问来做选择，而 AI 的回答里通常只出现两三个品牌。越早把真实、可核实的品牌内容铺到 AI 会读的地方，越容易在这些回答里占住位置。"}},
     {"@type":"Question","name":"AI 是根据什么来介绍一个品牌的？","acceptedAnswer":{"@type":"Answer","text":"AI 会参考训练数据和联网检索到的公开信息。信息越真实、一致、来源越可信，被正确引用的可能性越高。这也是我们重视品牌事实梳理和信源建设的原因。"}},
-    {"@type":"Question","name":"三档合作怎么选？","acceptedAnswer":{"@type":"Answer","text":"看你现在缺的是被认识、被推荐，还是被优先推荐。验证版适合单店单品牌单城市，先跑通一个闭环；增长版适合已在多个城市有门店或服务；全国版适合全国布局或行业头部，需要在 AI 答案里压制竞品提及。具体城市数量、词库规模与内容产能按行业和预算确定。"}},
+    {"@type":"Question","name":"三档合作怎么选？","acceptedAnswer":{"@type":"Answer","text":"看你现在缺的是被认识、被推荐，还是被优先推荐。验证版适合单店单品牌单城市，先跑通一个闭环；增长版适合已在多个城市有门店或服务；铂金版适合全国布局或行业头部，需要在 AI 答案里压制竞品提及。具体城市数量、词库规模与内容产能按行业和预算确定。"}},
     {"@type":"Question","name":"你们具体做哪些工作？","acceptedAnswer":{"@type":"Answer","text":"四步：GEO 词库定制（梳理客户会问 AI 的问题）、内容优化（按各平台偏好重写与生产可被引用的内容）、多平台分发（官网结构化数据、行业门户、媒体、地图商户、问答平台）、自动化监控（定期复测提及率、首位率与描述准确性）。"}},
     {"@type":"Question","name":"我需要准备什么？","acceptedAnswer":{"@type":"Answer","text":"企业基本资料、产品或服务介绍、资质与真实案例，以及可授权使用的自媒体账号。其余工作由我们完成。我们不编造数据、资质或评价。"}},
     {"@type":"Question","name":"覆盖哪些 AI 平台？","acceptedAnswer":{"@type":"Answer","text":"共 15 个：字节豆包、DeepSeek、腾讯元宝、阿里通义千问、ChatGPT、Google Gemini、百度文心助手、百度 AI 搜、抖音 AI 搜、QQ 浏览器 AI 搜、月之暗面 Kimi、百度文心、灵光、纳米、小红书点点。平台名称仅说明服务覆盖范围，不代表官方合作关系。"}},
@@ -642,23 +689,23 @@
           <div class="l">覆盖的 AI 平台</div>
         </div>
         <div class="geo-stat">
-          <div class="n">694<i>座</i></div>
-          <div class="l">城市链路已打通</div>
+          <div class="n">20+<i>国家</i></div>
+          <div class="l">覆盖全球主要市场</div>
         </div>
         <div class="geo-stat">
-          <div class="n">45<i>个</i></div>
-          <div class="l">重点城市分批推进</div>
+          <div class="n">20<i>万</i></div>
+          <div class="l">核心商业问题</div>
         </div>
         <div class="geo-stat">
-          <div class="n">80<i>元</i></div>
-          <div class="l">核心城市有效线索</div>
+          <div class="n">3<i>万篇</i></div>
+          <div class="l">GEO 内容 / 年</div>
         </div>
       </div>
     </div>
 
     <div class="geo-hero-right reveal reveal--d1">
       <div class="geo-demo-card">
-        <span class="geo-demo-tag">示例 · 非真实 AI 输出</span>
+        <span class="geo-demo-tag">AI 回答预览 · 示意</span>
 
         <div class="geo-ask">
           <span class="geo-q">问</span>
@@ -727,7 +774,7 @@
       </div>
     </div>
 
-    <p class="geo-quote reveal">在生成式引擎里，排名不再是一页链接，<br>而是一句推荐</p>
+    <p class="geo-quote reveal">在生成式引擎里，排名不再是一页链接，<br>而是<span class="hl">一句推荐</span>，我们要优化的，<br>就是那一句推荐，<span class="hl">必须是我们</span></p>
   </div>
 </section>
 
@@ -748,33 +795,64 @@
           <span class="geo-tier-k">验证期</span>
           <h3>验证版</h3>
           <p class="sub">先让 AI 认识你</p>
-          <ul>
-            <li>单店、单品牌、单城市</li>
-            <li>先把一个闭环跑通，看到真实变化</li>
-            <li>适合第一次做 GEO，不想一上来铺太开</li>
+          <p class="tier-desc">适合首次验证 GEO 效果、单品牌单市场的中小企业，用最小成本跑通「诊断—建库—收录」闭环</p>
+          <div class="tier-grid">
+            <div><b>5<i>个</i></b><span>AI 平台</span></div>
+            <div><b>2<i>万</i></b><span>核心商业问题</span></div>
+            <div><b>5,000<i>篇/年</i></b><span>GEO 内容</span></div>
+            <div><b>1<i>个</i></b><span>核心市场</span></div>
+          </div>
+          <ul class="tier-check">
+            <li>品牌现状诊断 + 可见度基线</li>
+            <li>竞品提及 + 引用来源分析</li>
+            <li>目标问题词库与优先级</li>
+            <li>结构化数据 + llms.txt</li>
+            <li>定期复测与基线对比报告</li>
           </ul>
+          <a class="tier-btn" href="#contact">咨询验证版</a>
         </div>
 
         <div class="geo-tier geo-tier--hi reveal reveal--d1">
+          <span class="tier-flag">主推方案</span>
           <span class="geo-tier-k">增长期</span>
           <h3>增长版</h3>
           <p class="sub">让 AI 主动推荐你</p>
-          <ul>
-            <li>多城市并行推进，按城市逐个复制</li>
-            <li>稳定内容供给 + 权威信源布局</li>
-            <li>适合已在多个城市有门店或服务</li>
+          <p class="tier-desc">体系化内容供给 + 权威信源布局，配专属 GEO 团队与月度复盘，把可见度做成持续增长的资产</p>
+          <div class="tier-grid">
+            <div><b>10<i>个</i></b><span>AI 平台</span></div>
+            <div><b>10<i>万</i></b><span>核心商业问题</span></div>
+            <div><b>15,000<i>篇/年</i></b><span>GEO 内容</span></div>
+            <div><b>6<i>个/年</i></b><span>权威信源</span></div>
+          </div>
+          <ul class="tier-check">
+            <li>含验证版全部能力</li>
+            <li>10 万核心商业问题覆盖</li>
+            <li>品牌语料库 + 2 个竞品对照</li>
+            <li>媒体 / 第三方平台分发 + 官网诊断</li>
+            <li>月度效果追踪 + 专属团队 + 年度策略</li>
           </ul>
+          <a class="tier-btn" href="#contact">咨询增长版</a>
         </div>
 
-        <div class="geo-tier reveal reveal--d2">
+        <div class="geo-tier geo-tier--dark reveal reveal--d2">
           <span class="geo-tier-k">压制期</span>
-          <h3>全国版</h3>
-          <p class="sub">让 AI 优先说出你</p>
-          <ul>
-            <li>全国链路覆盖，竞品提及压制</li>
-            <li>官网、内容、信源全域实施</li>
-            <li>适合全国布局或行业头部竞争</li>
+          <h3>铂金版</h3>
+          <p class="sub">让 AI 只推荐你</p>
+          <p class="tier-desc">面向多市场布局与行业头部竞争：全域实施、竞争情报、高级顾问直连，把 AI 心智位占满</p>
+          <div class="tier-grid">
+            <div><b>15<i>个</i></b><span>AI 平台</span></div>
+            <div><b>20<i>万</i></b><span>核心商业问题</span></div>
+            <div><b>30,000<i>篇/年</i></b><span>GEO 内容</span></div>
+            <div><b>20<i>个/年</i></b><span>权威信源</span></div>
+          </div>
+          <ul class="tier-check">
+            <li>含增长版全部能力，额度全面放大</li>
+            <li>20 万核心商业问题 · 5 个竞品对照</li>
+            <li>行业竞争情报 + 季度战略会</li>
+            <li>官网 GEO 全域实施 + Schema / FAQ / llms.txt</li>
+            <li>双周动态监测 + 高级顾问直连</li>
           </ul>
+          <a class="tier-btn" href="#contact">预约铂金方案</a>
         </div>
       </div>
 
@@ -785,7 +863,7 @@
         </div>
         <table class="geo-tbl">
           <thead>
-            <tr><th>能力项</th><th>验证版</th><th>增长版</th><th>全国版</th></tr>
+            <tr><th>能力项</th><th>验证版</th><th>增长版</th><th>铂金版</th></tr>
           </thead>
           <tbody>
             <tr class="geo-tbl-group"><td colspan="4">诊断与词库</td></tr>
@@ -1380,7 +1458,7 @@
       <div class="faq-group-label reveal">服务与合作</div>
       <div class="faq-item">
         <button class="faq-q">三档合作怎么选？<span class="faq-plus"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">看你现在缺的是被认识、被推荐，还是被优先推荐。验证版适合单店单品牌单城市，先跑通一个闭环；增长版适合已在多个城市有门店或服务；全国版适合全国布局或行业头部，需要在 AI 答案里压制竞品提及。具体城市数量、词库规模与内容产能按行业和预算确定，三档均为面议。</div></div>
+        <div class="faq-a"><div class="faq-a-inner">看你现在缺的是被认识、被推荐，还是被优先推荐。验证版适合单店单品牌单城市，先跑通一个闭环；增长版适合已在多个城市有门店或服务；铂金版适合全国布局或行业头部，需要在 AI 答案里压制竞品提及。具体城市数量、词库规模与内容产能按行业和预算确定，三档均为面议。</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">你们具体做哪些工作？<span class="faq-plus"></span></button>
