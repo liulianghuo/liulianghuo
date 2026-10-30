@@ -3,18 +3,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>服务 — 流量火传媒：四大核心服务</title>
-<meta name="description" content="流量火传媒四大核心服务：小红书一对一教培、小红书代运营、视频IP打造与定位、GEO优化。从策略到执行的全链路增长方案。">
-<meta property="og:title" content="服务 — 流量火传媒">
+<title>GEO 优化 — 流量火传媒 | 让品牌成为 AI 答案里的那个名字</title>
+<meta name="description" content="GEO（生成式引擎优化）服务：让品牌在豆包、DeepSeek、元宝、通义、文心、Kimi、ChatGPT 等 15 个 AI 平台被准确介绍并优先推荐。覆盖 2845 个县级行政区、694 座城市，四步交付：词库定制、内容优化、多平台分发、自动化监控。">
+<meta property="og:title" content="GEO 优化 — 流量火传媒">
   <meta property="og:image" content="images/og/og-services.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/webp">
   <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="小红书一对一教培、小红书代运营、视频IP打造与定位、GEO优化四大核心服务。">
+<meta property="og:description" content="让品牌成为 AI 答案里的那个名字。15 个 AI 平台覆盖，2845 个县级行政区、694 座城市链路已打通。">
 <link rel="canonical" href="https://liulianghuo.com/services.html">
 <link rel="icon" href="logo.png" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css?v=20">
+
+<style>
+/* ==========================================================================
+   GEO 页专用样式（前缀 .geo-，不影响全站其他页面）
+   容器逻辑与全站一致：max-width = 1200 + 2×左右内边距，内容区恒为 1200
+   ========================================================================== */
+.geo-sec{
+  padding:clamp(58px,7vh,96px) var(--section-pad-h);
+  max-width:calc(var(--container-max) + 2 * var(--section-pad-h));
+  margin:0 auto;
+}
+.geo-inner{max-width:var(--container-wide);margin:0 auto}
+.geo-band{background:var(--c-surface-warm)}
+
+.geo-head{max-width:780px;margin:0 auto clamp(30px,4vh,44px);text-align:center}
+.geo-h2{
+  font-size:clamp(26px,3.2vw,40px);font-weight:700;letter-spacing:-0.035em;
+  line-height:1.18;color:var(--c-text);margin:0 0 14px;
+}
+.geo-lead{
+  font-size:15.5px;line-height:1.78;color:var(--c-text-secondary);
+  margin:0 auto;max-width:680px;text-wrap:pretty;
+}
+
+/* ── 首屏 AI 回答示意卡 ── */
+.geo-demo-card{
+  max-width:820px;margin:0 auto;background:var(--c-bg);
+  border:0.5px solid var(--c-line);border-radius:20px;
+  padding:clamp(20px,2.6vw,30px);
+  box-shadow:0 1px 2px rgba(0,0,0,.02),0 24px 60px -40px rgba(0,0,0,.28);
+}
+.geo-demo-tag{
+  display:inline-flex;align-items:center;gap:7px;font-size:11.5px;
+  color:var(--c-text-tertiary);border:0.5px solid var(--c-line-subtle);
+  border-radius:980px;padding:4px 11px;line-height:1;
+}
+.geo-demo-tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--c-text-tertiary);opacity:.7}
+.geo-ask{display:flex;gap:11px;align-items:flex-start;margin:18px 0 16px}
+.geo-q{
+  flex:0 0 auto;width:22px;height:22px;border-radius:7px;background:var(--c-surface);
+  color:var(--c-text-secondary);font-size:11px;font-weight:700;
+  display:grid;place-items:center;margin-top:1px;
+}
+.geo-ask p{font-size:15.5px;font-weight:600;color:var(--c-text);line-height:1.55;margin:0}
+.geo-ans{background:var(--c-surface);border-radius:14px;padding:18px 20px}
+.geo-ans-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.geo-ans-h span:first-child{font-size:12px;font-weight:650;color:var(--c-text-tertiary);letter-spacing:.02em}
+.geo-badge{font-size:11.5px;font-weight:600;color:var(--fire-mid);background:var(--fire-glow);border-radius:980px;padding:3px 10px;line-height:1.5}
+.geo-ans p{font-size:14.5px;line-height:1.82;color:var(--c-text);margin:0}
+.geo-ans p b{font-weight:650;color:var(--fire-mid)}
+.geo-cites{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:14px;padding-top:12px;border-top:1px dashed rgba(0,0,0,.07)}
+.geo-cites > span:first-child{font-size:11.5px;color:var(--c-text-tertiary);margin-right:2px}
+.geo-cite{font-size:12px;color:var(--c-text-secondary);background:var(--c-bg);border:0.5px solid var(--c-line-subtle);border-radius:980px;padding:3px 10px;line-height:1.5}
+.geo-demo-note{max-width:820px;margin:14px auto 0;text-align:center;font-size:12.5px;color:var(--c-text-secondary);line-height:1.65}
+
+/* ── 首屏数字 ── */
+.geo-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,34px);
+  max-width:880px;margin:clamp(32px,4.5vh,48px) auto 0;
+}
+.geo-stat{text-align:center}
+.geo-stat .n{font-size:clamp(25px,2.9vw,34px);font-weight:700;letter-spacing:-0.035em;line-height:1.1;color:var(--c-text)}
+.geo-stat .n i{font-style:normal;font-size:12.5px;font-weight:500;letter-spacing:0;color:var(--c-text-tertiary);margin-left:3px}
+.geo-stat .l{font-size:12.5px;color:var(--c-text-secondary);line-height:1.55;margin-top:7px}
+
+/* ── 为什么现在 ── */
+.geo-why{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3.4vw,44px)}
+.geo-why-item{border-top:1px solid var(--c-line-subtle);padding-top:20px}
+.geo-why-item .n{font-family:var(--mono);font-size:11px;color:var(--c-text-tertiary);letter-spacing:.14em}
+.geo-why-item h3{font-size:17px;font-weight:650;letter-spacing:-0.015em;color:var(--c-text);margin:10px 0 9px;line-height:1.4}
+.geo-why-item p{font-size:14px;line-height:1.78;color:var(--c-text-secondary);margin:0}
+.geo-quote{
+  max-width:840px;margin:clamp(34px,5vh,56px) auto 0;text-align:center;
+  font-size:clamp(18px,2.1vw,23px);font-weight:650;letter-spacing:-0.022em;
+  line-height:1.55;color:var(--c-text);text-wrap:balance;
+}
+
+/* ── 四步 ── */
+.geo-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.geo-step{background:var(--c-bg);border:0.5px solid var(--c-line-subtle);border-radius:16px;padding:22px 20px}
+.geo-step .n{font-family:var(--mono);font-size:11px;color:var(--c-text-tertiary);letter-spacing:.14em}
+.geo-step h3{font-size:16px;font-weight:650;letter-spacing:-0.012em;color:var(--c-text);margin:9px 0 8px;line-height:1.4}
+.geo-step > p{font-size:13px;line-height:1.7;color:var(--c-text-secondary);margin:0 0 13px}
+.geo-step ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.geo-step li{position:relative;padding-left:13px;font-size:13px;line-height:1.65;color:var(--c-text)}
+.geo-step li::before{content:"";position:absolute;left:1px;top:9px;width:4px;height:4px;border-radius:50%;background:var(--fire-mid);opacity:.5}
+.geo-out{margin-top:14px;padding-top:11px;border-top:1px dashed var(--c-line-subtle);font-size:12px;line-height:1.6;color:var(--c-text-tertiary)}
+.geo-out b{color:var(--c-text-secondary);font-weight:600}
+
+/* ── 处境卡 ── */
+.geo-fit{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.geo-fit-card{
+  border:0.5px solid var(--c-line);border-radius:18px;background:var(--c-bg);
+  padding:clamp(20px,2.4vw,26px);
+  transition:border-color var(--duration-fast) ease;
+}
+.geo-fit-k{display:inline-block;font-size:11.5px;font-weight:600;color:var(--fire-mid);background:var(--fire-glow);border-radius:980px;padding:3px 10px;line-height:1.6}
+.geo-fit-card h3{font-size:17px;font-weight:650;letter-spacing:-0.015em;color:var(--c-text);margin:12px 0 8px;line-height:1.4}
+.geo-fit-card .fit-for{font-size:13.5px;line-height:1.72;color:var(--c-text-secondary);margin:0 0 14px}
+.geo-fit-card ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.geo-fit-card li{position:relative;padding-left:13px;font-size:13px;line-height:1.65;color:var(--c-text)}
+.geo-fit-card li::before{content:"";position:absolute;left:1px;top:9px;width:4px;height:4px;border-radius:50%;background:var(--c-line)}
+.geo-fit-out{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--c-line-subtle)}
+.geo-fit-out span{font-size:11.5px;color:var(--c-text-tertiary);background:var(--c-surface);border-radius:6px;padding:3px 8px;line-height:1.6}
+
+/* ── 行业 ── */
+.geo-ind{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.geo-ind-card{background:var(--c-bg);border:0.5px solid var(--c-line-subtle);border-radius:18px;padding:clamp(20px,2.4vw,26px)}
+.geo-ind-card h3{font-size:16px;font-weight:650;letter-spacing:-0.012em;color:var(--c-text);margin:0 0 14px;line-height:1.4}
+.geo-ind-blk + .geo-ind-blk{margin-top:13px}
+.geo-ind-k{font-size:11.5px;font-weight:600;color:var(--c-text-tertiary);margin-bottom:6px}
+.geo-ind-card ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+.geo-ind-q li{position:relative;padding-left:12px;font-size:13px;line-height:1.62;color:var(--c-text)}
+.geo-ind-q li::before{content:"“";position:absolute;left:0;top:-1px;color:var(--c-text-tertiary);font-size:15px}
+.geo-ind-t li{position:relative;padding-left:12px;font-size:13px;line-height:1.62;color:var(--c-text-secondary)}
+.geo-ind-t li::before{content:"";position:absolute;left:1px;top:9px;width:4px;height:4px;border-radius:50%;background:var(--fire-mid);opacity:.45}
+
+/* ── 三者区别 ── */
+.geo-cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.geo-cmp-col{border:0.5px solid var(--c-line-subtle);border-radius:16px;padding:22px 20px;background:var(--c-bg)}
+.geo-cmp-col--hi{border-color:rgba(201,80,43,.28);background:var(--c-bg);box-shadow:0 18px 44px -34px rgba(201,80,43,.5)}
+.geo-cmp-col h3{font-size:15px;font-weight:650;letter-spacing:-0.01em;color:var(--c-text);margin:0 0 16px;line-height:1.45}
+.geo-cmp-col h3 em{display:block;font-style:normal;font-size:11.5px;font-weight:500;color:var(--c-text-tertiary);margin-top:3px;letter-spacing:0}
+.geo-cmp-row + .geo-cmp-row{margin-top:13px}
+.geo-cmp-row dt{font-size:11.5px;color:var(--c-text-tertiary);margin-bottom:3px}
+.geo-cmp-row dd{margin:0;font-size:13.5px;line-height:1.65;color:var(--c-text-secondary)}
+.geo-cmp-col--hi .geo-cmp-row dd{color:var(--c-text)}
+
+/* ── 交付清单 ── */
+.geo-deliver{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.6vw,30px)}
+.geo-deliver-col h3{
+  font-size:13.5px;font-weight:650;color:var(--c-text);margin:0 0 12px;
+  padding-bottom:10px;border-bottom:1px solid var(--c-line-subtle);
+}
+.geo-deliver-col ul{list-style:none;padding:0;margin:0}
+.geo-deliver-col li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  font-size:13px;line-height:1.55;color:var(--c-text);padding:6px 0;
+}
+.geo-tag{
+  flex:0 0 auto;font-size:10.5px;line-height:1.6;color:var(--c-text-secondary);
+  border:0.5px solid var(--c-line);border-radius:980px;padding:1px 8px;
+}
+/* 「包含」是常态，压成浅灰不抢眼；「按需」才是需要被看见的例外 */
+.geo-tag--on{color:var(--c-text-tertiary);border:0;padding:1px 0;opacity:.75}
+.geo-note{
+  margin:clamp(26px,3.5vh,38px) 0 0;padding-top:18px;border-top:0.5px solid var(--c-line-subtle);
+  font-size:12.5px;line-height:1.75;color:var(--c-text-tertiary);text-align:center;
+}
+.geo-note a{color:var(--c-text-secondary);text-decoration:underline;text-underline-offset:3px}
+
+/* ── 指标 ── */
+.geo-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.geo-metric{border-left:2px solid rgba(201,80,43,.42);padding:2px 0 2px 16px}
+.geo-metric h3{font-size:15px;font-weight:650;color:var(--c-text);margin:0 0 7px;letter-spacing:-0.01em}
+.geo-metric p{font-size:13px;line-height:1.7;color:var(--c-text-secondary);margin:0}
+
+/* ── 实战证据 ── */
+.geo-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.geo-proof-card{background:#0A0A0C;border-radius:18px;padding:26px 22px;color:#fff}
+.geo-proof-card .n{font-size:clamp(24px,2.8vw,32px);font-weight:700;letter-spacing:-0.035em;line-height:1.1;color:#fff}
+.geo-proof-card .n i{font-style:normal;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.5);margin-left:4px;letter-spacing:0}
+.geo-proof-card h3{font-size:14px;font-weight:600;color:#fff;margin:14px 0 7px;letter-spacing:-0.005em}
+.geo-proof-card p{font-size:12.5px;line-height:1.7;color:rgba(255,255,255,.55);margin:0}
+.geo-proof-foot{
+  margin:clamp(22px,3vh,32px) 0 0;font-size:12.5px;line-height:1.75;
+  color:var(--c-text-tertiary);text-align:center;
+}
+.geo-proof-foot a{color:var(--c-text-secondary);text-decoration:underline;text-underline-offset:3px}
+
+/* ── CTA 次按钮 ── */
+.geo-cta-alt{
+  display:inline-flex;align-items:center;gap:8px;margin-left:14px;
+  font-size:14px;font-weight:500;color:rgba(255,255,255,.62);
+  border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;
+  transition:color var(--duration-fast) ease,border-color var(--duration-fast) ease;
+}
+.geo-cta-alt:hover{color:#fff;border-color:rgba(255,255,255,.5)}
+
+/* ── 响应式 ── */
+@media(max-width:1024px){
+  .geo-steps{grid-template-columns:repeat(2,1fr)}
+  .geo-deliver{grid-template-columns:repeat(2,1fr)}
+  .geo-metrics{grid-template-columns:repeat(2,1fr)}
+  .geo-why{grid-template-columns:1fr;gap:22px}
+  .geo-why-item:first-child{border-top:1px solid var(--c-line-subtle)}
+  .geo-cmp{grid-template-columns:1fr}
+  .geo-proof{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .geo-sec{padding:42px 20px}
+  .geo-head{margin-bottom:26px}
+  .geo-h2{font-size:22px;line-height:1.32;letter-spacing:-0.02em}
+  .geo-lead{font-size:14px;line-height:1.72}
+  .geo-demo-card{padding:18px 16px;border-radius:16px}
+  .geo-ask p{font-size:14.5px}
+  .geo-ans{padding:15px 15px;border-radius:12px}
+  .geo-ans p{font-size:13.5px;line-height:1.78}
+  .geo-cites{margin-top:12px;padding-top:10px}
+  .geo-stats{grid-template-columns:repeat(2,1fr);gap:22px 14px;margin-top:26px}
+  .geo-stat .n{font-size:24px}
+  .geo-stat .l{font-size:11.5px}
+  .geo-quote{font-size:16px;line-height:1.6}
+  .geo-steps,.geo-fit,.geo-ind,.geo-deliver,.geo-metrics{grid-template-columns:1fr}
+  .geo-step{padding:18px 16px}
+  .geo-fit-card,.geo-ind-card{padding:18px 16px}
+  .geo-cmp-col{padding:18px 16px}
+  .geo-proof-card{padding:22px 18px}
+  .geo-cta-alt{margin:16px 0 0;display:inline-flex}
+}
+</style>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,13 +240,26 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"小红书一对一教培","provider":{"@type":"Organization","name":"流量火传媒"},"serviceType":"定制化培训与陪跑"}},
-    {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"小红书代运营","provider":{"@type":"Organization","name":"流量火传媒"},"serviceType":"全案托管运营"}},
-    {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"视频IP打造与定位","provider":{"@type":"Organization","name":"流量火传媒"},"serviceType":"个人/品牌IP定位与短视频制作"}},
-    {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"GEO优化","provider":{"@type":"Organization","name":"流量火传媒"},"serviceType":"AI搜索时代品牌内容优化","description":"面向豆包 / DeepSeek / 元宝 / 千问 / ChatGPT / Gemini / 文心助手 / 百度 AI 搜 / 抖音 AI 搜 / QQ 浏览器 AI 搜 / Kimi / 文心 / 灵光 / 纳米 / 小红书点点 共 15 个 AI 平台的生成式引擎优化（GEO）。已完成 GEO 全国线上链路打通，覆盖 2845 个县级行政区、694 座城市、297 个主流地级城市，并布局小红书全国矩阵。"}}
-  ]
+  "@type": "Service",
+  "name": "GEO 优化（生成式引擎优化）",
+  "serviceType": "生成式引擎优化",
+  "provider": {
+    "@type": "Organization",
+    "name": "流量火传媒",
+    "url": "https://liulianghuo.com"
+  },
+  "areaServed": "CN",
+  "description": "面向豆包、DeepSeek、腾讯元宝、通义千问、文心、Kimi、ChatGPT、Gemini 等 15 个 AI 平台的生成式引擎优化服务。已完成全国线上链路打通，覆盖 2845 个县级行政区、694 座城市、297 个主流地级城市。交付包含 GEO 词库定制、内容优化、多平台分发、自动化监控四步。",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "GEO 服务交付项",
+    "itemListElement": [
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"GEO 词库定制"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"AI 内容优化"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"多平台信源分发"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"AI 可见度自动化监控"}}
+    ]
+  }
 }
 </script>
 <script type="application/ld+json">
@@ -42,11 +267,16 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"什么是 GEO 优化？","acceptedAnswer":{"@type":"Answer","text":"GEO（Generative Engine Optimization，生成式引擎优化）是面向 AI 搜索时代的新一代 SEO，目标是让品牌在豆包、DeepSeek、元宝、千问、ChatGPT、Gemini 等 AI 问答中被优先引用和推荐，而不只是在传统搜索引擎里排前面。"}},
-    {"@type":"Question","name":"GEO 和 SEO 有什么区别？","acceptedAnswer":{"@type":"Answer","text":"SEO 优化的是传统搜索引擎的排名与点击；GEO 优化的是 AI 生成答案时的「引用与推荐」，更看重内容的权威性、结构化，以及是否可被机器直接读取（如 llms.txt、Schema 结构化数据）。"}},
-    {"@type":"Question","name":"小红书代运营包含哪些内容？","acceptedAnswer":{"@type":"Answer","text":"覆盖选题策划、内容生产、数据复盘、投放优化的完整链路，可按全案托管或单模块合作。"}},
-    {"@type":"Question","name":"服务怎么收费？","acceptedAnswer":{"@type":"Answer","text":"各服务均为面议，以一对一沟通后给出的方案与报价为准；官网 pricing.html 为实时展示入口。"}},
-    {"@type":"Question","name":"流量火传媒的 GEO 覆盖哪些城市？","acceptedAnswer":{"@type":"Answer","text":"GEO 已完成全国线上链路打通，覆盖 2845 个县级行政区、694 座城市、297 个主流地级城市，并布局小红书全国矩阵。"}}
+    {"@type":"Question","name":"GEO 是什么？","acceptedAnswer":{"@type":"Answer","text":"GEO 即生成式引擎优化（Generative Engine Optimization）。通过建设真实、结构清晰、可被引用的品牌内容，让 AI 在回答用户问题时准确介绍并推荐你的品牌。"}},
+    {"@type":"Question","name":"GEO 和 SEO 有什么不一样？","acceptedAnswer":{"@type":"Answer","text":"SEO 优化的是搜索结果页里的链接排名，用户还要自己点开比较；GEO 优化的是 AI 直接给出的那段答案。用户不再逐条翻链接，AI 提到谁，谁就进入选择范围。两者不冲突，好的网站内容对两者都有帮助。"}},
+    {"@type":"Question","name":"为什么现在就要做 GEO？","acceptedAnswer":{"@type":"Answer","text":"越来越多的人习惯直接向 AI 提问来做选择，而 AI 的回答里通常只出现两三个品牌。越早把真实、可核实的品牌内容铺到 AI 会读的地方，越容易在这些回答里占住位置。"}},
+    {"@type":"Question","name":"AI 是根据什么来介绍一个品牌的？","acceptedAnswer":{"@type":"Answer","text":"AI 会参考训练数据和联网检索到的公开信息。信息越真实、一致、来源越可信，被正确引用的可能性越高。这也是我们重视品牌事实梳理和信源建设的原因。"}},
+    {"@type":"Question","name":"你们具体做哪些工作？","acceptedAnswer":{"@type":"Answer","text":"四步：GEO 词库定制（梳理客户会问 AI 的问题）、内容优化（按各平台偏好重写与生产可被引用的内容）、多平台分发（官网结构化数据、行业门户、媒体、地图商户、问答平台）、自动化监控（定期复测提及率、首位率与描述准确性）。"}},
+    {"@type":"Question","name":"我需要准备什么？","acceptedAnswer":{"@type":"Answer","text":"企业基本资料、产品或服务介绍、资质与真实案例，以及可授权使用的自媒体账号。其余工作由我们完成。我们不编造数据、资质或评价。"}},
+    {"@type":"Question","name":"覆盖哪些 AI 平台？","acceptedAnswer":{"@type":"Answer","text":"共 15 个：字节豆包、DeepSeek、腾讯元宝、阿里通义千问、ChatGPT、Google Gemini、百度文心助手、百度 AI 搜、抖音 AI 搜、QQ 浏览器 AI 搜、月之暗面 Kimi、百度文心、灵光、纳米、小红书点点。平台名称仅说明服务覆盖范围，不代表官方合作关系。"}},
+    {"@type":"Question","name":"多久能看到变化？","acceptedAnswer":{"@type":"Answer","text":"不同平台的抓取与更新节奏不一样，没有统一答案。我们的做法是上线后按周复测同一批问题，用提及率、首位率、描述准确性的变化来判断，而不是靠感觉。"}},
+    {"@type":"Question","name":"效果怎么衡量？","acceptedAnswer":{"@type":"Answer","text":"只看四个指标：AI 提及率（目标问题里提到你的比例）、首位推荐率（提到你的答案里你排第一的比例）、引用信源数（AI 引用你时落到几个可核实来源）、单条线索成本（从 AI 渠道进来的有效咨询平均花多少钱）。按基线、月度、季度三个节点记录。"}},
+    {"@type":"Question","name":"能保证 AI 一定推荐我吗？","acceptedAnswer":{"@type":"Answer","text":"不能。AI 的回答由各平台自行生成，任何服务商都无法控制。我们能做的是让品牌信息更真实、完整、容易被引用，并用数据持续跟踪和调整。"}}
   ]
 }
 </script>
@@ -119,284 +349,559 @@
   <a href="#contact">联系我们</a>
 </div>
 
+<!-- ========== 首屏 ========== -->
 <section class="page-hero">
-  <h1 class="section-kicker">四大核心服务</h1>
-  <p class="section-leader">围绕「内容即战略 · IP即资产」，为企业提供从0到1的全链路增长方案。每一项服务都可独立交付，也可组合为完整增长引擎</p>
+  <h1 class="section-kicker">GEO 优化</h1>
+  <p class="section-leader section-leader--center">让品牌成为 AI 答案里的那个名字<br>不是排在搜索结果第几位，而是被直接说出来</p>
 </section>
 
-<!-- ══ 小红书全链路能力展示 ══ -->
-<section class="section" style="padding-bottom:60px;">
-  <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--section-pad-h);">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:48px;">
-      <div>
-        <h2 style="font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-0.02em;color:var(--c-text);margin:12px 0 12px;">小红书全链路运营能力</h2>
-        <p style="font-size:16px;color:var(--c-text-secondary);line-height:1.65;margin:0;">从诊断到落地，每一环都有方法论支撑。经过多行业反复验证，不靠感觉、不靠运气</p>
-      </div>
-      <p style="font-size:13px;color:var(--c-text-tertiary);line-height:1.55;margin:0 0 0 auto;text-align:right;">一个完整的定位诊断，不是几句话，是一套<strong style="color:var(--c-text);">可被反复验证的思考框架</strong></p>
-    </div>
+<!-- ========== AI 回答示意 + 数字 ========== -->
+<section class="geo-sec" style="padding-top:0">
+  <div class="geo-inner">
+    <div class="geo-demo-card reveal">
+      <span class="geo-demo-tag">示例 · 非真实 AI 输出</span>
 
-    <div class="cap-grid">
-      <div class="cap-row">
-        <div class="cap-num"><span>01</span></div>
-        <div class="cap-body">
-          <h3 class="cap-title">账号深度诊断</h3>
-          <p class="cap-quote"><strong class="q-hook">「搜索流量占 36%，发现页却只有 6%。数据不会说谎——你的投流打法选错了赛道。」</strong><span class="q-detail">诊断三步法：先看流量结构找异常，再归因到内容或分发策略，最后判定是调整方向还是推倒重来。每一份诊断报告都基于真实后台数据，不是经验猜测</span></p>          <div class="cap-tags">
-            <span class="cap-tag">流量结构分析</span>
-            <span class="cap-tag">搜索/发现占比模型</span>
-            <span class="cap-tag">投流效率评估</span>
-            <span class="cap-tag">隐形降权识别</span>
-          </div>
+      <div class="geo-ask">
+        <span class="geo-q">问</span>
+        <p>厦门橱柜哪个品牌比较好？</p>
+      </div>
+
+      <div class="geo-ans">
+        <div class="geo-ans-h">
+          <span>AI 回答</span>
+          <span class="geo-badge">品牌被提及 · 排在首位</span>
         </div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-num"><span>02</span></div>
-        <div class="cap-body">
-          <h3 class="cap-title">精准用户判定</h3>
-          <p class="cap-quote"><strong class="q-hook">「为情绪买单的人，与为理性决策买单的人，写的不是同一个内容。」</strong><span class="q-detail">同一行业至少存在 3 类决策人群——情绪驱动型、理性对比型、场景触发型。每类人的搜索词、关注点、转化路径完全不同。我们把人群拆透，再反推内容方向，而不是用一套模板打所有人</span></p>          <div class="cap-tags">
-            <span class="cap-tag">三维人群分层</span>
-            <span class="cap-tag">心理动因图谱</span>
-            <span class="cap-tag">决策链路拆解</span>
-            <span class="cap-tag">内容×人群匹配</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-num"><span>03</span></div>
-        <div class="cap-body">
-          <h3 class="cap-title">账号定位重构</h3>
-          <p class="cap-quote"><strong class="q-hook">「名称错了，简介、人设、头像全部跟着歪。名字是定位的根。」</strong><span class="q-detail">定位不是一句口号，而是一套占位系统：名称决定搜索入口，简介决定第一印象，人设决定信任深度。我们从竞品占位空白切入，帮账号找到"唯一能说且值得说"的那个位置</span></p>          <div class="cap-tags">
-            <span class="cap-tag">搜索占位设计</span>
-            <span class="cap-tag">差异化人设打造</span>
-            <span class="cap-tag">品牌传播语</span>
-            <span class="cap-tag">竞品空位分析</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="cap-row">
-        <div class="cap-num"><span>04</span></div>
-        <div class="cap-body">
-          <h3 class="cap-title">内容策略落地</h3>
-          <p class="cap-quote"><strong class="q-hook">「装修、珠宝、医疗、留学——四个完全不同的内容模型。」</strong><span class="q-detail">每个行业都有专属的内容公式：标题怎么写能被搜到、封面怎么设计能被点开、正文怎么编排能被信任。我们拆解过跨行业的爆款共性，沉淀出可复用的 SOP 执行框架</span></p>          <div class="cap-tags">
-            <span class="cap-tag">爆款模型拆解</span>
-            <span class="cap-tag">SEO标题公式</span>
-            <span class="cap-tag">内容矩阵规划</span>
-            <span class="cap-tag">SOP级执行</span>
-          </div>
+        <p>厦门做橱柜的品牌不少，按本地交付能力和口碑来看，可以重点看这几家：<b>你的品牌</b>——本地有直营门店，主打小户型收纳方案，案例可查；A 品牌——成立时间久，网点多；B 品牌——偏高端定制。如果你的厨房面积不大、又在意收纳，建议优先看前两家的实景案例。</p>
+        <div class="geo-cites">
+          <span>引用来源</span>
+          <span class="geo-cite">品牌官网</span>
+          <span class="geo-cite">行业媒体报道</span>
+          <span class="geo-cite">地图商户页</span>
+          <span class="geo-cite">第三方问答</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+    <p class="geo-demo-note">AI 只给两三个名字。没被写进这段回答，就等于在这场选择里不存在</p>
 
-<!-- 增长闭环总图 -->
-<section class="loop-section">
-  <div class="loop-inner">
-    <div class="section--center reveal">
-      <h2 class="section-kicker">不是四件事，是一个增长闭环</h2>
-      <p class="section-leader section-leader--center">我们把四大服务串成一套自运转的增长系统：定位清晰 → 内容生产 → 多平台分发 → GEO 放大，再反哺定位</p>
-    </div>
-    <div class="loop-diagram reveal reveal--d1">
-      <div class="loop-node loop-node--1">
-        <div class="loop-idx">1</div>
-        <h4>定位 · 教培</h4>
-        <p>厘清赛道与差异化，建立可被复制的增长方法论</p>
+    <div class="geo-stats reveal">
+      <div class="geo-stat">
+        <div class="n">15<i>个</i></div>
+        <div class="l">覆盖的 AI 平台</div>
       </div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node loop-node--2">
-        <div class="loop-idx">2</div>
-        <h4>内容 · 代运营</h4>
-        <p>稳定产出高质内容，跑通选题—生产—复盘链路</p>
+      <div class="geo-stat">
+        <div class="n">694<i>座</i></div>
+        <div class="l">城市链路已打通<br>2845 县级 · 297 地级</div>
       </div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node loop-node--3">
-        <div class="loop-idx">3</div>
-        <h4>分发 · IP 打造</h4>
-        <p>人格化表达多平台分发，放大品牌声量与信任</p>
+      <div class="geo-stat">
+        <div class="n">45<i>个</i></div>
+        <div class="l">重点城市分批推进</div>
       </div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node loop-node--4">
-        <div class="loop-idx">4</div>
-        <h4>放大 · GEO 优化</h4>
-        <p>进入 AI 答案生态，让品牌被持续主动推荐</p>
+      <div class="geo-stat">
+        <div class="n">80<i>元</i></div>
+        <div class="l">核心城市一条有效线索</div>
       </div>
-    </div>
-    <p class="loop-note">闭环持续运转，<b>每一次循环都让品牌资产更厚、获客成本更低</b></p>
-  </div>
-</section>
-
-<!-- 01 教培 -->
-<section class="svc-row">
-  <div class="svc-text reveal">
-    <div class="bento-num">01</div>
-    <h2 class="section-kicker" style="font-size:clamp(28px,3.5vw,40px)">小红书一对一教培</h2>
-    <p class="bento-body">针对企业主、创业者、新媒体负责人的<strong>定制化培训体系</strong>。从账号搭建到爆款方法论，手把手带你跑通小红书增长闭环。不是泛泛而谈的课表式教学，而是基于你所在行业和资源现状的陪跑</p>
-    <div class="svc-flow">
-      <div class="svc-flow-step"><span class="step-idx">1</span><div><strong>账号诊断</strong> — 拆解现有账号问题，明确增长卡点</div></div>
-      <div class="svc-flow-step"><span class="step-idx">2</span><div><strong>爆款逻辑拆解</strong> — 拆解同赛道高赞内容结构与选题规律</div></div>
-      <div class="svc-flow-step"><span class="step-idx">3</span><div><strong>内容SOP输出</strong> — 沉淀可复用的选题→脚本→制作流程</div></div>
-      <div class="svc-flow-step"><span class="step-idx">4</span><div><strong>陪跑指导</strong> — 周期内答疑复盘，确保方法真正落地</div></div>
-    </div>
-    <div class="svc-meta">
-      <div>适合<strong>企业主 / 新媒体负责人</strong></div>
-      <div>周期<strong>4–8 周陪跑</strong></div>
-    </div>
-  </div>
-  <div class="svc-visual reveal reveal--d1">
-    <div class="bento-icon bento-icon--train">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
     </div>
   </div>
 </section>
 
-<!-- 02 代运营 -->
-<section class="svc-row svc-row--reverse">
-  <div class="svc-text reveal">
-    <div class="bento-num">02</div>
-    <h2 class="section-kicker" style="font-size:clamp(28px,3.5vw,40px)">小红书代运营</h2>
-    <p class="bento-body">全案托管运营服务。覆盖<strong>选题策划、内容生产、数据复盘、投放优化</strong>的完整链路，让品牌在小红书拿到真实流量和商业转化，你只需关注业务本身</p>
-    <div class="svc-flow">
-      <div class="svc-flow-step"><span class="step-idx">1</span><div><strong>矩阵策略</strong> — 规划账号矩阵与内容赛道布局</div></div>
-      <div class="svc-flow-step"><span class="step-idx">2</span><div><strong>内容生产</strong> — 图文/视频选题、脚本、制作一体化</div></div>
-      <div class="svc-flow-step"><span class="step-idx">3</span><div><strong>数据复盘</strong> — 周度数据看板，持续优化内容模型</div></div>
-      <div class="svc-flow-step"><span class="step-idx">4</span><div><strong>投放优化</strong> — 信息流与搜索投放协同放大效果</div></div>
+<!-- ========== 为什么现在 ========== -->
+<section class="geo-sec">
+  <div class="geo-inner">
+    <div class="geo-head reveal">
+      <h2 class="geo-h2">搜索在退场，AI 在替你回答</h2>
+      <p class="geo-lead">流量入口从「十条蓝色链接」变成「一句结论」。用户不再比较谁排在前面，而是直接相信 AI 说出来的那一个名字</p>
     </div>
-    <div class="svc-meta">
-      <div>适合<strong>品牌方 / 电商</strong></div>
-      <div>模式<strong>月度全案托管</strong></div>
+
+    <div class="geo-why">
+      <div class="geo-why-item reveal">
+        <div class="n">01</div>
+        <h3>入口已经变了</h3>
+        <p>客户问 AI「哪家靠谱」，AI 只给出一段话、两三个名字。没被写进这段回答，就等于在这场决策里不存在</p>
+      </div>
+      <div class="geo-why-item reveal reveal--d1">
+        <div class="n">02</div>
+        <h3>语料是新的货架</h3>
+        <p>AI 只会推荐它读过的品牌。权威信源的密度、结构化内容的完整度，决定它是敢推荐你，还是只能绕过你</p>
+      </div>
+      <div class="geo-why-item reveal reveal--d2">
+        <div class="n">03</div>
+        <h3>可见度可以被工程化</h3>
+        <p>诊断、建库、分发、监测，四个环节都能量化。可见度不是运气，是一条可以按月推进、按季度复盘的产线</p>
+      </div>
     </div>
+
+    <p class="geo-quote reveal">在生成式引擎里，排名不再是一页链接，<br>而是一句推荐</p>
   </div>
-  <div class="svc-visual reveal reveal--d1">
-    <div class="bento-icon bento-icon--ops">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+</section>
+
+<!-- ========== 四步 ========== -->
+<section class="geo-band">
+  <div class="geo-sec">
+    <div class="geo-inner">
+      <div class="geo-head reveal">
+        <h2 class="geo-h2">GEO 怎么做：四步都能验收</h2>
+        <p class="geo-lead">每一步都有明确动作和交付物，你随时知道做到了哪里、下一步是什么</p>
+      </div>
+
+      <div class="geo-steps">
+        <div class="geo-step reveal">
+          <div class="n">01</div>
+          <h3>词库定制</h3>
+          <p>把客户会问的问题，整理成一张可执行的清单</p>
+          <ul>
+            <li>拆解行业的提问方式</li>
+            <li>梳理「城市 + 品类 + 场景」的高频问法</li>
+            <li>按认知、推荐、选择、价格、对比五类分层</li>
+          </ul>
+          <div class="geo-out">交付 <b>带优先级的 GEO 词库</b></div>
+        </div>
+
+        <div class="geo-step reveal reveal--d1">
+          <div class="n">02</div>
+          <h3>内容优化</h3>
+          <p>让内容长成 AI 愿意引用的样子</p>
+          <ul>
+            <li>按各平台偏好重写与生产</li>
+            <li>补齐事实、结构、来源三件事</li>
+            <li>统一各渠道的品牌全称与口径</li>
+          </ul>
+          <div class="geo-out">交付 <b>可被引用的品牌与问答内容</b></div>
+        </div>
+
+        <div class="geo-step reveal reveal--d2">
+          <div class="n">03</div>
+          <h3>多平台分发</h3>
+          <p>把内容放到 AI 真的会读的地方</p>
+          <ul>
+            <li>官网结构化数据与 llms.txt</li>
+            <li>行业门户、媒体与第三方问答</li>
+            <li>地图商户与本地信息校准</li>
+          </ul>
+          <div class="geo-out">交付 <b>信源矩阵分布表</b></div>
+        </div>
+
+        <div class="geo-step reveal reveal--d3">
+          <div class="n">04</div>
+          <h3>自动化监控</h3>
+          <p>用数据确认它真的被说了</p>
+          <ul>
+            <li>定期复测同一批问题</li>
+            <li>记录提及、首位、描述准确性</li>
+            <li>按变化调整下一轮内容</li>
+          </ul>
+          <div class="geo-out">交付 <b>可见度周报与月度复盘</b></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 03 IP打造 -->
-<section class="svc-row">
-  <div class="svc-text reveal">
-    <div class="bento-num">03</div>
-    <h2 class="section-kicker" style="font-size:clamp(28px,3.5vw,40px)">视频IP打造与定位</h2>
-    <p class="bento-body">从个人特质出发提炼<strong>差异化IP定位</strong>。口播脚本、拍摄剪辑、人设包装一站式交付，打造有辨识度、有粉丝粘性的个人/品牌IP，让品牌拥有可被记住的人格化表达</p>
-    <div class="svc-flow">
-      <div class="svc-flow-step"><span class="step-idx">1</span><div><strong>IP定位诊断</strong> — 挖掘个人特质与赛道差异化机会</div></div>
-      <div class="svc-flow-step"><span class="step-idx">2</span><div><strong>人设包装</strong> — 确定风格、话术与视觉识别体系</div></div>
-      <div class="svc-flow-step"><span class="step-idx">3</span><div><strong>脚本与拍摄</strong> — 口播脚本+短视频拍摄剪辑交付</div></div>
-      <div class="svc-flow-step"><span class="step-idx">4</span><div><strong>持续运营</strong> — 内容节奏规划与粉丝互动维护</div></div>
+<!-- ========== 处境 ========== -->
+<section class="geo-sec">
+  <div class="geo-inner">
+    <div class="geo-head reveal">
+      <h2 class="geo-h2">你现在缺的是哪一层</h2>
+      <p class="geo-lead">有的品牌 AI 还不认识，有的被说错了，有的明明更好却总输给对手。起点不同，第一步也不同</p>
     </div>
-    <div class="svc-meta">
-      <div>适合<strong>创始人 / 专家 / 品牌</strong></div>
-      <div>交付<strong>定位+成片+人设</strong></div>
-    </div>
-  </div>
-  <div class="svc-visual reveal reveal--d1">
-    <div class="bento-icon bento-icon--ip">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+
+    <div class="geo-fit">
+      <div class="geo-fit-card reveal">
+        <span class="geo-fit-k">冷启动</span>
+        <h3>AI 还不认识你</h3>
+        <p class="fit-for">新品牌、新市场、新产品线，问 AI 时几乎查不到任何介绍</p>
+        <ul>
+          <li>梳理品牌基础事实：是谁、做什么、服务哪里</li>
+          <li>建设首批问答型内容</li>
+          <li>在 AI 常引用的平台铺开基础信源</li>
+        </ul>
+        <div class="geo-fit-out"><span>品牌事实清单</span><span>首批问答</span><span>基础信源</span></div>
+      </div>
+
+      <div class="geo-fit-card reveal reveal--d1">
+        <span class="geo-fit-k">纠错</span>
+        <h3>AI 说错了你</h3>
+        <p class="fit-for">AI 给出过时的地址、错误的业务范围，或引用了不实信息</p>
+        <ul>
+          <li>定位错误描述来自哪个平台、哪条信源</li>
+          <li>发布准确、可核实的更正内容</li>
+          <li>复测确认回答已经更新</li>
+        </ul>
+        <div class="geo-fit-out"><span>错误描述记录</span><span>更正内容</span><span>复测记录</span></div>
+      </div>
+
+      <div class="geo-fit-card reveal">
+        <span class="geo-fit-k">对标</span>
+        <h3>AI 只推荐对手</h3>
+        <p class="fit-for">在「哪家好」「怎么选」这类问题里，AI 只提到了竞品</p>
+        <ul>
+          <li>分析竞品被推荐的问题与引用来源</li>
+          <li>提炼你的差异化事实与证据</li>
+          <li>补齐目标问题的内容覆盖</li>
+        </ul>
+        <div class="geo-fit-out"><span>竞品对照表</span><span>差异化内容</span><span>目标问题覆盖</span></div>
+      </div>
+
+      <div class="geo-fit-card reveal reveal--d1">
+        <span class="geo-fit-k">区域</span>
+        <h3>客户带着地名问</h3>
+        <p class="fit-for">门店、工厂或服务覆盖特定城市，客户会问「某某市 + 品类」</p>
+        <ul>
+          <li>整理城市与品类交叉的高频问题</li>
+          <li>校准地址、服务范围等本地信息</li>
+          <li>建设本地信源，引导到店或到访</li>
+        </ul>
+        <div class="geo-fit-out"><span>本地问题清单</span><span>本地信息校准</span><span>本地信源</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 04 GEO -->
-<section class="svc-row svc-row--reverse" id="geo">
-  <div class="svc-text reveal">
-    <div class="bento-num">04</div>
-    <h2 class="section-kicker" style="font-size:clamp(28px,3.5vw,40px)">GEO 优化</h2>
-    <p class="bento-body">面向<strong>AI搜索时代</strong>的新一代SEO。在豆包、DeepSeek、Kimi、文心、ChatGPT 等多平台优化品牌内容呈现，让目标用户在AI问答中优先看到并引用你，建立AI搜索时代的品牌护城河。<br>我们已<strong>完成 GEO 全国线上链路打通</strong>，并布局<strong>小红书全国矩阵</strong></p>
-    <div class="svc-flow">
-      <div class="svc-flow-step"><span class="step-idx">1</span><div><strong>GEO词库定制</strong> — 梳理品牌相关的高频AI提问与实体词</div></div>
-      <div class="svc-flow-step"><span class="step-idx">2</span><div><strong>内容优化</strong> — 按各AI平台偏好重写/生产可被引用的内容</div></div>
-      <div class="svc-flow-step"><span class="step-idx">3</span><div><strong>多平台分发</strong> — 覆盖主流AI问答与内容生态</div></div>
-      <div class="svc-flow-step"><span class="step-idx">4</span><div><strong>自动化监控</strong> — 监测品牌在AI搜索中的出现与排名</div></div>
-    </div>
-    <div class="svc-meta">
-      <div>适合<strong>所有想被AI推荐的品牌</strong></div>
-      <div>覆盖<strong>豆包/DeepSeek/Kimi/文心</strong></div>
-      <div>GEO 已覆盖 <strong>2845 县级 / 694 城市 / 297 地级</strong></div>
-    </div>
-  </div>
-  <div class="svc-visual reveal reveal--d1">
-    <div class="bento-icon bento-icon--geo">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+<!-- ========== 行业 ========== -->
+<section class="geo-band">
+  <div class="geo-sec">
+    <div class="geo-inner">
+      <div class="geo-head reveal">
+        <h2 class="geo-h2">不同行业，客户问 AI 的方式不一样</h2>
+        <p class="geo-lead">下面是各行业典型的提问方式和工作重点。示例问题用于说明方向，正式项目会按你的客户与地区重新整理</p>
+      </div>
+
+      <div class="geo-ind">
+        <div class="geo-ind-card reveal">
+          <h3>家居装修与全屋定制</h3>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">客户可能这样问</div>
+            <ul class="geo-ind-q">
+              <li>厦门橱柜哪个品牌比较好</li>
+              <li>全屋定制和成品家具怎么选</li>
+              <li>小户型厨房怎么设计收纳才够用</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">我们的工作重点</div>
+            <ul class="geo-ind-t">
+              <li>门店地址、服务范围、经营年限准确一致</li>
+              <li>产品线词库：板材、五金、风格、预算档位</li>
+              <li>真实案例、工地记录与售后承诺可查</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">常见难点</div>
+            <ul class="geo-ind-t">
+              <li>AI 经常把经销商、加盟商和厂家混为一谈</li>
+              <li>同城竞品多，答案通常只容纳两三家</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="geo-ind-card reveal reveal--d1">
+          <h3>教育培训</h3>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">客户可能这样问</div>
+            <ul class="geo-ind-q">
+              <li>孩子数学跟不上，附近有哪些靠谱的机构</li>
+              <li>少儿编程几岁开始学比较合适</li>
+              <li>高三冲刺班怎么选，要注意什么</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">我们的工作重点</div>
+            <ul class="geo-ind-t">
+              <li>课程体系、师资资质、校区信息写清楚</li>
+              <li>真实的学习过程与结果，不用夸大话术</li>
+              <li>政策相关的表述口径统一、可核实</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">常见难点</div>
+            <ul class="geo-ind-t">
+              <li>教培类信息 AI 口径偏保守，内容要求更实</li>
+              <li>连锁与加盟校区信息容易串，需要逐一校准</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="geo-ind-card reveal">
+          <h3>高客单消费 · 珠宝医美定制</h3>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">客户可能这样问</div>
+            <ul class="geo-ind-q">
+              <li>买翡翠手镯怎么辨别真假</li>
+              <li>本地做热玛吉哪家正规</li>
+              <li>定制钻戒一般多少钱，哪家靠谱</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">我们的工作重点</div>
+            <ul class="geo-ind-t">
+              <li>资质、检测报告、工艺与材质说明齐全</li>
+              <li>价格结构与售后保障讲明白</li>
+              <li>真实客户评价与可核验的案例</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">常见难点</div>
+            <ul class="geo-ind-t">
+              <li>AI 更倾向引用检测机构与平台，品牌自述权重低</li>
+              <li>行业信任成本高，内容必须经得起追问</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="geo-ind-card reveal reveal--d1">
+          <h3>本地生活与企业采购</h3>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">客户可能这样问</div>
+            <ul class="geo-ind-q">
+              <li>附近适合商务宴请的餐厅有哪些</li>
+              <li>工业摄像仪有哪些靠谱厂家</li>
+              <li>隔声涂料哪个牌子的效果好</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">我们的工作重点</div>
+            <ul class="geo-ind-t">
+              <li>营业信息、位置、场景标签准确</li>
+              <li>产品参数与型号结构化，便于被直接引用</li>
+              <li>资质认证、行业门户与招投标信源</li>
+            </ul>
+          </div>
+          <div class="geo-ind-blk">
+            <div class="geo-ind-k">常见难点</div>
+            <ul class="geo-ind-t">
+              <li>点评类信息过期，AI 会引用已停业的资料</li>
+              <li>企业采购类问题更依赖行业门户，官网影响有限</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 服务行业版图 ══ -->
-<section class="section" style="padding-top:20px;padding-bottom:80px;">
-  <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--section-pad-h);text-align:center;">
-    <h2 style="font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-0.02em;color:var(--c-text);margin:12px 0 8px;">深耕 30+ 垂直行业</h2>
-    <p style="font-size:16px;color:var(--c-text-secondary);line-height:1.65;margin:0 auto 36px;text-wrap:balance">不做泛流量，每个行业都有专属的内容模型。每一个标签背后，都是一份经过验证的诊断方案</p>
-
-    <!-- 组1：本地生活服务 -->
-    <div class="v8-ai-group" style="margin-bottom:28px;">
-      <div class="v8-ai-group-label">🏠 本地生活服务</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
-        <span class="v8-ai-chip">装修家居</span>
-        <span class="v8-ai-chip">全屋定制</span>
-        <span class="v8-ai-chip">房产经纪</span>
-        <span class="v8-ai-chip">婚庆摄影</span>
-        <span class="v8-ai-chip">纹眉美业</span>
-        <span class="v8-ai-chip">本地生活</span>
-        <span class="v8-ai-chip">家居建材</span>
-        <span class="v8-ai-chip">咖啡餐饮</span>
-      </div>
+<!-- ========== 三者区别 ========== -->
+<section class="geo-sec">
+  <div class="geo-inner">
+    <div class="geo-head reveal">
+      <h2 class="geo-h2">GEO、SEO、投放，解决的不是同一件事</h2>
+      <p class="geo-lead">GEO 不替代搜索优化或广告投放，补上的是「用户直接问 AI」这条越来越重要的路径</p>
     </div>
 
-    <!-- 组2：高客单消费 -->
-    <div class="v8-ai-group" style="margin-bottom:28px;">
-      <div class="v8-ai-group-label">💎 高客单消费</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
-        <span class="v8-ai-chip">翡翠珠宝</span>
-        <span class="v8-ai-chip">医疗健康</span>
-        <span class="v8-ai-chip">私护健康</span>
-        <span class="v8-ai-chip">服装女装</span>
-        <span class="v8-ai-chip">食品电商</span>
-        <span class="v8-ai-chip">名媛生活</span>
-        <span class="v8-ai-chip">宠物生活</span>
+    <div class="geo-cmp">
+      <div class="geo-cmp-col geo-cmp-col--hi reveal">
+        <h3>GEO 生成式引擎优化<em>让 AI 直接说出你</em></h3>
+        <dl class="geo-cmp-row"><dt>优化对象</dt><dd>AI 给出的那段回答</dd></dl>
+        <dl class="geo-cmp-row"><dt>用户看到</dt><dd>一段答案，直接提到品牌</dd></dl>
+        <dl class="geo-cmp-row"><dt>核心工作</dt><dd>可信内容与信源建设</dd></dl>
+        <dl class="geo-cmp-row"><dt>停止投入后</dt><dd>已建内容仍可被引用</dd></dl>
+      </div>
+
+      <div class="geo-cmp-col reveal reveal--d1">
+        <h3>SEO 搜索引擎优化<em>让链接排在前面</em></h3>
+        <dl class="geo-cmp-row"><dt>优化对象</dt><dd>搜索结果页的链接排名</dd></dl>
+        <dl class="geo-cmp-row"><dt>用户看到</dt><dd>一页链接，自己点开比较</dd></dl>
+        <dl class="geo-cmp-row"><dt>核心工作</dt><dd>网站结构、关键词与外链</dd></dl>
+        <dl class="geo-cmp-row"><dt>停止投入后</dt><dd>排名逐步变化</dd></dl>
+      </div>
+
+      <div class="geo-cmp-col reveal reveal--d2">
+        <h3>信息流与竞价广告<em>买曝光和点击</em></h3>
+        <dl class="geo-cmp-row"><dt>优化对象</dt><dd>广告位的曝光与点击</dd></dl>
+        <dl class="geo-cmp-row"><dt>用户看到</dt><dd>带「广告」标识的内容</dd></dl>
+        <dl class="geo-cmp-row"><dt>核心工作</dt><dd>素材、出价与人群定向</dd></dl>
+        <dl class="geo-cmp-row"><dt>停止投入后</dt><dd>曝光随预算停止</dd></dl>
       </div>
     </div>
-
-    <!-- 组3：教育 / 成长 / 专业服务 -->
-    <div class="v8-ai-group" style="margin-bottom:28px;">
-      <div class="v8-ai-group-label">📚 教育·成长·专业服务</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
-        <span class="v8-ai-chip">亲子教育</span>
-        <span class="v8-ai-chip">K12 教培</span>
-        <span class="v8-ai-chip">留学移民</span>
-        <span class="v8-ai-chip">音乐教育</span>
-        <span class="v8-ai-chip">职业规划</span>
-        <span class="v8-ai-chip">会计财务</span>
-        <span class="v8-ai-chip">律师咨询</span>
-        <span class="v8-ai-chip">运动健身</span>
-      </div>
-    </div>
-
-    <!-- 组4：IP 打造 / 文化 / 特色 -->
-    <div class="v8-ai-group">
-      <div class="v8-ai-group-label">✨ 个人 IP · 文化 · 特色</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
-        <span class="v8-ai-chip">个人 IP 打造</span>
-        <span class="v8-ai-chip">矩阵运营</span>
-        <span class="v8-ai-chip">非遗文化</span>
-        <span class="v8-ai-chip">疗愈心理</span>
-        <span class="v8-ai-chip">头型矫正</span>
-        <span class="v8-ai-chip">母婴育儿</span>
-        <span class="v8-ai-chip">新能源汽车</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
+<!-- ========== 交付清单 ========== -->
+<section class="geo-band">
+  <div class="geo-sec">
+    <div class="geo-inner">
+      <div class="geo-head reveal">
+        <h2 class="geo-h2">我们交付什么</h2>
+        <p class="geo-lead">不含糊其辞。每一项都写清楚是标准包含，还是要按需加配</p>
+      </div>
+
+      <div class="geo-deliver">
+        <div class="geo-deliver-col reveal">
+          <h3>诊断与词库</h3>
+          <ul>
+            <li><span>品牌 AI 现状诊断</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>行业提问方式梳理</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>GEO 词库与优先级</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>竞品 AI 表现对照</span><span class="geo-tag">按需</span></li>
+          </ul>
+        </div>
+
+        <div class="geo-deliver-col reveal reveal--d1">
+          <h3>内容与信源</h3>
+          <ul>
+            <li><span>品牌事实梳理</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>问答型内容生产</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>深度内容与案例</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>权威信源建设</span><span class="geo-tag">按需</span></li>
+            <li><span>媒体与门户分发</span><span class="geo-tag">按需</span></li>
+          </ul>
+        </div>
+
+        <div class="geo-deliver-col reveal reveal--d2">
+          <h3>官网基建</h3>
+          <ul>
+            <li><span>结构化数据 Schema</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>llms.txt 与 robots</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>FAQ 与页面结构</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>官网改写与新建页</span><span class="geo-tag">按需</span></li>
+          </ul>
+        </div>
+
+        <div class="geo-deliver-col reveal reveal--d3">
+          <h3>监测与复盘</h3>
+          <ul>
+            <li><span>多平台定期复测</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>提及与首位率记录</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>描述准确性核查</span><span class="geo-tag geo-tag--on">包含</span></li>
+            <li><span>月度复盘与调整</span><span class="geo-tag geo-tag--on">包含</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="geo-note reveal">具体范围以服务协议为准。价格与周期在<a href="pricing.html">套餐页</a>与一对一沟通中确认，官网不公开报价</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 指标 ========== -->
+<section class="geo-sec">
+  <div class="geo-inner">
+    <div class="geo-head reveal">
+      <h2 class="geo-h2">怎么算有效</h2>
+      <p class="geo-lead">我们不看「曝光量」这种说不清的数字，只看这四件事</p>
+    </div>
+
+    <div class="geo-metrics">
+      <div class="geo-metric reveal">
+        <h3>AI 提及率</h3>
+        <p>约定的目标问题里，AI 答案提到你的比例</p>
+      </div>
+      <div class="geo-metric reveal reveal--d1">
+        <h3>首位推荐率</h3>
+        <p>在提到你的答案里，你被排在第一位的比例</p>
+      </div>
+      <div class="geo-metric reveal reveal--d2">
+        <h3>引用信源数</h3>
+        <p>AI 引用你的时候，落到了几个可核实的来源</p>
+      </div>
+      <div class="geo-metric reveal reveal--d3">
+        <h3>单条线索成本</h3>
+        <p>从 AI 渠道进来的有效咨询，平均花多少钱</p>
+      </div>
+    </div>
+
+    <p class="geo-note reveal">四项指标按基线、月度、季度三个节点记录。我们不承诺具体排名——AI 的回答由各平台自行生成，任何服务商都无法控制</p>
+  </div>
+</section>
+
+<!-- ========== 实战证据 ========== -->
+<section class="geo-band">
+  <div class="geo-sec">
+    <div class="geo-inner">
+      <div class="geo-head reveal">
+        <h2 class="geo-h2">已经跑出来的</h2>
+        <p class="geo-lead">不讲空话，三个能核对的数字</p>
+      </div>
+
+      <div class="geo-proof">
+        <div class="geo-proof-card reveal">
+          <div class="n">2845<i>个县级</i></div>
+          <h3>全国链路已经打通</h3>
+          <p>覆盖 2845 个县级行政区、694 座城市、297 个主流地级城市，线上链路可复用</p>
+        </div>
+        <div class="geo-proof-card reveal reveal--d1">
+          <div class="n">45<i>个城市</i></div>
+          <h3>分批推进，不一次铺开</h3>
+          <p>先把单城模型跑通、验证转化，再横向复制，避免预算摊薄</p>
+        </div>
+        <div class="geo-proof-card reveal reveal--d2">
+          <div class="n">80<i>元 / 条</i></div>
+          <h3>核心城市有效线索成本</h3>
+          <p>我们自营 GEO 项目的实测口径，含 AI 渠道进来的有效咨询</p>
+        </div>
+      </div>
+
+      <p class="geo-proof-foot reveal">小红书与 GEO 双线并行的客户里，有年销 3200 万+ 的定制家居品牌 · <a href="cases.html">查看实战案例</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="geo-head reveal">
+      <h2 class="geo-h2">常见问题</h2>
+      <p class="geo-lead">关于 GEO、我们的做法和效果衡量，先回答你最关心的几个问题</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-group-label reveal">关于 GEO</div>
+      <div class="faq-item">
+        <button class="faq-q">GEO 是什么？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">GEO 即生成式引擎优化（Generative Engine Optimization）。通过建设真实、结构清晰、可被引用的品牌内容，让 AI 在回答用户问题时准确介绍并推荐你的品牌。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">GEO 和 SEO 有什么不一样？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">SEO 优化的是搜索结果页里的链接排名，用户还要自己点开比较；GEO 优化的是 AI 直接给出的那段答案。用户不再逐条翻链接，AI 提到谁，谁就进入选择范围。两者不冲突，好的网站内容对两者都有帮助。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">为什么现在就要做 GEO？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">越来越多的人习惯直接向 AI 提问来做选择，而 AI 的回答里通常只出现两三个品牌。越早把真实、可核实的品牌内容铺到 AI 会读的地方，越容易在这些回答里占住位置。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">AI 是根据什么来介绍一个品牌的？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">AI 会参考训练数据和联网检索到的公开信息。信息越真实、一致、来源越可信，被正确引用的可能性越高。这也是我们重视品牌事实梳理和信源建设的原因。</div></div>
+      </div>
+
+      <div class="faq-group-label reveal">服务与合作</div>
+      <div class="faq-item">
+        <button class="faq-q">你们具体做哪些工作？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">四步：GEO 词库定制（梳理客户会问 AI 的问题）、内容优化（按各平台偏好重写与生产可被引用的内容）、多平台分发（官网结构化数据、行业门户、媒体、地图商户、问答平台）、自动化监控（定期复测提及率、首位率与描述准确性）。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">我需要准备什么？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">企业基本资料、产品或服务介绍、资质与真实案例，以及可授权使用的自媒体账号。其余工作由我们完成。我们不编造数据、资质或评价。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">覆盖哪些 AI 平台？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">共 15 个：字节豆包、DeepSeek、腾讯元宝、阿里通义千问、ChatGPT、Google Gemini、百度文心助手、百度 AI 搜、抖音 AI 搜、QQ 浏览器 AI 搜、月之暗面 Kimi、百度文心、灵光、纳米、小红书点点。平台名称仅说明服务覆盖范围，不代表官方合作关系。</div></div>
+      </div>
+
+      <div class="faq-group-label reveal">效果与数据</div>
+      <div class="faq-item">
+        <button class="faq-q">多久能看到变化？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">不同平台的抓取与更新节奏不一样，没有统一答案。我们的做法是上线后按周复测同一批问题，用提及率、首位率、描述准确性的变化来判断，而不是靠感觉。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">效果怎么衡量？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">只看四个指标：AI 提及率（目标问题里提到你的比例）、首位推荐率（提到你的答案里你排第一的比例）、引用信源数（AI 引用你时落到几个可核实来源）、单条线索成本（从 AI 渠道进来的有效咨询平均花多少钱）。按基线、月度、季度三个节点记录。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">能保证 AI 一定推荐我吗？<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">不能。AI 的回答由各平台自行生成，任何服务商都无法控制。我们能做的是让品牌信息更真实、完整、容易被引用，并用数据持续跟踪和调整。</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
 <section class="cta-section" id="contact">
-  <h2 class="cta-title">不确定从哪项服务开始？</h2>
-  <p class="cta-desc">告诉我你的业务现状和目标，我帮你梳理最合适的切入路径</p>
-  <a href="mailto:1282656876@qq.com" class="cta-btn">预约咨询 &nbsp;&rarr;</a>
+  <h2 class="cta-title">先看看 AI 现在怎么介绍你</h2>
+  <p class="cta-desc">用你的客户会问的问题，在主流的 AI 平台上实测一遍。几分钟就能看清：有没有被提到、被谁替代、缺在哪里</p>
+  <a href="mailto:1282656876@qq.com" class="cta-btn">预约免费诊断 &nbsp;&rarr;</a>
+  <a href="tools.html" class="geo-cta-alt">先自己查一遍 &rarr;</a>
 </section>
 
+<!-- ========== FOOTER ========== -->
 <footer class="footer">
   <div class="footer-inner">
     <div>
@@ -411,7 +916,7 @@
         <li><a href="products.html#svc-train">小红书一对一教培</a></li>
         <li><a href="products.html#svc-ops">小红书代运营</a></li>
         <li><a href="products.html#svc-ip">视频IP打造</a></li>
-        <li><a href="services.html">GEO优化</a></li>
+        <li><a href="services.html">GEO 优化</a></li>
       </ul>
     </div>
     <div class="footer-col">
