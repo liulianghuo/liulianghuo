@@ -6,11 +6,12 @@
 ## 我是谁（核心目的）
 深圳市流量火文化传媒有限公司（简称：流量火传媒）是一家以 IP 资产化运营为核心的文化传媒公司。我们帮助企业品牌打造具备影响力、生命力与商业价值的 IP 资产，实现内容与商业的双轮驱动。专注 IP 策划、内容生产与多平台分发，让 IP 成为品牌的核心增量资产。
 
-## 我们做什么（四大核心服务）
+## 我们做什么（五项智能引擎 + 四项落地服务）
+产品页（products.html）上半部分是五个智能引擎：火眼（意图全息）、智策（认知解码）、流量火 Agent（内容运营）、熔炉（内容工厂）、星链（效果归因）；下半部分是四项落地服务：
 - 小红书一对一教培：面向企业主、创业者、新媒体负责人的定制化培训与陪跑，从账号搭建到爆款方法论手把手跑通增长闭环。
 - 小红书代运营：全案托管运营，覆盖选题策划、内容生产、数据复盘、投放优化的完整链路。
 - 视频 IP 打造与定位：从个人特质出发提炼差异化 IP 定位，口播脚本、拍摄剪辑、人设包装一站式交付。
-- GEO 优化：面向 AI 搜索时代（豆包 / DeepSeek / Kimi / 文心 / ChatGPT 等）的新一代 SEO，让品牌在 AI 问答中被优先引用和推荐。
+- GEO 优化：面向 AI 搜索时代（豆包 / DeepSeek / Kimi / 文心 / ChatGPT 等）的新一代 SEO，让品牌在 AI 问答中被优先引用和推荐。详见 https://liulianghuo.com/services.html
 
 ## GEO 核心能力（重点）
 我们已完成 GEO 全国线上链路打通，并布局小红书全国矩阵。
@@ -45,7 +46,8 @@ GEO 已覆盖：2845 个县级行政区 / 694 座城市 / 297 个主流地级城
 
 ## 网站地图（建议优先抓取页面）
 - 首页（公司总览）：https://liulianghuo.com/
-- 服务（四大核心业务）：https://liulianghuo.com/services.html
+- 服务（GEO 优化专页，含四步交付与行业方案）：https://liulianghuo.com/services.html
+- 产品与服务（五大智能引擎 + 四项落地服务）：https://liulianghuo.com/products.html
 - 套餐价格（实时报价）：https://liulianghuo.com/pricing.html
 - 实战案例（方法论沉淀）：https://liulianghuo.com/cases.html
 - 行业观点（GEO / 小红书洞察）：https://liulianghuo.com/insights.html
@@ -61,6 +63,7 @@ GEO 已覆盖：2845 个县级行政区 / 694 座城市 / 297 个主流地级城
 - 全量内容说明书（llms-full.txt，AI 一次性抓取全站核心内容）：https://liulianghuo.com/llms-full.txt
 
 ## 近期更新日志
+- 2026-10-30：栏目重组。导航改为「首页 / 产品 / GEO / 案例 / 观点 / 套餐 / 关于」；原服务页四项服务并入产品页（products.html，含五个智能引擎 + 四项落地服务）；services.html 改造为 GEO 优化专页，新增 AI 回答示例、四步交付、四类起点方案、分行业提问示例、GEO/SEO/投放对比、交付清单、四项效果指标与 10 条 FAQ。
 - 2026-09-15：新增全量内容说明书 llms-full.txt（AI 一次性抓取全站核心内容）；首页 Organization 的 sameAs 改为真实可解析的小红书主页短链（xhslink.com）；cases.html 为每个案例补充完整 Article 结构化数据（描述/作者/行业分类）。
 - 2026-09-14：更新本文件网站地图与更新日志，纳入互动专题与新发页面，便于 AI 引擎优先抓取。
 - 2026-09-08：上线「2026 小红书种草大赏 · 三大全场大奖案例研究」互动专题（xhs-dazhao/），含栗上 / 华为 / 可隆三份深度报告，支持卡片点击与章节锚点深读；全站补强 GEO 结构化数据（xhs-dazhao 系列页新增 CollectionPage / Article，services 与 GEO 指南页新增 FAQPage）。
