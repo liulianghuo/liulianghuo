@@ -2770,3 +2770,29 @@ a{text-underline-offset:3px}
         手机上直接隐藏最干净。 */
   .svc-visual{display:none}
 }
+
+/* ═══ 全站卡片微交互 v21：上浮 + 描边转暖 + 淡阴影，克制不啰嗦 ═══ */
+/* 小卡：位移 + 描边 + 阴影 */
+.vision-card,.trend-card,.stat-item,.abil-item{
+  transition:transform 200ms cubic-bezier(.22,.61,.36,1),border-color 200ms ease,box-shadow 200ms ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .vision-card:hover,.trend-card:hover,.abil-item:hover{
+    transform:translateY(-3px);
+    border-color:rgba(201,80,43,.38);
+    box-shadow:0 16px 36px -22px rgba(201,80,43,.30);
+  }
+  .stat-item:hover{transform:translateY(-2px)}
+}
+/* 大区块：只变描边与底色，不位移，防整块跳动 */
+.svc-row,.case-detail,.case-block{transition:border-color 200ms ease,background-color 200ms ease}
+@media (hover:hover) and (pointer:fine){
+  .svc-row:hover,.case-detail:hover,.case-block:hover{
+    border-color:rgba(201,80,43,.30);
+    background-color:var(--c-surface-warm,#FAF9F7);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .vision-card,.trend-card,.stat-item,.abil-item,.svc-row,.case-detail,.case-block{transition:none}
+  .vision-card:hover,.trend-card:hover,.abil-item:hover,.stat-item:hover{transform:none}
+}
