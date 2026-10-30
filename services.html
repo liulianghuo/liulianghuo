@@ -14,7 +14,7 @@
 <meta property="og:description" content="让品牌成为 AI 答案里的那个名字。15 个 AI 平台覆盖，2845 个县级行政区、694 座城市链路已打通，业务覆盖 20+ 个国家和地区。">
 <link rel="canonical" href="https://liulianghuo.com/services.html">
 <link rel="icon" href="logo.png" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css?v=20">
+<link rel="stylesheet" href="styles.css?v=21">
 
 <style>
 /* ==========================================================================
@@ -271,6 +271,32 @@
 .geo-tbl td .y{color:var(--fire-mid);background:var(--fire-glow);font-weight:650}
 .geo-tbl td .m{color:var(--c-text-secondary);background:var(--c-surface)}
 .geo-tbl td .n{color:var(--c-text-tertiary);border:0.5px solid var(--c-line)}
+
+/* ── 卡片微交互：上浮 + 描边转暖 + 淡阴影，只在有鼠标的设备生效 ── */
+.geo-ind-card,.geo-fit-card,.geo-case,.geo-cmp-col,.geo-step,.geo-tier,.geo-metric{
+  transition:transform 200ms cubic-bezier(.22,.61,.36,1),border-color 200ms ease,box-shadow 200ms ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .geo-ind-card:hover,.geo-fit-card:hover,.geo-case:hover,.geo-cmp-col:hover,.geo-step:hover{
+    transform:translateY(-3px);
+    border-color:rgba(201,80,43,.38);
+    box-shadow:0 16px 36px -22px rgba(201,80,43,.28);
+  }
+  .geo-tier:hover{
+    transform:translateY(-4px);
+    border-color:rgba(201,80,43,.42);
+    box-shadow:0 20px 44px -24px rgba(201,80,43,.32);
+  }
+  .geo-tier--hi:hover{box-shadow:0 24px 54px -28px rgba(201,80,43,.42)}
+  .geo-tier--dark:hover{border-color:rgba(28,28,30,.24);box-shadow:0 20px 44px -26px rgba(28,28,30,.22)}
+  .geo-metric:hover{transform:translateY(-2px)}
+  .geo-metric:hover h3{color:var(--fire-mid)}
+  .geo-case:hover .geo-case-k{color:var(--fire-mid)}
+}
+@media (prefers-reduced-motion:reduce){
+  .geo-ind-card,.geo-fit-card,.geo-case,.geo-cmp-col,.geo-step,.geo-tier,.geo-metric{transition:none}
+  .geo-ind-card:hover,.geo-fit-card:hover,.geo-case:hover,.geo-cmp-col:hover,.geo-step:hover,.geo-tier:hover,.geo-metric:hover{transform:none}
+}
 
 /* ── 四步 ── */
 .geo-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -755,19 +781,19 @@
       </div>
       <div class="geo-hero-stats reveal reveal--d3">
         <div class="geo-stat">
-          <div class="n">15<i>个</i></div>
+          <div class="n"><span class="cnt" data-to="15">15</span><i>个</i></div>
           <div class="l">覆盖的 AI 平台</div>
         </div>
         <div class="geo-stat">
-          <div class="n">20+<i>国家</i></div>
+          <div class="n"><span class="cnt" data-to="20" data-plus="1">20+</span><i>国家</i></div>
           <div class="l">覆盖全球主要市场</div>
         </div>
         <div class="geo-stat">
-          <div class="n">20<i>万</i></div>
+          <div class="n"><span class="cnt" data-to="20">20</span><i>万</i></div>
           <div class="l">核心商业问题</div>
         </div>
         <div class="geo-stat">
-          <div class="n">3<i>万篇</i></div>
+          <div class="n"><span class="cnt" data-to="3">3</span><i>万篇</i></div>
           <div class="l">GEO 内容 / 年</div>
         </div>
       </div>
@@ -1823,5 +1849,31 @@
 </script>
 
 <script src="script.js?v=2"></script>
+
+<script>
+/* 首屏数字滚动：进入视口后从 0 数到目标值，无 JS 或系统减弱动效时直接显示原数字 */
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('.cnt[data-to]');
+  if (!els.length || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target; io.unobserve(el);
+      var to = parseFloat(el.dataset.to);
+      var plus = el.dataset.plus ? '+' : '';
+      var t0 = performance.now(), dur = 1100;
+      var step = function(now){
+        var t = Math.min((now - t0) / dur, 1);
+        var v = Math.round(to * (1 - Math.pow(1 - t, 3)));
+        el.textContent = v + (t === 1 ? plus : '');
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }, { threshold: .5 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
