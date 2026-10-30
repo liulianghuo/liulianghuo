@@ -1163,21 +1163,17 @@ button{font-family:inherit;cursor:pointer}
 /* ===== AI 平台 Logo 墙 (GEO 覆盖平台) ===== */
 .aiwall-section{padding:clamp(64px,7vw,100px) var(--section-pad-h);background:var(--c-bg)}
 .aiwall-inner{max-width:var(--container-wide);margin:0 auto;text-align:center}
-.aiwall-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:56px}
+.aiwall-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:14px;margin-top:56px}
 .aiwall-item{
-  height:84px;border-radius:16px;border:0.5px solid var(--c-line-subtle);
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  background:var(--c-surface);font-size:14px;font-weight:600;color:var(--c-text);
+  height:100px;border-radius:16px;border:0.5px solid var(--c-line-subtle);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  background:var(--c-surface);font-size:13px;font-weight:600;color:var(--c-text);
   letter-spacing:-0.01em;transition:transform 0.4s var(--ease-out),box-shadow 0.4s var(--ease-out),border-color 0.4s var(--ease-out);position:relative;overflow:hidden;
 }
+.aiwall-item img{width:30px;height:30px;object-fit:contain;flex:none;border-radius:7px}
 @media (hover:hover) and (pointer:fine){
   .aiwall-item:hover{transform:translateY(-3px);border-color:rgba(0,0,0,0.1);box-shadow:0 12px 32px rgba(0,0,0,0.05)}
 }
-.aiwall-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.aiwall-dot--a{background:#FF5722}.aiwall-dot--b{background:#1677FF}.aiwall-dot--c{background:#00B96B}
-.aiwall-dot--d{background:#FFB300}.aiwall-dot--e{background:#7B61FF}.aiwall-dot--f{background:#00BCD4}
-.aiwall-dot--g{background:#FF4D4F}.aiwall-dot--h{background:#2F54EB}.aiwall-dot--i{background:#13C2C2}
-.aiwall-dot--j{background:#EB2F96}.aiwall-dot--k{background:#52C41A}.aiwall-dot--l{background:#722ED1}
 
 /* ===== 反向定位话术 / 合作原则 (对标 HeartBit) ===== */
 .principle-section{padding:var(--section-pad-v) var(--section-pad-h);background:var(--c-surface-warm)}
@@ -1260,13 +1256,15 @@ button{font-family:inherit;cursor:pointer}
   .trend-card{padding:28px 24px}
   .loop-diagram{grid-template-columns:repeat(2,1fr);gap:16px}
   .loop-arrow{display:none}
-  .aiwall-grid{grid-template-columns:repeat(3,1fr)}
+  .aiwall-grid{grid-template-columns:repeat(4,1fr)}
   .principle-grid{grid-template-columns:1fr}
   .guarantee-grid{grid-template-columns:repeat(2,1fr)}
   .pricing-grid{grid-template-columns:1fr;gap:16px;max-width:480px;margin-left:auto;margin-right:auto}
 }
 @media(max-width:768px){
-  .aiwall-grid{grid-template-columns:repeat(2,1fr)}
+  .aiwall-grid{grid-template-columns:repeat(4,1fr);gap:12px}
+  .aiwall-item{height:92px;font-size:12px;gap:8px}
+  .aiwall-item img{width:28px;height:28px}
   .guarantee-grid{grid-template-columns:1fr}
   .loop-diagram{grid-template-columns:1fr}
   .principle-col{padding:32px 26px}
