@@ -134,8 +134,9 @@
 /* ── 首屏 AI 平台星环：你的品牌居中 + 8 个主流 AI 环绕 + 双向穿梭光线 ── */
 .orbit-stage{position:relative;width:min(100%,500px);aspect-ratio:1;margin:0 auto}
 .orbit-ring{position:absolute;border:0.5px dashed rgba(201,80,43,.26);border-radius:50%}
-.orbit-ring--o{inset:0}
-.orbit-ring--i{inset:20%}
+.orbit-ring--o{inset:0;animation:ringSpin 64s linear infinite}
+.orbit-ring--i{inset:20%;animation:ringSpin 46s linear infinite reverse}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
 .orbit-links{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible}
 .orbit-links .lk line{stroke:rgba(201,80,43,.22);stroke-width:.35;stroke-dasharray:1 2.2;stroke-linecap:round}
 .orbit-links .sh line{
@@ -145,18 +146,33 @@
   animation-delay:var(--sd,0s);
 }
 @keyframes orbitShuttle{from{stroke-dashoffset:0}to{stroke-dashoffset:-92}}
+.orbit-links .scan{transform-box:view-box;transform-origin:50% 50%;animation:orbitSpin 13s linear infinite}
+.orbit-links .scan-arc{fill:none;stroke:var(--fire-mid);stroke-width:.5;stroke-linecap:round;opacity:.5}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
 .orbit-core{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;
   width:32%;aspect-ratio:1;border-radius:50%;
   background:var(--c-bg);border:0.5px solid var(--c-line);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  display:flex;align-items:center;justify-content:center;
   animation:corePulse 4.5s ease-in-out infinite;
 }
-.orbit-core b{font-size:clamp(13px,1.25vw,17px);font-weight:700;letter-spacing:-0.02em;color:var(--c-text)}
-.orbit-core span{font-size:10.5px;font-weight:550;color:var(--fire-mid);letter-spacing:.04em}
+.orbit-core::before{
+  content:"";position:absolute;inset:-11%;border-radius:50%;
+  border:0.5px solid rgba(201,80,43,.30);
+  animation:coreHalo 4.5s ease-in-out infinite;
+}
+.orbit-core b{
+  position:relative;
+  font-size:clamp(13px,1.35vw,18px);font-weight:700;letter-spacing:-0.02em;color:var(--c-text);
+}
+.orbit-core b em{font-style:normal;color:var(--fire-mid)}
 @keyframes corePulse{
   0%,100%{box-shadow:0 18px 44px -20px rgba(201,80,43,.22)}
   50%{box-shadow:0 18px 60px -16px rgba(201,80,43,.42)}
+}
+@keyframes coreHalo{
+  0%,100%{transform:scale(.94);opacity:.32}
+  50%{transform:scale(1.07);opacity:.9}
 }
 .orbit-chip{
   position:absolute;left:var(--x);top:var(--y);z-index:2;
@@ -165,20 +181,33 @@
   background:var(--c-bg);border:0.5px solid var(--c-line);border-radius:980px;
   padding:6px 13px 6px 9px;font-size:12px;font-weight:600;color:var(--c-text);white-space:nowrap;
   box-shadow:0 8px 20px -12px rgba(29,29,31,.16);
-  animation:chipFloat 5.6s ease-in-out infinite;animation-delay:var(--d);
+  animation:chipFloat 5.6s ease-in-out infinite var(--d),
+            chipGlowOut 7.2s ease-in-out infinite var(--sd);
 }
+.orbit-chip--in{animation-name:chipFloat,chipGlowIn}
 .orbit-chip img{width:17px;height:17px;object-fit:contain;flex:none;border-radius:5px}
 @keyframes chipFloat{
   0%,100%{transform:translate(-50%,-50%) translateY(0)}
   50%{transform:translate(-50%,-50%) translateY(-4px)}
+}
+/* 光线抵达芯片的那一刻，芯片亮一下：out=光从品牌出发(峰值 50%)，in=光从芯片出发(峰值 0/100%) */
+@keyframes chipGlowOut{
+  0%,36%,64%,100%{box-shadow:0 8px 20px -12px rgba(29,29,31,.16);border-color:var(--c-line)}
+  50%{box-shadow:0 10px 28px -14px rgba(201,80,43,.40);border-color:rgba(201,80,43,.46)}
+}
+@keyframes chipGlowIn{
+  0%,100%{box-shadow:0 10px 28px -14px rgba(201,80,43,.40);border-color:rgba(201,80,43,.46)}
+  14%,86%{box-shadow:0 8px 20px -12px rgba(29,29,31,.16);border-color:var(--c-line)}
+  50%{box-shadow:0 8px 20px -12px rgba(29,29,31,.16);border-color:var(--c-line)}
 }
 .orbit-legend{
   margin:14px 0 0;text-align:center;
   font-size:11.5px;color:var(--c-text-tertiary);letter-spacing:.02em;
 }
 @media (prefers-reduced-motion:reduce){
-  .orbit-core,.orbit-chip{animation:none}
+  .orbit-core,.orbit-core::before,.orbit-chip,.orbit-ring{animation:none}
   .orbit-links .sh line{animation:none;stroke-dashoffset:-46}
+  .orbit-links .scan{animation:none}
 }
 
 /* ── 产品矩阵：三档 ── */
@@ -838,26 +867,29 @@
           </g>
           <g class="sh">
             <line pathLength="100" x1="50" y1="50" x2="50" y2="13" style="--sd:-0.4s"/>
-            <line pathLength="100" x1="50" y1="50" x2="76" y2="24" style="--sd:-1.6s"/>
+            <line pathLength="100" x1="76" y1="24" x2="50" y2="50" style="--sd:-1.6s"/>
             <line pathLength="100" x1="50" y1="50" x2="87" y2="50" style="--sd:-2.4s"/>
-            <line pathLength="100" x1="50" y1="50" x2="76" y2="76" style="--sd:-0.9s"/>
+            <line pathLength="100" x1="76" y1="76" x2="50" y2="50" style="--sd:-0.9s"/>
             <line pathLength="100" x1="50" y1="50" x2="50" y2="87" style="--sd:-3s"/>
-            <line pathLength="100" x1="50" y1="50" x2="24" y2="76" style="--sd:-2s"/>
+            <line pathLength="100" x1="24" y1="76" x2="50" y2="50" style="--sd:-2s"/>
             <line pathLength="100" x1="50" y1="50" x2="13" y2="50" style="--sd:-1.1s"/>
-            <line pathLength="100" x1="50" y1="50" x2="24" y2="24" style="--sd:-2.7s"/>
+            <line pathLength="100" x1="24" y1="24" x2="50" y2="50" style="--sd:-2.7s"/>
+          </g>
+          <g class="scan">
+            <circle class="scan-arc" cx="50" cy="50" r="46" pathLength="100" stroke-dasharray="7 100"/>
           </g>
         </svg>
         <div class="orbit-ring orbit-ring--o"></div>
         <div class="orbit-ring orbit-ring--i"></div>
-        <div class="orbit-core"><b>你的品牌</b><span>GEO 目标位</span></div>
-        <span class="orbit-chip" style="--x:50%;--y:13%;--d:.2s"><img src="images/ai/doubao.png" alt="豆包">豆包</span>
-        <span class="orbit-chip" style="--x:76%;--y:24%;--d:1.4s"><img src="images/ai/yuanbao.svg" alt="元宝">元宝</span>
-        <span class="orbit-chip" style="--x:87%;--y:50%;--d:.8s"><img src="images/ai/deepseek.svg" alt="DeepSeek">DeepSeek</span>
-        <span class="orbit-chip" style="--x:76%;--y:76%;--d:2.1s"><img src="images/ai/wenxin.svg" alt="文心一言">文心一言</span>
-        <span class="orbit-chip" style="--x:50%;--y:87%;--d:1.7s"><img src="images/ai/tongyi.svg" alt="通义千问">通义千问</span>
-        <span class="orbit-chip" style="--x:24%;--y:76%;--d:2.6s"><img src="images/ai/chatgpt.svg" alt="ChatGPT">ChatGPT</span>
-        <span class="orbit-chip" style="--x:13%;--y:50%;--d:1.1s"><img src="images/ai/gemini.svg" alt="Gemini">Gemini</span>
-        <span class="orbit-chip" style="--x:24%;--y:24%;--d:3s"><img src="images/ai/claude.svg" alt="Claude">Claude</span>
+        <div class="orbit-core"><b>你的<em>品牌</em></b></div>
+        <span class="orbit-chip orbit-chip--out" style="--x:50%;--y:13%;--d:.2s;--sd:-0.4s"><img src="images/ai/doubao.png" alt="豆包">豆包</span>
+        <span class="orbit-chip orbit-chip--in" style="--x:76%;--y:24%;--d:1.4s;--sd:-1.6s"><img src="images/ai/yuanbao.svg" alt="元宝">元宝</span>
+        <span class="orbit-chip orbit-chip--out" style="--x:87%;--y:50%;--d:.8s;--sd:-2.4s"><img src="images/ai/deepseek.svg" alt="DeepSeek">DeepSeek</span>
+        <span class="orbit-chip orbit-chip--in" style="--x:76%;--y:76%;--d:2.1s;--sd:-0.9s"><img src="images/ai/wenxin.svg" alt="文心一言">文心一言</span>
+        <span class="orbit-chip orbit-chip--out" style="--x:50%;--y:87%;--d:1.7s;--sd:-3s"><img src="images/ai/tongyi.svg" alt="通义千问">通义千问</span>
+        <span class="orbit-chip orbit-chip--in" style="--x:24%;--y:76%;--d:2.6s;--sd:-2s"><img src="images/ai/chatgpt.svg" alt="ChatGPT">ChatGPT</span>
+        <span class="orbit-chip orbit-chip--out" style="--x:13%;--y:50%;--d:1.1s;--sd:-1.1s"><img src="images/ai/gemini.svg" alt="Gemini">Gemini</span>
+        <span class="orbit-chip orbit-chip--in" style="--x:24%;--y:24%;--d:3s;--sd:-2.7s"><img src="images/ai/claude.svg" alt="Claude">Claude</span>
       </div>
       <p class="orbit-legend">主流 8 个 AI 平台示意 · 实际覆盖 15 个并持续扩展</p>
     </div>
