@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免费GEO小工具：AI可见度自查 · 客户问题生成器 · 结构化数据生成 — 流量火传媒</title>
+<meta name="description" content="三个免费 GEO 小工具：网站 AI 可见度自查、客户会问 AI 的问题生成器、Organization 结构化数据生成。不用注册、不留电话，全部在你的浏览器里运行。">
+<meta property="og:title" content="免费GEO小工具 — 流量火传媒">
+<meta property="og:description" content="网站 AI 可见度自查、客户会问 AI 的问题生成器、结构化数据生成，三个工具全部在浏览器本地运行。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://liulianghuo.com/tools.html">
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="styles.css?v=21">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "免费 GEO 小工具",
+  "description": "AI 可见度自查、客户会问 AI 的问题生成器、Organization 结构化数据生成，三个工具全部浏览器本地运行",
+  "url": "https://liulianghuo.com/tools.html",
+  "publisher": {"@type":"Organization","name":"流量火传媒","url":"https://liulianghuo.com/"}
+}
+</script>
+
+<style>
+/* ===== 工具页专用（前缀 tl，不动全站样式） ===== */
+.tl-page{padding:0 var(--section-pad-h)}
+.tl-inner{max-width:var(--container-wide);margin:0 auto}
+
+.tl-row{
+  display:grid;grid-template-columns:minmax(0,0.78fr) minmax(0,1.22fr);
+  gap:clamp(32px,4vw,64px);align-items:start;
+  padding:clamp(56px,7vh,84px) 0;
+  border-top:1px solid var(--c-line-subtle);
+}
+.tl-row:first-of-type{border-top:0;padding-top:clamp(24px,3vh,40px)}
+
+.tl-idx{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:10px;margin-bottom:18px;
+  font-family:var(--mono);font-size:13px;font-weight:600;
+  color:var(--fire-mid);background:var(--fire-glow);
+}
+.tl-title{font-size:clamp(24px,2.6vw,32px);font-weight:650;letter-spacing:-0.025em;line-height:1.25;margin-bottom:12px}
+.tl-desc{font-size:15.5px;line-height:1.75;color:var(--c-text-secondary);margin-bottom:20px}
+.tl-list{list-style:none;display:grid;gap:9px}
+.tl-list li{
+  position:relative;padding-left:20px;font-size:14px;line-height:1.65;color:var(--c-text-secondary);
+}
+.tl-list li::before{
+  content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;
+  background:var(--fire-mid);opacity:.55;
+}
+
+.tl-panel{
+  background:var(--c-surface);border:0.5px solid var(--c-line-subtle);
+  border-radius:18px;padding:clamp(20px,3vw,30px);
+}
+.tl-panel-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--c-line-subtle);
+}
+.tl-panel-head b{font-size:13.5px;font-weight:600;color:var(--c-text);letter-spacing:0.01em}
+.tl-panel-head span{font-size:12px;color:var(--c-text-tertiary)}
+
+/* 自查清单 */
+.tl-check{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px 14px;border-radius:12px;cursor:pointer;
+  transition:background-color var(--duration-fast) ease;
+}
+.tl-check:hover{background:rgba(255,255,255,0.75)}
+.tl-check input{
+  appearance:none;-webkit-appearance:none;flex:none;
+  width:19px;height:19px;margin-top:1px;border-radius:6px;
+  border:1.5px solid var(--c-line);background:#fff;cursor:pointer;
+  transition:background-color var(--duration-fast) ease,border-color var(--duration-fast) ease;
+}
+.tl-check input:checked{background:var(--fire-gradient);border-color:transparent}
+.tl-check input:checked::after{
+  content:"";display:block;width:5px;height:9px;margin:2px auto 0;
+  border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(42deg);
+}
+.tl-check span{font-size:14px;line-height:1.6;color:var(--c-text)}
+.tl-check small{display:block;font-size:12.5px;color:var(--c-text-tertiary);margin-top:2px}
+
+.tl-score{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-top:20px;padding-top:18px;border-top:1px solid var(--c-line-subtle);
+}
+.tl-score-num{
+  font-family:var(--mono);font-size:40px;font-weight:700;line-height:1;
+  letter-spacing:-0.03em;color:var(--c-text);
+}
+.tl-score-num i{font-style:normal;font-size:14px;font-weight:500;color:var(--c-text-tertiary);margin-left:3px}
+.tl-verdict{flex:1;min-width:200px;font-size:13.5px;line-height:1.65;color:var(--c-text-secondary)}
+.tl-verdict b{color:var(--c-text);font-weight:600}
+
+/* 表单 */
+.tl-form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.tl-field{display:grid;gap:6px}
+.tl-field--full{grid-column:1/-1}
+.tl-field label{font-size:12px;font-weight:550;color:var(--c-text);letter-spacing:0.01em}
+.tl-field label i{font-style:normal;color:var(--fire-mid);margin-left:2px}
+.tl-input{
+  width:100%;box-sizing:border-box;
+  padding:11px 13px;border-radius:10px;border:1px solid var(--c-line);
+  background:#fff;font-family:var(--font);font-size:14.5px;color:var(--c-text);
+  transition:border-color var(--duration-fast) ease,box-shadow var(--duration-fast) ease;
+}
+.tl-input::placeholder{color:var(--c-text-tertiary)}
+.tl-input:focus{outline:none;border-color:var(--fire-mid);box-shadow:0 0 0 3px var(--fire-glow)}
+.tl-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+.tl-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:44px;padding:0 22px;border-radius:980px;border:none;cursor:pointer;
+  font-family:var(--font);font-size:14px;font-weight:600;
+  color:#fff;background:var(--fire-gradient);
+  transition:transform var(--duration-fast) ease,box-shadow var(--duration-fast) ease;
+}
+.tl-btn:active{transform:scale(0.97)}
+@media (hover:hover) and (pointer:fine){
+  .tl-btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(201,80,43,0.22)}
+}
+.tl-btn--ghost{
+  color:var(--c-text);background:transparent;border:1px solid var(--c-line);
+}
+@media (hover:hover) and (pointer:fine){
+  .tl-btn--ghost:hover{background:var(--c-surface);border-color:var(--c-text-secondary);box-shadow:none;transform:none}
+}
+
+/* 输出区 */
+.tl-out{margin-top:18px}
+.tl-out[hidden]{display:none}
+.tl-qgroup{margin-bottom:18px}
+.tl-qgroup:last-child{margin-bottom:0}
+.tl-qgroup h4{
+  margin:0 0 8px;font-size:12px;font-weight:600;color:var(--c-text-tertiary);
+  letter-spacing:0.06em;
+}
+.tl-q{
+  display:flex;align-items:center;gap:10px;justify-content:space-between;
+  padding:9px 12px;border-radius:9px;background:#fff;border:0.5px solid var(--c-line-subtle);
+  margin-bottom:6px;
+}
+.tl-q p{margin:0;font-size:14px;line-height:1.55;color:var(--c-text);flex:1;min-width:0}
+.tl-copy{
+  flex:none;min-height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--c-line);
+  background:transparent;font-family:var(--font);font-size:12px;font-weight:550;
+  color:var(--c-text-secondary);cursor:pointer;transition:all var(--duration-fast) ease;
+}
+.tl-copy:hover{border-color:var(--fire-mid);color:var(--fire-mid)}
+.tl-copy.done{border-color:var(--fire-mid);color:var(--fire-mid)}
+
+.tl-code{
+  margin:0;padding:16px 18px;border-radius:12px;background:#1D1D1F;
+  color:#E8E8ED;font-family:var(--mono);font-size:12.5px;line-height:1.7;
+  overflow-x:auto;white-space:pre;
+}
+
+.tl-note{
+  margin-top:14px;font-size:12.5px;line-height:1.7;color:var(--c-text-tertiary);
+}
+.tl-empty{
+  padding:26px 18px;border:1px dashed var(--c-line);border-radius:12px;
+  text-align:center;font-size:13.5px;color:var(--c-text-tertiary);
+}
+
+/* 平台入口 */
+.tl-platforms{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:10px;
+}
+.tl-plat{
+  display:flex;flex-direction:column;gap:2px;min-width:0;
+  padding:14px 16px;border-radius:12px;background:#fff;
+  border:0.5px solid var(--c-line-subtle);
+  transition:border-color var(--duration-fast) ease,transform var(--duration-fast) ease;
+}
+.tl-plat:hover{border-color:var(--c-line);transform:translateY(-1px)}
+.tl-plat b{font-size:14px;font-weight:600;color:var(--c-text)}
+.tl-plat small{font-size:11.5px;color:var(--c-text-tertiary);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.tl-toast{
+  position:fixed;left:50%;bottom:36px;transform:translate(-50%,16px);
+  padding:11px 20px;border-radius:980px;background:rgba(29,29,31,0.92);
+  color:#fff;font-size:13.5px;font-weight:500;z-index:200;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+  backdrop-filter:blur(10px);
+}
+.tl-toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(min-width:901px){
+  /* 左栏说明随滚动吸附，右侧工具很长时不至于大片留白 */
+  .tl-row > div:first-child{position:sticky;top:96px}
+}
+@media(max-width:900px){
+  .tl-row{grid-template-columns:1fr;gap:24px}
+  .tl-form{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .tl-page{padding:0 20px}
+  .tl-row{padding:36px 0}
+  .tl-panel{padding:18px 16px;border-radius:14px}
+  .tl-score-num{font-size:32px}
+  .tl-q{padding:8px 10px}
+  .tl-check{padding:10px 8px}
+  .tl-platforms{grid-template-columns:repeat(2,1fr)}
+  .tl-toast{bottom:24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-left"><img class="nav-logo" src="logo.png" alt="流量火"></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="products.html">产品</a></li>
+      <li><a href="services.html">GEO</a></li>
+      <li><a href="cases.html">案例</a></li>
+      <li><a href="insights.html">观点</a></li>
+      <li><a href="pricing.html">套餐</a></li>
+      <li><a href="about.html">关于</a></li>
+    </ul>
+    <a href="#contact" class="nav-contact">联系我们</a>
+    <button class="mobile-btn" aria-label="菜单" aria-expanded="false"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">首页</a>
+  <a href="products.html">产品</a>
+  <a href="services.html">GEO</a>
+  <a href="cases.html">案例</a>
+  <a href="insights.html">观点</a>
+  <a href="pricing.html">套餐</a>
+  <a href="about.html">关于</a>
+  <a href="#contact">联系我们</a>
+</div>
+
+<section class="page-hero">
+  <h1 class="section-kicker">先自己看一眼，<br>AI 现在怎么说你</h1>
+  <p class="section-leader section-leader--center">三个免费小工具：查一查官网的 AI 基础、生成一份客户会问的问题清单、补上结构化数据。不用注册，不留电话，所有计算都在你的浏览器里完成</p>
+</section>
+
+<div class="tl-page">
+<div class="tl-inner">
+
+  <!-- 01 可见度自查 -->
+  <section class="tl-row" id="check">
+    <div>
+      <div class="tl-idx">01</div>
+      <h2 class="tl-title">网站 AI 可见度自查</h2>
+      <p class="tl-desc">十项基建，两分钟，粗略判断 AI 能不能顺利读到、读对你的品牌。前三项要先去 AI 平台实际问一问</p>
+      <ul class="tl-list">
+        <li>每项 10 分，勾选即时计分</li>
+        <li>分数只代表官网基建的完整度，不代表 AI 的实际推荐结果</li>
+        <li>低于 6 项，先别急着写内容，把基建补齐更划算</li>
+      </ul>
+    </div>
+    <div class="tl-panel">
+      <div class="tl-panel-head"><b>勾选符合的项目</b><span>每项 10 分</span></div>
+
+      <label class="tl-check"><input type="checkbox" data-score><span>直接问 AI 品牌名，能得到正确的介绍<small>去豆包、DeepSeek、元宝各问一遍</small></span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>问「城市 + 品类 + 哪家好」，AI 会提到你<small>这是最接近成交的那类提问</small></span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>AI 说出的地址、电话、业务范围是准确的<small>错一次，客户就流失一次</small></span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>官网有清楚的「关于我们」：是谁、做什么、在哪里</span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>官网有常见问题页，回答客户真正关心的问题</span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>官网加了 Organization 结构化数据<small>可以用下面的第 03 个工具生成</small></span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>robots.txt 放行了主流 AI 爬虫<small>GPTBot、ClaudeBot、Bytespider、PerplexityBot 等</small></span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>网站根目录有 llms.txt<small>给 AI 看的网站说明书</small></span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>地图、百科、行业平台上的品牌信息完整且一致</span></label>
+      <label class="tl-check"><input type="checkbox" data-score><span>近一年有公开的报道、案例或专业文章</span></label>
+
+      <div class="tl-score">
+        <div class="tl-score-num" id="scNum">0<i>/ 100</i></div>
+        <div class="tl-verdict" id="scVerdict"><b>还没有勾选</b><br>从最上面三项开始，先去 AI 平台实际问一遍</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 问题生成器 -->
+  <section class="tl-row" id="questions">
+    <div>
+      <div class="tl-idx">02</div>
+      <h2 class="tl-title">客户会问 AI 的问题清单</h2>
+      <p class="tl-desc">填品牌和品类，生成一份客户可能拿去问 AI 的问题。拿着它逐条去各平台提问，就是最简单的诊断</p>
+      <ul class="tl-list">
+        <li>覆盖认知、推荐、选择、价格、对比五类问题</li>
+        <li>可以单条复制，也可以一次复制全部</li>
+        <li>城市和卖点填了，问题会更贴近你的真实客户</li>
+      </ul>
+    </div>
+    <div class="tl-panel">
+      <div class="tl-panel-head"><b>填入基本信息</b><span>带 <i style="font-style:normal;color:var(--fire-mid)">*</i> 为必填</span></div>
+      <div class="tl-form">
+        <div class="tl-field"><label for="qBrand">品牌名<i>*</i></label><input class="tl-input" id="qBrand" placeholder="例：流量火传媒"></div>
+        <div class="tl-field"><label for="qCat">品类 / 服务<i>*</i></label><input class="tl-input" id="qCat" placeholder="例：小红书代运营"></div>
+        <div class="tl-field"><label for="qCity">城市（选填）</label><input class="tl-input" id="qCity" placeholder="例：深圳"></div>
+        <div class="tl-field"><label for="qSell">特色卖点（选填）</label><input class="tl-input" id="qSell" placeholder="例：一人公司也能做"></div>
+      </div>
+      <div class="tl-actions">
+        <button class="tl-btn" id="qGen">生成问题清单</button>
+        <button class="tl-btn tl-btn--ghost" id="qCopyAll" hidden>复制全部</button>
+      </div>
+      <div class="tl-out" id="qOut" hidden></div>
+      <p class="tl-note">问题里不会出现你的品牌名，因为客户提问时本来就不会说品牌名。要验证的是：不问品牌，AI 会不会主动提到你</p>
+    </div>
+  </section>
+
+  <!-- 03 结构化数据 -->
+  <section class="tl-row" id="schema">
+    <div>
+      <div class="tl-idx">03</div>
+      <h2 class="tl-title">结构化数据生成</h2>
+      <p class="tl-desc">结构化数据能让搜索引擎和 AI 更准确地读懂你是谁。填完生成一段代码，放进官网首页的 head 里就行</p>
+      <ul class="tl-list">
+        <li>使用 schema.org 的 Organization 类型</li>
+        <li>多个电话用逗号分隔</li>
+        <li>生成后交给做网站的人放到首页即可，不会影响页面显示</li>
+      </ul>
+    </div>
+    <div class="tl-panel">
+      <div class="tl-panel-head"><b>企业信息</b><span>带 <i style="font-style:normal;color:var(--fire-mid)">*</i> 为必填</span></div>
+      <div class="tl-form">
+        <div class="tl-field"><label for="sName">公司全称<i>*</i></label><input class="tl-input" id="sName" placeholder="例：深圳市流量火文化传媒有限公司"></div>
+        <div class="tl-field"><label for="sAlt">品牌简称</label><input class="tl-input" id="sAlt" placeholder="例：流量火传媒"></div>
+        <div class="tl-field tl-field--full"><label for="sUrl">官网网址<i>*</i></label><input class="tl-input" id="sUrl" placeholder="例：https://liulianghuo.com"></div>
+        <div class="tl-field tl-field--full"><label for="sLogo">Logo 图片网址</label><input class="tl-input" id="sLogo" placeholder="例：https://liulianghuo.com/logo.png"></div>
+        <div class="tl-field"><label for="sTel">联系电话</label><input class="tl-input" id="sTel" placeholder="多个用逗号分隔"></div>
+        <div class="tl-field"><label for="sCity">省份 / 城市</label><input class="tl-input" id="sCity" placeholder="例：广东省 深圳市"></div>
+        <div class="tl-field tl-field--full"><label for="sAddr">详细地址</label><input class="tl-input" id="sAddr" placeholder="例：南山区某某路 1 号"></div>
+        <div class="tl-field tl-field--full"><label for="sDesc">一句话介绍</label><input class="tl-input" id="sDesc" placeholder="例：专注 IP 策划、内容生产与多平台分发"></div>
+      </div>
+      <div class="tl-actions">
+        <button class="tl-btn" id="sGen">生成代码</button>
+        <button class="tl-btn tl-btn--ghost" id="sCopy" hidden>复制代码</button>
+      </div>
+      <div class="tl-out" id="sOut" hidden></div>
+      <p class="tl-note">这段代码只描述事实，不会在页面上显示任何内容。填错了不会影响网站外观，但会让 AI 读错你</p>
+    </div>
+  </section>
+
+  <!-- 04 平台入口 -->
+  <section class="tl-row" id="platforms">
+    <div>
+      <div class="tl-idx">04</div>
+      <h2 class="tl-title">拿着问题清单，去这些平台问一遍</h2>
+      <p class="tl-desc">链接指向各平台官网，部分平台需要登录后使用。同一个问题在不同平台、不同时间的答案可能不一样，都记下来</p>
+      <ul class="tl-list">
+        <li>先问品牌名，再问「城市 + 品类 + 哪家好」</li>
+        <li>每条回答都截图，标注平台和日期</li>
+        <li>重复问两三次，看答案稳不稳定</li>
+      </ul>
+    </div>
+    <div class="tl-panel">
+      <div class="tl-panel-head"><b>常用平台</b><span>11 个</span></div>
+      <div class="tl-platforms">
+        <a class="tl-plat" href="https://www.doubao.com" target="_blank" rel="noopener noreferrer"><b>豆包</b><small>doubao.com</small></a>
+        <a class="tl-plat" href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer"><b>DeepSeek</b><small>chat.deepseek.com</small></a>
+        <a class="tl-plat" href="https://yuanbao.tencent.com" target="_blank" rel="noopener noreferrer"><b>腾讯元宝</b><small>yuanbao.tencent.com</small></a>
+        <a class="tl-plat" href="https://www.tongyi.com" target="_blank" rel="noopener noreferrer"><b>通义</b><small>tongyi.com</small></a>
+        <a class="tl-plat" href="https://yiyan.baidu.com" target="_blank" rel="noopener noreferrer"><b>文心一言</b><small>yiyan.baidu.com</small></a>
+        <a class="tl-plat" href="https://www.kimi.com" target="_blank" rel="noopener noreferrer"><b>Kimi</b><small>kimi.com</small></a>
+        <a class="tl-plat" href="https://chatglm.cn" target="_blank" rel="noopener noreferrer"><b>智谱清言</b><small>chatglm.cn</small></a>
+        <a class="tl-plat" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>chatgpt.com</small></a>
+        <a class="tl-plat" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>gemini.google.com</small></a>
+        <a class="tl-plat" href="https://claude.ai" target="_blank" rel="noopener noreferrer"><b>Claude</b><small>claude.ai</small></a>
+        <a class="tl-plat" href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer"><b>Perplexity</b><small>perplexity.ai</small></a>
+      </div>
+      <p class="tl-note">平台名称仅用于说明查询入口，不代表与相关平台存在官方合作</p>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<section class="cta-section" id="contact">
+  <h2 class="cta-title">自己查完，还是不太确定？</h2>
+  <p class="cta-desc">把你的问题清单发我，我用同一份清单在主流 AI 平台跑一遍，出一份带截图的诊断，告诉你差在哪、先补哪</p>
+  <div class="cta-contact-row">
+    <a class="cta-contact-item" href="tel:18664563258"><span class="cta-contact-label">电话</span><span class="cta-contact-value">186-6456-3258</span></a>
+    <div class="cta-contact-item"><span class="cta-contact-label">微信</span><span class="cta-contact-value">AlwaysOnlineXHS</span></div>
+    <a class="cta-contact-item" href="mailto:1282656876@qq.com"><span class="cta-contact-label">邮箱</span><span class="cta-contact-value">1282656876@qq.com</span></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-row">
+        <img src="logo.png" alt="流量火">
+      </div>
+      <p class="footer-bio">专注IP策划、内容生产与多平台分发。<br>流量不贵，内容更对，让IP成为品牌超强增长引擎</p>
+    </div>
+    <div class="footer-col">
+      <h5>服务</h5>
+      <ul>
+        <li><a href="products.html#svc-train">小红书一对一教培</a></li>
+        <li><a href="products.html#svc-ops">小红书代运营</a></li>
+        <li><a href="products.html#svc-ip">视频IP打造</a></li>
+        <li><a href="services.html">GEO优化</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>资源</h5>
+      <ul>
+        <li><a href="cases.html">实战案例</a></li>
+        <li><a href="insights.html">行业观点</a></li>
+        <li><a href="products.html">核心产品</a></li>
+        <li><a href="pricing.html">服务套餐</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>联系</h5>
+      <ul>
+        <li>流量火传媒</li>
+        <li><a href="tel:18664563258">186-6456-3258</a></li>
+        <li><a href="mailto:1282656876@qq.com">1282656876@qq.com</a></li>
+        <li>微信：AlwaysOnlineXHS</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 流量火传媒</span>
+    <span>让IP成为品牌超强增长引擎</span>
+  </div>
+  <div class="footer-sites">品牌官网 <a href="https://liulianghuo.com" rel="noopener">liulianghuo.com</a> &nbsp;·&nbsp; 智能产品门户 <a href="https://liulianghuo.top" target="_blank" rel="noopener noreferrer">liulianghuo.top</a></div>
+</footer>
+
+<div class="tl-toast" id="toast">已复制</div>
+
+<script>
+(function(){
+  'use strict';
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+  function toast(msg){
+    toastEl.textContent = msg || '已复制';
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 1800);
+  }
+  function copyText(text, btn){
+    function ok(){
+      toast();
+      if (btn){ var old = btn.textContent; btn.textContent = '已复制'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1500); }
+    }
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(ok).catch(fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ok(); } catch(e){ toast('复制失败，请手动选中'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  /* ---------- 01 自查计分 ---------- */
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-score]'));
+  var scNum = document.getElementById('scNum');
+  var scVerdict = document.getElementById('scVerdict');
+  function renderScore(){
+    var n = boxes.filter(function(b){ return b.checked; }).length;
+    var score = n * 10;
+    scNum.innerHTML = score + '<i>&thinsp;/ 100</i>';
+    var html;
+    if (n === 0) {
+      html = '<b>还没有勾选</b><br>从最上面三项开始，先去 AI 平台实际问一遍';
+    } else if (n <= 3) {
+      html = '<b>基建基本是空的</b><br>AI 大概率读不全你，或者读到的信息是错的。先补「关于我们」、FAQ 页、结构化数据和 robots 放行，这四件最快见效';
+    } else if (n <= 6) {
+      html = '<b>能读到，但读不准</b><br>AI 知道有你这么个品牌，但不一定会在推荐类问题里提你。接下来重点是问题清单覆盖和外部信源';
+    } else if (n <= 8) {
+      html = '<b>基础已经过关</b><br>剩下的是内容密度和外链印证。重点看「城市 + 品类 + 哪家好」这类高意向问题，AI 提不提你';
+    } else {
+      html = '<b>基建很完整</b><br>官网这一层基本没什么可挑的了。这时候该盯的是回答准确度和竞品压制，而不是继续改网站';
+    }
+    scVerdict.innerHTML = html;
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', renderScore); });
+  renderScore();
+
+  /* ---------- 02 问题生成器 ---------- */
+  var qBrand = document.getElementById('qBrand'),
+      qCat = document.getElementById('qCat'),
+      qCity = document.getElementById('qCity'),
+      qSell = document.getElementById('qSell'),
+      qGen = document.getElementById('qGen'),
+      qOut = document.getElementById('qOut'),
+      qCopyAll = document.getElementById('qCopyAll'),
+      lastQuestions = [];
+
+  function buildQuestions(){
+    var brand = qBrand.value.trim();
+    var cat = qCat.value.trim();
+    var city = qCity.value.trim();
+    var sell = qSell.value.trim();
+    if (!cat) { qGen.focus(); qCat.focus(); toast('先填品类 / 服务'); return null; }
+    var where = city || '本地';
+    var groups = [];
+
+    groups.push({ label: '认知类', items: [
+      cat + '是做什么的',
+      brand ? brand + ' 是做什么的' : (where + '做' + cat + '的公司有哪些')
+    ]});
+
+    var rec = [
+      where + cat + '哪家好',
+      where + '有哪些靠谱的' + cat,
+      where + cat + '推荐几家'
+    ];
+    if (city) { rec.push('想找' + city + '的' + cat + '，有什么建议'); }
+    groups.push({ label: '推荐类', items: rec });
+
+    var pick = [
+      cat + '怎么选，要注意什么',
+      '选' + cat + '主要看哪几点',
+      cat + '做得好的公司有什么特征'
+    ];
+    if (sell) { pick.push(sell + '的' + cat + '有哪些'); }
+    groups.push({ label: '选择类', items: pick });
+
+    groups.push({ label: '价格类', items: [
+      cat + '大概多少钱',
+      cat + '的收费一般怎么算',
+      where + cat + '贵不贵'
+    ]});
+
+    var cmp = [
+      where + cat + '排名',
+      cat + '哪个品牌口碑比较好',
+      cat + '有没有踩坑的案例'
+    ];
+    if (brand) { cmp.push(brand + ' 和同行比有什么不同'); }
+    groups.push({ label: '对比类', items: cmp });
+
+    return groups;
+  }
+
+  qGen.addEventListener('click', function(){
+    var groups = buildQuestions();
+    if (!groups) return;
+    lastQuestions = [];
+    var html = '';
+    groups.forEach(function(g){
+      html += '<div class="tl-qgroup"><h4>' + g.label + '</h4>';
+      g.items.forEach(function(q){
+        lastQuestions.push(q);
+        html += '<div class="tl-q"><p>' + escapeHtml(q) + '</p>' +
+                '<button class="tl-copy" type="button" data-q="' + escapeAttr(q) + '">复制</button></div>';
+      });
+      html += '</div>';
+    });
+    qOut.innerHTML = html;
+    qOut.hidden = false;
+    qCopyAll.hidden = false;
+    qOut.querySelectorAll('.tl-copy').forEach(function(btn){
+      btn.addEventListener('click', function(){ copyText(btn.getAttribute('data-q'), btn); });
+    });
+    qOut.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
+
+  qCopyAll.addEventListener('click', function(){
+    if (!lastQuestions.length) return;
+    copyText(lastQuestions.join('\n'), qCopyAll);
+  });
+
+  /* ---------- 03 结构化数据 ---------- */
+  var sGen = document.getElementById('sGen'),
+      sOut = document.getElementById('sOut'),
+      sCopy = document.getElementById('sCopy'),
+      lastSchema = '';
+
+  function val(id){ return document.getElementById(id).value.trim(); }
+
+  sGen.addEventListener('click', function(){
+    var name = val('sName'), url = val('sUrl');
+    if (!name){ document.getElementById('sName').focus(); toast('先填公司全称'); return; }
+    if (!url){ document.getElementById('sUrl').focus(); toast('先填官网网址'); return; }
+
+    var data = { '@context':'https://schema.org', '@type':'Organization', 'name': name };
+    var alt = val('sAlt'); if (alt) data.alternateName = alt;
+    data.url = url;
+    var logo = val('sLogo'); if (logo) data.logo = logo;
+    var desc = val('sDesc'); if (desc) data.description = desc;
+    var tel = val('sTel');
+    if (tel) {
+      var arr = tel.split(/[,，]/).map(function(t){ return t.trim(); }).filter(Boolean);
+      if (arr.length === 1) data.telephone = arr[0];
+      else if (arr.length > 1) data.telephone = arr;
+    }
+    var city = val('sCity').split(/\s+/).filter(Boolean);
+    var addr = val('sAddr');
+    if (city.length || addr) {
+      var pa = { '@type':'PostalAddress' };
+      if (addr) pa.streetAddress = addr;
+      if (city.length === 1) pa.addressLocality = city[0];
+      if (city.length >= 2){ pa.addressRegion = city[0]; pa.addressLocality = city[1]; }
+      pa.addressCountry = 'CN';
+      data.address = pa;
+    }
+
+    lastSchema = '<script type="application/ld+json">\n' + JSON.stringify(data, null, 2) + '\n<\/script>';
+    sOut.innerHTML = '<pre class="tl-code">' + escapeHtml(lastSchema) + '</pre>';
+    sOut.hidden = false;
+    sCopy.hidden = false;
+  });
+
+  sCopy.addEventListener('click', function(){
+    if (lastSchema) copyText(lastSchema, sCopy);
+  });
+
+  /* ---------- 工具函数 ---------- */
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+  function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'&quot;'); }
+})();
+</script>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>
