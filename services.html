@@ -206,42 +206,71 @@
 .tier-btn:hover{border-color:var(--c-text-secondary);background:var(--c-surface)}
 .geo-tier--hi .tier-btn{background:var(--fire-gradient);color:#fff;border-color:transparent}
 .geo-tier--hi .tier-btn:hover{box-shadow:0 12px 28px rgba(201,80,43,0.24);background:var(--fire-gradient)}
-/* 铂金版：深色卡 */
-.geo-tier--dark{background:#0A0A0C;border-color:#0A0A0C}
-.geo-tier--dark h3{color:#fff}
-.geo-tier--dark .sub{color:var(--fire-from)}
-.geo-tier--dark .tier-desc{color:rgba(255,255,255,.62)}
-.geo-tier--dark .geo-tier-k{color:var(--fire-from);background:rgba(232,131,90,.14)}
-.geo-tier--dark .tier-grid{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.08)}
-.geo-tier--dark .tier-grid > div{background:#151517}
-.geo-tier--dark .tier-grid b{color:#fff}
-.geo-tier--dark .tier-grid b i{color:rgba(255,255,255,.4)}
-.geo-tier--dark .tier-grid span{color:rgba(255,255,255,.4)}
-.geo-tier--dark .tier-check li{color:rgba(255,255,255,.74)}
-.geo-tier--dark .tier-check li::before{border-color:var(--fire-from)}
-.geo-tier--dark .tier-btn{background:var(--fire-gradient);color:#fff;border-color:transparent}
+/* 铂金版：浅暖灰底 + 深墨描边，与两张白卡同层但更沉，不做黑卡 */
+.geo-tier--dark{--ink:#1C1C1E;background:#FBFAF9;border-color:rgba(28,28,30,.14)}
+.geo-tier--dark h3{color:var(--ink)}
+.geo-tier--dark .sub{color:var(--ink);font-weight:600}
+.geo-tier--dark .tier-desc{color:var(--c-text-secondary)}
+.geo-tier--dark .geo-tier-k{color:#fff;background:var(--ink);font-weight:600}
+.geo-tier--dark .tier-grid{background:var(--c-line-subtle);border-color:var(--c-line-subtle)}
+.geo-tier--dark .tier-grid > div{background:#fff}
+.geo-tier--dark .tier-grid b{color:var(--ink)}
+.geo-tier--dark .tier-grid b i{color:var(--c-text-tertiary)}
+.geo-tier--dark .tier-grid span{color:var(--c-text-tertiary)}
+.geo-tier--dark .tier-check li{color:var(--c-text-secondary)}
+.geo-tier--dark .tier-check li::before{border-color:var(--ink)}
+.geo-tier--dark .tier-btn{background:var(--ink);color:#fff;border-color:var(--ink)}
+.geo-tier--dark .tier-btn:hover{background:#000;border-color:#000;box-shadow:0 12px 26px rgba(28,28,30,.18)}
+.geo-tier--dark .tier-btn:active{transform:scale(.985)}
 
 /* ── 能力对照表 ── */
-.geo-tbl-wrap{margin-top:clamp(28px,4vh,40px)}
+.geo-tbl-wrap{margin-top:clamp(22px,3vh,32px)}
+.geo-tbl-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.geo-tbl-head h3{font-size:15px;font-weight:650;color:var(--c-text);margin:0;letter-spacing:-0.012em}
+.geo-tbl-count{
+  font-family:var(--mono);font-size:11.5px;font-weight:550;color:var(--fire-mid);
+  background:var(--fire-glow);border-radius:980px;padding:3px 10px;line-height:1.6;white-space:nowrap;
+}
+.geo-tbl-legend{
+  font-size:11.5px;color:var(--c-text-tertiary);line-height:1.6;margin:0 0 14px;
+  display:flex;flex-wrap:wrap;gap:4px 14px;white-space:nowrap;
+}
+.geo-tbl-legend span{display:inline-flex;align-items:center;gap:5px}
+.geo-tbl-legend i{width:6px;height:6px;border-radius:50%;flex:none}
+.geo-tbl-legend .lg-y i{background:var(--fire-mid)}
+.geo-tbl-legend .lg-m i{background:var(--c-line)}
+.geo-tbl-legend .lg-n i{background:var(--c-text-tertiary);opacity:.5}
+
 .geo-tbl{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13.5px}
-.geo-tbl th,.geo-tbl td{padding:11px 6px;text-align:center;vertical-align:middle;border-bottom:0.5px solid var(--c-line-subtle)}
+.geo-tbl th,.geo-tbl td{padding:9px 8px;text-align:center;vertical-align:middle;border-bottom:0.5px solid var(--c-line-subtle)}
+.geo-tbl th:first-child{width:46%}
+.geo-tbl th:not(:first-child){width:18%}
 .geo-tbl tbody tr{transition:background-color var(--duration-fast) ease}
 .geo-tbl tbody tr:hover td{background:rgba(201,80,43,.035)}
-.geo-tbl th:not(:first-child){width:92px}
-.geo-tbl thead th{font-size:12.5px;font-weight:650;color:var(--c-text);border-bottom:1px solid var(--c-line);padding-bottom:12px}
+.geo-tbl thead th{
+  position:sticky;top:104px;z-index:4;
+  font-size:12.5px;font-weight:650;color:var(--c-text);
+  background:var(--c-surface-warm);
+  border-bottom:1px solid var(--c-line);padding:8px 8px 12px;
+}
 .geo-tbl thead th:first-child{text-align:left;font-weight:500;color:var(--c-text-tertiary)}
-.geo-tbl td:first-child{text-align:left;color:var(--c-text);line-height:1.55}
+.geo-tbl thead .th-k{display:inline-block;border-radius:980px;padding:4px 15px;font-size:12.5px;font-weight:650;line-height:1.5}
+.geo-tbl thead .th-k--v{color:var(--c-text-secondary);background:var(--c-surface)}
+.geo-tbl thead .th-k--g{color:var(--fire-mid);background:var(--fire-glow)}
+.geo-tbl thead .th-k--p{color:#fff;background:#1C1C1E}
+.geo-tbl td:first-child{text-align:left;color:var(--c-text);line-height:1.55;padding-left:2px}
 .geo-tbl tr.geo-tbl-group td{
   text-align:left;font-size:11.5px;font-weight:600;color:var(--c-text-tertiary);
-  padding:20px 0 7px;border-bottom:0;border-top:1px solid var(--c-line-subtle);
+  padding:20px 2px 7px;border-bottom:0;border-top:1px solid var(--c-line-subtle);
 }
 .geo-tbl tr.geo-tbl-group:first-child td{border-top:0;padding-top:6px}
-.geo-tbl .y{color:var(--fire-mid);font-weight:600}
-.geo-tbl .m{
-  color:var(--c-text-secondary);background:var(--c-surface);
-  border-radius:980px;padding:2px 9px;font-size:11.5px;display:inline-block;line-height:1.6;
+.geo-tbl td .y,.geo-tbl td .m,.geo-tbl td .n{
+  display:inline-block;min-width:64px;border-radius:980px;
+  padding:3px 9px;font-size:12px;line-height:1.6;white-space:nowrap;
 }
-.geo-tbl .n{color:var(--c-text-tertiary);opacity:.65}
+.geo-tbl td .y{color:var(--fire-mid);background:var(--fire-glow);font-weight:650}
+.geo-tbl td .m{color:var(--c-text-secondary);background:var(--c-surface)}
+.geo-tbl td .n{color:var(--c-text-tertiary);border:0.5px solid var(--c-line)}
 
 /* ── 四步 ── */
 .geo-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -529,10 +558,41 @@
   .geo-tiers{margin-top:16px}
   .tier-flag{right:14px}
   .tier-grid b{font-size:17px}
-  .geo-tbl{font-size:12.5px}
-  .geo-tbl th:not(:first-child){width:56px}
-  .geo-tbl th,.geo-tbl td{padding:10px 3px}
+  /* ── 能力对照表：手机上改成一张张小卡，档位名写在状态前 ── */
+  .geo-tbl-wrap{margin-top:22px}
+  .geo-tbl-head{flex-direction:column;align-items:flex-start;gap:9px;margin-bottom:10px}
+  .geo-tbl-head h3{font-size:14.5px;line-height:1.45}
+  .geo-tbl-legend{white-space:normal;gap:5px 12px;margin-bottom:14px}
+  .geo-tbl thead{display:none}
+  .geo-tbl,.geo-tbl tbody{display:block;width:100%}
+  .geo-tbl tr{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+    background:var(--c-bg);border:0.5px solid var(--c-line-subtle);
+    border-radius:12px;padding:11px 13px;margin-bottom:7px;
+  }
+  .geo-tbl tr.geo-tbl-group{
+    background:transparent;border:0;border-radius:0;padding:18px 2px 8px;margin:0;
+    border-top:1px solid var(--c-line-subtle);
+  }
+  .geo-tbl tr.geo-tbl-group:first-child{border-top:0;padding-top:2px}
+  .geo-tbl tr.geo-tbl-group td{padding:0;border:0;display:block;width:100%}
+  .geo-tbl td{border:0;padding:0;text-align:left;display:inline-flex;align-items:center;gap:5px;width:auto}
+  .geo-tbl td:first-child{flex:0 0 100%;font-size:13.5px;font-weight:600;line-height:1.45;padding:0 0 8px}
+  .geo-tbl td:nth-child(2)::before{content:"验证版";font-size:11px;color:var(--c-text-tertiary)}
+  .geo-tbl td:nth-child(3)::before{content:"增长版";font-size:11px;color:var(--c-text-tertiary)}
+  .geo-tbl td:nth-child(4)::before{content:"铂金版";font-size:11px;color:var(--c-text-tertiary)}
+  .geo-tbl td .y,.geo-tbl td .m,.geo-tbl td .n{min-width:0;padding:2px 8px;font-size:11.5px}
+
+  .geo-case-nums{gap:14px 10px;padding-top:14px}
   .geo-case-nums .n{font-size:17px}
+  .geo-case-terms span{font-size:11px}
+  .geo-metric{padding-left:14px}
+  .geo-metric h3{font-size:14.5px}
+  .geo-note{text-align:left;font-size:12px;line-height:1.7}
+  .geo-hero-tags{gap:6px}
+  .geo-hero-tags span{font-size:11px;padding:3px 9px}
+  .geo-cmp-col h3 em{margin-top:4px}
+  .geo-fit-out span{font-size:11px}
   .geo-cta-alt{margin:16px 0 0;display:inline-flex}
   .tl-row{padding:32px 0}
   .tl-panel{padding:18px 16px;border-radius:14px}
@@ -551,7 +611,17 @@
   "name": "流量火传媒",
   "alternateName": "流量火",
   "url": "https://liulianghuo.com",
-  "logo": "https://liulianghuo.com/logo.png"
+  "logo": "https://liulianghuo.com/logo.png",
+  "email": "1282656876@qq.com",
+  "telephone": "+86-186-6456-3258",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "商务合作",
+    "telephone": "+86-186-6456-3258",
+    "email": "1282656876@qq.com",
+    "areaServed": "CN",
+    "availableLanguage": ["zh-CN"]
+  }]
 }
 </script>
 <script type="application/ld+json">
@@ -857,40 +927,50 @@
       </div>
 
       <div class="geo-tbl-wrap reveal">
-        <div class="geo-tbl-head" style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;">
-          <h3 style="font-size:15px;font-weight:650;color:var(--c-text);margin:0;">每一项都写清楚，哪一档有、哪一档没有</h3>
-          <span style="font-size:12px;color:var(--c-text-tertiary);white-space:nowrap;">共 18 项</span>
+        <div class="geo-tbl-head">
+          <h3>每一项都写清楚，哪一档有、哪一档没有</h3>
+          <span class="geo-tbl-count">共 18 项</span>
         </div>
+        <p class="geo-tbl-legend">
+          <span class="lg-y"><i></i>含 = 已包含在这一档里</span>
+          <span class="lg-m"><i></i>按需 = 可单独追加</span>
+          <span class="lg-n"><i></i>不含 = 这一档不提供</span>
+        </p>
         <table class="geo-tbl">
           <thead>
-            <tr><th>能力项</th><th>验证版</th><th>增长版</th><th>铂金版</th></tr>
+            <tr>
+              <th>能力项</th>
+              <th><span class="th-k th-k--v">验证版</span></th>
+              <th><span class="th-k th-k--g">增长版</span></th>
+              <th><span class="th-k th-k--p">铂金版</span></th>
+            </tr>
           </thead>
           <tbody>
             <tr class="geo-tbl-group"><td colspan="4">诊断与词库</td></tr>
-            <tr><td>品牌 AI 现状诊断</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>行业提问方式梳理</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>GEO 词库与优先级</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>竞品 AI 表现对照</td><td class="m">按需</td><td class="y">含</td><td class="y">含</td></tr>
+            <tr><td>品牌 AI 现状诊断</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>行业提问方式梳理</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>GEO 词库与优先级</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>竞品 AI 表现对照</td><td><span class="m">按需</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
 
             <tr class="geo-tbl-group"><td colspan="4">内容与信源</td></tr>
-            <tr><td>品牌事实梳理</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>问答型内容生产</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>深度内容与案例</td><td class="m">按需</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>权威信源建设</td><td class="m">按需</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>媒体与行业门户分发</td><td class="n">—</td><td class="m">按需</td><td class="y">含</td></tr>
+            <tr><td>品牌事实梳理</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>问答型内容生产</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>深度内容与案例</td><td><span class="m">按需</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>权威信源建设</td><td><span class="m">按需</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>媒体与行业门户分发</td><td><span class="n">不含</span></td><td><span class="m">按需</span></td><td><span class="y">✓ 含</span></td></tr>
 
             <tr class="geo-tbl-group"><td colspan="4">官网基建</td></tr>
-            <tr><td>结构化数据 Schema</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>llms.txt 与 robots</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>FAQ 与页面结构优化</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>官网改写与新建页面</td><td class="n">—</td><td class="m">按需</td><td class="y">含</td></tr>
+            <tr><td>结构化数据 Schema</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>llms.txt 与 robots</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>FAQ 与页面结构优化</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>官网改写与新建页面</td><td><span class="n">不含</span></td><td><span class="m">按需</span></td><td><span class="y">✓ 含</span></td></tr>
 
             <tr class="geo-tbl-group"><td colspan="4">监测与复盘</td></tr>
-            <tr><td>多平台定期复测</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>提及与首位率记录</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>描述准确性核查</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>月度复盘与策略调整</td><td class="y">含</td><td class="y">含</td><td class="y">含</td></tr>
-            <tr><td>专属团队与季度战略会</td><td class="n">—</td><td class="y">含</td><td class="y">含</td></tr>
+            <tr><td>多平台定期复测</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>提及与首位率记录</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>描述准确性核查</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>月度复盘与策略调整</td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
+            <tr><td>专属团队与季度战略会</td><td><span class="n">不含</span></td><td><span class="y">✓ 含</span></td><td><span class="y">✓ 含</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -1192,7 +1272,7 @@
       <div class="geo-head geo-head--split reveal">
         <div>
           <div class="geo-kicker"><i></i>07 / 客户案例</div>
-          <h2 class="geo-h2">已经跑出来的</h2>
+          <h2 class="geo-h2">已经跑出来的案例</h2>
         </div>
         <p class="geo-lead">200+ 品牌里挑三个能核对的。受保密要求，客户名做脱敏处理，具体行业与数据可当面核验</p>
       </div>
@@ -1224,7 +1304,7 @@
             <div><div class="n">45<i>个</i></div><div class="l">重点城市分批</div></div>
             <div><div class="n">694<i>座</i></div><div class="l">城市链路已打通</div></div>
             <div><div class="n">2845<i>县级</i></div><div class="l">行政区覆盖</div></div>
-            <div><div class="n">80<i>元/条</i></div><div class="l">核心城市有效线索</div></div>
+            <div><div class="n">3<i>个月</i></div><div class="l">单城跑出可见变化</div></div>
           </div>
         </div>
 
@@ -1243,8 +1323,6 @@
           </div>
         </div>
       </div>
-
-      <p class="geo-note reveal">更多行业的完整案例与拆解在<a href="cases.html">实战案例</a>页</p>
     </div>
   </div>
 </section>
