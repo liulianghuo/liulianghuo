@@ -164,6 +164,51 @@
 }
 .geo-quote .hl{color:var(--fire-mid)}
 
+/* ── 首屏 AI 平台星环：12 芯片环绕你的品牌，缓慢漂浮 ── */
+.orbit-stage{position:relative;width:min(100%,500px);aspect-ratio:1;margin:0 auto}
+.orbit-ring{position:absolute;border:0.5px dashed rgba(201,80,43,.30);border-radius:50%}
+.orbit-ring--o{inset:0}
+.orbit-ring--i{inset:13%}
+.orbit-core{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:32%;aspect-ratio:1;border-radius:50%;
+  background:var(--c-bg);border:0.5px solid var(--c-line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  animation:corePulse 4.5s ease-in-out infinite;
+}
+.orbit-core b{font-size:clamp(13px,1.25vw,17px);font-weight:700;letter-spacing:-0.02em;color:var(--c-text)}
+.orbit-core span{font-size:10.5px;font-weight:550;color:var(--fire-mid);letter-spacing:.04em}
+@keyframes corePulse{
+  0%,100%{box-shadow:0 18px 44px -20px rgba(201,80,43,.22)}
+  50%{box-shadow:0 18px 60px -16px rgba(201,80,43,.42)}
+}
+.orbit-chip{
+  position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+  background:var(--c-bg);border:0.5px solid var(--c-line);border-radius:980px;
+  padding:7px 14px;font-size:12px;font-weight:600;color:var(--c-text);white-space:nowrap;
+  box-shadow:0 8px 20px -12px rgba(29,29,31,.16);
+  animation:chipFloat 5.6s ease-in-out infinite;animation-delay:var(--d);
+}
+@keyframes chipFloat{0%,100%{margin-top:0}50%{margin-top:-8px}}
+.orbit-legend{
+  margin:14px 0 0;text-align:center;
+  font-size:11.5px;color:var(--c-text-tertiary);letter-spacing:.02em;
+}
+/* AI 回答气泡：小卡贴在星环左下角，不遮中心徽 */
+.orbit-stage .geo-demo-card{
+  position:absolute;left:-4%;bottom:-2%;z-index:2;
+  width:min(250px,50%);padding:13px 14px 12px;border-radius:15px;
+  box-shadow:0 24px 54px -24px rgba(29,29,31,.28);
+}
+.orbit-stage .geo-demo-card .geo-ask p{font-size:12px}
+.orbit-stage .geo-demo-card .geo-ans{padding:10px 12px}
+.orbit-stage .geo-demo-card .geo-ans p{font-size:11.5px;line-height:1.62}
+.orbit-stage .geo-cites{margin-top:8px;padding-top:7px}
+.orbit-legend{margin-top:26px}
+@media (prefers-reduced-motion:reduce){
+  .orbit-core,.orbit-chip{animation:none}
+}
+
 /* ── 产品矩阵：三档 ── */
 .geo-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
 .geo-tier{
@@ -617,6 +662,15 @@
   .geo-note{text-align:left;font-size:12px;line-height:1.7}
   .geo-hero-tags{gap:6px}
   .geo-hero-tags span{font-size:11px;padding:3px 9px}
+  .orbit-stage{width:min(100%,330px);margin:4px auto 0}
+  .orbit-chip{font-size:10px;padding:5px 10px}
+  .orbit-chip--m-hide{display:none}
+  .orbit-stage .geo-demo-card{width:58%;left:2%;bottom:-1%;padding:9px 10px 8px;border-radius:11px}
+  .orbit-stage .geo-demo-card .geo-ask p{font-size:10px}
+  .orbit-stage .geo-demo-card .geo-ans{padding:7px 8px}
+  .orbit-stage .geo-demo-card .geo-ans p{font-size:10px;line-height:1.55}
+  .orbit-stage .geo-cites{display:none}
+  .orbit-legend{margin-top:18px}
   .geo-cmp-col h3 em{margin-top:4px}
   .geo-fit-out span{font-size:11px}
   .geo-cta-alt{margin:16px 0 0;display:inline-flex}
@@ -776,7 +830,7 @@
       <h1 class="geo-hero-title reveal">AI 时代的<span class="hl1">第一个答案</span>，<br>应该有<span class="hl2">你的名字</span></h1>
       <p class="geo-hero-desc reveal reveal--d1">流量火传媒已完成 GEO 全国线上链路打通，覆盖 2845 个县级行政区、694 座城市，把「被 AI 推荐」做成一条<b>可交付、可度量、可复盘</b>的生产线</p>
       <div class="geo-hero-btns reveal reveal--d2">
-        <a class="geo-btn" href="#matrix">查看产品矩阵 &rarr;</a>
+        <a class="geo-btn" href="#contact">预约免费诊断 &rarr;</a>
         <a class="geo-btn--ghost" href="#tool-check">先免费自查</a>
       </div>
       <div class="geo-hero-stats reveal reveal--d3">
@@ -800,29 +854,40 @@
     </div>
 
     <div class="geo-hero-right reveal reveal--d1">
-      <div class="geo-demo-card">
-        <span class="geo-demo-tag">AI 回答预览 · 示意</span>
+      <div class="orbit-stage" aria-label="15 个 AI 平台环绕你的品牌">
+        <div class="orbit-ring orbit-ring--o"></div>
+        <div class="orbit-ring orbit-ring--i"></div>
+        <div class="orbit-core"><b>你的品牌</b><span>GEO 目标位</span></div>
+        <span class="orbit-chip" style="--x:54%;--y:4%;--d:1.2s">通义千问</span>
+        <span class="orbit-chip" style="--x:72%;--y:12%;--d:.5s">Gemini</span>
+        <span class="orbit-chip" style="--x:34%;--y:9%;--d:1s">文心一言</span>
+        <span class="orbit-chip" style="--x:86%;--y:30%;--d:.7s">Kimi</span>
+        <span class="orbit-chip" style="--x:14%;--y:16%;--d:1.7s">Perplexity</span>
+        <span class="orbit-chip" style="--x:94%;--y:50%;--d:0s">ChatGPT</span>
+        <span class="orbit-chip" style="--x:5%;--y:34%;--d:1.5s">DeepSeek</span>
+        <span class="orbit-chip" style="--x:88%;--y:68%;--d:2s">豆包</span>
+        <span class="orbit-chip" style="--x:71%;--y:78%;--d:2.7s">腾讯元宝</span>
+        <span class="orbit-chip" style="--x:86%;--y:92%;--d:.3s">抖音 AI 搜</span>
+        <span class="orbit-chip orbit-chip--m-hide" style="--x:67%;--y:95%;--d:1.9s">小红书点点</span>
 
-        <div class="geo-ask">
-          <span class="geo-q">问</span>
-          <p>厦门橱柜哪个品牌比较好？</p>
-        </div>
-
-        <div class="geo-ans">
-          <div class="geo-ans-h">
-            <span>AI 回答</span>
-            <span class="geo-badge">品牌被提及 · 排在首位</span>
+        <div class="geo-demo-card">
+          <span class="geo-demo-tag">AI 回答预览 · 示意</span>
+          <div class="geo-ask">
+            <span class="geo-q">问</span>
+            <p>厦门橱柜哪个品牌比较好？</p>
           </div>
-          <p>厦门做橱柜的品牌不少，按本地交付能力和口碑来看，可以重点看这几家：<b>你的品牌</b>——本地有直营门店，主打小户型收纳方案，案例可查；A 品牌——成立时间久，网点多；B 品牌——偏高端定制。如果你的厨房面积不大、又在意收纳，建议优先看前两家的实景案例。</p>
-          <div class="geo-cites">
-            <span>引用来源</span>
-            <span class="geo-cite">品牌官网</span>
-            <span class="geo-cite">行业媒体报道</span>
-            <span class="geo-cite">地图商户页</span>
-            <span class="geo-cite">第三方问答</span>
+          <div class="geo-ans">
+            <p>重点看：<b>你的品牌</b>——直营门店、案例可查；A 品牌成立久；B 偏高端</p>
+            <div class="geo-cites">
+              <span>引用来源</span>
+              <span class="geo-cite">品牌官网</span>
+              <span class="geo-cite">媒体报道</span>
+              <span class="geo-cite">地图商户页</span>
+            </div>
           </div>
         </div>
       </div>
+      <p class="orbit-legend">15 个 AI 平台覆盖 · 持续扩展</p>
       <p class="geo-demo-note">AI 只给两三个名字。没被写进这段回答，就等于在这场选择里不存在</p>
     </div>
 
