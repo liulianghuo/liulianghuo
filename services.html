@@ -39,6 +39,77 @@
   margin:0 auto;max-width:680px;text-wrap:pretty;
 }
 
+/* ── 板块标题：编号 + 左标题右说明（对齐竞品排版，用本站火橙配色）── */
+.geo-head--split{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);
+  gap:clamp(20px,3.5vw,56px);align-items:end;text-align:left;
+  max-width:none;margin-bottom:clamp(30px,4vh,46px);
+}
+.geo-kicker{
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:12px;font-weight:550;
+  color:var(--fire-mid);letter-spacing:.1em;margin-bottom:14px;
+}
+.geo-kicker i{width:18px;height:2px;background:var(--fire-mid);border-radius:2px;flex:none}
+.geo-head--split .geo-lead{margin:0;max-width:480px;padding-bottom:5px}
+
+/* ── 首屏：左标题 + 右 AI 回答卡 ── */
+.geo-hero{
+  padding:clamp(104px,13vh,148px) var(--section-pad-h) clamp(36px,5vh,56px);
+  max-width:calc(var(--container-max) + 2 * var(--section-pad-h));margin:0 auto;
+}
+.geo-hero-inner{
+  max-width:var(--container-wide);margin:0 auto;
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);
+  gap:clamp(30px,4vw,60px);align-items:center;
+}
+.geo-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.geo-hero-tags span{
+  font-size:12px;font-weight:550;color:var(--c-text-secondary);
+  background:var(--c-surface);border:0.5px solid var(--c-line-subtle);
+  border-radius:980px;padding:5px 12px;line-height:1.4;
+}
+.geo-hero-tags span:first-child{color:var(--fire-mid);background:var(--fire-glow);border-color:transparent}
+.geo-hero-title{
+  font-size:clamp(33px,4.2vw,56px);font-weight:750;letter-spacing:-0.04em;
+  line-height:1.14;color:var(--c-text);margin:0 0 20px;
+}
+.geo-hero-title .hl1{color:var(--fire-mid)}
+.geo-hero-title .hl2{
+  background:var(--fire-gradient);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--fire-mid);
+}
+.geo-hero-desc{font-size:15.5px;line-height:1.82;color:var(--c-text-secondary);margin:0 0 26px;max-width:540px}
+.geo-hero-desc b{color:var(--c-text);font-weight:600}
+.geo-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:clamp(28px,4vh,42px)}
+.geo-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:0 26px;border-radius:980px;border:none;cursor:pointer;
+  font-family:var(--font);font-size:14.5px;font-weight:600;color:#fff;
+  background:var(--fire-gradient);
+  transition:transform var(--duration-fast) ease,box-shadow var(--duration-fast) ease;
+}
+.geo-btn:active{transform:scale(0.97)}
+@media (hover:hover) and (pointer:fine){
+  .geo-btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(201,80,43,0.24)}
+}
+.geo-btn--ghost{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:0 24px;border-radius:980px;cursor:pointer;
+  font-family:var(--font);font-size:14.5px;font-weight:550;color:var(--c-text);
+  background:transparent;border:1px solid var(--c-line);
+  transition:border-color var(--duration-fast) ease,background-color var(--duration-fast) ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .geo-btn--ghost:hover{background:var(--c-surface);border-color:var(--c-text-secondary)}
+}
+.geo-hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.geo-hero-stats .geo-stat{text-align:left}
+.geo-hero-stats .geo-stat .n{font-size:clamp(22px,2.4vw,30px)}
+.geo-hero-stats .geo-stat .l{font-size:12px;color:var(--c-text-secondary);margin-top:5px;white-space:nowrap}
+.geo-hero-right .geo-demo-card{max-width:none;margin:0}
+.geo-hero-right .geo-demo-note{margin:12px 0 0;text-align:left}
+
 /* ── 首屏 AI 回答示意卡 ── */
 .geo-demo-card{
   max-width:820px;margin:0 auto;background:var(--c-bg);
@@ -110,6 +181,8 @@
 .geo-tbl-wrap{margin-top:clamp(28px,4vh,40px)}
 .geo-tbl{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13.5px}
 .geo-tbl th,.geo-tbl td{padding:11px 6px;text-align:center;vertical-align:middle;border-bottom:0.5px solid var(--c-line-subtle)}
+.geo-tbl tbody tr{transition:background-color var(--duration-fast) ease}
+.geo-tbl tbody tr:hover td{background:rgba(201,80,43,.035)}
 .geo-tbl th:not(:first-child){width:92px}
 .geo-tbl thead th{font-size:12.5px;font-weight:650;color:var(--c-text);border-bottom:1px solid var(--c-line);padding-bottom:12px}
 .geo-tbl thead th:first-child{text-align:left;font-weight:500;color:var(--c-text-tertiary)}
@@ -120,7 +193,10 @@
 }
 .geo-tbl tr.geo-tbl-group:first-child td{border-top:0;padding-top:6px}
 .geo-tbl .y{color:var(--fire-mid);font-weight:600}
-.geo-tbl .m{color:var(--c-text-secondary)}
+.geo-tbl .m{
+  color:var(--c-text-secondary);background:var(--c-surface);
+  border-radius:980px;padding:2px 9px;font-size:11.5px;display:inline-block;line-height:1.6;
+}
 .geo-tbl .n{color:var(--c-text-tertiary);opacity:.65}
 
 /* ── 四步 ── */
@@ -227,6 +303,10 @@
 
 /* 锚点跳转时给吸顶导航留位置 */
 #matrix,#solution,#industry,#client,#tools,#faq,#tool-check,#tool-questions,#tool-schema{scroll-margin-top:118px}
+
+/* 本页 FAQ 压缩留白（全局 FAQ 的 padding 是给独立页用的） */
+#faq.faq-section{padding:clamp(58px,7vh,96px) var(--section-pad-h)}
+#faq .faq-list{margin-top:clamp(26px,4vh,40px)}
 
 .tl-idx{
   display:inline-flex;align-items:center;justify-content:center;
@@ -378,6 +458,16 @@
 }
 @media(max-width:768px){
   .geo-sec{padding:42px 20px}
+  .geo-hero{padding:86px 20px 26px}
+  .geo-hero-inner{grid-template-columns:1fr;gap:26px}
+  .geo-hero-title{font-size:29px;line-height:1.24;letter-spacing:-0.03em}
+  .geo-hero-desc{font-size:14px;line-height:1.75;margin-bottom:22px}
+  .geo-hero-btns{margin-bottom:26px}
+  .geo-btn,.geo-btn--ghost{width:100%}
+  .geo-hero-stats{grid-template-columns:repeat(2,1fr);gap:18px 14px}
+  .geo-hero-stats .geo-stat .n{font-size:23px}
+  .geo-head--split{grid-template-columns:1fr;gap:12px;align-items:start;margin-bottom:26px}
+  .geo-head--split .geo-lead{max-width:none;padding-bottom:0}
   .geo-head{margin-bottom:26px}
   .geo-h2{font-size:22px;line-height:1.32;letter-spacing:-0.02em}
   .geo-lead{font-size:14px;line-height:1.72}
@@ -531,9 +621,69 @@
 </div>
 
 <!-- ========== 首屏 ========== -->
-<section class="page-hero">
-  <h1 class="section-kicker">GEO 优化</h1>
-  <p class="section-leader section-leader--center">让品牌成为 AI 答案里的那个名字<br>不是排在搜索结果第几位，而是被直接说出来</p>
+<section class="geo-hero">
+  <div class="geo-hero-inner">
+
+    <div class="geo-hero-left">
+      <div class="geo-hero-tags reveal">
+        <span>GEO 全国链路已打通</span>
+        <span>三档合作深度</span>
+        <span>15 个 AI 平台</span>
+      </div>
+      <h1 class="geo-hero-title reveal">AI 时代的<span class="hl1">第一个答案</span>，<br>应该有<span class="hl2">你的名字</span></h1>
+      <p class="geo-hero-desc reveal reveal--d1">流量火传媒已完成 GEO 全国线上链路打通，覆盖 2845 个县级行政区、694 座城市，把「被 AI 推荐」做成一条<b>可交付、可度量、可复盘</b>的生产线</p>
+      <div class="geo-hero-btns reveal reveal--d2">
+        <a class="geo-btn" href="#matrix">查看产品矩阵 &rarr;</a>
+        <a class="geo-btn--ghost" href="#tool-check">先免费自查</a>
+      </div>
+      <div class="geo-hero-stats reveal reveal--d3">
+        <div class="geo-stat">
+          <div class="n">15<i>个</i></div>
+          <div class="l">覆盖的 AI 平台</div>
+        </div>
+        <div class="geo-stat">
+          <div class="n">694<i>座</i></div>
+          <div class="l">城市链路已打通</div>
+        </div>
+        <div class="geo-stat">
+          <div class="n">45<i>个</i></div>
+          <div class="l">重点城市分批推进</div>
+        </div>
+        <div class="geo-stat">
+          <div class="n">80<i>元</i></div>
+          <div class="l">核心城市有效线索</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="geo-hero-right reveal reveal--d1">
+      <div class="geo-demo-card">
+        <span class="geo-demo-tag">示例 · 非真实 AI 输出</span>
+
+        <div class="geo-ask">
+          <span class="geo-q">问</span>
+          <p>厦门橱柜哪个品牌比较好？</p>
+        </div>
+
+        <div class="geo-ans">
+          <div class="geo-ans-h">
+            <span>AI 回答</span>
+            <span class="geo-badge">品牌被提及 · 排在首位</span>
+          </div>
+          <p>厦门做橱柜的品牌不少，按本地交付能力和口碑来看，可以重点看这几家：<b>你的品牌</b>——本地有直营门店，主打小户型收纳方案，案例可查；A 品牌——成立时间久，网点多；B 品牌——偏高端定制。如果你的厨房面积不大、又在意收纳，建议优先看前两家的实景案例。</p>
+          <div class="geo-cites">
+            <span>引用来源</span>
+            <span class="geo-cite">品牌官网</span>
+            <span class="geo-cite">行业媒体报道</span>
+            <span class="geo-cite">地图商户页</span>
+            <span class="geo-cite">第三方问答</span>
+          </div>
+        </div>
+      </div>
+      <p class="geo-demo-note">AI 只给两三个名字。没被写进这段回答，就等于在这场选择里不存在</p>
+    </div>
+
+  </div>
 </section>
 
 <!-- ===== 页内吸顶锚条 ===== -->
@@ -548,60 +698,14 @@
   </div>
 </div>
 
-<!-- ========== AI 回答示意 + 数字 ========== -->
-<section class="geo-sec">
-  <div class="geo-inner">
-    <div class="geo-demo-card reveal">
-      <span class="geo-demo-tag">示例 · 非真实 AI 输出</span>
-
-      <div class="geo-ask">
-        <span class="geo-q">问</span>
-        <p>厦门橱柜哪个品牌比较好？</p>
-      </div>
-
-      <div class="geo-ans">
-        <div class="geo-ans-h">
-          <span>AI 回答</span>
-          <span class="geo-badge">品牌被提及 · 排在首位</span>
-        </div>
-        <p>厦门做橱柜的品牌不少，按本地交付能力和口碑来看，可以重点看这几家：<b>你的品牌</b>——本地有直营门店，主打小户型收纳方案，案例可查；A 品牌——成立时间久，网点多；B 品牌——偏高端定制。如果你的厨房面积不大、又在意收纳，建议优先看前两家的实景案例。</p>
-        <div class="geo-cites">
-          <span>引用来源</span>
-          <span class="geo-cite">品牌官网</span>
-          <span class="geo-cite">行业媒体报道</span>
-          <span class="geo-cite">地图商户页</span>
-          <span class="geo-cite">第三方问答</span>
-        </div>
-      </div>
-    </div>
-    <p class="geo-demo-note">AI 只给两三个名字。没被写进这段回答，就等于在这场选择里不存在</p>
-
-    <div class="geo-stats reveal">
-      <div class="geo-stat">
-        <div class="n">15<i>个</i></div>
-        <div class="l">覆盖的 AI 平台</div>
-      </div>
-      <div class="geo-stat">
-        <div class="n">694<i>座</i></div>
-        <div class="l">城市链路已打通<br>2845 县级 · 297 地级</div>
-      </div>
-      <div class="geo-stat">
-        <div class="n">45<i>个</i></div>
-        <div class="l">重点城市分批推进</div>
-      </div>
-      <div class="geo-stat">
-        <div class="n">80<i>元</i></div>
-        <div class="l">核心城市一条有效线索</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ========== 为什么现在 ========== -->
 <section class="geo-sec">
   <div class="geo-inner">
-    <div class="geo-head reveal">
-      <h2 class="geo-h2">搜索在退场，AI 在替你回答</h2>
+    <div class="geo-head geo-head--split reveal">
+      <div>
+        <div class="geo-kicker"><i></i>01 / 背景</div>
+        <h2 class="geo-h2">搜索在退场，<br>AI 在替你回答</h2>
+      </div>
       <p class="geo-lead">流量入口从「十条蓝色链接」变成「一句结论」。用户不再比较谁排在前面，而是直接相信 AI 说出来的那一个名字</p>
     </div>
 
@@ -631,8 +735,11 @@
 <section class="geo-band" id="matrix">
   <div class="geo-sec">
     <div class="geo-inner">
-      <div class="geo-head reveal">
-        <h2 class="geo-h2">三档合作深度，同一套交付体系</h2>
+      <div class="geo-head geo-head--split reveal">
+        <div>
+          <div class="geo-kicker"><i></i>02 / 产品矩阵</div>
+          <h2 class="geo-h2">三档合作深度，<br>同一套交付体系</h2>
+        </div>
         <p class="geo-lead">不分「基础功能 / 高级功能」，分的是覆盖厚度和推进节奏。先想清楚你现在缺的是被认识、被推荐，还是被优先推荐</p>
       </div>
 
@@ -718,8 +825,11 @@
 <!-- ========== 解决方案：四步 ========== -->
 <section class="geo-sec" id="solution">
   <div class="geo-inner">
-    <div class="geo-head reveal">
-      <h2 class="geo-h2">GEO 怎么做：四步都能验收</h2>
+    <div class="geo-head geo-head--split reveal">
+      <div>
+        <div class="geo-kicker"><i></i>03 / 交付链路</div>
+        <h2 class="geo-h2">GEO 怎么做：<br>四步都能验收</h2>
+      </div>
       <p class="geo-lead">每一步都有明确动作和交付物，你随时知道做到了哪里、下一步是什么</p>
     </div>
 
@@ -773,8 +883,11 @@
       </div>
     </div>
 
-    <div class="geo-head reveal" style="margin-top:clamp(44px,6vh,72px)">
-      <h2 class="geo-h2">你现在缺的是哪一层</h2>
+    <div class="geo-head geo-head--split reveal" style="margin-top:clamp(44px,6vh,72px)">
+      <div>
+        <div class="geo-kicker"><i></i>04 / 你的起点</div>
+        <h2 class="geo-h2">你现在缺的是哪一层</h2>
+      </div>
       <p class="geo-lead">有的品牌 AI 还不认识，有的被说错了，有的明明更好却总输给对手。起点不同，第一步也不同</p>
     </div>
 
@@ -834,8 +947,11 @@
 <section class="geo-band" id="industry">
   <div class="geo-sec">
     <div class="geo-inner">
-      <div class="geo-head reveal">
-        <h2 class="geo-h2">不同行业，客户问 AI 的方式不一样</h2>
+      <div class="geo-head geo-head--split reveal">
+        <div>
+          <div class="geo-kicker"><i></i>05 / 行业差异</div>
+          <h2 class="geo-h2">不同行业，<br>客户问 AI 的方式不一样</h2>
+        </div>
         <p class="geo-lead">下面是各行业典型的提问方式和工作重点。示例问题用于说明方向，正式项目会按你的客户与地区重新整理</p>
       </div>
 
@@ -955,8 +1071,11 @@
 <!-- ========== 三者区别 ========== -->
 <section class="geo-sec">
   <div class="geo-inner">
-    <div class="geo-head reveal">
-      <h2 class="geo-h2">GEO、SEO、投放，解决的不是同一件事</h2>
+    <div class="geo-head geo-head--split reveal">
+      <div>
+        <div class="geo-kicker"><i></i>06 / 概念对比</div>
+        <h2 class="geo-h2">GEO、SEO、投放，<br>解决的不是同一件事</h2>
+      </div>
       <p class="geo-lead">GEO 不替代搜索优化或广告投放，补上的是「用户直接问 AI」这条越来越重要的路径</p>
     </div>
 
@@ -992,8 +1111,11 @@
 <section class="geo-band" id="client">
   <div class="geo-sec">
     <div class="geo-inner">
-      <div class="geo-head reveal">
-        <h2 class="geo-h2">已经跑出来的</h2>
+      <div class="geo-head geo-head--split reveal">
+        <div>
+          <div class="geo-kicker"><i></i>07 / 客户案例</div>
+          <h2 class="geo-h2">已经跑出来的</h2>
+        </div>
         <p class="geo-lead">200+ 品牌里挑三个能核对的。受保密要求，客户名做脱敏处理，具体行业与数据可当面核验</p>
       </div>
 
@@ -1052,8 +1174,11 @@
 <!-- ========== 指标 ========== -->
 <section class="geo-sec">
   <div class="geo-inner">
-    <div class="geo-head reveal">
-      <h2 class="geo-h2">怎么算有效</h2>
+    <div class="geo-head geo-head--split reveal">
+      <div>
+        <div class="geo-kicker"><i></i>08 / 效果口径</div>
+        <h2 class="geo-h2">怎么算有效</h2>
+      </div>
       <p class="geo-lead">我们不看「曝光量」这种说不清的数字，只看这四件事</p>
     </div>
 
@@ -1084,8 +1209,11 @@
 <section class="geo-band" id="tools">
   <div class="geo-sec">
     <div class="geo-inner">
-      <div class="geo-head reveal">
-        <h2 class="geo-h2">三个免费工具，先自己看一眼</h2>
+      <div class="geo-head geo-head--split reveal">
+        <div>
+          <div class="geo-kicker"><i></i>09 / 常用工具</div>
+          <h2 class="geo-h2">三个免费工具，<br>先自己看一眼</h2>
+        </div>
         <p class="geo-lead">查一查官网的 AI 基建、生成一份客户会问的问题清单、补上结构化数据。不用注册，不留电话，所有计算都在你的浏览器里完成</p>
       </div>
 
@@ -1222,8 +1350,11 @@
 <!-- ========== FAQ ========== -->
 <section class="faq-section" id="faq">
   <div class="faq-inner">
-    <div class="geo-head reveal">
-      <h2 class="geo-h2">常见问题</h2>
+    <div class="geo-head geo-head--split reveal">
+      <div>
+        <div class="geo-kicker"><i></i>10 / 常见问题</div>
+        <h2 class="geo-h2">常见问题</h2>
+      </div>
       <p class="geo-lead">关于 GEO、我们的做法和效果衡量，先回答你最关心的几个问题</p>
     </div>
     <div class="faq-list">
