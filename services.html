@@ -14,7 +14,7 @@
 <meta property="og:description" content="让品牌成为 AI 答案里的那个名字。15 个 AI 平台覆盖，2845 个县级行政区、694 座城市链路已打通，业务覆盖 20+ 个国家和地区。">
 <link rel="canonical" href="https://liulianghuo.com/services.html">
 <link rel="icon" href="logo.png" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css?v=22">
+<link rel="stylesheet" href="styles.css?v=23">
 
 <style>
 /* ==========================================================================
@@ -107,39 +107,6 @@
 .geo-hero-stats .geo-stat{text-align:left}
 .geo-hero-stats .geo-stat .n{font-size:clamp(22px,2.4vw,30px)}
 .geo-hero-stats .geo-stat .l{font-size:12px;color:var(--c-text-secondary);margin-top:5px;white-space:nowrap}
-.geo-hero-right .geo-demo-card{max-width:none;margin:0}
-.geo-hero-right .geo-demo-note{margin:12px 0 0;text-align:left}
-
-/* ── 首屏 AI 回答示意卡 ── */
-.geo-demo-card{
-  max-width:820px;margin:0 auto;background:var(--c-bg);
-  border:0.5px solid var(--c-line);border-radius:20px;
-  padding:clamp(20px,2.6vw,30px);
-  box-shadow:0 1px 2px rgba(0,0,0,.02),0 24px 60px -40px rgba(0,0,0,.28);
-}
-.geo-demo-tag{
-  display:inline-flex;align-items:center;gap:7px;font-size:11.5px;
-  color:var(--c-text-tertiary);border:0.5px solid var(--c-line-subtle);
-  border-radius:980px;padding:4px 11px;line-height:1;
-}
-.geo-demo-tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--c-text-tertiary);opacity:.7}
-.geo-ask{display:flex;gap:11px;align-items:flex-start;margin:18px 0 16px}
-.geo-q{
-  flex:0 0 auto;width:22px;height:22px;border-radius:7px;background:var(--c-surface);
-  color:var(--c-text-secondary);font-size:11px;font-weight:700;
-  display:grid;place-items:center;margin-top:1px;
-}
-.geo-ask p{font-size:15.5px;font-weight:600;color:var(--c-text);line-height:1.55;margin:0}
-.geo-ans{background:var(--c-surface);border-radius:14px;padding:18px 20px}
-.geo-ans-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-.geo-ans-h span:first-child{font-size:12px;font-weight:650;color:var(--c-text-tertiary);letter-spacing:.02em}
-.geo-badge{font-size:11.5px;font-weight:600;color:var(--fire-mid);background:var(--fire-glow);border-radius:980px;padding:3px 10px;line-height:1.5}
-.geo-ans p{font-size:14.5px;line-height:1.82;color:var(--c-text);margin:0}
-.geo-ans p b{font-weight:650;color:var(--fire-mid)}
-.geo-cites{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:14px;padding-top:12px;border-top:1px dashed rgba(0,0,0,.07)}
-.geo-cites > span:first-child{font-size:11.5px;color:var(--c-text-tertiary);margin-right:2px}
-.geo-cite{font-size:12px;color:var(--c-text-secondary);background:var(--c-bg);border:0.5px solid var(--c-line-subtle);border-radius:980px;padding:3px 10px;line-height:1.5}
-.geo-demo-note{max-width:820px;margin:14px auto 0;text-align:center;font-size:12.5px;color:var(--c-text-secondary);line-height:1.65}
 
 /* ── 首屏数字 ── */
 .geo-stats{
@@ -164,13 +131,22 @@
 }
 .geo-quote .hl{color:var(--fire-mid)}
 
-/* ── 首屏 AI 平台星环：12 芯片环绕你的品牌，缓慢漂浮 ── */
+/* ── 首屏 AI 平台星环：你的品牌居中 + 8 个主流 AI 环绕 + 双向穿梭光线 ── */
 .orbit-stage{position:relative;width:min(100%,500px);aspect-ratio:1;margin:0 auto}
-.orbit-ring{position:absolute;border:0.5px dashed rgba(201,80,43,.30);border-radius:50%}
+.orbit-ring{position:absolute;border:0.5px dashed rgba(201,80,43,.26);border-radius:50%}
 .orbit-ring--o{inset:0}
-.orbit-ring--i{inset:13%}
+.orbit-ring--i{inset:20%}
+.orbit-links{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible}
+.orbit-links .lk line{stroke:rgba(201,80,43,.22);stroke-width:.35;stroke-dasharray:1 2.2;stroke-linecap:round}
+.orbit-links .sh line{
+  stroke:var(--fire-mid);stroke-width:.6;stroke-linecap:round;
+  stroke-dasharray:8 100;opacity:.9;
+  animation:orbitShuttle 3.6s cubic-bezier(.45,0,.55,1) infinite alternate;
+  animation-delay:var(--sd,0s);
+}
+@keyframes orbitShuttle{from{stroke-dashoffset:0}to{stroke-dashoffset:-92}}
 .orbit-core{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;
   width:32%;aspect-ratio:1;border-radius:50%;
   background:var(--c-bg);border:0.5px solid var(--c-line);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
@@ -183,7 +159,8 @@
   50%{box-shadow:0 18px 60px -16px rgba(201,80,43,.42)}
 }
 .orbit-chip{
-  position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+  position:absolute;left:var(--x);top:var(--y);z-index:2;
+  transform:translate(-50%,-50%);
   display:flex;align-items:center;gap:6px;
   background:var(--c-bg);border:0.5px solid var(--c-line);border-radius:980px;
   padding:6px 13px 6px 9px;font-size:12px;font-weight:600;color:var(--c-text);white-space:nowrap;
@@ -191,25 +168,17 @@
   animation:chipFloat 5.6s ease-in-out infinite;animation-delay:var(--d);
 }
 .orbit-chip img{width:17px;height:17px;object-fit:contain;flex:none;border-radius:5px}
-.orbit-chip--txt{padding-left:13px}
-@keyframes chipFloat{0%,100%{margin-top:0}50%{margin-top:-8px}}
+@keyframes chipFloat{
+  0%,100%{transform:translate(-50%,-50%) translateY(0)}
+  50%{transform:translate(-50%,-50%) translateY(-4px)}
+}
 .orbit-legend{
   margin:14px 0 0;text-align:center;
   font-size:11.5px;color:var(--c-text-tertiary);letter-spacing:.02em;
 }
-/* AI 回答气泡：小卡贴在星环左下角，不遮中心徽 */
-.orbit-stage .geo-demo-card{
-  position:absolute;left:-4%;bottom:-2%;z-index:2;
-  width:min(250px,50%);padding:13px 14px 12px;border-radius:15px;
-  box-shadow:0 24px 54px -24px rgba(29,29,31,.28);
-}
-.orbit-stage .geo-demo-card .geo-ask p{font-size:12px}
-.orbit-stage .geo-demo-card .geo-ans{padding:10px 12px}
-.orbit-stage .geo-demo-card .geo-ans p{font-size:11.5px;line-height:1.62}
-.orbit-stage .geo-cites{margin-top:8px;padding-top:7px}
-.orbit-legend{margin-top:26px}
 @media (prefers-reduced-motion:reduce){
   .orbit-core,.orbit-chip{animation:none}
+  .orbit-links .sh line{animation:none;stroke-dashoffset:-46}
 }
 
 /* ── 产品矩阵：三档 ── */
@@ -623,11 +592,6 @@
   .geo-head{margin-bottom:26px}
   .geo-h2{font-size:22px;line-height:1.32;letter-spacing:-0.02em}
   .geo-lead{font-size:14px;line-height:1.72}
-  .geo-demo-card{padding:18px 16px;border-radius:16px}
-  .geo-ask p{font-size:14.5px}
-  .geo-ans{padding:15px;border-radius:12px}
-  .geo-ans p{font-size:13.5px;line-height:1.78}
-  .geo-cites{margin-top:12px;padding-top:10px}
   .geo-stats{grid-template-columns:repeat(2,1fr);gap:22px 14px;margin-top:26px}
   .geo-stat .n{font-size:24px}
   .geo-stat .l{font-size:11.5px}
@@ -671,14 +635,8 @@
   .geo-hero-tags{gap:6px}
   .geo-hero-tags span{font-size:11px;padding:3px 9px}
   .orbit-stage{width:min(100%,330px);margin:4px auto 0}
-  .orbit-chip{font-size:10px;padding:4px 9px 4px 7px;gap:4px}
-  .orbit-chip img{width:14px;height:14px;border-radius:4px}
-  .orbit-chip--m-hide{display:none}
-  .orbit-stage .geo-demo-card{width:58%;left:2%;bottom:-1%;padding:9px 10px 8px;border-radius:11px}
-  .orbit-stage .geo-demo-card .geo-ask p{font-size:10px}
-  .orbit-stage .geo-demo-card .geo-ans{padding:7px 8px}
-  .orbit-stage .geo-demo-card .geo-ans p{font-size:10px;line-height:1.55}
-  .orbit-stage .geo-cites{display:none}
+  .orbit-chip{font-size:10px;padding:3px 6px 3px 5px;gap:3px}
+  .orbit-chip img{width:12px;height:12px;border-radius:4px}
   .orbit-legend{margin-top:18px}
   .geo-cmp-col h3 em{margin-top:4px}
   .geo-fit-out span{font-size:11px}
@@ -866,41 +824,42 @@
     </div>
 
     <div class="geo-hero-right reveal reveal--d1">
-      <div class="orbit-stage" aria-label="15 个 AI 平台环绕你的品牌">
+      <div class="orbit-stage" aria-label="8 个主流 AI 平台环绕你的品牌，与你的品牌双向连接">
+        <svg class="orbit-links" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+          <g class="lk">
+            <line x1="50" y1="50" x2="50" y2="13"/>
+            <line x1="50" y1="50" x2="76" y2="24"/>
+            <line x1="50" y1="50" x2="87" y2="50"/>
+            <line x1="50" y1="50" x2="76" y2="76"/>
+            <line x1="50" y1="50" x2="50" y2="87"/>
+            <line x1="50" y1="50" x2="24" y2="76"/>
+            <line x1="50" y1="50" x2="13" y2="50"/>
+            <line x1="50" y1="50" x2="24" y2="24"/>
+          </g>
+          <g class="sh">
+            <line pathLength="100" x1="50" y1="50" x2="50" y2="13" style="--sd:-0.4s"/>
+            <line pathLength="100" x1="50" y1="50" x2="76" y2="24" style="--sd:-1.6s"/>
+            <line pathLength="100" x1="50" y1="50" x2="87" y2="50" style="--sd:-2.4s"/>
+            <line pathLength="100" x1="50" y1="50" x2="76" y2="76" style="--sd:-0.9s"/>
+            <line pathLength="100" x1="50" y1="50" x2="50" y2="87" style="--sd:-3s"/>
+            <line pathLength="100" x1="50" y1="50" x2="24" y2="76" style="--sd:-2s"/>
+            <line pathLength="100" x1="50" y1="50" x2="13" y2="50" style="--sd:-1.1s"/>
+            <line pathLength="100" x1="50" y1="50" x2="24" y2="24" style="--sd:-2.7s"/>
+          </g>
+        </svg>
         <div class="orbit-ring orbit-ring--o"></div>
         <div class="orbit-ring orbit-ring--i"></div>
         <div class="orbit-core"><b>你的品牌</b><span>GEO 目标位</span></div>
-        <span class="orbit-chip orbit-chip--m-hide" style="--x:54%;--y:4%;--d:1.2s"><img src="images/ai/tongyi.svg" alt="通义千问">通义千问</span>
-        <span class="orbit-chip" style="--x:72%;--y:12%;--d:.5s"><img src="images/ai/gemini.svg" alt="Gemini">Gemini</span>
-        <span class="orbit-chip" style="--x:34%;--y:9%;--d:1s"><img src="images/ai/wenxin.svg" alt="文心一言">文心一言</span>
-        <span class="orbit-chip" style="--x:86%;--y:30%;--d:.7s"><img src="images/ai/kimi.svg" alt="Kimi">Kimi</span>
-        <span class="orbit-chip" style="--x:14%;--y:23%;--d:1.7s"><img src="images/ai/perplexity.svg" alt="Perplexity">Perplexity</span>
-        <span class="orbit-chip" style="--x:94%;--y:50%;--d:0s"><img src="images/ai/chatgpt.svg" alt="ChatGPT">ChatGPT</span>
-        <span class="orbit-chip" style="--x:4%;--y:41%;--d:1.5s"><img src="images/ai/deepseek.svg" alt="DeepSeek">DeepSeek</span>
-        <span class="orbit-chip" style="--x:91%;--y:61%;--d:2s"><img src="images/ai/doubao.png" alt="豆包">豆包</span>
-        <span class="orbit-chip" style="--x:81%;--y:79%;--d:2.7s"><img src="images/ai/yuanbao.svg" alt="腾讯元宝">腾讯元宝</span>
-        <span class="orbit-chip" style="--x:88%;--y:93%;--d:.3s" data-txt>抖音 AI 搜</span>
-        <span class="orbit-chip orbit-chip--m-hide" data-txt style="--x:67%;--y:95%;--d:1.9s">小红书点点</span>
-
-        <div class="geo-demo-card">
-          <span class="geo-demo-tag">AI 回答预览 · 示意</span>
-          <div class="geo-ask">
-            <span class="geo-q">问</span>
-            <p>厦门橱柜哪个品牌比较好？</p>
-          </div>
-          <div class="geo-ans">
-            <p>重点看：<b>你的品牌</b>——直营门店、案例可查；A 品牌成立久；B 偏高端</p>
-            <div class="geo-cites">
-              <span>引用来源</span>
-              <span class="geo-cite">品牌官网</span>
-              <span class="geo-cite">媒体报道</span>
-              <span class="geo-cite">地图商户页</span>
-            </div>
-          </div>
-        </div>
+        <span class="orbit-chip" style="--x:50%;--y:13%;--d:.2s"><img src="images/ai/doubao.png" alt="豆包">豆包</span>
+        <span class="orbit-chip" style="--x:76%;--y:24%;--d:1.4s"><img src="images/ai/yuanbao.svg" alt="元宝">元宝</span>
+        <span class="orbit-chip" style="--x:87%;--y:50%;--d:.8s"><img src="images/ai/deepseek.svg" alt="DeepSeek">DeepSeek</span>
+        <span class="orbit-chip" style="--x:76%;--y:76%;--d:2.1s"><img src="images/ai/wenxin.svg" alt="文心一言">文心一言</span>
+        <span class="orbit-chip" style="--x:50%;--y:87%;--d:1.7s"><img src="images/ai/tongyi.svg" alt="通义千问">通义千问</span>
+        <span class="orbit-chip" style="--x:24%;--y:76%;--d:2.6s"><img src="images/ai/chatgpt.svg" alt="ChatGPT">ChatGPT</span>
+        <span class="orbit-chip" style="--x:13%;--y:50%;--d:1.1s"><img src="images/ai/gemini.svg" alt="Gemini">Gemini</span>
+        <span class="orbit-chip" style="--x:24%;--y:24%;--d:3s"><img src="images/ai/claude.svg" alt="Claude">Claude</span>
       </div>
-      <p class="orbit-legend">15 个 AI 平台覆盖 · 持续扩展</p>
-      <p class="geo-demo-note">AI 只给两三个名字。没被写进这段回答，就等于在这场选择里不存在</p>
+      <p class="orbit-legend">主流 8 个 AI 平台示意 · 实际覆盖 15 个并持续扩展</p>
     </div>
 
   </div>
