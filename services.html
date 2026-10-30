@@ -184,11 +184,14 @@
 }
 .orbit-chip{
   position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:6px;
   background:var(--c-bg);border:0.5px solid var(--c-line);border-radius:980px;
-  padding:7px 14px;font-size:12px;font-weight:600;color:var(--c-text);white-space:nowrap;
+  padding:6px 13px 6px 9px;font-size:12px;font-weight:600;color:var(--c-text);white-space:nowrap;
   box-shadow:0 8px 20px -12px rgba(29,29,31,.16);
   animation:chipFloat 5.6s ease-in-out infinite;animation-delay:var(--d);
 }
+.orbit-chip img{width:17px;height:17px;object-fit:contain;flex:none;border-radius:5px}
+.orbit-chip--txt{padding-left:13px}
 @keyframes chipFloat{0%,100%{margin-top:0}50%{margin-top:-8px}}
 .orbit-legend{
   margin:14px 0 0;text-align:center;
@@ -565,12 +568,17 @@
 
 .tl-platforms{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .tl-plat{
-  display:flex;flex-direction:column;gap:2px;min-width:0;
+  display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;row-gap:2px;
+  align-items:center;min-width:0;
   padding:12px 14px;border-radius:12px;background:#fff;
   border:0.5px solid var(--c-line-subtle);
   transition:border-color var(--duration-fast) ease,transform var(--duration-fast) ease;
 }
 .tl-plat:hover{border-color:var(--c-line);transform:translateY(-1px)}
+.tl-plat img{
+  grid-row:1 / 3;width:26px;height:26px;object-fit:contain;border-radius:6px;
+}
+.tl-plat img + b{margin-top:0}
 .tl-plat b{font-size:13.5px;font-weight:600;color:var(--c-text)}
 .tl-plat small{font-size:11px;color:var(--c-text-tertiary);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
@@ -663,7 +671,8 @@
   .geo-hero-tags{gap:6px}
   .geo-hero-tags span{font-size:11px;padding:3px 9px}
   .orbit-stage{width:min(100%,330px);margin:4px auto 0}
-  .orbit-chip{font-size:10px;padding:5px 10px}
+  .orbit-chip{font-size:10px;padding:4px 9px 4px 7px;gap:4px}
+  .orbit-chip img{width:14px;height:14px;border-radius:4px}
   .orbit-chip--m-hide{display:none}
   .orbit-stage .geo-demo-card{width:58%;left:2%;bottom:-1%;padding:9px 10px 8px;border-radius:11px}
   .orbit-stage .geo-demo-card .geo-ask p{font-size:10px}
@@ -858,17 +867,17 @@
         <div class="orbit-ring orbit-ring--o"></div>
         <div class="orbit-ring orbit-ring--i"></div>
         <div class="orbit-core"><b>你的品牌</b><span>GEO 目标位</span></div>
-        <span class="orbit-chip" style="--x:54%;--y:4%;--d:1.2s">通义千问</span>
-        <span class="orbit-chip" style="--x:72%;--y:12%;--d:.5s">Gemini</span>
-        <span class="orbit-chip" style="--x:34%;--y:9%;--d:1s">文心一言</span>
-        <span class="orbit-chip" style="--x:86%;--y:30%;--d:.7s">Kimi</span>
-        <span class="orbit-chip" style="--x:14%;--y:16%;--d:1.7s">Perplexity</span>
-        <span class="orbit-chip" style="--x:94%;--y:50%;--d:0s">ChatGPT</span>
-        <span class="orbit-chip" style="--x:5%;--y:34%;--d:1.5s">DeepSeek</span>
-        <span class="orbit-chip" style="--x:88%;--y:68%;--d:2s">豆包</span>
-        <span class="orbit-chip" style="--x:71%;--y:78%;--d:2.7s">腾讯元宝</span>
-        <span class="orbit-chip" style="--x:86%;--y:92%;--d:.3s">抖音 AI 搜</span>
-        <span class="orbit-chip orbit-chip--m-hide" style="--x:67%;--y:95%;--d:1.9s">小红书点点</span>
+        <span class="orbit-chip orbit-chip--m-hide" style="--x:54%;--y:4%;--d:1.2s"><img src="images/ai/tongyi.svg" alt="通义千问">通义千问</span>
+        <span class="orbit-chip" style="--x:72%;--y:12%;--d:.5s"><img src="images/ai/gemini.svg" alt="Gemini">Gemini</span>
+        <span class="orbit-chip" style="--x:34%;--y:9%;--d:1s"><img src="images/ai/wenxin.svg" alt="文心一言">文心一言</span>
+        <span class="orbit-chip" style="--x:86%;--y:30%;--d:.7s"><img src="images/ai/kimi.svg" alt="Kimi">Kimi</span>
+        <span class="orbit-chip" style="--x:14%;--y:23%;--d:1.7s"><img src="images/ai/perplexity.svg" alt="Perplexity">Perplexity</span>
+        <span class="orbit-chip" style="--x:94%;--y:50%;--d:0s"><img src="images/ai/chatgpt.svg" alt="ChatGPT">ChatGPT</span>
+        <span class="orbit-chip" style="--x:4%;--y:41%;--d:1.5s"><img src="images/ai/deepseek.svg" alt="DeepSeek">DeepSeek</span>
+        <span class="orbit-chip" style="--x:91%;--y:61%;--d:2s"><img src="images/ai/doubao.png" alt="豆包">豆包</span>
+        <span class="orbit-chip" style="--x:81%;--y:79%;--d:2.7s"><img src="images/ai/yuanbao.svg" alt="腾讯元宝">腾讯元宝</span>
+        <span class="orbit-chip" style="--x:88%;--y:93%;--d:.3s" data-txt>抖音 AI 搜</span>
+        <span class="orbit-chip orbit-chip--m-hide" data-txt style="--x:67%;--y:95%;--d:1.9s">小红书点点</span>
 
         <div class="geo-demo-card">
           <span class="geo-demo-tag">AI 回答预览 · 示意</span>
@@ -1574,17 +1583,17 @@
         <div class="tl-panel">
           <div class="tl-panel-head"><b>常用平台</b><span>11 个</span></div>
           <div class="tl-platforms">
-            <a class="tl-plat" href="https://www.doubao.com" target="_blank" rel="noopener noreferrer"><b>豆包</b><small>doubao.com</small></a>
-            <a class="tl-plat" href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer"><b>DeepSeek</b><small>chat.deepseek.com</small></a>
-            <a class="tl-plat" href="https://yuanbao.tencent.com" target="_blank" rel="noopener noreferrer"><b>腾讯元宝</b><small>yuanbao.tencent.com</small></a>
-            <a class="tl-plat" href="https://www.tongyi.com" target="_blank" rel="noopener noreferrer"><b>通义</b><small>tongyi.com</small></a>
-            <a class="tl-plat" href="https://yiyan.baidu.com" target="_blank" rel="noopener noreferrer"><b>文心一言</b><small>yiyan.baidu.com</small></a>
-            <a class="tl-plat" href="https://www.kimi.com" target="_blank" rel="noopener noreferrer"><b>Kimi</b><small>kimi.com</small></a>
-            <a class="tl-plat" href="https://chatglm.cn" target="_blank" rel="noopener noreferrer"><b>智谱清言</b><small>chatglm.cn</small></a>
-            <a class="tl-plat" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>chatgpt.com</small></a>
-            <a class="tl-plat" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>gemini.google.com</small></a>
-            <a class="tl-plat" href="https://claude.ai" target="_blank" rel="noopener noreferrer"><b>Claude</b><small>claude.ai</small></a>
-            <a class="tl-plat" href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer"><b>Perplexity</b><small>perplexity.ai</small></a>
+            <a class="tl-plat" href="https://www.doubao.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/doubao.png" alt="豆包" loading="lazy"><b>豆包</b><small>doubao.com</small></a>
+            <a class="tl-plat" href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/deepseek.svg" alt="DeepSeek" loading="lazy"><b>DeepSeek</b><small>chat.deepseek.com</small></a>
+            <a class="tl-plat" href="https://yuanbao.tencent.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/yuanbao.svg" alt="腾讯元宝" loading="lazy"><b>腾讯元宝</b><small>yuanbao.tencent.com</small></a>
+            <a class="tl-plat" href="https://www.tongyi.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/tongyi.svg" alt="通义" loading="lazy"><b>通义</b><small>tongyi.com</small></a>
+            <a class="tl-plat" href="https://yiyan.baidu.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/wenxin.svg" alt="文心一言" loading="lazy"><b>文心一言</b><small>yiyan.baidu.com</small></a>
+            <a class="tl-plat" href="https://www.kimi.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/kimi.svg" alt="Kimi" loading="lazy"><b>Kimi</b><small>kimi.com</small></a>
+            <a class="tl-plat" href="https://chatglm.cn" target="_blank" rel="noopener noreferrer"><img src="images/ai/zhipu.svg" alt="智谱清言" loading="lazy"><b>智谱清言</b><small>chatglm.cn</small></a>
+            <a class="tl-plat" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/chatgpt.svg" alt="ChatGPT" loading="lazy"><b>ChatGPT</b><small>chatgpt.com</small></a>
+            <a class="tl-plat" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer"><img src="images/ai/gemini.svg" alt="Gemini" loading="lazy"><b>Gemini</b><small>gemini.google.com</small></a>
+            <a class="tl-plat" href="https://claude.ai" target="_blank" rel="noopener noreferrer"><img src="images/ai/claude.svg" alt="Claude" loading="lazy"><b>Claude</b><small>claude.ai</small></a>
+            <a class="tl-plat" href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer"><img src="images/ai/perplexity.svg" alt="Perplexity" loading="lazy"><b>Perplexity</b><small>perplexity.ai</small></a>
           </div>
           <p class="tl-note">平台名称仅用于说明查询入口，不代表与相关平台存在官方合作</p>
         </div>
