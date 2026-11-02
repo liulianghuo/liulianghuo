@@ -149,15 +149,21 @@ if (mobileBtn && mobileMenu) {
 }
 
 // Scroll reveal with stagger
-const ro = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      ro.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+// 降级：浏览器不支持 IntersectionObserver 时直接全部显示，避免内容永久不可见
+window.__lhReady = true;   // 通知 head 里的看门狗：脚本已就绪
+if (!('IntersectionObserver' in window)) {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+} else {
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        ro.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+}
 
 // 数字滚动计数（对标高级感）
 function animateCount(el) {
