@@ -122,6 +122,14 @@ button{font-family:inherit;cursor:pointer}
 .nav-logo{
   height:30px;width:auto;flex-shrink:0;object-fit:contain;
 }
+/* Logo 作为回首页入口 */
+.nav-logo-link{
+  display:inline-flex;align-items:center;flex-shrink:0;
+  border-radius:6px;outline-offset:4px;
+  transition:opacity .25s var(--ease-out),transform .25s var(--ease-out);
+}
+.nav-logo-link:hover{opacity:.78}
+.nav-logo-link:active{transform:scale(.97)}
 .nav-brand{
   display:none;
   font-size:14px;font-weight:600;color:var(--c-text);letter-spacing:-0.02em;
@@ -804,6 +812,11 @@ button{font-family:inherit;cursor:pointer}
 }
 .footer-logo-row{display:flex;align-items:center;gap:8px;margin-bottom:16px}
 .footer-logo-row img,.footer-logo-row svg{height:24px;width:auto;object-fit:contain}
+.footer-logo-link{
+  display:inline-flex;align-items:center;border-radius:6px;
+  transition:opacity .25s var(--ease-out);
+}
+.footer-logo-link:hover{opacity:.8}
 .footer-logo-name{display:none}
 .footer-logo-name .f-fire{
   background:var(--fire-gradient);-webkit-background-clip:text;
@@ -3009,5 +3022,5 @@ html[data-theme="dark"] .aiwall-item img[src*="chatgpt"]{filter:invert(1) bright
   html[data-theme="dark"] .bw-cell:hover .bw-word{color:var(--c-text)}
 }
 @media (prefers-reduced-motion:reduce){
-  .theme-toggle{transition:none}
+  .theme-toggle,.nav-logo-link,.footer-logo-link{transition:none}
 }
