@@ -98,6 +98,7 @@ button{font-family:inherit;cursor:pointer}
   justify-content:space-between;
   padding:0 var(--nav-pad);
   background:var(--nav-bg);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
   transition:box-shadow var(--duration-normal),background var(--duration-normal);
@@ -203,6 +204,7 @@ button{font-family:inherit;cursor:pointer}
 .mobile-menu{
   position:fixed;top:52px;left:0;right:0;z-index:9998;
   background:var(--panel-bg);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);
   backdrop-filter:saturate(180%) blur(24px);
   -webkit-backdrop-filter:saturate(180%) blur(24px);
   border-bottom:0.5px solid var(--c-line);
@@ -844,12 +846,17 @@ button{font-family:inherit;cursor:pointer}
 .footer-sites a{color:rgba(255,255,255,0.55);text-decoration:none;}
 .footer-sites a:hover{color:var(--fire-mid);}
 
-/* ===== SCROLL REVEAL — 更细腻 ===== */
-.reveal{
+/* ===== 锚点跳转补偿：给固定导航条 / 页内吸顶分类条留出空间 ===== */
+[id]{scroll-margin-top:72px}
+.has-sticky-tabs [id]{scroll-margin-top:128px}
+
+/* ===== SCROLL REVEAL — 更细腻 =====
+   只在 JS 可用时才隐藏（html.js），否则无脚本/脚本加载失败时整页内容不可见 */
+.js .reveal{
   opacity:0;transform:translateY(24px);
   transition:opacity 0.85s var(--ease-out-exp),transform 0.85s var(--ease-out-exp);
 }
-.reveal.visible{opacity:1;transform:translateY(0)}
+.js .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal--d1{transition-delay:0.06s}
 .reveal--d2{transition-delay:0.14s}
 .reveal--d3{transition-delay:0.22s}
@@ -1546,6 +1553,7 @@ button{font-family:inherit;cursor:pointer}
 .v8-cases-nav{
   position:sticky; top:52px; z-index:50;
   background:var(--sticky-bg);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);
   backdrop-filter:saturate(180%) blur(24px);
   -webkit-backdrop-filter:saturate(180%) blur(24px);
   border-bottom:0.5px solid var(--c-line-subtle);
@@ -2175,7 +2183,7 @@ button{font-family:inherit;cursor:pointer}
 /* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
+  .reveal,.js .reveal{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
 
@@ -2845,6 +2853,7 @@ a{text-underline-offset:3px}
     position:absolute;top:48px;left:0;right:0;
     padding:6px 16px;
     background:var(--tabs-bg);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
     backdrop-filter:saturate(180%) blur(20px);
     -webkit-backdrop-filter:saturate(180%) blur(20px);
     border-bottom:0.5px solid var(--c-line-subtle);
@@ -2860,6 +2869,8 @@ a{text-underline-offset:3px}
   .mobile-menu{top:88px}
   body{padding-top:40px}
   .hero{min-height:calc(100vh - 40px)}
+  /* iOS Safari 地址栏：用可见视口高度，避免首屏被撑出屏幕 */
+  @supports (min-height:100svh){ .hero{min-height:calc(100svh - 40px)} }
   .v8-cases-nav{top:88px}
   .v8-cases-nav-inner{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;justify-content:flex-start;padding:8px 16px;scrollbar-width:none}
   .v8-cases-nav-inner::-webkit-scrollbar{display:none}
@@ -3023,4 +3034,16 @@ html[data-theme="dark"] .aiwall-item img[src*="chatgpt"]{filter:invert(1) bright
 }
 @media (prefers-reduced-motion:reduce){
   .theme-toggle,.nav-logo-link,.footer-logo-link{transition:none}
+}
+
+/* ===== 移动端锚点补偿 ===== */
+@media(max-width:768px){
+  [id]{scroll-margin-top:64px}
+  .has-sticky-tabs [id]{scroll-margin-top:120px}
+}
+
+/* ===== 打印：滚动显现元素一律可见，避免打印/导出 PDF 出现空白 ===== */
+@media print{
+  .js .reveal{opacity:1!important;transform:none!important}
+  .theme-toggle,.mobile-btn,.scroll-progress{display:none!important}
 }
