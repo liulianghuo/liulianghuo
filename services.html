@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="has-sticky-tabs">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +17,9 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFFFFF">
 <script>/* 明暗主题：首帧前定好，避免闪白 */
-(function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)})();
+(function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("js");setTimeout(function(){if(!window.__lhReady&&document.querySelector(".reveal:not(.visible)")){document.documentElement.classList.remove("js")}},2500)})();
 </script>
-<link rel="stylesheet" href="styles.css?v=25">
+<link rel="stylesheet" href="styles.css?v=26">
 
 <style>
 /* ==========================================================================
@@ -1977,7 +1977,7 @@
 })();
 </script>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 
 <script>
 /* 首屏数字滚动：进入视口后从 0 数到目标值，无 JS 或系统减弱动效时直接显示原数字 */
