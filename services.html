@@ -14,7 +14,12 @@
 <meta property="og:description" content="让品牌成为 AI 答案里的那个名字。国内外主要市场与主流 AI 平台全覆盖，业务触达 20+ 个国家和地区。">
 <link rel="canonical" href="https://liulianghuo.com/services.html">
 <link rel="icon" href="logo.png" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css?v=23">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF">
+<script>/* 明暗主题：首帧前定好，避免闪白 */
+(function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)})();
+</script>
+<link rel="stylesheet" href="styles.css?v=24">
 
 <style>
 /* ==========================================================================
@@ -291,14 +296,14 @@
 .geo-tier--hi .tier-btn{background:var(--fire-gradient);color:#fff;border-color:transparent}
 .geo-tier--hi .tier-btn:hover{box-shadow:0 12px 28px rgba(201,80,43,0.24);background:var(--fire-gradient)}
 /* 铂金版：浅暖灰底 + 深墨描边，与两张白卡同层但更沉，不做黑卡 */
-.geo-tier--dark{--ink:#1C1C1E;background:#FBFAF9;border-color:rgba(28,28,30,.14)}
-.geo-tier--dark h3{color:var(--ink)}
-.geo-tier--dark .sub{color:var(--ink);font-weight:600}
+.geo-tier--dark{--ink:#1C1C1E;background:var(--c-card);border-color:var(--bd-08)}
+.geo-tier--dark h3{color:var(--ink-text,#1C1C1E)}
+.geo-tier--dark .sub{color:var(--ink-text,#1C1C1E);font-weight:600}
 .geo-tier--dark .tier-desc{color:var(--c-text-secondary)}
 .geo-tier--dark .geo-tier-k{color:#fff;background:var(--ink);font-weight:600}
 .geo-tier--dark .tier-grid{background:var(--c-line-subtle);border-color:var(--c-line-subtle)}
-.geo-tier--dark .tier-grid > div{background:#fff}
-.geo-tier--dark .tier-grid b{color:var(--ink)}
+.geo-tier--dark .tier-grid > div{background:var(--c-card)}
+.geo-tier--dark .tier-grid b{color:var(--ink-text,#1C1C1E)}
 .geo-tier--dark .tier-grid b i{color:var(--c-text-tertiary)}
 .geo-tier--dark .tier-grid span{color:var(--c-text-tertiary)}
 .geo-tier--dark .tier-check li{color:var(--c-text-secondary)}
@@ -519,11 +524,11 @@
   padding:11px 12px;border-radius:12px;cursor:pointer;
   transition:background-color var(--duration-fast) ease;
 }
-.tl-check:hover{background:rgba(255,255,255,0.75)}
+.tl-check:hover{background:var(--c-surface)}
 .tl-check input{
   appearance:none;-webkit-appearance:none;flex:none;
   width:19px;height:19px;margin-top:1px;border-radius:6px;
-  border:1.5px solid var(--c-line);background:#fff;cursor:pointer;
+  border:1.5px solid var(--c-line);background:var(--c-card);cursor:pointer;
   transition:background-color var(--duration-fast) ease,border-color var(--duration-fast) ease;
 }
 .tl-check input:checked{background:var(--fire-gradient);border-color:transparent}
@@ -554,7 +559,7 @@
 .tl-input{
   width:100%;box-sizing:border-box;
   padding:11px 13px;border-radius:10px;border:1px solid var(--c-line);
-  background:#fff;font-family:var(--font);font-size:14.5px;color:var(--c-text);
+  background:var(--c-card);font-family:var(--font);font-size:14.5px;color:var(--c-text);
   transition:border-color var(--duration-fast) ease,box-shadow var(--duration-fast) ease;
 }
 .tl-input::placeholder{color:var(--c-text-tertiary)}
@@ -584,7 +589,7 @@
 .tl-qgroup h4{margin:0 0 8px;font-size:12px;font-weight:600;color:var(--c-text-tertiary);letter-spacing:0.06em}
 .tl-q{
   display:flex;align-items:center;gap:10px;justify-content:space-between;
-  padding:9px 12px;border-radius:9px;background:#fff;border:0.5px solid var(--c-line-subtle);
+  padding:9px 12px;border-radius:9px;background:var(--c-card);border:0.5px solid var(--c-line-subtle);
   margin-bottom:6px;
 }
 .tl-q p{margin:0;font-size:14px;line-height:1.55;color:var(--c-text);flex:1;min-width:0}
@@ -606,7 +611,7 @@
 .tl-plat{
   display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;row-gap:2px;
   align-items:center;min-width:0;
-  padding:12px 14px;border-radius:12px;background:#fff;
+  padding:12px 14px;border-radius:12px;background:var(--c-card);
   border:0.5px solid var(--c-line-subtle);
   transition:border-color var(--duration-fast) ease,transform var(--duration-fast) ease;
 }
@@ -839,7 +844,8 @@
       <li><a href="about.html">关于</a></li>
     </ul>
     <a href="#contact" class="nav-contact">联系我们</a>
-    <button class="mobile-btn" aria-label="菜单" aria-expanded="false">
+        <button class="theme-toggle" type="button" aria-label="切换到深色模式" aria-pressed="false" title="切换到深色模式"><svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.1M12 19.3v2.1M2.6 12h2.1M19.3 12h2.1M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg><svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg></button>
+<button class="mobile-btn" aria-label="菜单" aria-expanded="false">
       <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -1971,7 +1977,7 @@
 })();
 </script>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 
 <script>
 /* 首屏数字滚动：进入视口后从 0 数到目标值，无 JS 或系统减弱动效时直接显示原数字 */
