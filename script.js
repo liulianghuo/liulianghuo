@@ -42,13 +42,24 @@
   }
 })();
 
-// 若上一次是「点 Logo 刷新首页」，加载后回到顶部（不让浏览器恢复原滚动位置）
+// 若上一次是「点 Logo 刷新首页」，加载后回到顶部
+// 注意：线上图片加载慢时，浏览器会在脚本执行后仍把滚动恢复到原位，
+// 所以用 rAF 循环强制置顶几秒；用户一旦自己滚动立刻让位。
 (function () {
   try {
     if (sessionStorage.getItem('lh-top') === '1') {
       sessionStorage.removeItem('lh-top');
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.scrollTo(0, 0);
+      var frames = 0, stop = false;
+      var cancel = function () { stop = true; };
+      window.addEventListener('wheel', cancel, { passive: true, once: true });
+      window.addEventListener('touchstart', cancel, { passive: true, once: true });
+      window.addEventListener('keydown', cancel, { once: true });
+      (function force() {
+        if (stop || frames++ > 300) return;   // 最多约 5 秒
+        window.scrollTo(0, 0);
+        requestAnimationFrame(force);
+      })();
     }
   } catch (e) {}
 })();
