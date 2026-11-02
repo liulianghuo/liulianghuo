@@ -1,6 +1,46 @@
 /* ============================================
-   流量火传媒 — 官网共享交互逻辑 v7
+   流量火传媒 — 官网共享交互逻辑 v8
    ============================================ */
+
+// 深浅色主题切换（首帧已由 <head> 内联脚本定好，这里负责按钮与跟随系统）
+(function () {
+  var root = document.documentElement;
+  var KEY = 'lh-theme';
+  var meta = document.querySelector('meta[name="theme-color"]');
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+  function cur() { return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+  function saved() {
+    try { var v = localStorage.getItem(KEY); return (v === 'dark' || v === 'light') ? v : null; }
+    catch (e) { return null; }
+  }
+  function paint(mode) {
+    root.setAttribute('data-theme', mode);
+    if (meta) meta.setAttribute('content', mode === 'dark' ? '#0A0A0D' : '#FFFFFF');
+    var label = mode === 'dark' ? '切换到浅色模式' : '切换到深色模式';
+    document.querySelectorAll('.theme-toggle').forEach(function (b) {
+      b.setAttribute('aria-pressed', mode === 'dark' ? 'true' : 'false');
+      b.setAttribute('aria-label', label);
+      b.setAttribute('title', label);
+    });
+  }
+
+  paint(cur());
+
+  document.querySelectorAll('.theme-toggle').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var next = cur() === 'dark' ? 'light' : 'dark';
+      paint(next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  });
+
+  if (mq) {
+    var onChange = function (e) { if (!saved()) paint(e.matches ? 'dark' : 'light'); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+})();
 
 // Nav scroll hairline
 const nav = document.getElementById('nav');
