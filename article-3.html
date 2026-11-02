@@ -14,7 +14,12 @@
 <meta property="og:description" content="方法论决定你有没有价值，人格化决定用户记不记得住你。两者缺一，IP都立不住。">
 <link rel="canonical" href="https://liulianghuo.com/article-3.html">
 <link rel="icon" href="logo.png">
-<link rel="stylesheet" href="styles.css?v=23">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF">
+<script>/* 明暗主题：首帧前定好，避免闪白 */
+(function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)})();
+</script>
+<link rel="stylesheet" href="styles.css?v=24">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,7 +84,8 @@
       <li><a href="about.html">关于</a></li>
     </ul>
     <a href="#contact" class="nav-contact">联系我们</a>
-    <button class="mobile-btn" aria-label="菜单" aria-expanded="false">
+        <button class="theme-toggle" type="button" aria-label="切换到深色模式" aria-pressed="false" title="切换到深色模式"><svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.1M12 19.3v2.1M2.6 12h2.1M19.3 12h2.1M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg><svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg></button>
+<button class="mobile-btn" aria-label="菜单" aria-expanded="false">
       <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -206,6 +212,6 @@
   <div class="footer-sites">品牌官网 <a href="https://liulianghuo.com" rel="noopener">liulianghuo.com</a> &nbsp;·&nbsp; 智能产品门户 <a href="https://liulianghuo.top" target="_blank" rel="noopener noreferrer">liulianghuo.top</a></div>
 </footer>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
