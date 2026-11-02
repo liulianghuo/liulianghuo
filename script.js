@@ -42,6 +42,42 @@
   }
 })();
 
+// 若上一次是「点 Logo 刷新首页」，加载后回到顶部（不让浏览器恢复原滚动位置）
+(function () {
+  try {
+    if (sessionStorage.getItem('lh-top') === '1') {
+      sessionStorage.removeItem('lh-top');
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+    }
+  } catch (e) {}
+})();
+
+// Logo 回首页：内页点击正常回首页；已在首页时点击 = 重新加载首页
+(function () {
+  var links = document.querySelectorAll('[data-home-logo]');
+  if (!links.length) return;
+
+  function isHome() {
+    var p = location.pathname;
+    return p === '/' || p === '' || /\/index\.html?$/.test(p);
+  }
+
+  Array.prototype.forEach.call(links, function (a) {
+    a.addEventListener('click', function (e) {
+      // 新标签/新窗口打开等操作不拦截
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      if (!isHome()) return;
+
+      e.preventDefault();
+      try { sessionStorage.setItem('lh-top', '1'); } catch (e2) {}
+      var clean = location.origin + location.pathname;
+      if (clean === location.href) location.reload();
+      else location.href = clean;   // 带锚点或参数时回到干净的首页
+    });
+  });
+})();
+
 // Nav scroll hairline
 const nav = document.getElementById('nav');
 if (nav) {
