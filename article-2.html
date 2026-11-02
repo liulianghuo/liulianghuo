@@ -17,9 +17,9 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFFFFF">
 <script>/* 明暗主题：首帧前定好，避免闪白 */
-(function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)})();
+(function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("js");setTimeout(function(){if(!window.__lhReady&&document.querySelector(".reveal:not(.visible)")){document.documentElement.classList.remove("js")}},2500)})();
 </script>
-<link rel="stylesheet" href="styles.css?v=25">
+<link rel="stylesheet" href="styles.css?v=26">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -230,6 +230,6 @@
   <div class="footer-sites">品牌官网 <a href="https://liulianghuo.com" rel="noopener">liulianghuo.com</a> &nbsp;·&nbsp; 智能产品门户 <a href="https://liulianghuo.top" target="_blank" rel="noopener noreferrer">liulianghuo.top</a></div>
 </footer>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>
