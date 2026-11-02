@@ -79,8 +79,9 @@
   background:var(--fire-gradient);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:var(--fire-mid);
 }
-.geo-hero-desc{font-size:15.5px;line-height:1.82;color:var(--c-text-secondary);margin:0 0 26px;max-width:540px}
+.geo-hero-desc{font-size:15.5px;line-height:1.82;color:var(--c-text-secondary);margin:0 0 26px;max-width:600px;text-wrap:balance}
 .geo-hero-desc b{color:var(--c-text);font-weight:600}
+.geo-hero-desc .nb{white-space:nowrap}
 .geo-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:clamp(28px,4vh,42px)}
 .geo-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -125,9 +126,9 @@
 .geo-why-item h3{font-size:17px;font-weight:650;letter-spacing:-0.015em;color:var(--c-text);margin:10px 0 9px;line-height:1.4}
 .geo-why-item p{font-size:14px;line-height:1.78;color:var(--c-text-secondary);margin:0}
 .geo-quote{
-  max-width:840px;margin:clamp(34px,5vh,56px) auto 0;text-align:center;
-  font-size:clamp(18px,2.1vw,23px);font-weight:650;letter-spacing:-0.022em;
-  line-height:1.55;color:var(--c-text);text-wrap:balance;
+  width:max-content;max-width:min(100%,1180px);margin:clamp(34px,5vh,56px) auto 0;text-align:center;
+  font-size:clamp(19px,2.3vw,26px);font-weight:650;letter-spacing:-0.022em;
+  line-height:1.5;color:var(--c-text);text-wrap:balance;
 }
 .geo-quote .hl{color:var(--fire-mid)}
 
@@ -866,7 +867,7 @@
         <span>15 个 AI 平台</span>
       </div>
       <h1 class="geo-hero-title reveal">AI 时代的<span class="hl1">第一个答案</span>，<br>应该有<span class="hl2">你的名字</span></h1>
-      <p class="geo-hero-desc reveal reveal--d1">流量火传媒已完成 GEO 全国线上链路打通，覆盖 2845 个县级行政区、694 座城市，把「被 AI 推荐」做成一条<b>可交付、可度量、可复盘</b>的生产线</p>
+      <p class="geo-hero-desc reveal reveal--d1">流量火传媒已完成 GEO 全域链路布局，覆盖国内一线至县域 694 座城市与<span class="nb">海外 20+</span> 个国家和地区，把「被 AI 推荐」做成一条<b>可交付、可度量、可复盘</b>的生产线</p>
       <div class="geo-hero-btns reveal reveal--d2">
         <a class="geo-btn" href="#contact">预约免费诊断 &rarr;</a>
         <a class="geo-btn--ghost" href="#tool-check">先免费自查</a>
@@ -992,7 +993,7 @@
       </div>
     </div>
 
-    <p class="geo-quote reveal">在生成式引擎里，排名不再是一页链接，<br>而是<span class="hl">一句推荐</span>，我们要优化的，<br>就是那一句推荐，<span class="hl">必须是我们</span></p>
+    <p class="geo-quote reveal">在生成式引擎里，排名不再是一页链接，而是<span class="hl">一句推荐</span>；我们要优化的，就是那一句<span class="hl">推荐里必须有你</span></p>
   </div>
 </section>
 
