@@ -10,7 +10,12 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://liulianghuo.com/tools.html">
 <link rel="icon" href="logo.png">
-<link rel="stylesheet" href="styles.css?v=23">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF">
+<script>/* 明暗主题：首帧前定好，避免闪白 */
+(function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t)})();
+</script>
+<link rel="stylesheet" href="styles.css?v=24">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,11 +74,11 @@
   padding:12px 14px;border-radius:12px;cursor:pointer;
   transition:background-color var(--duration-fast) ease;
 }
-.tl-check:hover{background:rgba(255,255,255,0.75)}
+.tl-check:hover{background:var(--c-surface)}
 .tl-check input{
   appearance:none;-webkit-appearance:none;flex:none;
   width:19px;height:19px;margin-top:1px;border-radius:6px;
-  border:1.5px solid var(--c-line);background:#fff;cursor:pointer;
+  border:1.5px solid var(--c-line);background:var(--c-card);cursor:pointer;
   transition:background-color var(--duration-fast) ease,border-color var(--duration-fast) ease;
 }
 .tl-check input:checked{background:var(--fire-gradient);border-color:transparent}
@@ -105,7 +110,7 @@
 .tl-input{
   width:100%;box-sizing:border-box;
   padding:11px 13px;border-radius:10px;border:1px solid var(--c-line);
-  background:#fff;font-family:var(--font);font-size:14.5px;color:var(--c-text);
+  background:var(--c-card);font-family:var(--font);font-size:14.5px;color:var(--c-text);
   transition:border-color var(--duration-fast) ease,box-shadow var(--duration-fast) ease;
 }
 .tl-input::placeholder{color:var(--c-text-tertiary)}
@@ -141,7 +146,7 @@
 }
 .tl-q{
   display:flex;align-items:center;gap:10px;justify-content:space-between;
-  padding:9px 12px;border-radius:9px;background:#fff;border:0.5px solid var(--c-line-subtle);
+  padding:9px 12px;border-radius:9px;background:var(--c-card);border:0.5px solid var(--c-line-subtle);
   margin-bottom:6px;
 }
 .tl-q p{margin:0;font-size:14px;line-height:1.55;color:var(--c-text);flex:1;min-width:0}
@@ -154,7 +159,7 @@
 .tl-copy.done{border-color:var(--fire-mid);color:var(--fire-mid)}
 
 .tl-code{
-  margin:0;padding:16px 18px;border-radius:12px;background:#1D1D1F;
+  margin:0;padding:16px 18px;border-radius:12px;background:var(--code-bg,#1D1D1F);
   color:#E8E8ED;font-family:var(--mono);font-size:12.5px;line-height:1.7;
   overflow-x:auto;white-space:pre;
 }
@@ -173,7 +178,7 @@
 }
 .tl-plat{
   display:flex;flex-direction:column;gap:2px;min-width:0;
-  padding:14px 16px;border-radius:12px;background:#fff;
+  padding:14px 16px;border-radius:12px;background:var(--c-card);
   border:0.5px solid var(--c-line-subtle);
   transition:border-color var(--duration-fast) ease,transform var(--duration-fast) ease;
 }
@@ -225,7 +230,8 @@
       <li><a href="about.html">关于</a></li>
     </ul>
     <a href="#contact" class="nav-contact">联系我们</a>
-    <button class="mobile-btn" aria-label="菜单" aria-expanded="false"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <button class="theme-toggle" type="button" aria-label="切换到深色模式" aria-pressed="false" title="切换到深色模式"><svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.1M12 19.3v2.1M2.6 12h2.1M19.3 12h2.1M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5"/></svg><svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg></button>
+<button class="mobile-btn" aria-label="菜单" aria-expanded="false"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
 <div class="nav-tabs"><a href="index.html">首页</a><a href="products.html">产品</a><a href="services.html">GEO</a><a href="cases.html">案例</a><a href="insights.html">观点</a><a href="pricing.html">套餐</a><a href="about.html">关于</a></div>
 </nav>
@@ -627,6 +633,6 @@
 })();
 </script>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
