@@ -3013,14 +3013,16 @@ html[data-theme="dark"] .hero-logo:not(.logo-dark-only),
 html[data-theme="dark"] .footer-logo-row img:not(.logo-dark-only){display:none}
 html[data-theme="dark"] .v8-fs-logo-img{background:var(--c-card)}
 /* ── 暗色：品牌墙 Logo 用逐图适配版（黑字→白、浅色块→深色融入背景、彩色保真） ──
-    常态低饱和显品牌色：纯红/纯蓝 Logo 经 grayscale 后灰度亮度只有 70~95，会明显偏暗；
-    hover 恢复全彩 + 微亮底；亮色模式完全不动 */
+    v31：常态统一为银灰（与亮色「默认单色、悬停显真彩」一致），悬停才恢复真实品牌色。
+    brightness 是乘法，提亮主体但不会抬动已融入背景的深色底；contrast 只轻微压缩，
+    不能低于 .8（tubatu / guante 等图含 8~18% 低亮度不透明像素，压太狠会浮出灰块）；
+    brightness 也不能超过 1.4（OPPEIN 橙色块会被顶成刺眼白块）。亮色模式完全不动 */
 .bw-logo-dark{display:none}
 html[data-theme="dark"] .bw-cell img:not(.bw-logo-dark){display:none}
 html[data-theme="dark"] .bw-cell .bw-logo-dark{display:block}
 html[data-theme="dark"] .bw-cell img,
 html[data-theme="dark"] .bw-cell--color img,
-html[data-theme="dark"] .bw-cell--up img{filter:saturate(.5) brightness(1.06);opacity:.9}
+html[data-theme="dark"] .bw-cell--up img{filter:grayscale(1) brightness(1.30) contrast(.96);opacity:.88}
 html[data-theme="dark"] .product-badge--blue{background:rgba(66,165,245,0.16);color:#79BEFF}
 html[data-theme="dark"] .product-badge--purple{background:rgba(186,104,200,0.16);color:#CE93D8}
 html[data-theme="dark"] .product-badge--green{background:rgba(102,187,106,0.16);color:#81C784}
@@ -3048,10 +3050,13 @@ html[data-theme="dark"] .tl-plat img[src*="perplexity"]:not(.ai-logo-dark),
 html[data-theme="dark"] .tl-plat img[src*="kimi"]:not(.ai-logo-dark){display:none}
 html[data-theme="dark"] .v8-fs-logo-dark,
 html[data-theme="dark"] .tl-plat .ai-logo-dark{display:inline-block}
+/* 案例页客户 Logo 与品牌墙同规则：暗色默认银灰，悬停卡片显真彩 */
+html[data-theme="dark"] .v8-fs-logo-dark{filter:grayscale(1) brightness(1.30);opacity:.9}
 @media (hover:hover) and (pointer:fine){
   html[data-theme="dark"] .bw-cell:hover{background:rgba(255,255,255,0.045)}
-  html[data-theme="dark"] .bw-cell:hover img{filter:none;opacity:1}
+  html[data-theme="dark"] .bw-cell:hover img{filter:none;opacity:1;transform:scale(1.05)}
   html[data-theme="dark"] .bw-cell:hover .bw-word{color:var(--c-text)}
+  html[data-theme="dark"] .v8-flagship:hover .v8-fs-logo-dark{filter:none;opacity:1}
 }
 @media (prefers-reduced-motion:reduce){
   .theme-toggle,.nav-logo-link,.footer-logo-link{transition:none}
