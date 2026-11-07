@@ -3005,10 +3005,12 @@ html[data-theme="dark"] .orbit-core{background:radial-gradient(circle at 50% 45%
 html[data-theme="dark"] .orbit-core::before{border-color:rgba(224,96,58,.38)}
 html[data-theme="dark"] .orbit-core::after{border-color:rgba(224,96,58,.22)}
 
-/* ── 暗色：Logo 与品牌墙 ── */
-html[data-theme="dark"] .nav-logo,
-html[data-theme="dark"] .hero-logo,
-html[data-theme="dark"] .footer-logo-row img{filter:brightness(2.6) saturate(1.05)}
+/* ── 暗色：Logo 换成「白字 + 原橙红火焰」专用图（纯 CSS 切换，无闪烁、不依赖 JS） ── */
+.logo-dark-only{display:none}
+html[data-theme="dark"] .logo-dark-only{display:inline-block}
+html[data-theme="dark"] .nav-logo:not(.logo-dark-only),
+html[data-theme="dark"] .hero-logo:not(.logo-dark-only),
+html[data-theme="dark"] .footer-logo-row img:not(.logo-dark-only){display:none}
 html[data-theme="dark"] .v8-fs-logo-img{background:var(--c-plate)}
 html[data-theme="dark"] .bw-cell img{filter:grayscale(1) brightness(0) invert(1);opacity:.55}
 html[data-theme="dark"] .bw-cell--color img{filter:grayscale(1) brightness(0) invert(1);opacity:.55}
