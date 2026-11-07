@@ -3036,6 +3036,9 @@ html[data-theme="dark"] .logo-dark-only{display:inline-block}
 html[data-theme="dark"] .nav-logo:not(.logo-dark-only),
 html[data-theme="dark"] .hero-logo:not(.logo-dark-only),
 html[data-theme="dark"] .footer-logo-row img:not(.logo-dark-only){display:none}
+/* 页脚背景恒为深色：亮色主题下同样要用白字 Logo，否则黑字不可见、只剩火焰 */
+.footer-logo-row img:not(.logo-dark-only){display:none}
+.footer-logo-row img.logo-dark-only{display:inline-block}
 html[data-theme="dark"] .v8-fs-logo-img{background:var(--c-card)}
 /* ── 暗色：品牌墙 Logo 用逐图适配版（黑字→白、浅色块→深色融入背景、彩色保真） ──
     v31：常态统一为银灰（与亮色「默认单色、悬停显真彩」一致），悬停才恢复真实品牌色。
