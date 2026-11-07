@@ -1128,9 +1128,11 @@ button{font-family:inherit;cursor:pointer}
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:var(--fire-gradient);opacity:.7;
 }
-/* 每行数据：左数字区 + 右说明区 */
+/* 每行数据：左数字区 + 右说明区
+   v32：左栏固定 272px，四行分隔线、文案起点完全对齐；
+   原来 auto 列宽由每行数字长短决定（232/248/135/93px），分隔线相差最多 155px，显得散乱 */
 .trend-stat{
-  display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
+  display:grid;grid-template-columns:272px 1fr;gap:0;align-items:center;
   padding:22px 24px;margin:4px 0;
   border-radius:16px;
   transition:background .25s ease;
@@ -1139,10 +1141,13 @@ button{font-family:inherit;cursor:pointer}
 .trend-stat:not(:last-child){border-bottom:0.5px solid var(--bd-05);}
 .trend-stat:last-child{border-bottom:none;}
 
-/* 左侧数字区域 */
+/* 左侧数字区域：竖分隔线改画在数字区右边缘，
+   四行线位置一致、高度同为数字行高，不再随右侧文案行数忽长忽短 */
 .trend-stat-left{
   display:inline-flex;align-items:baseline;gap:6px;
   white-space:nowrap;flex-shrink:0;
+  width:100%;padding-right:16px;
+  border-right:2.5px solid rgba(255,87,34,0.15);
 }
 .trend-stat-from{
   font-size:clamp(30px,3.2vw,42px);font-weight:700;letter-spacing:-0.03em;
@@ -1173,8 +1178,7 @@ button{font-family:inherit;cursor:pointer}
 /* 右侧说明文字 */
 .trend-stat-right{
   font-size:15px;color:var(--c-text-secondary);line-height:1.6;
-  padding-left:2px;border-left:2.5px solid rgba(255,87,34,0.15);
-  padding-left:16px;
+  padding-left:20px;
 }
 .trend-stat-right strong{color:var(--c-text);font-weight:650}
 
@@ -1300,8 +1304,11 @@ button{font-family:inherit;cursor:pointer}
 .tilt-inner{transition:transform 0.2s var(--ease-out);transform-style:preserve-3d;will-change:transform}
 
 /* ===== RESPONSIVE 新增 ===== */
-@media(max-width:1024px){
+/* 中等屏幕：卡片收窄后固定数字列会把说明文字挤成竖条，提前改为上下排布让卡片铺满 */
+@media(max-width:1360px){
   .trend-grid{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:1024px){
   .trend-card{padding:28px 24px}
   .loop-diagram{grid-template-columns:repeat(2,1fr);gap:16px}
   .loop-arrow{display:none}
@@ -1322,7 +1329,10 @@ button{font-family:inherit;cursor:pointer}
     grid-template-columns:1fr;gap:12px;padding:18px 16px;
     text-align:center;
   }
-  .trend-stat-left{justify-content:center}
+  .trend-stat-left{
+    justify-content:center;width:auto;
+    border-right:none;padding-right:0;
+  }
   .trend-stat-right{
     border-left:none;border-top:2.5px solid rgba(255,87,34,0.15);
     padding-left:0;padding-top:12px;text-align:center;
