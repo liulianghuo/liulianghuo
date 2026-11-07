@@ -3012,9 +3012,14 @@ html[data-theme="dark"] .nav-logo:not(.logo-dark-only),
 html[data-theme="dark"] .hero-logo:not(.logo-dark-only),
 html[data-theme="dark"] .footer-logo-row img:not(.logo-dark-only){display:none}
 html[data-theme="dark"] .v8-fs-logo-img{background:var(--c-plate)}
-html[data-theme="dark"] .bw-cell img{filter:grayscale(1) brightness(0) invert(1);opacity:.55}
-html[data-theme="dark"] .bw-cell--color img{filter:grayscale(1) brightness(0) invert(1);opacity:.55}
-html[data-theme="dark"] .bw-cell--up img{opacity:.62}
+/* ── 暗色：品牌墙 Logo 用逐图适配版（黑字→白、浅色块→深色融入背景、彩色保真） ──
+   常态灰度，与亮色同款克制层次；hover 去灰度显品牌色，深色字仍清晰可见 */
+.bw-logo-dark{display:none}
+html[data-theme="dark"] .bw-cell img:not(.bw-logo-dark){display:none}
+html[data-theme="dark"] .bw-cell .bw-logo-dark{display:block}
+html[data-theme="dark"] .bw-cell img,
+html[data-theme="dark"] .bw-cell--color img,
+html[data-theme="dark"] .bw-cell--up img{filter:grayscale(1) brightness(1.12);opacity:.95}
 html[data-theme="dark"] .product-badge--blue{background:rgba(66,165,245,0.16);color:#79BEFF}
 html[data-theme="dark"] .product-badge--purple{background:rgba(186,104,200,0.16);color:#CE93D8}
 html[data-theme="dark"] .product-badge--green{background:rgba(102,187,106,0.16);color:#81C784}
@@ -3031,7 +3036,8 @@ html[data-theme="dark"] .v8-plan-highlight--geo{background:rgba(107,79,224,0.12)
 html[data-theme="dark"] .v8-plan-highlight--geo strong{color:#B7A8FF}
 html[data-theme="dark"] .aiwall-item img[src*="chatgpt"]{filter:invert(1) brightness(1.55)}
 @media (hover:hover) and (pointer:fine){
-  html[data-theme="dark"] .bw-cell:hover img{filter:grayscale(0) brightness(1) invert(0);opacity:1}
+  html[data-theme="dark"] .bw-cell:hover{background:rgba(255,255,255,0.045)}
+  html[data-theme="dark"] .bw-cell:hover img{filter:none;opacity:1}
   html[data-theme="dark"] .bw-cell:hover .bw-word{color:var(--c-text)}
 }
 @media (prefers-reduced-motion:reduce){
