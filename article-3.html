@@ -19,7 +19,7 @@
 <script>/* 明暗主题：首帧前定好，避免闪白 */
 (function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("js");setTimeout(function(){if(!window.__lhReady&&document.querySelector(".reveal:not(.visible)")){document.documentElement.classList.remove("js")}},2500)})();
 </script>
-<link rel="stylesheet" href="styles.css?v=26">
+<link rel="stylesheet" href="styles.css?v=27">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -71,7 +71,7 @@
 
 <nav class="nav" id="nav">
   <div class="nav-left">
-    <a class="nav-logo-link" href="index.html" data-home-logo aria-label="回到首页"><img class="nav-logo" src="logo.png" alt="流量火"></a>
+    <a class="nav-logo-link" href="index.html" data-home-logo aria-label="回到首页"><img class="nav-logo" src="logo.png" alt="流量火"><img class="nav-logo logo-dark-only" src="logo-dark.png" alt="" aria-hidden="true"></a>
   </div>
   <div class="nav-right">
     <ul class="nav-links">
@@ -174,7 +174,7 @@
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-logo-row"><a class="footer-logo-link" href="index.html" data-home-logo aria-label="回到首页"><img src="logo.png" alt="流量火"></a></div>
+      <div class="footer-logo-row"><a class="footer-logo-link" href="index.html" data-home-logo aria-label="回到首页"><img src="logo.png" alt="流量火"><img class="logo-dark-only" src="logo-dark.png" alt="" aria-hidden="true"></a></div>
       <p class="footer-bio">专注IP策划、内容生产与多平台分发<br>流量不贵，内容更对，让IP成为品牌超强增长引擎</p>
     </div>
     <div class="footer-col">
