@@ -2984,6 +2984,14 @@ html[data-theme="dark"] .footer-col a:hover{color:#fff}
 html[data-theme="dark"] .footer-bottom{color:rgba(255,255,255,0.42);border-top-color:rgba(255,255,255,0.10)}
 html[data-theme="dark"] .footer-sites{color:rgba(255,255,255,0.55)}
 html[data-theme="dark"] .footer-sites a{color:rgba(255,255,255,0.72)}
+/* 页脚在亮色主题下同样是深色底，文字亮度需与暗色主题一致，否则几乎看不清 */
+html:not([data-theme="dark"]) .footer{color:rgba(255,255,255,0.45)}
+html:not([data-theme="dark"]) .footer-bio{color:rgba(255,255,255,0.62)}
+html:not([data-theme="dark"]) .footer-col a{color:rgba(255,255,255,0.66)}
+html:not([data-theme="dark"]) .footer-col a:hover{color:#fff}
+html:not([data-theme="dark"]) .footer-bottom{color:rgba(255,255,255,0.42);border-top-color:rgba(255,255,255,0.10)}
+html:not([data-theme="dark"]) .footer-sites{color:rgba(255,255,255,0.55)}
+html:not([data-theme="dark"]) .footer-sites a{color:rgba(255,255,255,0.72)}
 html[data-theme="dark"] .price-card--featured{background:#1A1A20;color:var(--c-text);border-color:var(--c-line)}
 html[data-theme="dark"] .price-card--featured .price-title{color:var(--c-text)}
 html[data-theme="dark"] .price-card--featured .price-tag,
