@@ -2914,7 +2914,7 @@ html[data-theme="dark"]{
   --c-line:#2C2C34;
   --c-line-subtle:#1F1F25;
   --c-card:#17171C;
-  --c-plate:#EDEDF2;
+  --c-plate:#1D1D24;
   --code-bg:#212129;
   --fire-from:#F0996F;
   --fire-mid:#E0603A;
@@ -3011,7 +3011,7 @@ html[data-theme="dark"] .logo-dark-only{display:inline-block}
 html[data-theme="dark"] .nav-logo:not(.logo-dark-only),
 html[data-theme="dark"] .hero-logo:not(.logo-dark-only),
 html[data-theme="dark"] .footer-logo-row img:not(.logo-dark-only){display:none}
-html[data-theme="dark"] .v8-fs-logo-img{background:var(--c-plate)}
+html[data-theme="dark"] .v8-fs-logo-img{background:var(--c-card)}
 /* ── 暗色：品牌墙 Logo 用逐图适配版（黑字→白、浅色块→深色融入背景、彩色保真） ──
     常态低饱和显品牌色：纯红/纯蓝 Logo 经 grayscale 后灰度亮度只有 70~95，会明显偏暗；
     hover 恢复全彩 + 微亮底；亮色模式完全不动 */
@@ -3035,7 +3035,19 @@ html[data-theme="dark"] .v8-plan-highlight--warm{border-color:rgba(224,96,58,0.2
 html[data-theme="dark"] .v8-plan-highlight--warm strong{color:#FFB27A}
 html[data-theme="dark"] .v8-plan-highlight--geo{background:rgba(107,79,224,0.12);border-color:rgba(167,139,250,0.28)}
 html[data-theme="dark"] .v8-plan-highlight--geo strong{color:#B7A8FF}
-html[data-theme="dark"] .aiwall-item img[src*="chatgpt"]{filter:invert(1) brightness(1.55)}
+/* ── 暗色：全站 Logo 统一规则 —— 黑字/黑色线条→白，红蓝绿等彩色保持原色 ──
+   1) 纯黑单色图标（ChatGPT）反相成白，三处容器统一覆盖
+   2) 混合色 / 带白底的 Logo 用逐图适配版双图切换，白底融入深色卡片
+   3) 亮色模式完全不动 */
+html[data-theme="dark"] .aiwall-item img[src*="chatgpt"],
+html[data-theme="dark"] .orbit-chip img[src*="chatgpt"],
+html[data-theme="dark"] .tl-plat img[src*="chatgpt"]{filter:brightness(0) invert(1)}
+.v8-fs-logo-dark,.ai-logo-dark{display:none}
+html[data-theme="dark"] .v8-fs-logo-img[src^="logo-"]:not(.v8-fs-logo-dark){display:none}
+html[data-theme="dark"] .tl-plat img[src*="perplexity"]:not(.ai-logo-dark),
+html[data-theme="dark"] .tl-plat img[src*="kimi"]:not(.ai-logo-dark){display:none}
+html[data-theme="dark"] .v8-fs-logo-dark,
+html[data-theme="dark"] .tl-plat .ai-logo-dark{display:inline-block}
 @media (hover:hover) and (pointer:fine){
   html[data-theme="dark"] .bw-cell:hover{background:rgba(255,255,255,0.045)}
   html[data-theme="dark"] .bw-cell:hover img{filter:none;opacity:1}
