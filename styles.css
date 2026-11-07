@@ -845,6 +845,13 @@ button{font-family:inherit;cursor:pointer}
 }
 .footer-sites a{color:rgba(255,255,255,0.55);text-decoration:none;}
 .footer-sites a:hover{color:var(--fire-mid);}
+/* 站点行：每个站点为一个不可拆分单元，分隔点由 CSS 生成 */
+.footer-sites .fs-item{display:inline-block;white-space:nowrap;}
+.footer-sites .fs-item + .fs-item::before{content:"\00a0·\00a0";color:inherit;}
+@media(max-width:768px){
+  .footer-sites{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 14px;}
+  .footer-sites .fs-item + .fs-item::before{content:none;}
+}
 
 /* ===== 锚点跳转补偿：给固定导航条 / 页内吸顶分类条留出空间 ===== */
 [id]{scroll-margin-top:72px}
