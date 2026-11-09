@@ -73,6 +73,49 @@
   });
 </script>
 
+<style>
+/* 服务行业版图 · 重设计：只作用于本页 #industry 区块 */
+#industry .industry-num{color:var(--fire-mid)}
+#industry .industry-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;text-align:left;
+}
+#industry .v8-ai-group{
+  margin:0;background:var(--c-bg);
+  border:1px solid var(--c-line-subtle);border-radius:16px;
+  padding:22px 20px 20px;
+  display:flex;flex-direction:column;
+  transition:border-color .3s var(--ease-out),transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
+}
+#industry .v8-ai-group::before{
+  content:"";display:block;width:28px;height:3px;border-radius:3px;
+  background:var(--fire-mid);margin-bottom:16px;
+}
+#industry .v8-ai-group-label{
+  font-size:16px;font-weight:700;color:var(--c-text);
+  letter-spacing:0;line-height:1.4;margin-bottom:14px;
+}
+#industry .v8-ai-platforms{justify-content:flex-start;gap:7px;align-content:flex-start}
+#industry .v8-ai-chip{
+  font-size:12.5px;line-height:1.45;color:var(--c-text-secondary);
+  background:transparent;border:1px solid var(--c-line);
+  border-radius:8px;padding:5px 10px;
+}
+@media (hover:hover) and (pointer:fine){
+  #industry .v8-ai-group:hover{
+    border-color:rgba(255,87,34,.5);transform:translateY(-4px);
+    box-shadow:0 14px 32px var(--sh-06);
+  }
+  #industry .v8-ai-chip:hover{
+    color:var(--fire-mid);border-color:var(--fire-mid);background:rgba(255,87,34,.05);
+  }
+}
+@media(max-width:1100px){#industry .industry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+  #industry .industry-grid{grid-template-columns:1fr}
+  #industry .v8-ai-group{padding:20px 18px 18px}
+}
+</style>
 </head>
 <body>
 
@@ -556,15 +599,16 @@
 
 
 <!-- ══ 服务行业版图 ══ -->
-<section class="section" style="padding-top:20px;padding-bottom:80px;">
+<section class="section" id="industry" style="padding-top:36px;padding-bottom:72px;">
   <div style="max-width:var(--container-wide);margin:0 auto;text-align:center;">
-    <h2 style="font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-0.02em;color:var(--c-text);margin:12px 0 8px;">深耕 30+ 垂直行业</h2>
-    <p style="font-size:16px;color:var(--c-text-secondary);line-height:1.65;margin:0 auto 36px;text-wrap:balance">不做泛流量，每个行业都有专属的内容模型。每一个标签背后，都是一份经过验证的诊断方案</p>
+    <h2 style="font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-0.02em;color:var(--c-text);margin:12px 0 8px;">深耕 <span class="industry-num">30+</span> 垂直行业</h2>
+    <p style="font-size:16px;color:var(--c-text-secondary);line-height:1.65;margin:0 auto 32px;text-wrap:balance">不做泛流量，每个行业都有专属的内容模型。每一个标签背后，都是一份经过验证的诊断方案</p>
 
+    <div class="industry-grid">
     <!-- 组1：本地生活服务 -->
-    <div class="v8-ai-group" style="margin-bottom:28px;">
+    <div class="v8-ai-group">
       <div class="v8-ai-group-label">🏠 本地生活服务</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
+      <div class="v8-ai-platforms">
         <span class="v8-ai-chip">装修家居</span>
         <span class="v8-ai-chip">全屋定制</span>
         <span class="v8-ai-chip">房产经纪</span>
@@ -577,9 +621,9 @@
     </div>
 
     <!-- 组2：高客单消费 -->
-    <div class="v8-ai-group" style="margin-bottom:28px;">
+    <div class="v8-ai-group">
       <div class="v8-ai-group-label">💎 高客单消费</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
+      <div class="v8-ai-platforms">
         <span class="v8-ai-chip">翡翠珠宝</span>
         <span class="v8-ai-chip">医疗健康</span>
         <span class="v8-ai-chip">私护健康</span>
@@ -591,9 +635,9 @@
     </div>
 
     <!-- 组3：教育 / 成长 / 专业服务 -->
-    <div class="v8-ai-group" style="margin-bottom:28px;">
+    <div class="v8-ai-group">
       <div class="v8-ai-group-label">📚 教育·成长·专业服务</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
+      <div class="v8-ai-platforms">
         <span class="v8-ai-chip">亲子教育</span>
         <span class="v8-ai-chip">K12 教培</span>
         <span class="v8-ai-chip">留学移民</span>
@@ -608,7 +652,7 @@
     <!-- 组4：IP 打造 / 文化 / 特色 -->
     <div class="v8-ai-group">
       <div class="v8-ai-group-label">✨ 个人 IP · 文化 · 特色</div>
-      <div class="v8-ai-platforms" style="justify-content:center;">
+      <div class="v8-ai-platforms">
         <span class="v8-ai-chip">个人 IP 打造</span>
         <span class="v8-ai-chip">矩阵运营</span>
         <span class="v8-ai-chip">非遗文化</span>
@@ -617,6 +661,7 @@
         <span class="v8-ai-chip">母婴育儿</span>
         <span class="v8-ai-chip">新能源汽车</span>
       </div>
+    </div>
     </div>
 
   </div>
