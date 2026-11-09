@@ -20,15 +20,7 @@
 (function(){var t=null;try{t=localStorage.getItem("lh-theme")}catch(e){}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("js");setTimeout(function(){if(!window.__lhReady&&document.querySelector(".reveal:not(.visible)")){document.documentElement.classList.remove("js")}},2500)})();
 </script>
 <link rel="stylesheet" href="styles.css?v=35">
-<link rel="stylesheet" href="article-detail.css?v=1">
-<style>/* 仅本页：内容区宽度与站内其它页面一致 */
-.article-page .page-hero,
-.article-page .article-body{max-width:calc(var(--container-max) + 2 * var(--section-pad-h))}
-.article-page .article-related{
-  padding-left:calc(max(var(--section-pad-h), calc((100% - var(--container-max)) / 2)) - 1px);
-  padding-right:calc(max(var(--section-pad-h), calc((100% - var(--container-max)) / 2)) - 1px);
-}
-</style>
+<link rel="stylesheet" href="article-detail.css?v=2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
