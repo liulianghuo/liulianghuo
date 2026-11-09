@@ -21,6 +21,14 @@
 </script>
 <link rel="stylesheet" href="styles.css?v=35">
 <link rel="stylesheet" href="article-detail.css?v=1">
+<style>/* 仅本页：内容区宽度与站内其它页面一致 */
+.article-page .page-hero,
+.article-page .article-body{max-width:calc(var(--container-max) + 2 * var(--section-pad-h))}
+.article-page .article-related{
+  padding-left:calc(max(var(--section-pad-h), calc((100% - var(--container-max)) / 2)) - 1px);
+  padding-right:calc(max(var(--section-pad-h), calc((100% - var(--container-max)) / 2)) - 1px);
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -104,13 +112,6 @@
 </div>
 
 <section class="page-hero">
-  <div class="article-header-top">
-    <a href="insights.html" class="article-back">&larr; 返回观点列表</a>
-  </div>
-  <div class="article-meta">
-    <span class="article-meta-cat">GEO 优化</span>
-    <span>2026.07 &middot; 约15分钟阅读</span>
-  </div>
   <h1 class="section-kicker" style="text-align:left;max-width:calc(660px + 2 * var(--section-pad-h));margin:0 auto;padding:0 var(--section-pad-h)">我们做 GEO 的方法论：让内容被 AI 引擎真正引用</h1>
 </section>
 
