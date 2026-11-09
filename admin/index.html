@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="light dark">
+<title>文章后台 — 流量火传媒</title>
+<link rel="icon" href="../logo.png">
+<script>
+(function(){var t=null;try{t=localStorage.getItem('lh-admin-theme')}catch(e){}
+if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
+<link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+
+<div class="app is-guest" id="app">
+
+  <aside class="side">
+    <div class="side-brand">
+      <img src="../logo.png" alt="" class="brand-logo brand-light">
+      <img src="../logo-dark.png" alt="" class="brand-logo brand-dark">
+      <span>文章后台</span>
+    </div>
+    <div class="side-nav">
+      <button type="button" data-view="list" class="nav-item is-on">文章管理</button>
+      <button type="button" data-view="write" class="nav-item">写新文章</button>
+      <button type="button" data-view="log" class="nav-item">发布记录</button>
+      <button type="button" data-view="help" class="nav-item">使用帮助</button>
+    </div>
+    <div class="side-foot">
+      <a href="../index.html" target="_blank" rel="noopener">查看官网首页 &rarr;</a>
+      <a href="../insights.html" target="_blank" rel="noopener">查看行业观点 &rarr;</a>
+      <div class="side-note">此页面不被搜索引擎收录</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-title" id="topbar-title">文章管理</div>
+      <div class="topbar-right">
+        <button type="button" class="icon-btn" id="btn-theme" title="切换深浅色" aria-label="切换深浅色">◐</button>
+        <div class="userbox" id="userbox" hidden>
+          <img id="user-avatar" alt="" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+          <span id="user-name"></span>
+          <span class="role-tag" id="user-role"></span>
+          <button type="button" class="text-btn" id="btn-logout">退出</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 登录 -->
+    <section class="view" id="view-login">
+      <div class="login-wrap">
+        <div class="card login-card">
+          <h1>登录文章后台</h1>
+          <p class="muted">用自己的 GitHub 账号登录，发布记录会自动记下是谁发的</p>
+          <label class="field-label" for="tok">通行令牌</label>
+          <input type="password" id="tok" class="input" placeholder="粘贴以 github_pat_ 或 ghp_ 开头的令牌" autocomplete="off" spellcheck="false">
+          <label class="check"><input type="checkbox" id="remember"> 在这台电脑上记住我（仅限私人电脑）</label>
+          <button type="button" class="btn btn-primary btn-wide" id="btn-login">登录</button>
+          <p class="err" id="login-err" hidden></p>
+        </div>
+        <div class="card steps-card">
+          <h2>第一次使用，先拿到通行令牌</h2>
+          <ol class="steps">
+            <li>用管理员邀请的 GitHub 账号登录 <a href="https://github.com/login" target="_blank" rel="noopener">github.com</a></li>
+            <li>打开 <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">令牌设置页</a>，点「Generate new token」</li>
+            <li>仓库范围选「Only select repositories」，只勾 <b>liulianghuo/liulianghuo</b></li>
+            <li>权限里把 <b>Contents</b> 设为「Read and Write」，其余不动</li>
+            <li>生成后立刻复制，粘贴到左边输入框</li>
+          </ol>
+          <p class="muted small">令牌只存在你自己的浏览器里，不会写进网站，也不会发给第三方。别把令牌发给别人，别在公共电脑勾「记住我」。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文章管理 -->
+    <section class="view" id="view-list" hidden>
+      <div class="view-head">
+        <div>
+          <h1>文章管理</h1>
+          <p class="summary" id="list-summary">正在读取……</p>
+        </div>
+        <div class="head-actions">
+          <button type="button" class="btn" id="btn-refresh">刷新</button>
+          <button type="button" class="btn btn-primary" id="btn-new">写新文章</button>
+        </div>
+      </div>
+      <div class="filters" id="filters">
+        <button type="button" class="chip is-on" data-filter="all">全部</button>
+        <button type="button" class="chip" data-filter="published">已发布</button>
+        <button type="button" class="chip" data-filter="offline">已下线</button>
+        <button type="button" class="chip" data-filter="deleted">已删除</button>
+      </div>
+      <div class="card table-card">
+        <div class="loading" id="list-loading">正在读取文章数据……</div>
+        <div id="list-body" hidden></div>
+      </div>
+    </section>
+
+    <!-- 写文章 -->
+    <section class="view" id="view-write" hidden>
+      <div class="view-head">
+        <div>
+          <h1 id="write-title">写新文章</h1>
+          <p class="summary">发布后会自动出现在官网「行业观点」最上面，新的继续往上堆</p>
+        </div>
+        <div class="head-actions">
+          <button type="button" class="btn" id="btn-back">返回列表</button>
+          <button type="button" class="btn" id="btn-preview">预览页面</button>
+          <button type="button" class="btn btn-primary" id="btn-publish">发布到官网</button>
+        </div>
+      </div>
+      <div class="write-grid">
+        <div class="card form-card">
+          <div class="row">
+            <div class="col">
+              <label class="field-label" for="f-cat">分类</label>
+              <select id="f-cat" class="input">
+                <option>GEO 优化</option>
+                <option>方法论</option>
+                <option>案例研究</option>
+                <option>小红书运营</option>
+                <option>个人IP</option>
+                <option>内容战略</option>
+                <option>一人公司</option>
+                <option>直播运营</option>
+                <option>矩阵分发</option>
+                <option>数据复盘</option>
+              </select>
+            </div>
+            <div class="col">
+              <label class="field-label" for="f-date">发布日期</label>
+              <input type="date" id="f-date" class="input">
+            </div>
+          </div>
+          <label class="field-label" for="f-title">标题</label>
+          <input type="text" id="f-title" class="input" placeholder="一句话说清这篇文章讲什么" maxlength="80">
+          <label class="field-label" for="f-excerpt">摘要</label>
+          <textarea id="f-excerpt" class="input" rows="2" placeholder="列表里标题下方那行灰色小字，40～60 字最合适" maxlength="160"></textarea>
+          <div class="toolbar">
+            <button type="button" class="tool" data-tool="h2">小标题</button>
+            <button type="button" class="tool" data-tool="h3">次级标题</button>
+            <button type="button" class="tool" data-tool="bold">加粗</button>
+            <button type="button" class="tool" data-tool="ul">列表</button>
+            <button type="button" class="tool" data-tool="quote">引用</button>
+            <button type="button" class="tool" data-tool="link">链接</button>
+            <button type="button" class="tool" data-tool="hr">分割线</button>
+            <span class="tool-meta" id="body-meta">0 字 · 约1分钟阅读</span>
+          </div>
+          <label class="field-label" for="f-body">正文</label>
+          <textarea id="f-body" class="input body-input" rows="18" placeholder="一行就是一段。&#10;&#10;## 这是小标题&#10;- 这是列表项&#10;> 这是引用&#10;**加粗** 和 [链接](https://example.com) 也可以直接用"></textarea>
+          <details class="more">
+            <summary>更多设置</summary>
+            <label class="field-label" for="f-desc">搜索引擎描述（留空就用摘要）</label>
+            <input type="text" id="f-desc" class="input" maxlength="160">
+            <label class="field-label" for="f-footnote">文末脚注（可留空）</label>
+            <input type="text" id="f-footnote" class="input" maxlength="120">
+            <label class="field-label" for="f-cover">封面图（可留空，默认用官网统一封面；不超过 2MB）</label>
+            <input type="file" id="f-cover" class="input" accept="image/webp,image/png,image/jpeg">
+            <p class="muted small" id="cover-note"></p>
+          </details>
+          <p class="err" id="write-err" hidden></p>
+        </div>
+        <div class="card tips-card">
+          <h2>正文怎么写</h2>
+          <div class="tip-line"><code>## 小标题</code><span>一段内容的标题</span></div>
+          <div class="tip-line"><code>### 次级标题</code><span>再往下一层</span></div>
+          <div class="tip-line"><code>- 列表项</code><span>连续几行会并成一个列表</span></div>
+          <div class="tip-line"><code>&gt; 引用</code><span>强调一句话或一个结论</span></div>
+          <div class="tip-line"><code>**加粗**</code><span>圈重点</span></div>
+          <div class="tip-line"><code>[文字](网址)</code><span>插入链接</span></div>
+          <div class="tip-line"><code>---</code><span>分割线</span></div>
+          <p class="muted small tip-note">从 Word 或网页复制文字可以直接粘贴，格式会被自动清干净，不会把页面弄乱。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 发布记录 -->
+    <section class="view" id="view-log" hidden>
+      <div class="view-head">
+        <div>
+          <h1>发布记录</h1>
+          <p class="summary" id="log-summary">谁在什么时候发了什么，全部自动留痕</p>
+        </div>
+        <div class="head-actions">
+          <button type="button" class="btn" id="btn-log-refresh">刷新</button>
+          <a class="btn" id="btn-gh-history" href="https://github.com/liulianghuo/liulianghuo/commits/main/admin/data/articles.json" target="_blank" rel="noopener">在 GitHub 查看完整历史</a>
+        </div>
+      </div>
+      <div class="card stat-card" id="log-stat" hidden></div>
+      <div class="card table-card">
+        <div class="loading" id="log-loading">正在读取发布记录……</div>
+        <div id="log-body" hidden></div>
+      </div>
+    </section>
+
+    <!-- 使用帮助 -->
+    <section class="view" id="view-help" hidden>
+      <div class="view-head"><div><h1>使用帮助</h1><p class="summary">运营只需要记住一个网址和四步操作</p></div></div>
+      <div class="help-grid">
+        <div class="card help-card">
+          <h2>日常发布四步</h2>
+          <ol class="steps">
+            <li>打开 <a href="../admin/" target="_blank">liulianghuo.com/admin/</a>，用自己的令牌登录</li>
+            <li>点「写新文章」，填分类、标题、摘要、日期、正文</li>
+            <li>点「预览页面」确认排版，再点「发布到官网」</li>
+            <li>等 1～3 分钟，打开「行业观点」就能看到新文章排在最上面</li>
+          </ol>
+          <p class="muted small">改文章：列表里点「编辑」，改完再点「保存并发布」，网址不会变。不想展示：点「下线」，随时能恢复。</p>
+        </div>
+        <div class="card help-card">
+          <h2>多个人一起用</h2>
+          <p>管理员去 <a href="https://github.com/liulianghuo/liulianghuo/settings/access" target="_blank" rel="noopener">仓库协作者设置</a> 邀请对方的 GitHub 账号，权限给 Write。每个人都用自己账号生成自己的令牌。</p>
+          <p>「发布记录」里能看到每一条操作是谁、什么时候做的，也能按账号统计。管理员还能在这里一键回滚到任意一次发布之前。</p>
+          <p class="muted small">运营可以发布、修改、下线、恢复；删除文章和回滚历史只有管理员能操作。</p>
+        </div>
+        <div class="card help-card">
+          <h2>要留意的事</h2>
+          <ul class="plain-list">
+            <li>发布后官网要重新构建，通常 1～3 分钟生效，刚发布立刻打开文章链接可能暂时是空白页</li>
+            <li>令牌只放在你自己的浏览器里，网站服务器上没有；换电脑要重新生成一次</li>
+            <li>后台所在的仓库是公开的，草稿和文章内容在代码仓库里能被看到，不要写不适合公开的内容</li>
+            <li>后台打不开、令牌过期或账号变动，官网照常访问，已发布的文章不会消失，只是暂时发不了新的</li>
+            <li>不要在公共电脑勾选「记住我」，离开时点「退出」</li>
+          </ul>
+        </div>
+        <div class="card help-card">
+          <h2>对官网的影响</h2>
+          <ul class="plain-list">
+            <li>首页、产品、案例、套餐、关于等页面：一个字都不改</li>
+            <li>明暗主题、Logo、排版、页脚、样式和脚本：都不动</li>
+            <li>老的 9 篇文章：原样保留，不进后台改删范围</li>
+            <li>发一篇新文章，只会在「行业观点」列表顶部加一条，并同步加进站点地图</li>
+            <li>文章是生成好的完整静态网页，百度和 AI 爬虫能直接读到全文</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="modal-root"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script src="core.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
