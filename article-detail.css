@@ -1,0 +1,129 @@
+/* ============================================================
+   文章详情页 · 阅读列排版 v1
+   只由 article-1~9.html 与 admin/article-template.txt 引入，
+   不改动 styles.css / script.js / 列表页 / 任何文章文字与 DOM。
+
+   核心：把「返回 + 分类日期」「标题」「正文」「相关阅读」四条内容
+   收进同一条阅读列，文字左边界在任何视口下严格一致。
+   ============================================================ */
+.article-page{
+  --read-w: 760px;                                   /* 舒适阅读宽度，中文约 44 字/行 */
+  --read-box: calc(var(--read-w) + 2 * var(--section-pad-h));
+}
+
+/* ⓪ 原 hero 的极淡橙色渐变原本铺满整宽；阅读列收窄后若留在本体上
+      会变成一块左右带竖直边界的矩形，改由 body 铺满整宽，只留颜色不留边 */
+body.article-page{
+  background-image: linear-gradient(180deg, rgba(255,87,34,0.03) 0%, transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 320px;
+}
+
+/* ① 页头与正文共用同一阅读列：同宽、同左右内边距、同居中 */
+.article-page .page-hero,
+.article-page .article-body{
+  max-width: var(--read-box);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--section-pad-h);
+  padding-right: var(--section-pad-h);
+  box-sizing: border-box;
+}
+
+/* ② 页头：返回按钮并入「分类 + 日期」信息行，标题另起一行 */
+.article-page .page-hero{
+  background: transparent;                           /* 渐变已移到 body，见 ⓪ */
+  padding-top: 116px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 12px;
+}
+.article-page .article-header-top{
+  order: 1;
+  margin: 0;
+  gap: 0;
+  flex: 0 0 auto;
+}
+.article-page .article-meta{
+  order: 2;
+  margin: 0;
+  gap: 10px;
+}
+/* 返回按钮弱化为轻量文字，不再以独立胶囊抢占标题层级 */
+.article-page .article-back{
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-tertiary);
+  gap: 5px;
+}
+@media (hover:hover) and (pointer:fine){
+  .article-page .article-back:hover{ background: transparent; }
+}
+
+/* ③ 标题：覆盖各页 h1 上的内联 style（HTML 一个字不动） */
+.article-page .page-hero h1.section-kicker{
+  order: 3;
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: none !important;
+  margin: 18px 0 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.34;
+  letter-spacing: -0.02em;
+}
+
+/* ④ 正文：从 660 适度加宽到 760，与标题间距统一 */
+.article-page .article-body{
+  margin-top: 36px;
+  padding-bottom: 0;
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+/* ⑤ 相关阅读：保留原来的全宽卡片与配色，文字收进同一阅读列
+      卡片有 1px 边框，左右内边距各减去 1px，文字左边界才能与正文严格重合 */
+.article-page .article-related{
+  margin-top: 64px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: calc(max(var(--section-pad-h), calc((100% - var(--read-w)) / 2)) - 1px);
+  padding-right: calc(max(var(--section-pad-h), calc((100% - var(--read-w)) / 2)) - 1px);
+}
+
+/* ⑥ 文末组件间距与相关阅读对齐 */
+.article-page .article-disclaimer{ margin-top: 56px; }
+.article-page .article-body .article-footnote{ margin-top: 56px; }
+
+/* ⑦ 平板 / 手机：字号收敛，信息行自然换行，阅读列随视口收缩 */
+@media (max-width: 768px){
+  .article-page .page-hero{ padding-top: 100px; column-gap: 16px; }
+  .article-page .page-hero h1.section-kicker{
+    font-size: clamp(24px, 4.2vw, 30px);
+    margin-top: 12px !important;
+  }
+  .article-page .article-related{
+    margin-top: 48px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+@media (max-width: 420px){
+  .article-page .page-hero{ padding-top: 92px; }
+  .article-page .page-hero h1.section-kicker{
+    font-size: 23px;
+    line-height: 1.36;
+    margin-top: 10px !important;
+  }
+  .article-page .article-body{ margin-top: 28px; }
+  .article-page .article-related{ margin-top: 40px; }
+}
