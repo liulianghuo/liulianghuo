@@ -13,7 +13,14 @@
     if (q.get('branch')) CFG.branch = q.get('branch');
   }
   var RP = '/repos/' + CFG.owner + '/' + CFG.repo;
-  var TOK = 'lh_admin_token', DRAFT = 'lh_admin_draft', THEME = 'lh-admin-theme';
+  /* 账号名册：账号名 → 角色与显示名。密码 = 各人自己的 GitHub 令牌（细粒度，仅 liulianghuo/liulianghuo 的 Contents: Read and Write）。
+     这里只存账号与角色，不含任何密钥；令牌只在浏览器会话里。要加 / 改账号，就在这里加一行。 */
+  var ACCOUNTS = {
+    'admin':   { role: 'admin',  name: '管理员' },
+    'editor1': { role: 'editor', name: '编辑一' },
+    'editor2': { role: 'editor', name: '编辑二' }
+  };
+  var TOK = 'lh_admin_token', USER = 'lh_admin_user', DRAFT = 'lh_admin_draft', THEME = 'lh-admin-theme';
   var STATUS_TEXT = { published: '已发布', offline: '已下线', deleted: '已删除' };
   var ACTION_TEXT = { offline: '下线', published: '恢复', deleted: '删除' };
 
@@ -52,7 +59,7 @@
   }
   function closeModal() { el('modal-root').innerHTML = ''; }
 
-  /* ---------------- GitHub 接口 ---------------- */
+  /* ---------------- GitHub 接口（令牌只在本次会话，绝不进仓库/页面） ---------------- */
   function utf8ToBase64(str) {
     var bytes = new TextEncoder().encode(str), bin = '';
     for (var i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
@@ -72,14 +79,13 @@
     try {
       res = await fetch('https://api.github.com' + path, {
         method: method, headers: headers,
-        body: body !== undefined ? JSON.stringify(body) : undefined,
-        cache: 'no-store'
+        body: body !== undefined ? JSON.stringify(body) : undefined, cache: 'no-store'
       });
     } catch (e) { throw new Error('连不上 GitHub，检查网络后重试'); }
     if (!res.ok) {
       var msg = '';
       try { var j = await res.json(); msg = j.message || ''; } catch (e) {}
-      if (res.status === 401) throw new Error('令牌无效或已过期，请重新生成一个');
+      if (res.status === 401) throw new Error('令牌无效或已过期，请重新登录');
       if (res.status === 403 && /\/git\//.test(path)) throw new Error('这个令牌不能提交更改：请在令牌设置里把 Contents 设为 Read and Write，或改用经典令牌并勾选 repo');
       if (res.status === 403) throw new Error(/rate limit/i.test(msg) ? '操作太频繁，稍等几分钟再试' : '令牌权限不足，或这个账号还不是仓库协作者');
       if (res.status === 404) throw new Error('找不到仓库或文件，请确认账号已被邀请为协作者');
@@ -98,7 +104,6 @@
     var r = await api('GET', RP + '/contents/?ref=' + encodeURIComponent(CFG.branch) + '&t=' + Date.now());
     return Array.isArray(r) ? r.map(function (x) { return x.name; }) : [];
   }
-  /* 一次发布 = 一个原子提交；提交作者自动是令牌所属的 GitHub 账号 */
   async function commitAll(files, message) {
     var ref = await api('GET', RP + '/git/ref/heads/' + CFG.branch);
     var baseSha = ref.object.sha;
@@ -134,10 +139,40 @@
     var maxNum = 13;
     names.forEach(function (n) { var m = /^article-(\d+)\.html$/.exec(n); if (m) maxNum = Math.max(maxNum, parseInt(m[1], 10)); });
     current.articles.forEach(function (a) { var m = /^article-(\d+)\.html$/.exec(a.url || ''); if (m) maxNum = Math.max(maxNum, parseInt(m[1], 10)); });
-    return {
+    state.ctx = {
       current: current, insightsHtml: ins.content, sitemapXml: sm.content, tpl: tpl.content,
       cssV: cssM[1], jsV: jsM[1], nextNum: maxNum + 1
     };
+    // 按账号过滤：管理员看全部，编辑只看自己（author === 当前账号）
+    state.viewArticles = state.isAdmin
+      ? current.articles
+      : current.articles.filter(function (a) { return (a.author || '') === (state.user && state.user.username); });
+    return state.ctx;
+  }
+
+  /* ---------------- 会话存储（令牌只留浏览器，绝不进仓库/页面） ---------------- */
+  function saveSession(remember) {
+    var a = remember ? window.localStorage : window.sessionStorage;
+    var b = remember ? window.sessionStorage : window.localStorage;
+    try {
+      a.setItem(TOK, state.token); a.setItem(USER, state.user.username);
+      b.removeItem(TOK); b.removeItem(USER);
+    } catch (e) {}
+  }
+  function clearSession() {
+    try {
+      localStorage.removeItem(TOK); localStorage.removeItem(USER);
+      sessionStorage.removeItem(TOK); sessionStorage.removeItem(USER);
+    } catch (e) {}
+  }
+  function loadSession() {
+    var t = null, u = null;
+    try {
+      t = localStorage.getItem(TOK); u = localStorage.getItem(USER);
+      if (!t) { t = sessionStorage.getItem(TOK); u = sessionStorage.getItem(USER); }
+    } catch (e) {}
+    if (t && u && ACCOUNTS[u]) return { token: t, username: u };
+    return null;
   }
 
   /* ---------------- 登录 ---------------- */
@@ -145,39 +180,46 @@
     var box = el('userbox');
     el('app').classList.remove('is-guest');
     box.hidden = false;
-    // 头像用官网 logo，与官网保持一致；不显示 GitHub 头像/账号
+    // 头像用官网 logo，与官网保持一致
     var th = document.documentElement.getAttribute('data-theme');
     el('user-avatar').src = (th === 'dark' ? '../logo-dark.png' : '../logo.png');
-    el('user-name').textContent = '流量火传媒';
-    el('user-role').style.display = 'none';
+    el('user-name').textContent = state.user ? state.user.displayName : '';
+    var role = el('user-role');
+    role.style.display = '';
+    role.textContent = (state.user && state.user.role === 'admin') ? '管理员' : '编辑';
   }
-  async function validateToken(tok) {
-    state.token = tok;
+  async function buildUser(username, token) {
+    state.token = token;
+    var me = await api('GET', '/user');
+    var acc = ACCOUNTS[username];
+    state.user = { username: username, displayName: acc.name, role: acc.role, login: (me && me.login) || '' };
+    state.isAdmin = (acc.role === 'admin');
+    return state.user;
+  }
+  async function doLogin(username, password, remember) {
+    username = (username || '').trim();
+    if (!ACCOUNTS[username]) { showErr('login-err', '没有这个账号，请向管理员确认'); return; }
+    var tok = password || '';
+    if (!tok) { showErr('login-err', '请输入密码（即你个人的 GitHub 令牌）'); return; }
+    showErr('login-err', '');
     try {
-      var me = await api('GET', '/user');
-      var repo = await api('GET', RP);
-      if (!repo.permissions || !repo.permissions.push) throw new Error('这个令牌没有发布权限，请联系负责人开通');
-      state.user = { login: me.login, avatar: me.avatar_url };
-      state.isAdmin = !!(repo.permissions && repo.permissions.admin);
-      return true;
-    } catch (e) { state.token = ''; throw e; }
+      await buildUser(username, tok);
+      saveSession(!!remember);
+      renderUser();
+      switchView('list');
+      await refreshList();
+      toast('登录成功，欢迎使用文章后台', 'ok');
+    } catch (e) {
+      state.token = ''; showErr('login-err', e.message);
+    }
   }
-  async function doLogin(tok, remember) {
-    await validateToken(tok);
-    sessionStorage.setItem(TOK, tok);
-    if (remember) localStorage.setItem(TOK, tok); else localStorage.removeItem(TOK);
-    renderUser();
-    switchView('list');
-    await refreshList();
-    toast('登录成功，欢迎使用文章后台', 'ok');
-  }
-  function logout() {
-    state.token = ''; state.user = null; state.isAdmin = false; state.ctx = null;
-    sessionStorage.removeItem(TOK); localStorage.removeItem(TOK);
+  async function logout() {
+    clearSession();
+    state.user = null; state.isAdmin = false; state.ctx = null; state.viewArticles = []; state.history = [];
     el('app').classList.add('is-guest');
     el('userbox').hidden = true;
     switchView('login');
-    el('tok').value = '';
+    el('user').value = ''; el('pw').value = '';
     showErr('login-err', '');
   }
 
@@ -194,9 +236,8 @@
   async function refreshList() {
     el('list-loading').hidden = false; el('list-body').hidden = true;
     try {
-      var ctx = await loadContext();
-      state.ctx = ctx;
-      renderList(ctx.current);
+      await loadContext();
+      renderList({ articles: state.viewArticles });
       el('list-loading').hidden = true; el('list-body').hidden = false;
     } catch (e) {
       el('list-loading').textContent = '读取失败：' + e.message;
@@ -409,7 +450,7 @@
       state.ctx = ctx;
       var next = JSON.parse(JSON.stringify(ctx.current));
       var now = new Date().toISOString();
-      var who = state.user.login;
+      var who = state.user.username;
       var a, action;
       if (state.editingId) {
         a = null;
@@ -422,7 +463,7 @@
         var num = ctx.nextNum;
         a = Object.assign({
           id: 'article-' + num, num: num, url: 'article-' + num + '.html', status: 'published',
-          ogImage: 'images/og/og-insights.webp', ogType: 'image/webp',
+          ogImage: 'images/og/og-insights.webp', ogType: 'image/webp', author: who,
           createdBy: who, createdAt: now, updatedBy: who, updatedAt: now
         }, f);
         next.articles.push(a);
@@ -481,7 +522,7 @@
       next.articles.forEach(function (x) { if (x.id === id) target = x; });
       if (!target) throw new Error('找不到这篇文章，请刷新后重试');
       target.status = status;
-      target.updatedBy = state.user.login;
+      target.updatedBy = state.user.username;
       target.updatedAt = new Date().toISOString();
       var files = C.buildAllFiles(ctx.current, next, ctx);
       var bad = C.preflight(ctx, ctx.current, next, files);
@@ -493,37 +534,42 @@
     finally { state.busy = false; }
   }
 
-  /* ---------------- 发布记录 ---------------- */
+  /* ---------------- 发布记录（读 GitHub 提交历史，按账号过滤） ---------------- */
   async function renderLog() {
     el('log-loading').hidden = false; el('log-body').hidden = true;
     try {
-      var list = await api('GET', RP + '/commits?path=' + encodeURIComponent('admin/data/articles.json') + '&per_page=100&t=' + Date.now());
-      var rows = (list || []).filter(function (c) { return /^\[后台\]/.test((c.commit && c.commit.message) || ''); });
-      var byUser = {};
-      rows.forEach(function (c) {
-        var who = (c.author && c.author.login) || (c.commit && c.commit.author && c.commit.author.name) || '未知账号';
-        byUser[who] = (byUser[who] || 0) + 1;
+      var r = await api('GET', RP + '/commits?path=' + encodeURIComponent('admin/data/articles.json') + '&per_page=100');
+      var h = (r || []).map(function (c) {
+        var login = (c.author && c.author.login) || (c.commit && c.commit.author && c.commit.author.name) || '未知';
+        return {
+          at: (c.commit && c.commit.author && c.commit.author.date) || '',
+          login: login,
+          by: (login === (state.user && state.user.login)) ? (state.user.displayName) : login,
+          msg: (c.commit && c.commit.message ? c.commit.message.split('\n')[0] : ''),
+          sha: c.sha
+        };
       });
+      // 编辑只看自己（按 GitHub 登录过滤）；管理员看全部
+      if (!state.isAdmin) h = h.filter(function (e) { return e.login === (state.user && state.user.login); });
+      h.sort(function (x, y) { return (y.at || '').localeCompare(x.at || ''); });
+      var byUser = {};
+      h.forEach(function (e) { var who = e.by || '未知'; byUser[who] = (byUser[who] || 0) + 1; });
       var names = Object.keys(byUser).sort(function (x, y) { return byUser[y] - byUser[x]; });
       el('log-stat').hidden = false;
-      el('log-stat').innerHTML = '<span>近 ' + rows.length + ' 次操作</span>' + names.map(function (n) {
+      el('log-stat').innerHTML = '<span>共 ' + h.length + ' 次操作</span>' + names.map(function (n) {
         return '<span>' + esc(n) + ' <b>' + byUser[n] + '</b> 次</span>';
       }).join('');
-      el('log-summary').textContent = '每一次发布、修改、下线、恢复和删除都会留下账号与时间';
-      if (!rows.length) {
+      el('log-summary').textContent = '每一次发布、修改、下线、恢复和删除都会留下操作人与时间';
+      if (!h.length) {
         el('log-body').innerHTML = '<div class="empty"><b>还没有发布记录</b>发第一篇文章后，这里就会开始留痕</div>';
       } else {
-      el('log-body').innerHTML = '<table><thead><tr><th>时间</th><th>操作人</th><th>操作内容</th><th style="text-align:right">操作</th></tr></thead><tbody>' +
-        rows.map(function (c) {
-          var who = (c.author && c.author.login) || (c.commit && c.commit.author && c.commit.author.name) || '未知账号';
-          var msg = ((c.commit && c.commit.message) || '').replace(/^\[后台\]\s*/, '');
-          var when = c.commit && c.commit.author ? c.commit.author.date : '';
-          var sha = c.sha || '';
-          return '<tr><td>' + esc(fmt(when)) + '</td><td>' + esc(who) + '</td><td>' + esc(msg.split('\n')[0]) + '</td>' +
-            '<td class="cell-ops">' +
-            (state.isAdmin ? '<button class="link-btn" data-act="rollback" data-sha="' + esc(sha) + '">回滚到这次</button>' : '') +
-            '</td></tr>';
-        }).join('') + '</tbody></table>';
+        el('log-body').innerHTML = '<table><thead><tr><th>时间</th><th>操作人</th><th>操作内容</th><th style="text-align:right">操作</th></tr></thead><tbody>' +
+          h.map(function (e) {
+            return '<tr><td>' + esc(fmt(e.at)) + '</td><td>' + esc(e.by || '—') + '</td><td>' + esc(e.msg) + '</td>' +
+              '<td class="cell-ops">' +
+              (state.isAdmin && e.sha ? '<button class="link-btn" data-act="rollback" data-sha="' + esc(e.sha) + '">回滚到这次</button>' : '') +
+              '</td></tr>';
+          }).join('') + '</tbody></table>';
       }
       el('log-loading').hidden = true; el('log-body').hidden = false;
     } catch (e) {
@@ -534,18 +580,20 @@
   async function rollback(sha) {
     if (!state.isAdmin) { toast('只有管理员能回滚', 'bad'); return; }
     if (!await simpleConfirm('回滚到这次发布之前',
-      '会把文章数据、行业观点列表、站点地图和所有后台文章页一起退回到当时的状态，回滚本身也会留一条记录。',
+      '会把文章数据退回到当时文章数据文件的状态（之后的新增与改动会被撤销），回滚本身也会留一条记录。',
       '确认回滚', true)) return;
     if (state.busy) return;
     state.busy = true;
     try {
-      var hist = await readFile('admin/data/articles.json', sha);
-      var next = JSON.parse(hist.content);
-      var ctx = await loadContext(); state.ctx = ctx;
-      var files = C.buildAllFiles(ctx.current, next, ctx);
-      var bad = C.preflight(ctx, ctx.current, next, files);
+      var data = await readFile('admin/data/articles.json', sha);
+      var current;
+      try { current = JSON.parse(data.content); } catch (e) { throw new Error('读取历史版本失败，文件可能损坏'); }
+      if (!current || !Array.isArray(current.articles)) throw new Error('历史版本格式不对，无法回滚');
+      var ctx = state.ctx || await loadContext();
+      var files = C.buildAllFiles(ctx.current, current, ctx);
+      var bad = C.preflight(ctx, ctx.current, current, files);
       if (bad.length) throw new Error('体检没通过，已取消：\n' + bad.join('\n'));
-      await commitAll(files, '[后台] 回滚到 ' + sha.slice(0, 7));
+      await commitAll(files, '[后台] 回滚到历史版本 ' + sha.slice(0, 7));
       await renderLog();
       await refreshList();
       toast('已回滚，官网约 1～3 分钟后生效', 'ok');
@@ -572,14 +620,14 @@
   });
   el('btn-logout').addEventListener('click', logout);
   el('btn-login').addEventListener('click', async function () {
-    var tok = el('tok').value.trim();
-    if (!tok) { showErr('login-err', '请先粘贴通行令牌'); return; }
+    var u = el('user').value.trim(), p = el('pw').value;
+    if (!u || !p) { showErr('login-err', '请输入账号和密码'); return; }
     this.disabled = true; showErr('login-err', '');
-    try { await doLogin(tok, el('remember').checked); }
+    try { await doLogin(u, p, el('remember').checked); }
     catch (e) { showErr('login-err', e.message); }
     finally { this.disabled = false; }
   });
-  el('tok').addEventListener('keydown', function (e) { if (e.key === 'Enter') el('btn-login').click(); });
+  el('pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') el('btn-login').click(); });
 
   el('btn-new').addEventListener('click', function () { startNew(); switchView('write'); });
   el('btn-back').addEventListener('click', function () { switchView('list'); });
@@ -591,7 +639,7 @@
     c.addEventListener('click', function () {
       state.filter = c.getAttribute('data-filter');
       $$('.chip').forEach(function (x) { x.classList.toggle('is-on', x === c); });
-      if (state.ctx) renderList(state.ctx.current);
+      if (state.viewArticles) renderList({ articles: state.viewArticles });
     });
   });
   $$('.tool').forEach(function (b) { b.addEventListener('click', function () { applyTool(b.getAttribute('data-tool')); }); });
@@ -632,18 +680,23 @@
 
   /* ---------------- 启动 ---------------- */
   (async function init() {
-    var saved = '';
-    try { saved = sessionStorage.getItem(TOK) || localStorage.getItem(TOK) || ''; } catch (e) {}
-    if (!saved) { switchView('login'); return; }
-    try {
-      await validateToken(saved);
-      renderUser();
-      switchView('list');
-      await refreshList();
-    } catch (e) {
-      sessionStorage.removeItem(TOK); localStorage.removeItem(TOK);
-      switchView('login');
-      showErr('login-err', '登录状态已过期，请重新粘贴令牌：' + e.message);
+    // 打开即显示登录页（零延迟，不再先联网校验再弹框）；若浏览器里存了有效会话，静默验证后直接进入
+    switchView('login');
+    var s = loadSession();
+    if (s) {
+      state.token = s.token;
+      try {
+        var me = await api('GET', '/user');
+        var acc = ACCOUNTS[s.username];
+        state.user = { username: s.username, displayName: acc.name, role: acc.role, login: (me && me.login) || '' };
+        state.isAdmin = (acc.role === 'admin');
+        renderUser();
+        switchView('list');
+        refreshList().catch(function () {});
+        return;
+      } catch (e) {
+        state.token = ''; clearSession();
+      }
     }
   })();
 })();
