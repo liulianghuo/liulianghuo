@@ -126,8 +126,8 @@
     ]);
     var data = all[0], ins = all[1], sm = all[2], tpl = all[3], names = all[4];
     var current;
-    try { current = JSON.parse(data.content); } catch (e) { throw new Error('文章数据文件损坏，请联系管理员'); }
-    if (!current || !Array.isArray(current.articles)) throw new Error('文章数据格式不对，请联系管理员');
+    try { current = JSON.parse(data.content); } catch (e) { throw new Error('文章数据文件损坏，请联系负责人'); }
+    if (!current || !Array.isArray(current.articles)) throw new Error('文章数据格式不对，请联系负责人');
     var cssM = /styles\.css\?v=(\d+)/.exec(ins.content);
     var jsM = /script\.js\?v=(\d+)/.exec(ins.content);
     if (!cssM || !jsM) throw new Error('读不到官网样式版本号，已停止发布');
@@ -145,16 +145,18 @@
     var box = el('userbox');
     el('app').classList.remove('is-guest');
     box.hidden = false;
-    el('user-avatar').src = state.user.avatar || '';
-    el('user-name').textContent = state.user.login;
-    el('user-role').textContent = state.isAdmin ? '管理员' : '运营';
+    // 头像用官网 logo，与官网保持一致；不显示 GitHub 头像/账号
+    var th = document.documentElement.getAttribute('data-theme');
+    el('user-avatar').src = (th === 'dark' ? '../logo-dark.png' : '../logo.png');
+    el('user-name').textContent = '流量火传媒';
+    el('user-role').style.display = 'none';
   }
   async function validateToken(tok) {
     state.token = tok;
     try {
       var me = await api('GET', '/user');
       var repo = await api('GET', RP);
-      if (!repo.permissions || !repo.permissions.push) throw new Error('这个账号没有本仓库的写入权限，请管理员先邀请为协作者');
+      if (!repo.permissions || !repo.permissions.push) throw new Error('这个令牌没有发布权限，请联系负责人开通');
       state.user = { login: me.login, avatar: me.avatar_url };
       state.isAdmin = !!(repo.permissions && repo.permissions.admin);
       return true;
@@ -167,7 +169,7 @@
     renderUser();
     switchView('list');
     await refreshList();
-    toast('登录成功，欢迎 ' + state.user.login, 'ok');
+    toast('登录成功，欢迎使用文章后台', 'ok');
   }
   function logout() {
     state.token = ''; state.user = null; state.isAdmin = false; state.ctx = null;
@@ -495,7 +497,7 @@
   async function renderLog() {
     el('log-loading').hidden = false; el('log-body').hidden = true;
     try {
-      var list = await api('GET', RP + '/commits?path=' + encodeURIComponent('admin/data/articles.json') + '&per_page=40&t=' + Date.now());
+      var list = await api('GET', RP + '/commits?path=' + encodeURIComponent('admin/data/articles.json') + '&per_page=100&t=' + Date.now());
       var rows = (list || []).filter(function (c) { return /^\[后台\]/.test((c.commit && c.commit.message) || ''); });
       var byUser = {};
       rows.forEach(function (c) {
@@ -511,18 +513,17 @@
       if (!rows.length) {
         el('log-body').innerHTML = '<div class="empty"><b>还没有发布记录</b>发第一篇文章后，这里就会开始留痕</div>';
       } else {
-        el('log-body').innerHTML = '<table><thead><tr><th>时间</th><th>操作人</th><th>操作内容</th><th style="text-align:right">历史</th></tr></thead><tbody>' +
-          rows.map(function (c) {
-            var who = (c.author && c.author.login) || (c.commit && c.commit.author && c.commit.author.name) || '未知账号';
-            var msg = ((c.commit && c.commit.message) || '').replace(/^\[后台\]\s*/, '');
-            var when = c.commit && c.commit.author ? c.commit.author.date : '';
-            var sha = c.sha || '';
-            return '<tr><td>' + esc(fmt(when)) + '</td><td>' + esc(who) + '</td><td>' + esc(msg.split('\n')[0]) + '</td>' +
-              '<td class="cell-ops">' +
-              (state.isAdmin ? '<button class="link-btn" data-act="rollback" data-sha="' + esc(sha) + '">回滚到这次</button>' : '') +
-              '<a class="link-btn" href="https://github.com/' + esc(CFG.owner) + '/' + esc(CFG.repo) + '/commit/' + esc(sha) + '" target="_blank" rel="noopener">详情</a>' +
-              '</td></tr>';
-          }).join('') + '</tbody></table>';
+      el('log-body').innerHTML = '<table><thead><tr><th>时间</th><th>操作人</th><th>操作内容</th><th style="text-align:right">操作</th></tr></thead><tbody>' +
+        rows.map(function (c) {
+          var who = (c.author && c.author.login) || (c.commit && c.commit.author && c.commit.author.name) || '未知账号';
+          var msg = ((c.commit && c.commit.message) || '').replace(/^\[后台\]\s*/, '');
+          var when = c.commit && c.commit.author ? c.commit.author.date : '';
+          var sha = c.sha || '';
+          return '<tr><td>' + esc(fmt(when)) + '</td><td>' + esc(who) + '</td><td>' + esc(msg.split('\n')[0]) + '</td>' +
+            '<td class="cell-ops">' +
+            (state.isAdmin ? '<button class="link-btn" data-act="rollback" data-sha="' + esc(sha) + '">回滚到这次</button>' : '') +
+            '</td></tr>';
+        }).join('') + '</tbody></table>';
       }
       el('log-loading').hidden = true; el('log-body').hidden = false;
     } catch (e) {
