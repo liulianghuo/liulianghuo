@@ -100,6 +100,7 @@
       headline: a.title,
       description: a.description || a.excerpt,
       datePublished: a.date,
+      dateModified: a.date,
       author: { '@type': 'Organization', name: '流量火传媒' },
       publisher: { '@type': 'Organization', name: '流量火传媒' }
     };
