@@ -150,6 +150,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- admin:article-15 -->
+  <url>
+    <loc>https://liulianghuo.com/article-15.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <!-- admin:article-14 -->
   <url>
     <loc>https://liulianghuo.com/article-14.html</loc>
