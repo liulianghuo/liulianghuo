@@ -53,6 +53,20 @@
     return '作者：' + authorName(a) + ' · ' + fullDate(a.date);
   }
 
+  /* 文末脚注：署名已在标题下显示，这里剔除署名行，只留真正的数据来源等说明。
+     剔除后若为空，则整块不渲染，避免与标题下的署名重复 */
+  function footnoteHtml(a) {
+    var raw = String(a.footnote || '').trim();
+    if (!raw) return '';
+    var rest = raw
+      .replace(/[*\-]?\s*作者[：:]\s*[^\s·|，,、]+/g, '')
+      .replace(/^[*\-]\s*/, '')
+      .replace(/[\s*\-]+$/, '')
+      .trim();
+    if (!rest) return '';
+    return '\n<div class="article-footnote">\n  * ' + esc(rest) + '\n</div>\n';
+  }
+
   function readTime(plain) {
     var n = String(plain || '').replace(/\s/g, '').length;
     return '约' + Math.max(1, Math.ceil(n / 400)) + '分钟阅读';
@@ -147,7 +161,7 @@
       JS_V: esc(ctx.jsV),
       NOINDEX: a.status === 'published' ? '' : '<meta name="robots" content="noindex,follow">\n',
       BODY: body,
-      FOOTNOTE: a.footnote ? '\n<div class="article-footnote">\n  * ' + esc(a.footnote) + '\n</div>\n' : '',
+      FOOTNOTE: footnoteHtml(a),
       RELATED: relatedHtml(a.related),
       JSONLD: jsonLd(a)
     };
@@ -305,7 +319,7 @@
   return {
     SITE: SITE,
     DEFAULT_RELATED: DEFAULT_RELATED,
-    esc: esc, dateLabel: dateLabel, fullDate: fullDate, dateLine: dateLine, readTime: readTime, safeUrl: safeUrl,
+    esc: esc, dateLabel: dateLabel, fullDate: fullDate, dateLine: dateLine, footnoteHtml: footnoteHtml, readTime: readTime, safeUrl: safeUrl,
     renderBody: renderBody, jsonLd: jsonLd,
     buildArticleHtml: buildArticleHtml, buildRemovedPage: buildRemovedPage,
     buildRow: buildRow, updateInsights: updateInsights, stripManagedRows: stripManagedRows,
