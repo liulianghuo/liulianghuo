@@ -156,6 +156,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- admin:article-18 -->
+  <url>
+    <loc>https://liulianghuo.com/article-18.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <!-- admin:article-17 -->
   <url>
     <loc>https://liulianghuo.com/article-17.html</loc>

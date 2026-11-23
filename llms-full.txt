@@ -129,6 +129,7 @@
 
 ### 后台发布的观点文章（自动同步）
 <!-- admin:llms-articles -->
+- **- 做 GEO，别再到处发文章了：真正决定你能不能被 AI 引用的，是自己的官网**（2026-11-23）：https://liulianghuo.com/article-18.html
 - **GEO优化到底是什么？适合什么样的公司？我能做GEO优化吗**（2026-11-23）：https://liulianghuo.com/article-17.html
 - **GEO走到分水岭：2026年，我看到的六个真相**（2026-11-23）：https://liulianghuo.com/article-16.html
 - **腾讯亲手砍了元宝：你铺了两年的 GEO 量，可能全白费了**（2026-11-20）：https://liulianghuo.com/article-15.html
