@@ -37,6 +37,19 @@
     return m ? m[1] + '.' + m[2] : String(iso || '');
   }
 
+  /* 完整日期 2026-11-23，用于页面可见日期与结构化数据 */
+  function fullDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ''));
+    return m ? m[1] + '-' + m[2] + '-' + m[3] : String(iso || '');
+  }
+
+  /* 页面可见的一行日期：发布于 X · 更新于 Y（同一天只显示发布） */
+  function dateLine(a) {
+    var pub = fullDate(a.date);
+    var mod = fullDate(a.updatedAt || a.date);
+    return '发布于 ' + pub + (mod && mod !== pub ? ' · 更新于 ' + mod : '');
+  }
+
   function readTime(plain) {
     var n = String(plain || '').replace(/\s/g, '').length;
     return '约' + Math.max(1, Math.ceil(n / 400)) + '分钟阅读';
@@ -99,8 +112,8 @@
       '@type': 'Article',
       headline: a.title,
       description: a.description || a.excerpt,
-      datePublished: a.date,
-      dateModified: a.date,
+      datePublished: fullDate(a.date),
+      dateModified: fullDate(a.updatedAt || a.date),
       author: { '@type': 'Organization', name: '流量火传媒' },
       publisher: { '@type': 'Organization', name: '流量火传媒' }
     };
@@ -122,6 +135,7 @@
       CAT: esc(a.category),
       DATE_LABEL: dateLabel(a.date),
       DATE_ISO: esc(a.date),
+      DATE_LINE: esc(dateLine(a)),
       READTIME: readTime(a.body || ''),
       URL: esc(a.url),
       OG_IMAGE: esc(a.ogImage || 'images/og/og-insights.webp'),
@@ -288,7 +302,7 @@
   return {
     SITE: SITE,
     DEFAULT_RELATED: DEFAULT_RELATED,
-    esc: esc, dateLabel: dateLabel, readTime: readTime, safeUrl: safeUrl,
+    esc: esc, dateLabel: dateLabel, fullDate: fullDate, dateLine: dateLine, readTime: readTime, safeUrl: safeUrl,
     renderBody: renderBody, jsonLd: jsonLd,
     buildArticleHtml: buildArticleHtml, buildRemovedPage: buildRemovedPage,
     buildRow: buildRow, updateInsights: updateInsights, stripManagedRows: stripManagedRows,
