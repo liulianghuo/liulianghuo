@@ -43,9 +43,14 @@
     return m ? m[1] + '-' + m[2] + '-' + m[3] : String(iso || '');
   }
 
-  /* 标题下的作者署名行：作者：流量火传媒 · 发布日期 */
+  /* 标题下的作者署名行：作者名优先取文末 footnote 的署名（如「作者：少帅」），
+     没有署名才默认「流量火传媒」，避免与文末署名冲突 */
+  function authorName(a) {
+    var m = /作者[：:]\s*([^\s·|，,、]+)/.exec(String(a.footnote || ''));
+    return m ? m[1] : '流量火传媒';
+  }
   function dateLine(a) {
-    return '作者：流量火传媒 · ' + fullDate(a.date);
+    return '作者：' + authorName(a) + ' · ' + fullDate(a.date);
   }
 
   function readTime(plain) {
