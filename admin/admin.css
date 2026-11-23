@@ -98,6 +98,7 @@ textarea.input{resize:vertical;line-height:1.7}
 .check{display:flex;align-items:center;gap:7px;margin-top:12px;font-size:12.5px;color:var(--muted);cursor:pointer}
 .check input{accent-color:var(--accent)}
 .err{margin-top:12px;color:var(--danger);font-size:13px;background:var(--danger-soft);border-radius:8px;padding:9px 12px}
+.form-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 .steps-card h2{margin-bottom:12px}
 .steps{margin:0;padding-left:20px;color:var(--text);font-size:13.5px;line-height:2.05}
 .steps li{padding-left:2px}
@@ -186,6 +187,7 @@ tbody tr:hover{background:var(--panel-2)}
   .view{padding:18px 14px}
   .view-head{align-items:flex-start}
   .head-actions{width:100%}
+  .form-actions .btn{flex:1 1 auto}
   .card{padding:18px}
   .table-card{overflow-x:auto}
   table{min-width:660px}
