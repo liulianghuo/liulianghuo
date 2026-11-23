@@ -98,6 +98,7 @@
 
 <section class="page-hero">
   <h1 class="section-kicker" style="text-align:left;max-width:calc(660px + 2 * var(--section-pad-h));margin:0 auto;padding:0 var(--section-pad-h)">{{TITLE}}</h1>
+  <p class="article-date-line" style="text-align:left;max-width:calc(660px + 2 * var(--section-pad-h));margin:14px auto 0;padding:0 var(--section-pad-h);font-size:14px;color:var(--c-text-secondary)">{{DATE_LINE}}</p>
 </section>
 
 <div class="article-body">
