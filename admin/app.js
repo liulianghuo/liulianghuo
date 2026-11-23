@@ -127,9 +127,12 @@
   async function loadContext() {
     var all = await Promise.all([
       readFile('admin/data/articles.json'), readFile('insights.html'),
-      readFile('sitemap.xml'), readFile('admin/article-template.txt'), listRoot()
+      readFile('sitemap.xml'), readFile('admin/article-template.txt'), listRoot(),
+      readFile('llms.txt').catch(function () { return null; }),
+      readFile('llms-full.txt').catch(function () { return null; })
     ]);
     var data = all[0], ins = all[1], sm = all[2], tpl = all[3], names = all[4];
+    var llms = all[5], llmsFull = all[6];
     var current;
     try { current = JSON.parse(data.content); } catch (e) { throw new Error('文章数据文件损坏，请联系负责人'); }
     if (!current || !Array.isArray(current.articles)) throw new Error('文章数据格式不对，请联系负责人');
@@ -141,7 +144,10 @@
     current.articles.forEach(function (a) { var m = /^article-(\d+)\.html$/.exec(a.url || ''); if (m) maxNum = Math.max(maxNum, parseInt(m[1], 10)); });
     state.ctx = {
       current: current, insightsHtml: ins.content, sitemapXml: sm.content, tpl: tpl.content,
-      cssV: cssM[1], jsV: jsM[1], nextNum: maxNum + 1
+      cssV: cssM[1], jsV: jsM[1], nextNum: maxNum + 1,
+      // llms 说明书原文：只有带后台文章区块标记才纳入自动生成，避免破坏手工内容
+      llmsTxt: llms && llms.content.indexOf('<!-- admin:llms-articles -->') >= 0 ? llms.content : null,
+      llmsFullTxt: llmsFull && llmsFull.content.indexOf('<!-- admin:llms-articles -->') >= 0 ? llmsFull.content : null
     };
     // 按账号过滤：管理员看全部，编辑只看自己（author === 当前账号）
     state.viewArticles = state.isAdmin
@@ -488,7 +494,7 @@
       var publishedTitle = a.title;
       closeModal();
       openModal('<h2>已提交发布</h2><p>《' + esc(publishedTitle) + '》已写入仓库，官网正在重新构建，约 1～3 分钟后生效。</p>' +
-        '<div class="notice">新文章会自动排在「行业观点」最上面，站点地图也已同步。刚发布就打开文章链接可能暂时是空白页，等一会儿刷新即可。</div>' +
+        '<div class="notice">新文章会自动排在「行业观点」最上面，站点地图与 AI 说明书（llms.txt）也已同步。刚发布就打开文章链接可能暂时是空白页，等一会儿刷新即可。</div>' +
         '<div class="modal-actions"><button class="btn" data-act="close">知道了</button>' +
         '<a class="btn" href="../' + esc(publishedUrl) + '" target="_blank" rel="noopener">打开文章页</a>' +
         '<a class="btn btn-primary" href="../insights.html" target="_blank" rel="noopener">打开行业观点</a></div>');

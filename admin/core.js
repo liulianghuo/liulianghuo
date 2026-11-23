@@ -11,10 +11,16 @@
   var SITE = 'https://liulianghuo.com';
   var MANAGED_ROW_RE = /[ \t]*<a class="insight-row reveal"[^>]*data-admin-id="[^"]*"[^>]*>[\s\S]*?<\/a>[ \t]*(?:\r?\n|$)/g;
   var MANAGED_SITEMAP_RE = /[ \t]*<!-- admin:article-\d+ -->[ \t]*\r?\n[ \t]*<url>[\s\S]*?<\/url>[ \t]*(?:\r?\n|$)/g;
+  /* llms 说明书里由后台管理的文章区块：开标记 → 若干行 → 闭标记，连同中间内容整块替换 */
+  var MANAGED_LLMS_RE = /[ \t]*<!-- admin:llms-articles -->[ \t]*\r?\n[\s\S]*?<!-- \/admin:llms-articles -->[ \t]*(?:\r?\n|$)/g;
+  /* 「最后更新」日期行：生成时改成最新发布日期 */
+  var LLMS_DATE_RE = /(> 最后更新：)\d{4}-\d{2}-\d{2}(。)/g;
   var LIST_OPEN_RE = /(<div class="insights-list"[^>]*>)([ \t]*\r?\n)/;
   var ALLOWED_PATHS = [
     /^insights\.html$/,
     /^sitemap\.xml$/,
+    /^llms\.txt$/,
+    /^llms-full\.txt$/,
     /^admin\/data\/articles\.json$/,
     /^article-(1[4-9]|[2-9]\d|[1-9]\d{2,})\.html$/,
     /^images\/og\/og-admin-\d+\.(webp|png|jpe?g)$/
@@ -242,6 +248,49 @@
     return cleaned.slice(0, idx) + blocks + cleaned.slice(idx);
   }
 
+  function stripManagedLlms(txt) { return String(txt).replace(MANAGED_LLMS_RE, '').replace(LLMS_DATE_RE, '$1<DATE>$2'); }
+
+  /* llms 是给 AI 读的纯文本 Markdown：只需转义会破坏结构的 & < >，
+     直引号保留原样，避免标题里出现 &quot; 这种生硬的实体 */
+  function llmsText(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /* 单条说明书文章行的两种样式：llms.txt 纯文本 / llms-full.txt 带粗体与日期 */
+  function llmsArticleLine(a, full) {
+    var url = SITE + '/' + esc(safeUrl(a.url) ? a.url : '');
+    if (full) {
+      return '- **' + llmsText(a.title) + '**（' + esc(fullDate(a.date)) + '）：' + url;
+    }
+    return '- ' + llmsText(a.title) + '：' + url;
+  }
+
+  /* 生成后台管理的文章区块，保持与基准文件同样的缩进与换行风格 */
+  function llmsBlock(articles, full) {
+    var published = (articles || []).filter(function (a) {
+      return a.status === 'published' && (a.url || '').indexOf('article-') === 0;
+    }).sort(byDateDesc);
+    var lines = published.map(function (a) { return llmsArticleLine(a, full); });
+    return '<!-- admin:llms-articles -->\n' + lines.join('\n') + '\n<!-- /admin:llms-articles -->\n';
+  }
+
+  /* 全量重生成 llms 文章区块 + 刷新「最后更新」为最新发布日期。
+     剔除生成区块后，其余内容与原件逐字节一致（preflight 会断言）。 */
+  function updateLlms(txt, articles, full) {
+    var src = String(txt);
+    if (src.indexOf('<!-- admin:llms-articles -->') < 0 || src.indexOf('<!-- /admin:llms-articles -->') < 0) {
+      throw new Error((full ? 'llms-full.txt' : 'llms.txt') + ' 缺少后台文章区块标记，已停止发布');
+    }
+    var published = (articles || []).filter(function (a) {
+      return a.status === 'published' && (a.url || '').indexOf('article-') === 0;
+    }).sort(byDateDesc);
+    var out = src.replace(MANAGED_LLMS_RE, function () { return llmsBlock(articles, full); });
+    var lastDate = published.length ? fullDate(published[0].date) : '';
+    if (lastDate) out = out.replace(LLMS_DATE_RE, function (m, p1, p2) { return p1 + lastDate + p2; });
+    return out;
+  }
+
   /* 所有操作都归一成「算出新的数据 → 全量重生成受影响的文件」 */
   function buildAllFiles(current, next, ctx) {
     var files = [];
@@ -258,6 +307,8 @@
     });
     files.push({ path: 'insights.html', content: updateInsights(ctx.insightsHtml, next.articles), encoding: 'utf8', label: '观点列表' });
     files.push({ path: 'sitemap.xml', content: updateSitemap(ctx.sitemapXml, next.articles), encoding: 'utf8', label: '站点地图' });
+    if (ctx.llmsTxt != null) files.push({ path: 'llms.txt', content: updateLlms(ctx.llmsTxt, next.articles, false), encoding: 'utf8', label: 'AI说明书' });
+    if (ctx.llmsFullTxt != null) files.push({ path: 'llms-full.txt', content: updateLlms(ctx.llmsFullTxt, next.articles, true), encoding: 'utf8', label: 'AI全量说明书' });
     files.push({ path: 'admin/data/articles.json', content: JSON.stringify(next, null, 2) + '\n', encoding: 'utf8', label: '文章数据' });
     return files;
   }
@@ -289,6 +340,17 @@
       var closes = (sm.content.match(/<\/url>/g) || []).length;
       if (opens !== closes || (sm.content.match(/<\/urlset>/g) || []).length !== 1) bad.push('站点地图标签不成对');
     }
+    [['llms.txt', ctx.llmsTxt, false], ['llms-full.txt', ctx.llmsFullTxt, true]].forEach(function (pair) {
+      var gen = files.filter(function (f) { return f.path === pair[0]; })[0];
+      if (!gen || pair[1] == null) return;
+      var before = stripManagedLlms(pair[1]).replace(/\s+/g, '');
+      var after = stripManagedLlms(gen.content).replace(/\s+/g, '');
+      if (before !== after) bad.push(pair[0] + ' 手工维护的内容被改动了');
+      if ((gen.content.match(/<!-- admin:llms-articles -->/g) || []).length !== 1 ||
+          (gen.content.match(/<!-- \/admin:llms-articles -->/g) || []).length !== 1) {
+        bad.push(pair[0] + ' 的文章区块标记不成对');
+      }
+    });
     files.forEach(function (f) {
       if (f.encoding === 'base64' || f.content == null || !/\.html$/.test(f.path)) return;
       if (/\{\{[A-Z_]+\}\}/.test(f.content)) bad.push(f.path + ' 里还有未替换的占位符');
@@ -324,6 +386,7 @@
     buildArticleHtml: buildArticleHtml, buildRemovedPage: buildRemovedPage,
     buildRow: buildRow, updateInsights: updateInsights, stripManagedRows: stripManagedRows,
     sitemapBlock: sitemapBlock, updateSitemap: updateSitemap, stripManagedSitemap: stripManagedSitemap,
+    llmsArticleLine: llmsArticleLine, llmsBlock: llmsBlock, updateLlms: updateLlms, stripManagedLlms: stripManagedLlms,
     buildAllFiles: buildAllFiles, preflight: preflight, forPreview: forPreview,
     byDateDesc: byDateDesc, MANAGED_ROW_RE: MANAGED_ROW_RE, MANAGED_SITEMAP_RE: MANAGED_SITEMAP_RE
   };
