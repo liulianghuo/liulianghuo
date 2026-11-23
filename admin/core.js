@@ -43,11 +43,9 @@
     return m ? m[1] + '-' + m[2] + '-' + m[3] : String(iso || '');
   }
 
-  /* 页面可见的一行日期：发布于 X · 更新于 Y（同一天只显示发布） */
+  /* 标题下的作者署名行：作者：流量火传媒 · 发布日期 */
   function dateLine(a) {
-    var pub = fullDate(a.date);
-    var mod = fullDate(a.updatedAt || a.date);
-    return '发布于 ' + pub + (mod && mod !== pub ? ' · 更新于 ' + mod : '');
+    return '作者：流量火传媒 · ' + fullDate(a.date);
   }
 
   function readTime(plain) {
