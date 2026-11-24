@@ -3299,8 +3299,7 @@ html[data-theme="glass"] .mission-card::after,
 html[data-theme="glass"] .stat-item::after,
 html[data-theme="glass"] .aiwall-item::after,
 html[data-theme="glass"] .trust-item::after,
-html[data-theme="glass"] .geo-why-item::after,
-html[data-theme="glass"] .cta-contact-item::after{
+html[data-theme="glass"] .geo-why-item::after{
   content:'';position:absolute;inset:0;border-radius:inherit;padding:1.6px;
   background:conic-gradient(from var(--lh-beam),
     transparent 0deg,transparent 250deg,
