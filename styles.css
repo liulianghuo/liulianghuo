@@ -2900,7 +2900,7 @@ a{text-underline-offset:3px}
    深浅色主题 — data-theme 由 <head> 内联脚本在首帧前写入
    ══════════════════════════════════════════════════ */
 html{color-scheme:light}
-html[data-theme="dark"]{color-scheme:dark}
+html:is([data-theme="dark"],[data-theme="glass"]){color-scheme:dark}
 
 /* ── 切换按钮 ── */
 .theme-toggle{
@@ -2914,6 +2914,7 @@ html[data-theme="dark"]{color-scheme:dark}
 .theme-toggle svg{width:16px;height:16px;display:block}
 .theme-toggle .tt-sun{display:none}
 .theme-toggle .tt-moon{display:block}
+.theme-toggle .tt-glass{display:none}
 @media (hover:hover) and (pointer:fine){
   .theme-toggle:hover{color:var(--c-text);background:var(--c-surface);border-color:var(--c-line)}
 }
@@ -2921,7 +2922,7 @@ html[data-theme="dark"]{color-scheme:dark}
 @media(max-width:768px){ .theme-toggle{margin-left:8px;width:30px;height:30px} }
 
 /* ── 暗色：整组令牌换值 ── */
-html[data-theme="dark"]{
+html:is([data-theme="dark"],[data-theme="glass"]){
   --c-bg:#0A0A0D;
   --c-surface:#131317;
   --c-surface-warm:#171318;
@@ -2963,27 +2964,27 @@ html[data-theme="dark"]{
   --sh-12:rgba(0,0,0,0.68);
   --sh-15:rgba(0,0,0,0.74);
 }
-html[data-theme="dark"] .theme-toggle .tt-sun{display:block}
-html[data-theme="dark"] .theme-toggle .tt-moon{display:none}
+html:is([data-theme="dark"],[data-theme="glass"]) .theme-toggle .tt-sun{display:block}
+html:is([data-theme="dark"],[data-theme="glass"]) .theme-toggle .tt-moon{display:none}
 
 /* 暗色滚动条 */
-html[data-theme="dark"] ::-webkit-scrollbar{width:10px;height:10px}
-html[data-theme="dark"] ::-webkit-scrollbar-thumb{background:#2E2E37;border-radius:10px}
-html[data-theme="dark"] ::-webkit-scrollbar-track{background:transparent}
+html:is([data-theme="dark"],[data-theme="glass"]) ::-webkit-scrollbar{width:10px;height:10px}
+html:is([data-theme="dark"],[data-theme="glass"]) ::-webkit-scrollbar-thumb{background:#2E2E37;border-radius:10px}
+html:is([data-theme="dark"],[data-theme="glass"]) ::-webkit-scrollbar-track{background:transparent}
 
 /* ── 暗色局部补丁：原本就反白的深底区块，抬一档避免与页面底色糊在一起 ── */
-html[data-theme="dark"] .stats-strip{background:#141419;color:var(--c-text)}
-html[data-theme="dark"] .stat-label{color:var(--c-text-tertiary)}
-html[data-theme="dark"] .cta-section{background:#141419}
-html[data-theme="dark"] .product-top-cta{background:linear-gradient(165deg,#1C1C36 0%,#171730 50%,#121226 100%)}
-html[data-theme="dark"] .product-top-cta .section-leader{color:rgba(255,255,255,0.78)}
-html[data-theme="dark"] .footer{background:#0E0E12;color:rgba(255,255,255,0.45)}
-html[data-theme="dark"] .footer-bio{color:rgba(255,255,255,0.62)}
-html[data-theme="dark"] .footer-col a{color:rgba(255,255,255,0.66)}
-html[data-theme="dark"] .footer-col a:hover{color:#fff}
-html[data-theme="dark"] .footer-bottom{color:rgba(255,255,255,0.42);border-top-color:rgba(255,255,255,0.10)}
-html[data-theme="dark"] .footer-sites{color:rgba(255,255,255,0.55)}
-html[data-theme="dark"] .footer-sites a{color:rgba(255,255,255,0.72)}
+html:is([data-theme="dark"],[data-theme="glass"]) .stats-strip{background:#141419;color:var(--c-text)}
+html:is([data-theme="dark"],[data-theme="glass"]) .stat-label{color:var(--c-text-tertiary)}
+html:is([data-theme="dark"],[data-theme="glass"]) .cta-section{background:#141419}
+html:is([data-theme="dark"],[data-theme="glass"]) .product-top-cta{background:linear-gradient(165deg,#1C1C36 0%,#171730 50%,#121226 100%)}
+html:is([data-theme="dark"],[data-theme="glass"]) .product-top-cta .section-leader{color:rgba(255,255,255,0.78)}
+html:is([data-theme="dark"],[data-theme="glass"]) .footer{background:#0E0E12;color:rgba(255,255,255,0.45)}
+html:is([data-theme="dark"],[data-theme="glass"]) .footer-bio{color:rgba(255,255,255,0.62)}
+html:is([data-theme="dark"],[data-theme="glass"]) .footer-col a{color:rgba(255,255,255,0.66)}
+html:is([data-theme="dark"],[data-theme="glass"]) .footer-col a:hover{color:#fff}
+html:is([data-theme="dark"],[data-theme="glass"]) .footer-bottom{color:rgba(255,255,255,0.42);border-top-color:rgba(255,255,255,0.10)}
+html:is([data-theme="dark"],[data-theme="glass"]) .footer-sites{color:rgba(255,255,255,0.55)}
+html:is([data-theme="dark"],[data-theme="glass"]) .footer-sites a{color:rgba(255,255,255,0.72)}
 /* 页脚在亮色主题下同样是深色底，文字亮度需与暗色主题一致，否则几乎看不清 */
 html:not([data-theme="dark"]) .footer{color:rgba(255,255,255,0.45)}
 html:not([data-theme="dark"]) .footer-bio{color:rgba(255,255,255,0.62)}
@@ -2992,99 +2993,99 @@ html:not([data-theme="dark"]) .footer-col a:hover{color:#fff}
 html:not([data-theme="dark"]) .footer-bottom{color:rgba(255,255,255,0.42);border-top-color:rgba(255,255,255,0.10)}
 html:not([data-theme="dark"]) .footer-sites{color:rgba(255,255,255,0.55)}
 html:not([data-theme="dark"]) .footer-sites a{color:rgba(255,255,255,0.72)}
-html[data-theme="dark"] .price-card--featured{background:#1A1A20;color:var(--c-text);border-color:var(--c-line)}
-html[data-theme="dark"] .price-card--featured .price-title{color:var(--c-text)}
-html[data-theme="dark"] .price-card--featured .price-tag,
-html[data-theme="dark"] .price-card--featured .price-desc,
-html[data-theme="dark"] .price-card--featured .price-feat li{color:var(--c-text-secondary)}
-html[data-theme="dark"] .page-about .stat-label{color:var(--c-text-tertiary)}
+html:is([data-theme="dark"],[data-theme="glass"]) .price-card--featured{background:#1A1A20;color:var(--c-text);border-color:var(--c-line)}
+html:is([data-theme="dark"],[data-theme="glass"]) .price-card--featured .price-title{color:var(--c-text)}
+html:is([data-theme="dark"],[data-theme="glass"]) .price-card--featured .price-tag,
+html:is([data-theme="dark"],[data-theme="glass"]) .price-card--featured .price-desc,
+html:is([data-theme="dark"],[data-theme="glass"]) .price-card--featured .price-feat li{color:var(--c-text-secondary)}
+html:is([data-theme="dark"],[data-theme="glass"]) .page-about .stat-label{color:var(--c-text-tertiary)}
 
 /* ── 暗色：浅色糖果底胶囊 → 同色系微光底 ── */
-html[data-theme="dark"] .bento-icon--train{background:linear-gradient(135deg,rgba(255,167,38,0.18) 0%,rgba(230,81,0,0.10) 100%);color:#FFB27A}
-html[data-theme="dark"] .bento-icon--ops{background:linear-gradient(135deg,rgba(66,165,245,0.18) 0%,rgba(21,101,192,0.10) 100%);color:#79BEFF}
-html[data-theme="dark"] .bento-icon--ip{background:linear-gradient(135deg,rgba(186,104,200,0.18) 0%,rgba(123,31,162,0.10) 100%);color:#CE93D8}
-html[data-theme="dark"] .bento-icon--geo{background:linear-gradient(135deg,rgba(102,187,106,0.18) 0%,rgba(46,125,50,0.10) 100%);color:#81C784}
-html[data-theme="dark"] .bento-card--ip .bento-list li::before{background:rgba(206,147,216,0.65)}
-html[data-theme="dark"] .bento-card--geo .bento-list li::before{background:rgba(129,199,132,0.65)}
-html[data-theme="dark"] .case-badge--hot{background:linear-gradient(135deg,rgba(255,167,38,0.18),rgba(230,81,0,0.10));color:#FFB27A}
-html[data-theme="dark"] .case-badge--geo{background:linear-gradient(135deg,rgba(102,187,106,0.18),rgba(46,125,50,0.10));color:#81C784}
-html[data-theme="dark"] .case-badge--ip{background:linear-gradient(135deg,rgba(186,104,200,0.18),rgba(123,31,162,0.10));color:#CE93D8}
-html[data-theme="dark"] .pill--do{background:linear-gradient(135deg,rgba(102,187,106,0.18),rgba(46,125,50,0.10));color:#81C784}
-html[data-theme="dark"] .pill--fit{background:linear-gradient(135deg,rgba(66,165,245,0.18),rgba(21,101,192,0.10));color:#79BEFF}
-html[data-theme="dark"] .article-body .callout.good{border-color:#2E7D52;background:rgba(16,185,129,0.10)}
-html[data-theme="dark"] .article-body .callout.warn{border-color:#B45309;background:rgba(245,158,11,0.10)}
-html[data-theme="dark"] .article-body .tag.w{background:rgba(245,158,11,0.15);color:#F0B469}
-html[data-theme="dark"] .article-body .tag.g{background:rgba(16,185,129,0.15);color:#5FD69C}
-html[data-theme="dark"] .v8-core-pillars span{border-color:rgba(224,96,58,0.34)}
-html[data-theme="dark"] .v8-geo-dim{border-color:rgba(167,139,250,0.30)}
+html:is([data-theme="dark"],[data-theme="glass"]) .bento-icon--train{background:linear-gradient(135deg,rgba(255,167,38,0.18) 0%,rgba(230,81,0,0.10) 100%);color:#FFB27A}
+html:is([data-theme="dark"],[data-theme="glass"]) .bento-icon--ops{background:linear-gradient(135deg,rgba(66,165,245,0.18) 0%,rgba(21,101,192,0.10) 100%);color:#79BEFF}
+html:is([data-theme="dark"],[data-theme="glass"]) .bento-icon--ip{background:linear-gradient(135deg,rgba(186,104,200,0.18) 0%,rgba(123,31,162,0.10) 100%);color:#CE93D8}
+html:is([data-theme="dark"],[data-theme="glass"]) .bento-icon--geo{background:linear-gradient(135deg,rgba(102,187,106,0.18) 0%,rgba(46,125,50,0.10) 100%);color:#81C784}
+html:is([data-theme="dark"],[data-theme="glass"]) .bento-card--ip .bento-list li::before{background:rgba(206,147,216,0.65)}
+html:is([data-theme="dark"],[data-theme="glass"]) .bento-card--geo .bento-list li::before{background:rgba(129,199,132,0.65)}
+html:is([data-theme="dark"],[data-theme="glass"]) .case-badge--hot{background:linear-gradient(135deg,rgba(255,167,38,0.18),rgba(230,81,0,0.10));color:#FFB27A}
+html:is([data-theme="dark"],[data-theme="glass"]) .case-badge--geo{background:linear-gradient(135deg,rgba(102,187,106,0.18),rgba(46,125,50,0.10));color:#81C784}
+html:is([data-theme="dark"],[data-theme="glass"]) .case-badge--ip{background:linear-gradient(135deg,rgba(186,104,200,0.18),rgba(123,31,162,0.10));color:#CE93D8}
+html:is([data-theme="dark"],[data-theme="glass"]) .pill--do{background:linear-gradient(135deg,rgba(102,187,106,0.18),rgba(46,125,50,0.10));color:#81C784}
+html:is([data-theme="dark"],[data-theme="glass"]) .pill--fit{background:linear-gradient(135deg,rgba(66,165,245,0.18),rgba(21,101,192,0.10));color:#79BEFF}
+html:is([data-theme="dark"],[data-theme="glass"]) .article-body .callout.good{border-color:#2E7D52;background:rgba(16,185,129,0.10)}
+html:is([data-theme="dark"],[data-theme="glass"]) .article-body .callout.warn{border-color:#B45309;background:rgba(245,158,11,0.10)}
+html:is([data-theme="dark"],[data-theme="glass"]) .article-body .tag.w{background:rgba(245,158,11,0.15);color:#F0B469}
+html:is([data-theme="dark"],[data-theme="glass"]) .article-body .tag.g{background:rgba(16,185,129,0.15);color:#5FD69C}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-core-pillars span{border-color:rgba(224,96,58,0.34)}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-geo-dim{border-color:rgba(167,139,250,0.30)}
 
 /* ── 暗色：GEO 页（页内样式）补丁 ── */
-html[data-theme="dark"] .geo-tier--dark{--ink:#2C2C36;--ink-text:#EDEDF2}
-html[data-theme="dark"] .orbit-ring--o,
-html[data-theme="dark"] .orbit-ring--i{border-color:rgba(224,96,58,.34)}
-html[data-theme="dark"] .orbit-links .hud circle{stroke:rgba(224,96,58,.16)}
-html[data-theme="dark"] .orbit-links .hud path{stroke:rgba(224,96,58,.36)}
-html[data-theme="dark"] .orbit-links .lk line{stroke:rgba(224,96,58,.30)}
-html[data-theme="dark"] .orbit-tick circle{stroke:rgba(224,96,58,.40)}
-html[data-theme="dark"] .orbit-core{background:radial-gradient(circle at 50% 45%,rgba(224,96,58,.16) 0%,var(--c-bg) 72%)}
-html[data-theme="dark"] .orbit-core::before{border-color:rgba(224,96,58,.38)}
-html[data-theme="dark"] .orbit-core::after{border-color:rgba(224,96,58,.22)}
+html:is([data-theme="dark"],[data-theme="glass"]) .geo-tier--dark{--ink:#2C2C36;--ink-text:#EDEDF2}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-ring--o,
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-ring--i{border-color:rgba(224,96,58,.34)}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-links .hud circle{stroke:rgba(224,96,58,.16)}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-links .hud path{stroke:rgba(224,96,58,.36)}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-links .lk line{stroke:rgba(224,96,58,.30)}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-tick circle{stroke:rgba(224,96,58,.40)}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-core{background:radial-gradient(circle at 50% 45%,rgba(224,96,58,.16) 0%,var(--c-bg) 72%)}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-core::before{border-color:rgba(224,96,58,.38)}
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-core::after{border-color:rgba(224,96,58,.22)}
 
 /* ── 暗色：Logo 换成「白字 + 原橙红火焰」专用图（纯 CSS 切换，无闪烁、不依赖 JS） ── */
 .logo-dark-only{display:none}
-html[data-theme="dark"] .logo-dark-only{display:inline-block}
-html[data-theme="dark"] .nav-logo:not(.logo-dark-only),
-html[data-theme="dark"] .hero-logo:not(.logo-dark-only),
-html[data-theme="dark"] .footer-logo-row img:not(.logo-dark-only){display:none}
+html:is([data-theme="dark"],[data-theme="glass"]) .logo-dark-only{display:inline-block}
+html:is([data-theme="dark"],[data-theme="glass"]) .nav-logo:not(.logo-dark-only),
+html:is([data-theme="dark"],[data-theme="glass"]) .hero-logo:not(.logo-dark-only),
+html:is([data-theme="dark"],[data-theme="glass"]) .footer-logo-row img:not(.logo-dark-only){display:none}
 /* 页脚背景恒为深色：亮色主题下同样要用白字 Logo，否则黑字不可见、只剩火焰 */
 .footer-logo-row img:not(.logo-dark-only){display:none}
 .footer-logo-row img.logo-dark-only{display:inline-block}
-html[data-theme="dark"] .v8-fs-logo-img{background:var(--c-card)}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-fs-logo-img{background:var(--c-card)}
 /* ── 暗色：品牌墙 Logo 用逐图适配版（黑字→白、浅色块→深色融入背景、彩色保真） ──
     v31：常态统一为银灰（与亮色「默认单色、悬停显真彩」一致），悬停才恢复真实品牌色。
     brightness 是乘法，提亮主体但不会抬动已融入背景的深色底；contrast 只轻微压缩，
     不能低于 .8（tubatu / guante 等图含 8~18% 低亮度不透明像素，压太狠会浮出灰块）；
     brightness 也不能超过 1.4（OPPEIN 橙色块会被顶成刺眼白块）。亮色模式完全不动 */
 .bw-logo-dark{display:none}
-html[data-theme="dark"] .bw-cell img:not(.bw-logo-dark){display:none}
-html[data-theme="dark"] .bw-cell .bw-logo-dark{display:block}
-html[data-theme="dark"] .bw-cell img,
-html[data-theme="dark"] .bw-cell--color img,
-html[data-theme="dark"] .bw-cell--up img{filter:grayscale(1) brightness(1.30) contrast(.96);opacity:.88}
-html[data-theme="dark"] .product-badge--blue{background:rgba(66,165,245,0.16);color:#79BEFF}
-html[data-theme="dark"] .product-badge--purple{background:rgba(186,104,200,0.16);color:#CE93D8}
-html[data-theme="dark"] .product-badge--green{background:rgba(102,187,106,0.16);color:#81C784}
-html[data-theme="dark"] .product-badge--red{background:rgba(239,83,80,0.16);color:#FF8A80}
-html[data-theme="dark"] .v8-plan-tag--diag{background:rgba(59,111,224,0.20);color:#8AB2FF}
-html[data-theme="dark"] .v8-plan-tag--train{background:rgba(210,105,30,0.20);color:#FFB27A}
-html[data-theme="dark"] .v8-plan-tag--ops{background:rgba(230,74,25,0.20);color:#FF9E80}
-html[data-theme="dark"] .v8-plan-tag--geo{background:rgba(107,79,224,0.24);color:#B7A8FF}
-html[data-theme="dark"] .v8-plan-tag--ip{background:rgba(30,158,106,0.20);color:#7BDFB0}
-html[data-theme="dark"] .v8-plan-highlight--core{background:linear-gradient(165deg,rgba(224,96,58,0.14),rgba(224,96,58,0.05));border-color:rgba(224,96,58,0.30)}
-html[data-theme="dark"] .v8-plan-highlight--warm{border-color:rgba(224,96,58,0.22)}
-html[data-theme="dark"] .v8-plan-highlight--warm strong{color:#FFB27A}
-html[data-theme="dark"] .v8-plan-highlight--geo{background:rgba(107,79,224,0.12);border-color:rgba(167,139,250,0.28)}
-html[data-theme="dark"] .v8-plan-highlight--geo strong{color:#B7A8FF}
+html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell img:not(.bw-logo-dark){display:none}
+html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell .bw-logo-dark{display:block}
+html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell img,
+html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell--color img,
+html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell--up img{filter:grayscale(1) brightness(1.30) contrast(.96);opacity:.88}
+html:is([data-theme="dark"],[data-theme="glass"]) .product-badge--blue{background:rgba(66,165,245,0.16);color:#79BEFF}
+html:is([data-theme="dark"],[data-theme="glass"]) .product-badge--purple{background:rgba(186,104,200,0.16);color:#CE93D8}
+html:is([data-theme="dark"],[data-theme="glass"]) .product-badge--green{background:rgba(102,187,106,0.16);color:#81C784}
+html:is([data-theme="dark"],[data-theme="glass"]) .product-badge--red{background:rgba(239,83,80,0.16);color:#FF8A80}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-tag--diag{background:rgba(59,111,224,0.20);color:#8AB2FF}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-tag--train{background:rgba(210,105,30,0.20);color:#FFB27A}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-tag--ops{background:rgba(230,74,25,0.20);color:#FF9E80}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-tag--geo{background:rgba(107,79,224,0.24);color:#B7A8FF}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-tag--ip{background:rgba(30,158,106,0.20);color:#7BDFB0}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-highlight--core{background:linear-gradient(165deg,rgba(224,96,58,0.14),rgba(224,96,58,0.05));border-color:rgba(224,96,58,0.30)}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-highlight--warm{border-color:rgba(224,96,58,0.22)}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-highlight--warm strong{color:#FFB27A}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-highlight--geo{background:rgba(107,79,224,0.12);border-color:rgba(167,139,250,0.28)}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-plan-highlight--geo strong{color:#B7A8FF}
 /* ── 暗色：全站 Logo 统一规则 —— 黑字/黑色线条→白，红蓝绿等彩色保持原色 ──
    1) 纯黑单色图标（ChatGPT）反相成白，三处容器统一覆盖
    2) 混合色 / 带白底的 Logo 用逐图适配版双图切换，白底融入深色卡片
    3) 亮色模式完全不动 */
-html[data-theme="dark"] .aiwall-item img[src*="chatgpt"],
-html[data-theme="dark"] .orbit-chip img[src*="chatgpt"],
-html[data-theme="dark"] .tl-plat img[src*="chatgpt"]{filter:brightness(0) invert(1)}
+html:is([data-theme="dark"],[data-theme="glass"]) .aiwall-item img[src*="chatgpt"],
+html:is([data-theme="dark"],[data-theme="glass"]) .orbit-chip img[src*="chatgpt"],
+html:is([data-theme="dark"],[data-theme="glass"]) .tl-plat img[src*="chatgpt"]{filter:brightness(0) invert(1)}
 .v8-fs-logo-dark,.ai-logo-dark{display:none}
-html[data-theme="dark"] .v8-fs-logo-img[src^="logo-"]:not(.v8-fs-logo-dark){display:none}
-html[data-theme="dark"] .tl-plat img[src*="perplexity"]:not(.ai-logo-dark),
-html[data-theme="dark"] .tl-plat img[src*="kimi"]:not(.ai-logo-dark){display:none}
-html[data-theme="dark"] .v8-fs-logo-dark,
-html[data-theme="dark"] .tl-plat .ai-logo-dark{display:inline-block}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-fs-logo-img[src^="logo-"]:not(.v8-fs-logo-dark){display:none}
+html:is([data-theme="dark"],[data-theme="glass"]) .tl-plat img[src*="perplexity"]:not(.ai-logo-dark),
+html:is([data-theme="dark"],[data-theme="glass"]) .tl-plat img[src*="kimi"]:not(.ai-logo-dark){display:none}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-fs-logo-dark,
+html:is([data-theme="dark"],[data-theme="glass"]) .tl-plat .ai-logo-dark{display:inline-block}
 /* 案例页客户 Logo 与品牌墙同规则：暗色默认银灰，悬停卡片显真彩 */
-html[data-theme="dark"] .v8-fs-logo-dark{filter:grayscale(1) brightness(1.30);opacity:.9}
+html:is([data-theme="dark"],[data-theme="glass"]) .v8-fs-logo-dark{filter:grayscale(1) brightness(1.30);opacity:.9}
 @media (hover:hover) and (pointer:fine){
-  html[data-theme="dark"] .bw-cell:hover{background:rgba(255,255,255,0.045)}
-  html[data-theme="dark"] .bw-cell:hover img{filter:none;opacity:1;transform:scale(1.05)}
-  html[data-theme="dark"] .bw-cell:hover .bw-word{color:var(--c-text)}
-  html[data-theme="dark"] .v8-flagship:hover .v8-fs-logo-dark{filter:none;opacity:1}
+  html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell:hover{background:rgba(255,255,255,0.045)}
+  html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell:hover img{filter:none;opacity:1;transform:scale(1.05)}
+  html:is([data-theme="dark"],[data-theme="glass"]) .bw-cell:hover .bw-word{color:var(--c-text)}
+  html:is([data-theme="dark"],[data-theme="glass"]) .v8-flagship:hover .v8-fs-logo-dark{filter:none;opacity:1}
 }
 @media (prefers-reduced-motion:reduce){
   .theme-toggle,.nav-logo-link,.footer-logo-link{transition:none}
@@ -3094,6 +3095,152 @@ html[data-theme="dark"] .v8-fs-logo-dark{filter:grayscale(1) brightness(1.30);op
 @media(max-width:768px){
   [id]{scroll-margin-top:64px}
   .has-sticky-tabs [id]{scroll-margin-top:120px}
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   玻璃透明主题 (glass) — 第三档皮肤
+   data-theme="glass"；继承上述暗色全部规则（白字Logo/品牌墙灰度等），
+   本区只做「玻璃化覆盖 + 静态光斑 + 交互动效 + 性能降级」。
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── 1. 玻璃令牌：在暗色底子上调成通透冷调，光斑可透出 ── */
+html[data-theme="glass"]{
+  --c-bg:#0D0B13;
+  --c-surface:rgba(255,255,255,0.038);
+  --c-surface-warm:rgba(255,255,255,0.052);
+  --c-card:rgba(255,255,255,0.06);
+  --c-plate:rgba(255,255,255,0.075);
+  --nav-bg:rgba(22,17,31,0.52);
+  --nav-bg-solid:rgba(14,11,20,0.86);
+  --panel-bg:rgba(20,15,29,0.66);
+  --sticky-bg:rgba(14,11,20,0.82);
+  --tabs-bg:rgba(20,15,29,0.72);
+  --avatar-ring:rgba(255,255,255,0.16);
+  --hairline:rgba(255,255,255,0.13);
+  --bd-03:rgba(255,255,255,0.06);
+  --bd-05:rgba(255,255,255,0.08);
+  --bd-08:rgba(255,255,255,0.13);
+  --bd-10:rgba(255,255,255,0.18);
+  --fire-glow:rgba(224,96,58,0.13);
+}
+
+/* ── 2. 静态品牌光斑：多层径向渐变，background-attachment 固定，零动画 ── */
+html[data-theme="glass"] body{
+  background-color:var(--c-bg);
+  background-image:
+    radial-gradient(46vw 40vw at 82% 6%,  rgba(224,96,58,0.20), transparent 68%),
+    radial-gradient(54vw 46vw at 8% 42%,  rgba(201,80,43,0.15), transparent 70%),
+    radial-gradient(50vw 44vw at 70% 96%, rgba(120,70,180,0.13), transparent 70%),
+    radial-gradient(40vw 34vw at 30% 78%, rgba(232,131,90,0.10), transparent 72%);
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+}
+
+/* ── 3. 硬编码深色大区块玻璃化，让光斑透出 ── */
+html[data-theme="glass"] .stats-strip,
+html[data-theme="glass"] .cta-section{
+  background:rgba(255,255,255,0.035);
+}
+html[data-theme="glass"] .price-card--featured{
+  background:rgba(255,255,255,0.085);
+  border-color:rgba(255,255,255,0.18);
+}
+html[data-theme="glass"] .product-top-cta{
+  background:linear-gradient(165deg,rgba(60,40,90,0.30) 0%,rgba(40,25,60,0.24) 50%,rgba(30,18,45,0.20) 100%);
+}
+
+/* ── 4. 玻璃卡片：半透明 + 毛玻璃 + 细高光描边 ── */
+html[data-theme="glass"] .bento-card,
+html[data-theme="glass"] .price-card,
+html[data-theme="glass"] .v8-plan-card,
+html[data-theme="glass"] .v8-ai-group,
+html[data-theme="glass"] .wechat-card{
+  -webkit-backdrop-filter:blur(18px) saturate(135%);
+  backdrop-filter:blur(18px) saturate(135%);
+  border:1px solid rgba(255,255,255,0.13);
+  box-shadow:0 12px 40px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.09);
+}
+
+/* ── 5. 导航毛玻璃更通透 ── */
+html[data-theme="glass"] .nav{
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  backdrop-filter:blur(22px) saturate(150%);
+}
+
+/* ── 6. 动效①：液态玻璃「选中」高亮（导航 / 套餐标签） ── */
+html[data-theme="glass"] .nav-links a.active,
+html[data-theme="glass"] .v8-nav-chip--active{
+  background:rgba(255,255,255,0.10);
+  border-radius:9px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.14), 0 3px 14px rgba(0,0,0,0.22);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+html[data-theme="glass"] .nav-links a,
+html[data-theme="glass"] .v8-nav-chip{
+  transition:background .45s var(--ease-out-exp),box-shadow .45s var(--ease-out-exp),border-radius .45s var(--ease-out-exp);
+}
+
+/* ── 7. 动效②：聚光鼠标（独立伪元素承载径向光，不触发毛玻璃重算）── */
+html[data-theme="glass"] .bento-card::before,
+html[data-theme="glass"] .price-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;z-index:1;opacity:0;
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,0.16),transparent 62%);
+  transition:opacity .35s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  html[data-theme="glass"] .bento-card:hover::before,
+  html[data-theme="glass"] .price-card:hover::before{opacity:1}
+}
+
+/* ── 8. 动效③：边缘流光（仅推荐套餐卡，transform 旋转 GPU 加速）── */
+@keyframes lh-glass-beam{to{transform:rotate(360deg)}}
+html[data-theme="glass"] .price-card--featured::after,
+html[data-theme="glass"] .v8-plan-card--core::after{
+  content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;
+  background:conic-gradient(from 0deg,transparent 0deg,var(--fire-mid) 38deg,#FFB27A 58deg,transparent 100deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:lh-glass-beam 5.5s linear infinite;
+  pointer-events:none;z-index:2;
+}
+
+/* ── 9. 玻璃档切换按钮图标：水滴 ── */
+html[data-theme="glass"] .theme-toggle .tt-sun{display:none}
+html[data-theme="glass"] .theme-toggle .tt-moon{display:none}
+html[data-theme="glass"] .theme-toggle .tt-glass{display:block}
+
+/* ── 10. 移动端降级：关毛玻璃/光斑动画/聚光，改用近似实色，零卡顿 ── */
+@media(max-width:768px){
+  html[data-theme="glass"] body{
+    background-image:linear-gradient(165deg,#1A1226 0%,#0D0B13 55%,#170F20 100%);
+    background-attachment:scroll;
+  }
+  html[data-theme="glass"] .bento-card,
+  html[data-theme="glass"] .price-card,
+  html[data-theme="glass"] .v8-plan-card,
+  html[data-theme="glass"] .v8-ai-group,
+  html[data-theme="glass"] .wechat-card{
+    -webkit-backdrop-filter:none;backdrop-filter:none;
+    background:rgba(30,24,42,0.92);
+  }
+  html[data-theme="glass"] .nav{
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  }
+  html[data-theme="glass"] .price-card--featured::after,
+  html[data-theme="glass"] .v8-plan-card--core::after,
+  html[data-theme="glass"] .bento-card::before,
+  html[data-theme="glass"] .price-card::before{display:none}
+}
+
+/* ── 11. 无障碍：系统要求减少动态 → 关掉流光与过渡 ── */
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="glass"] .price-card--featured::after,
+  html[data-theme="glass"] .v8-plan-card--core::after{animation:none}
+  html[data-theme="glass"] .bento-card::before,
+  html[data-theme="glass"] .price-card::before{transition:none}
 }
 
 /* ===== 打印：滚动显现元素一律可见，避免打印/导出 PDF 出现空白 ===== */

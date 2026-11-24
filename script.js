@@ -2,22 +2,28 @@
    流量火传媒 — 官网共享交互逻辑 v8
    ============================================ */
 
-// 深浅色主题切换（首帧已由 <head> 内联脚本定好，这里负责按钮与跟随系统）
+// 三档主题切换（浅色 → 深色 → 玻璃 → 浅色；首帧已由 <head> 内联脚本定好，这里负责按钮与跟随系统）
 (function () {
   var root = document.documentElement;
   var KEY = 'lh-theme';
   var meta = document.querySelector('meta[name="theme-color"]');
   var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  var MODES = ['light', 'dark', 'glass'];
+  var THEME_COLOR = { light: '#FFFFFF', dark: '#0A0A0D', glass: '#0D0B13' };
+  var LABEL = { light: '切换到深色模式', dark: '切换到玻璃模式', glass: '切换到浅色模式' };
 
-  function cur() { return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+  function cur() {
+    var v = root.getAttribute('data-theme');
+    return MODES.indexOf(v) >= 0 ? v : 'light';
+  }
   function saved() {
-    try { var v = localStorage.getItem(KEY); return (v === 'dark' || v === 'light') ? v : null; }
+    try { var v = localStorage.getItem(KEY); return MODES.indexOf(v) >= 0 ? v : null; }
     catch (e) { return null; }
   }
   function paint(mode) {
     root.setAttribute('data-theme', mode);
-    if (meta) meta.setAttribute('content', mode === 'dark' ? '#0A0A0D' : '#FFFFFF');
-    var label = mode === 'dark' ? '切换到浅色模式' : '切换到深色模式';
+    if (meta) meta.setAttribute('content', THEME_COLOR[mode]);
+    var label = LABEL[mode];
     document.querySelectorAll('.theme-toggle').forEach(function (b) {
       b.setAttribute('aria-pressed', mode === 'dark' ? 'true' : 'false');
       b.setAttribute('aria-label', label);
@@ -29,7 +35,7 @@
 
   document.querySelectorAll('.theme-toggle').forEach(function (b) {
     b.addEventListener('click', function () {
-      var next = cur() === 'dark' ? 'light' : 'dark';
+      var next = MODES[(MODES.indexOf(cur()) + 1) % MODES.length];
       paint(next);
       try { localStorage.setItem(KEY, next); } catch (e) {}
     });
