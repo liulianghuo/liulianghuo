@@ -3167,6 +3167,12 @@ html[data-theme="glass"] .wechat-card{
     inset 0 -1px 0 rgba(255,255,255,0.05);
 }
 
+/* ── 4b. 补齐玻璃档下仍是直角的元素，让光斑/流光(inherit)呈圆角 ── */
+html[data-theme="glass"] .stat-item,
+html[data-theme="glass"] .geo-why-item,
+html[data-theme="glass"] .mission-card{border-radius:20px}
+html[data-theme="glass"] .cta-contact-item{border-radius:14px}
+
 /* ── 5. 导航毛玻璃更通透 ── */
 html[data-theme="glass"] .nav{
   background:rgba(18,13,26,0.42);
