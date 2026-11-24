@@ -220,7 +220,11 @@ if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
 // 只在玻璃档 + 精确指针设备下运行；用 rAF 节流，离开卡片时归位，零累积开销。
 (function () {
   var root = document.documentElement;
-  var selector = '.bento-card,.price-card,.v8-plan-card,.v8-ai-group,.wechat-card';
+  // 覆盖全站所有主卡片：任何卡片鼠标移上去都有光斑跟随
+  var selector = '.bento-card,.price-card,.v8-plan-card,.v8-ai-group,.wechat-card,'
+    + '.v8-mini-card,.dgn-card,.product-card,.team-card,.guarantee-card,.value-card,'
+    + '.geo-fit-card,.geo-ind-card,.trend-card,.vision-card,.mission-card,.stat-item,'
+    + '.aiwall-item,.trust-item,.geo-why-item,.cta-contact-item';
   if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
 
   var raf = 0, pending = null;
@@ -250,6 +254,8 @@ if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
     el.style.setProperty('--my', '50%');
   }
   document.querySelectorAll(selector).forEach(function (el) {
+    // 光斑/流光用绝对定位伪元素，卡片必须是定位上下文
+    if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
     el.addEventListener('mouseenter', onEnter);
     el.addEventListener('mousemove', onMove);
   });

@@ -3178,42 +3178,70 @@ html[data-theme="glass"] .nav{
 /* ── 6. 动效①：菜单项 hover 放大 / 离开回弹（视频里的玻璃停靠栏效果）── */
 html[data-theme="glass"] .nav-links a,
 html[data-theme="glass"] .v8-nav-chip{
-  transition:transform .38s var(--ease-out-exp),background .38s var(--ease-out-exp),
-             box-shadow .38s var(--ease-out-exp),border-radius .38s var(--ease-out-exp),color .38s ease;
+  transition:transform .4s cubic-bezier(.22,1.4,.36,1),background .4s var(--ease-out-exp),
+             box-shadow .4s var(--ease-out-exp),border-radius .4s var(--ease-out-exp),color .4s ease;
   transform-origin:center center;
 }
+/* 加宽菜单项：让玻璃高亮块更饱满（其它档不受影响） */
+html[data-theme="glass"] .nav-links a{padding:9px 18px}
 @media (hover:hover) and (pointer:fine){
   html[data-theme="glass"] .nav-links a:hover{
-    transform:scale(1.18);
+    transform:scale(1.26);
     color:var(--c-text);
-    background:rgba(255,255,255,0.10);
-    border-radius:9px;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,0.22), 0 6px 22px rgba(0,0,0,0.28);
-    -webkit-backdrop-filter:blur(8px);
-    backdrop-filter:blur(8px);
+    background:linear-gradient(135deg,rgba(255,255,255,0.16),rgba(255,255,255,0.06));
+    border-radius:11px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.32),inset 0 -1px 0 rgba(255,255,255,0.08),0 8px 26px rgba(0,0,0,0.32);
+    -webkit-backdrop-filter:blur(10px) saturate(160%);
+    backdrop-filter:blur(10px) saturate(160%);
   }
   html[data-theme="glass"] .v8-nav-chip:hover{
-    transform:scale(1.09);
-    background:rgba(255,255,255,0.10);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,0.20), 0 6px 22px rgba(0,0,0,0.26);
+    transform:scale(1.13);
+    background:linear-gradient(135deg,rgba(255,255,255,0.16),rgba(255,255,255,0.06));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.28),0 8px 26px rgba(0,0,0,0.30);
   }
+  /* 玻璃扫光：hover 时一道高光从左掠过，静止态完全透明（不留方块） */
+  html[data-theme="glass"] .nav-links a::before{
+    content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    opacity:0;
+    background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,0.32) 48%,transparent 76%);
+    background-size:220% 100%;background-position:180% 0;
+    transition:opacity .25s ease,background-position .75s var(--ease-out-exp);
+  }
+  html[data-theme="glass"] .nav-links a:hover::before{opacity:1;background-position:-60% 0}
 }
 /* 选中态：液态玻璃高亮 */
 html[data-theme="glass"] .nav-links a.active,
 html[data-theme="glass"] .v8-nav-chip--active{
-  background:rgba(255,255,255,0.10);
-  border-radius:9px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.16), 0 3px 14px rgba(0,0,0,0.22);
+  background:linear-gradient(135deg,rgba(255,255,255,0.13),rgba(255,255,255,0.05));
+  border-radius:11px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.20), 0 3px 14px rgba(0,0,0,0.22);
   -webkit-backdrop-filter:blur(8px);
   backdrop-filter:blur(8px);
 }
 
-/* ── 7. 动效②：聚光光斑跟随鼠标（坐标 --mx/--my 由 script.js 实时写入）── */
+/* ── 7. 动效②：聚光光斑跟随鼠标（坐标 --mx/--my 由 script.js 实时写入）──
+   覆盖全站所有主卡片：任何一个卡片鼠标移上去都有光斑跟随 */
 html[data-theme="glass"] .bento-card::before,
 html[data-theme="glass"] .price-card::before,
 html[data-theme="glass"] .v8-plan-card::before,
 html[data-theme="glass"] .v8-ai-group::before,
-html[data-theme="glass"] .wechat-card::before{
+html[data-theme="glass"] .wechat-card::before,
+html[data-theme="glass"] .v8-mini-card::before,
+html[data-theme="glass"] .dgn-card::before,
+html[data-theme="glass"] .product-card::before,
+html[data-theme="glass"] .team-card::before,
+html[data-theme="glass"] .guarantee-card::before,
+html[data-theme="glass"] .value-card::before,
+html[data-theme="glass"] .geo-fit-card::before,
+html[data-theme="glass"] .geo-ind-card::before,
+html[data-theme="glass"] .trend-card::before,
+html[data-theme="glass"] .vision-card::before,
+html[data-theme="glass"] .mission-card::before,
+html[data-theme="glass"] .stat-item::before,
+html[data-theme="glass"] .aiwall-item::before,
+html[data-theme="glass"] .trust-item::before,
+html[data-theme="glass"] .geo-why-item::before,
+html[data-theme="glass"] .cta-contact-item::before{
   content:'';position:absolute;inset:0;border-radius:inherit;
   pointer-events:none;z-index:3;opacity:0;
   background:
@@ -3226,7 +3254,23 @@ html[data-theme="glass"] .wechat-card::before{
   html[data-theme="glass"] .price-card:hover::before,
   html[data-theme="glass"] .v8-plan-card:hover::before,
   html[data-theme="glass"] .v8-ai-group:hover::before,
-  html[data-theme="glass"] .wechat-card:hover::before{opacity:1}
+  html[data-theme="glass"] .wechat-card:hover::before,
+  html[data-theme="glass"] .v8-mini-card:hover::before,
+  html[data-theme="glass"] .dgn-card:hover::before,
+  html[data-theme="glass"] .product-card:hover::before,
+  html[data-theme="glass"] .team-card:hover::before,
+  html[data-theme="glass"] .guarantee-card:hover::before,
+  html[data-theme="glass"] .value-card:hover::before,
+  html[data-theme="glass"] .geo-fit-card:hover::before,
+  html[data-theme="glass"] .geo-ind-card:hover::before,
+  html[data-theme="glass"] .trend-card:hover::before,
+  html[data-theme="glass"] .vision-card:hover::before,
+  html[data-theme="glass"] .mission-card:hover::before,
+  html[data-theme="glass"] .stat-item:hover::before,
+  html[data-theme="glass"] .aiwall-item:hover::before,
+  html[data-theme="glass"] .trust-item:hover::before,
+  html[data-theme="glass"] .geo-why-item:hover::before,
+  html[data-theme="glass"] .cta-contact-item:hover::before{opacity:1}
 }
 
 /* ── 8. 动效③：Border Beam 边缘流光（@property 让光点沿边框跑，圆角不变形）── */
@@ -3240,7 +3284,23 @@ html[data-theme="glass"] .bento-card::after,
 html[data-theme="glass"] .price-card::after,
 html[data-theme="glass"] .v8-plan-card::after,
 html[data-theme="glass"] .v8-ai-group::after,
-html[data-theme="glass"] .wechat-card::after{
+html[data-theme="glass"] .wechat-card::after,
+html[data-theme="glass"] .v8-mini-card::after,
+html[data-theme="glass"] .dgn-card::after,
+html[data-theme="glass"] .product-card::after,
+html[data-theme="glass"] .team-card::after,
+html[data-theme="glass"] .guarantee-card::after,
+html[data-theme="glass"] .value-card::after,
+html[data-theme="glass"] .geo-fit-card::after,
+html[data-theme="glass"] .geo-ind-card::after,
+html[data-theme="glass"] .trend-card::after,
+html[data-theme="glass"] .vision-card::after,
+html[data-theme="glass"] .mission-card::after,
+html[data-theme="glass"] .stat-item::after,
+html[data-theme="glass"] .aiwall-item::after,
+html[data-theme="glass"] .trust-item::after,
+html[data-theme="glass"] .geo-why-item::after,
+html[data-theme="glass"] .cta-contact-item::after{
   content:'';position:absolute;inset:0;border-radius:inherit;padding:1.6px;
   background:conic-gradient(from var(--lh-beam),
     transparent 0deg,transparent 250deg,
@@ -3258,6 +3318,19 @@ html[data-theme="glass"] .wechat-card::after{
   pointer-events:none;z-index:4;opacity:.9;
 }
 
+/* ── 8.5 玻璃档去掉实色橙带：顶部色条收起，质感更干净高级 ── */
+html[data-theme="glass"] .v8-mini-accent,
+html[data-theme="glass"] .bento-card-accent,
+html[data-theme="glass"] .trend-card::before,
+html[data-theme="glass"] .vision-card::before{display:none}
+/* 案例卡左侧色带：玻璃档改成低调的半透明高光，不再是抢眼的橙条 */
+html[data-theme="glass"] .dgn-ribbon,
+html[data-theme="glass"] .dgn-ribbon--blue,
+html[data-theme="glass"] .dgn-ribbon--green,
+html[data-theme="glass"] .dgn-ribbon--orange{
+  background:linear-gradient(180deg,rgba(255,255,255,0.20),rgba(255,255,255,0.04));
+}
+
 /* ── 9. 玻璃档切换按钮图标：水滴 ── */
 html[data-theme="glass"] .theme-toggle .tt-sun{display:none}
 html[data-theme="glass"] .theme-toggle .tt-moon{display:none}
@@ -3269,41 +3342,33 @@ html[data-theme="glass"] .theme-toggle .tt-glass{display:block}
     background-image:linear-gradient(165deg,#1A1226 0%,#0D0B13 55%,#170F20 100%);
     background-attachment:scroll;
   }
-  html[data-theme="glass"] .bento-card,
-  html[data-theme="glass"] .price-card,
-  html[data-theme="glass"] .v8-plan-card,
-  html[data-theme="glass"] .v8-ai-group,
-  html[data-theme="glass"] .wechat-card{
+  html[data-theme="glass"] :is(.bento-card,.price-card,.v8-plan-card,.v8-ai-group,.wechat-card,
+    .v8-mini-card,.dgn-card,.product-card,.team-card,.guarantee-card,.value-card,
+    .geo-fit-card,.geo-ind-card,.trend-card,.vision-card,.mission-card,.stat-item,
+    .aiwall-item,.trust-item,.geo-why-item,.cta-contact-item){
     -webkit-backdrop-filter:none;backdrop-filter:none;
     background:rgba(30,24,42,0.92);
   }
   html[data-theme="glass"] .nav{
     -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   }
-  html[data-theme="glass"] .bento-card::before,
-  html[data-theme="glass"] .price-card::before,
-  html[data-theme="glass"] .v8-plan-card::before,
-  html[data-theme="glass"] .v8-ai-group::before,
-  html[data-theme="glass"] .wechat-card::before,
-  html[data-theme="glass"] .bento-card::after,
-  html[data-theme="glass"] .price-card::after,
-  html[data-theme="glass"] .v8-plan-card::after,
-  html[data-theme="glass"] .v8-ai-group::after,
-  html[data-theme="glass"] .wechat-card::after{display:none}
+  /* 手机没有 hover，光斑/流光一律关闭，零开销 */
+  html[data-theme="glass"] :is(.bento-card,.price-card,.v8-plan-card,.v8-ai-group,.wechat-card,
+    .v8-mini-card,.dgn-card,.product-card,.team-card,.guarantee-card,.value-card,
+    .geo-fit-card,.geo-ind-card,.trend-card,.vision-card,.mission-card,.stat-item,
+    .aiwall-item,.trust-item,.geo-why-item,.cta-contact-item)::before,
+  html[data-theme="glass"] :is(.bento-card,.price-card,.v8-plan-card,.v8-ai-group,.wechat-card,
+    .v8-mini-card,.dgn-card,.product-card,.team-card,.guarantee-card,.value-card,
+    .geo-fit-card,.geo-ind-card,.trend-card,.vision-card,.mission-card,.stat-item,
+    .aiwall-item,.trust-item,.geo-why-item,.cta-contact-item)::after{display:none}
 }
 
 /* ── 11. 无障碍：系统要求减少动态 → 关掉流光与过渡 ── */
 @media (prefers-reduced-motion:reduce){
-  html[data-theme="glass"] .bento-card::after,
-  html[data-theme="glass"] .price-card::after,
-  html[data-theme="glass"] .v8-plan-card::after,
-  html[data-theme="glass"] .v8-ai-group::after,
-  html[data-theme="glass"] .wechat-card::after{animation:none}
-  html[data-theme="glass"] .bento-card::before,
-  html[data-theme="glass"] .price-card::before,
-  html[data-theme="glass"] .v8-plan-card::before,
-  html[data-theme="glass"] .v8-ai-group::before,
-  html[data-theme="glass"] .wechat-card::before{transition:none}
+  html[data-theme="glass"] [class*="card"]::after,
+  html[data-theme="glass"] [class*="item"]::after{animation:none}
+  html[data-theme="glass"] [class*="card"]::before,
+  html[data-theme="glass"] [class*="item"]::before{transition:none}
 }
 
 /* ===== 打印：滚动显现元素一律可见，避免打印/导出 PDF 出现空白 ===== */
