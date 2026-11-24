@@ -3109,7 +3109,7 @@ html[data-theme="glass"]{
   --c-bg:#0D0B13;
   --c-surface:rgba(255,255,255,0.038);
   --c-surface-warm:rgba(255,255,255,0.052);
-  --c-card:rgba(255,255,255,0.06);
+  --c-card:rgba(255,255,255,0.055);
   --c-plate:rgba(255,255,255,0.075);
   --nav-bg:rgba(22,17,31,0.52);
   --nav-bg-solid:rgba(14,11,20,0.86);
@@ -3127,12 +3127,13 @@ html[data-theme="glass"]{
 
 /* ── 2. 静态品牌光斑：多层径向渐变，background-attachment 固定，零动画 ── */
 html[data-theme="glass"] body{
-  background-color:var(--c-bg);
+  background-color:#08070C;
   background-image:
-    radial-gradient(46vw 40vw at 82% 6%,  rgba(224,96,58,0.20), transparent 68%),
-    radial-gradient(54vw 46vw at 8% 42%,  rgba(201,80,43,0.15), transparent 70%),
-    radial-gradient(50vw 44vw at 70% 96%, rgba(120,70,180,0.13), transparent 70%),
-    radial-gradient(40vw 34vw at 30% 78%, rgba(232,131,90,0.10), transparent 72%);
+    radial-gradient(38vw 34vw at 80% 4%,   rgba(232,102,62,0.32), transparent 66%),
+    radial-gradient(44vw 40vw at 6% 36%,   rgba(196,70,40,0.22),  transparent 68%),
+    radial-gradient(46vw 42vw at 74% 92%,  rgba(126,72,190,0.22), transparent 68%),
+    radial-gradient(34vw 30vw at 26% 74%,  rgba(240,140,96,0.16), transparent 70%),
+    radial-gradient(60vw 60vw at 50% 50%,  rgba(28,20,44,0.55),   transparent 80%);
   background-repeat:no-repeat;
   background-attachment:fixed;
 }
@@ -3156,55 +3157,105 @@ html[data-theme="glass"] .price-card,
 html[data-theme="glass"] .v8-plan-card,
 html[data-theme="glass"] .v8-ai-group,
 html[data-theme="glass"] .wechat-card{
-  -webkit-backdrop-filter:blur(18px) saturate(135%);
-  backdrop-filter:blur(18px) saturate(135%);
-  border:1px solid rgba(255,255,255,0.13);
-  box-shadow:0 12px 40px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.09);
+  background:linear-gradient(150deg,rgba(255,255,255,0.11) 0%,rgba(255,255,255,0.035) 42%,rgba(255,255,255,0.055) 100%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.38),
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(255,255,255,0.05);
 }
 
 /* ── 5. 导航毛玻璃更通透 ── */
 html[data-theme="glass"] .nav{
-  -webkit-backdrop-filter:blur(22px) saturate(150%);
-  backdrop-filter:blur(22px) saturate(150%);
+  background:rgba(18,13,26,0.42);
+  -webkit-backdrop-filter:blur(26px) saturate(170%);
+  backdrop-filter:blur(26px) saturate(170%);
+  border-bottom:1px solid rgba(255,255,255,0.10);
 }
 
-/* ── 6. 动效①：液态玻璃「选中」高亮（导航 / 套餐标签） ── */
+/* ── 6. 动效①：菜单项 hover 放大 / 离开回弹（视频里的玻璃停靠栏效果）── */
+html[data-theme="glass"] .nav-links a,
+html[data-theme="glass"] .v8-nav-chip{
+  transition:transform .38s var(--ease-out-exp),background .38s var(--ease-out-exp),
+             box-shadow .38s var(--ease-out-exp),border-radius .38s var(--ease-out-exp),color .38s ease;
+  transform-origin:center center;
+}
+@media (hover:hover) and (pointer:fine){
+  html[data-theme="glass"] .nav-links a:hover{
+    transform:scale(1.18);
+    color:var(--c-text);
+    background:rgba(255,255,255,0.10);
+    border-radius:9px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.22), 0 6px 22px rgba(0,0,0,0.28);
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+  }
+  html[data-theme="glass"] .v8-nav-chip:hover{
+    transform:scale(1.09);
+    background:rgba(255,255,255,0.10);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.20), 0 6px 22px rgba(0,0,0,0.26);
+  }
+}
+/* 选中态：液态玻璃高亮 */
 html[data-theme="glass"] .nav-links a.active,
 html[data-theme="glass"] .v8-nav-chip--active{
   background:rgba(255,255,255,0.10);
   border-radius:9px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.14), 0 3px 14px rgba(0,0,0,0.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.16), 0 3px 14px rgba(0,0,0,0.22);
   -webkit-backdrop-filter:blur(8px);
   backdrop-filter:blur(8px);
 }
-html[data-theme="glass"] .nav-links a,
-html[data-theme="glass"] .v8-nav-chip{
-  transition:background .45s var(--ease-out-exp),box-shadow .45s var(--ease-out-exp),border-radius .45s var(--ease-out-exp);
-}
 
-/* ── 7. 动效②：聚光鼠标（独立伪元素承载径向光，不触发毛玻璃重算）── */
+/* ── 7. 动效②：聚光光斑跟随鼠标（坐标 --mx/--my 由 script.js 实时写入）── */
 html[data-theme="glass"] .bento-card::before,
-html[data-theme="glass"] .price-card::before{
+html[data-theme="glass"] .price-card::before,
+html[data-theme="glass"] .v8-plan-card::before,
+html[data-theme="glass"] .v8-ai-group::before,
+html[data-theme="glass"] .wechat-card::before{
   content:'';position:absolute;inset:0;border-radius:inherit;
-  pointer-events:none;z-index:1;opacity:0;
-  background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,0.16),transparent 62%);
-  transition:opacity .35s ease;
+  pointer-events:none;z-index:3;opacity:0;
+  background:
+    radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,0.30),transparent 64%),
+    radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,138,101,0.22),transparent 72%);
+  transition:opacity .3s ease;
 }
 @media (hover:hover) and (pointer:fine){
   html[data-theme="glass"] .bento-card:hover::before,
-  html[data-theme="glass"] .price-card:hover::before{opacity:1}
+  html[data-theme="glass"] .price-card:hover::before,
+  html[data-theme="glass"] .v8-plan-card:hover::before,
+  html[data-theme="glass"] .v8-ai-group:hover::before,
+  html[data-theme="glass"] .wechat-card:hover::before{opacity:1}
 }
 
-/* ── 8. 动效③：边缘流光（仅推荐套餐卡，transform 旋转 GPU 加速）── */
-@keyframes lh-glass-beam{to{transform:rotate(360deg)}}
-html[data-theme="glass"] .price-card--featured::after,
-html[data-theme="glass"] .v8-plan-card--core::after{
-  content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;
-  background:conic-gradient(from 0deg,transparent 0deg,var(--fire-mid) 38deg,#FFB27A 58deg,transparent 100deg,transparent 360deg);
+/* ── 8. 动效③：Border Beam 边缘流光（@property 让光点沿边框跑，圆角不变形）── */
+@property --lh-beam{
+  syntax:'<angle>';
+  initial-value:0deg;
+  inherits:false;
+}
+@keyframes lh-glass-beam{to{--lh-beam:360deg}}
+html[data-theme="glass"] .bento-card::after,
+html[data-theme="glass"] .price-card::after,
+html[data-theme="glass"] .v8-plan-card::after,
+html[data-theme="glass"] .v8-ai-group::after,
+html[data-theme="glass"] .wechat-card::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1.6px;
+  background:conic-gradient(from var(--lh-beam),
+    transparent 0deg,transparent 250deg,
+    rgba(255,178,122,0.12) 280deg,
+    rgba(255,138,101,0.7) 310deg,
+    #FFE0CC 336deg,
+    #fff 348deg,
+    #FFE0CC 354deg,
+    rgba(255,178,122,0.5) 360deg);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;
-  animation:lh-glass-beam 5.5s linear infinite;
-  pointer-events:none;z-index:2;
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  animation:lh-glass-beam 4.5s linear infinite;
+  pointer-events:none;z-index:4;opacity:.9;
 }
 
 /* ── 9. 玻璃档切换按钮图标：水滴 ── */
@@ -3229,18 +3280,30 @@ html[data-theme="glass"] .theme-toggle .tt-glass{display:block}
   html[data-theme="glass"] .nav{
     -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   }
-  html[data-theme="glass"] .price-card--featured::after,
-  html[data-theme="glass"] .v8-plan-card--core::after,
   html[data-theme="glass"] .bento-card::before,
-  html[data-theme="glass"] .price-card::before{display:none}
+  html[data-theme="glass"] .price-card::before,
+  html[data-theme="glass"] .v8-plan-card::before,
+  html[data-theme="glass"] .v8-ai-group::before,
+  html[data-theme="glass"] .wechat-card::before,
+  html[data-theme="glass"] .bento-card::after,
+  html[data-theme="glass"] .price-card::after,
+  html[data-theme="glass"] .v8-plan-card::after,
+  html[data-theme="glass"] .v8-ai-group::after,
+  html[data-theme="glass"] .wechat-card::after{display:none}
 }
 
 /* ── 11. 无障碍：系统要求减少动态 → 关掉流光与过渡 ── */
 @media (prefers-reduced-motion:reduce){
-  html[data-theme="glass"] .price-card--featured::after,
-  html[data-theme="glass"] .v8-plan-card--core::after{animation:none}
+  html[data-theme="glass"] .bento-card::after,
+  html[data-theme="glass"] .price-card::after,
+  html[data-theme="glass"] .v8-plan-card::after,
+  html[data-theme="glass"] .v8-ai-group::after,
+  html[data-theme="glass"] .wechat-card::after{animation:none}
   html[data-theme="glass"] .bento-card::before,
-  html[data-theme="glass"] .price-card::before{transition:none}
+  html[data-theme="glass"] .price-card::before,
+  html[data-theme="glass"] .v8-plan-card::before,
+  html[data-theme="glass"] .v8-ai-group::before,
+  html[data-theme="glass"] .wechat-card::before{transition:none}
 }
 
 /* ===== 打印：滚动显现元素一律可见，避免打印/导出 PDF 出现空白 ===== */

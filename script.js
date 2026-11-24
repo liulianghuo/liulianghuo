@@ -216,6 +216,45 @@ if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
   });
 }
 
+// 玻璃档：卡片聚光光斑跟随鼠标（写入 --mx/--my，CSS 的径向渐变读取这两个值）
+// 只在玻璃档 + 精确指针设备下运行；用 rAF 节流，离开卡片时归位，零累积开销。
+(function () {
+  var root = document.documentElement;
+  var selector = '.bento-card,.price-card,.v8-plan-card,.v8-ai-group,.wechat-card';
+  if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+
+  var raf = 0, pending = null;
+  function apply() {
+    raf = 0;
+    if (!pending) return;
+    var el = pending.el;
+    el.style.setProperty('--mx', pending.x + '%');
+    el.style.setProperty('--my', pending.y + '%');
+    pending = null;
+  }
+  function onMove(e) {
+    if (root.getAttribute('data-theme') !== 'glass') return;
+    var el = e.currentTarget;
+    var r = el.getBoundingClientRect();
+    pending = {
+      el: el,
+      x: Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)),
+      y: Math.max(0, Math.min(100, ((e.clientY - r.top) / r.height) * 100))
+    };
+    if (!raf) raf = requestAnimationFrame(apply);
+  }
+  function onEnter(e) {
+    if (root.getAttribute('data-theme') !== 'glass') return;
+    var el = e.currentTarget;
+    el.style.setProperty('--mx', '50%');
+    el.style.setProperty('--my', '50%');
+  }
+  document.querySelectorAll(selector).forEach(function (el) {
+    el.addEventListener('mouseenter', onEnter);
+    el.addEventListener('mousemove', onMove);
+  });
+})();
+
 // Hero 光晕视差
 const heroGlow = document.querySelector('.hero-glow');
 if (heroGlow) {
